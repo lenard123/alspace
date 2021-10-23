@@ -5,3 +5,5 @@
  - Ivan Delfin
  - Richard Veloria 
  - Mark Neil Embile
+ - Brandell Reyes
+ - Richard Veloria
