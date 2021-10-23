@@ -3,4 +3,5 @@
 ## Members
  - Lenard Mangay-ayam
  - Ivan Delfin
+ - Brandell Reyes
  - Richard Veloria
