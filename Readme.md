@@ -3,4 +3,5 @@
 ## Members
  - Lenard Mangay-ayam
  - Ivan Delfin
- - Richard Veloria
+ - Richard Veloria 
+ - Mark Neil Embile
