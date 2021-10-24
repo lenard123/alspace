@@ -16,3 +16,4 @@
  - Richard Veloria 
  - Mark Neil Embile
  - Brandell Reyes
+ - Jake Flores
