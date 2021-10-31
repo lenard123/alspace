@@ -1,2 +1,5 @@
 # Ignore MS word generated File
 ~*
+
+# Ignore PDF Files
+*.pdf
