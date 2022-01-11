@@ -3,3 +3,8 @@
 
 # Ignore PDF Files
 *.pdf
+
+.env
+/node_modules
+/vendor
+Thumbs.db
