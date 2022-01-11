@@ -1,0 +1,36 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+  .unreset h1,
+  .unreset h2,
+  .unreset h3,
+  .unreset h4,
+  .unreset h5,
+  .unreset h6{
+    font-size: revert;
+    font-weight: revert;
+  }
+
+  .unreset ol,
+  .unreset ul {
+    list-style: revert;
+    margin: revert;
+    padding: revert;
+  }
+}
+
+.demo {
+    position: fixed;
+    z-index: 99999;
+    background: gray;
+    color: white;
+    padding: 10px;
+    width: 200px;
+    font-weight: bold;
+    text-align: center;
+    top: 10px;
+    right: -60px;
+    transform: rotateZ(45deg);
+}
