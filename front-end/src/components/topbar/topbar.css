@@ -1,0 +1,37 @@
+.topbar {
+    @apply bg-white h-16 shadow flex items-center w-full;
+    position: sticky;
+    top: 0;
+}
+
+.topbar-left {
+    @apply flex items-center w-1/4;
+}
+
+.logo {
+    @apply h-8 w-8 ml-8 rounded-md;
+}
+
+.logo-text {
+    @apply ml-2 text-xl text-gray-800 font-bold text-blue-500;
+}
+
+.topbar-center {
+    @apply w-5/12;
+}
+
+.topbar-right {
+    @apply w-1/3 flex items-center justify-end;
+}
+
+.topbar-icons {
+    @apply flex gap-3 items-center;
+}
+
+.topbar-icons-item {
+    @apply relative cursor-pointer h-8 w-8 flex items-center justify-center border border-gray-300 rounded-lg hover:bg-gray-100;
+}
+
+.topbar-icons-badge {
+    @apply rounded-full h-5 w-5 flex items-center justify-center absolute top-[-8px] right-[-8px] bg-red-500 text-xs text-white font-semibold;
+}

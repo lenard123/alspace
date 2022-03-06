@@ -1,0 +1,15 @@
+.searchbar {
+    @apply h-9 rounded-xl bg-gray-100 flex items-center border border-gray-200;
+}
+
+.searchbar:hover, .searchbar .searchbarInput:focus {
+    @apply shadow-sm;
+}
+
+.searchbarInput {
+    @apply bg-transparent w-full mx-2 h-full;
+}
+
+.searchbarInput:focus {
+    @apply outline-none;
+}
