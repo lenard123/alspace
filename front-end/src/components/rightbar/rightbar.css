@@ -1,5 +1,4 @@
 .rightbar {
-    @apply w-1/3;
     height: calc(100vh - 4rem);
     overflow-y: scroll;
     scrollbar-color: rgb(179, 179, 179) #f1f1f1; /* thumb and track color */

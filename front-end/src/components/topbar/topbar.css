@@ -2,6 +2,7 @@
     @apply bg-white h-16 shadow flex items-center w-full;
     position: sticky;
     top: 0;
+    z-index: 20;
 }
 
 .topbar-left {

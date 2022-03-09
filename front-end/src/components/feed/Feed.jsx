@@ -2,9 +2,9 @@ import WritePost from './write-post'
 import Post from '/src/components/post'
 import Shadow from '/src/components/shadow'
 
-export default function Feed() {
+export default function Feed(props) {
     return (
-        <div className="w-5/12">
+        <div { ...props}>
             <div className="p-5 flex flex-col gap-5">
                 <WritePost />
 

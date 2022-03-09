@@ -1,4 +1,5 @@
 import { Chat, Notifications } from "@mui/icons-material";
+import { Link } from 'react-router-dom'
 
 import './topbar.css'
 import Searchbar from './searchbar'
@@ -19,18 +20,20 @@ export default function Topbar() {
             <div className="topbar-right">
 
                 <div className="topbar-icons">
-                    <div className="topbar-icons-item">
+                    <Link to="/messages" className="topbar-icons-item">
                         <Chat className="text-blue-500" sx={{fontSize: '16px'}}/>
                         <span className="topbar-icons-badge">1</span>
-                    </div>
+                    </Link>
 
-                    <div className="topbar-icons-item">
+                    <Link to="/notifications" className="topbar-icons-item">
                         <Notifications className="text-blue-500" sx={{fontSize: '16px'}} />
                         <span className="topbar-icons-badge">2</span>
-                    </div>
+                    </Link>
                 </div>
 
-                <Avatar size="sm" className="mx-8" src="https://avatars.dicebear.com/api/initials/lenard.svg" />
+                <Link to="/profile/1" className="mx-8">
+                    <Avatar size="sm" src="https://avatars.dicebear.com/api/initials/lenard.svg" />
+                </Link>
 
             </div>
 

@@ -1,17 +1,11 @@
-import Topbar from '/src/components/topbar'
-import Leftbar from '/src/components/leftbar'
 import Rightbar from '/src/components/rightbar'
-import Feed from './feed'
+import Feed from '/src/components/feed'
 
 export default function Home() {
     return (
-        <>
-            <Topbar />
-            <div className="flex">
-                <Leftbar />
-                <Feed />
-                <Rightbar />
-            </div>
-        </>
+        <div className="grid grid-cols-9">        
+            <Feed className="col-span-5"/>
+            <Rightbar className="col-span-4"/>
+        </div>
     )
 }

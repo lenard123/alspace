@@ -9,30 +9,23 @@ import Comment from './comment'
 
 export default function Post() {
     return (
-        <>
-            <Topbar/>
-            <div className="flex">
-                <Leftbar/>
-                <div className="w-5/12 p-5">
-                    <Shadow>
-                        <PostComponent />
+        <div className="grid grid-cols-9">
+            <div className="col-span-5 p-5">
+                <Shadow>
+                    <PostComponent />
 
-                        <Divider />
+                    <Divider />
+                    <div className="flex flex-col bg-white p-3 gap-4">
+                        <Comment/>
+                        <Comment/>
+                    </div>
 
-                        {/* Comments */}
-                        <div className="flex flex-col bg-white p-3 gap-4">
-                            <Comment/>
-                            <Comment/>
-                        </div>
+                    <Divider />
 
-                        <Divider />
+                    <WriteComment />
 
-                        <WriteComment />
-
-                    </Shadow>
-
-                </div>
+                </Shadow>
             </div>
-        </>
+        </div>
     )
 }
