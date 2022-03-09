@@ -1,3 +1,3 @@
 export default function Notifications() {
-    return <>Notifications</>
+    return <>group</>
 }
