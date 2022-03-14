@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom'
 import './topbar.css'
 import Searchbar from './searchbar'
 import Avatar from '/src/components/avatar'
+import Logo from '/assets/logo.png'
 
 export default function Topbar() {
     return (
         <div className="topbar">
             <div className="topbar-left">
-                <img className="logo" src="/assets/logo.png" alt="Alspace Logo"/>
+                <img className="logo" src={Logo} alt="Alspace Logo"/>
                 <span className="logo-text">AlSpace</span>
             </div>
 

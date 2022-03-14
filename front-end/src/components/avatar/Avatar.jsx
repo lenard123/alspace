@@ -8,9 +8,11 @@ const sizes = {
     '4xl': '78px'
 };
 
-const Avatar = function({ src, size, className }) {
+const Avatar = function({ src, size, className, name }) {
 
     const imageSize = sizes[size] || size;
+
+    src = src || `https://avatars.dicebear.com/api/initials/${encodeURI(name)}.svg`
 
     return (
         <img 
@@ -26,7 +28,8 @@ const Avatar = function({ src, size, className }) {
 
 Avatar.defaultProps = {
     size: 'md',
-    className: ''
+    className: '',
+    name: 'A'
 }
 
 export default Avatar;
