@@ -5,7 +5,7 @@ import { MenuOutlined, SearchOutlined, UserOutlined, MessageOutlined, BellOutlin
 export default function()
 {
     return (
-        <div className='sticky top-0 w-full bg-white grid gap-2 lg:grid-cols-12 h-15 px-4 shadow'>
+        <div className='sticky top-0 z-10 w-full bg-white grid gap-2 lg:grid-cols-12 h-15 px-4 shadow'>
             
             {/* Logo */}
             <div className='col-span-3 flex justify-between items-center'>

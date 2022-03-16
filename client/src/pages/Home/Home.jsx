@@ -1,13 +1,12 @@
-import { Avatar, Input, Divider } from 'antd'
-import { UserOutlined, CameraFilled, LikeOutlined, CommentOutlined } from '@ant-design/icons'
-import MainLayout from '/src/components/layout/MainLayout'
-
+import { Avatar, Input } from 'antd'
+import { UserOutlined, CameraFilled } from '@ant-design/icons'
+import Post from './components/Post'
 
 export default function() {
     return (
-        <MainLayout>
+        <>
             
-            <div className='flex gap-2 max-w-xl mx-auto md:rounded-lg bg-white mt-4 border border-solid p-4 border-gray-300'>
+            <div className='flex gap-2 max-w-xl mx-auto sm:rounded-lg bg-white mt-4 border border-solid p-4 border-gray-300'>
                 <Avatar size='large' icon={<UserOutlined />} />
                 <div className='flex-grow flex flex-col gap-2'>
                     <Input.TextArea className='rounded-lg' rows={2} placeholder='Write something...'/>
@@ -23,35 +22,13 @@ export default function() {
 
             </div>
 
-            <div className='flex flex-col gap-4 max-w-xl mx-auto md:rounded-lg bg-white mt-4 border border-solid p-4 pb-1 border-gray-300'>
-                
-                <div className='flex gap-2 items-center'>
-                    <Avatar size='large' icon={<UserOutlined />} />
-                    <div className='flex justify-between'>
-                        <div className='flex flex-col leading-3'>
-                            <span className='font-bold'>Lenard Mangay-ayam</span>
-                            <span className='text-sm'>2 hours ago</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    lorem ipsum dolor sit amet
-                </div>
-
-                <div>
-                    <div className='flex gap-2 text-base pt-1 border-t border-gray-300'>
-                        <button className='flex-grow py-1 bg-white rounded-full'><LikeOutlined /></button>
-                        <button className='flex-grow py-1 bg-white rounded-full'><CommentOutlined /></button>
-                    </div>
-                </div>
-
-
+            <div className='my-4 flex flex-col gap-4 max-w-xl mx-auto'>
+                <Post />
+                <Post />
+                <Post />
             </div>
 
-
-
-        </MainLayout>
+        </>
 
     )
 }
