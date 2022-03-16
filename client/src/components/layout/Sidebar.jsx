@@ -22,6 +22,7 @@ export default function()
                 <div className='flex flex-col'>
 
                     <Item 
+                        to='/'
                         title="Discussion" 
                         icon={<HomeOutlined style={{fontSize: '1.375rem'}}/>} 
                     /> 
