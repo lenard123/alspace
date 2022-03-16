@@ -10,8 +10,7 @@ export default function ({ children })
     const [isLike, toggleLike] = useToggler(false)
     const [liking, toggleLiking] = useState(false)
 
-    const likePost = async () => {
-
+    const likePost = async (e) => {
         //Prevent Click spamming
         if (liking) return
 

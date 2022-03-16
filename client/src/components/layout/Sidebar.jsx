@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom'
+import { Modal } from 'antd'
 import { 
     MessageOutlined, 
     BellOutlined,
@@ -8,14 +10,21 @@ import {
     LogoutOutlined,
     HomeOutlined
 } from '@ant-design/icons'
-import { 
-    Newspaper,
-    BriefcaseOutlined
-} from '/src/components/icons'
+import { BriefcaseOutlined } from '/src/components/icons'
 import Item from './SidebarItem'
 
 export default function()
 {
+    const navigate = useNavigate()
+    const logout = () => {
+        Modal.confirm({
+            title: 'Are you sure to Logout?',
+            onOk() {
+                navigate('/login')
+            }
+        })
+    }
+
     return (
         <div className='hidden lg:block max-h-full -ml-4'>
             <div className='py-4'>
@@ -33,6 +42,7 @@ export default function()
                     />
 
                     <Item 
+                        to="/notifications"
                         title="Notifications" 
                         icon={<BellOutlined style={{fontSize: '1.375rem'}}/>} 
                     />
@@ -63,6 +73,7 @@ export default function()
                     />
 
                     <Item 
+                        onClick={logout}
                         title="Logout" 
                         icon={<LogoutOutlined style={{fontSize: '1.375rem'}}/>} 
                     />
