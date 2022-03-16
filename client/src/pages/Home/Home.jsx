@@ -1,6 +1,6 @@
 import { Avatar, Input } from 'antd'
 import { UserOutlined, CameraFilled } from '@ant-design/icons'
-import Post from './components/Post'
+import Post from '/src/components/Post/Post'
 
 export default function() {
     return (

@@ -8,3 +8,11 @@
     border-width: 0;
     border-style: solid;
 }
+
+a {
+    color: unset;
+}
+
+a:hover {
+    color: unset;
+}
