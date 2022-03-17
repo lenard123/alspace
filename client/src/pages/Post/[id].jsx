@@ -10,7 +10,7 @@ const CommentList = ({ comments }) => {
             header={`${comments.length} ${comments.length > 1 ? 'comments' : 'comments'}`}
             dataSource={comments}
             renderItem={comment => (
-                <List.Item>
+                <List.Item className='py-0'>
                     <PostComment comment={comment}/>
                 </List.Item>
             )}

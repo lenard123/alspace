@@ -48,6 +48,7 @@ export default function()
                     />
 
                     <Item 
+                        to="/questions"
                         title="Questions" 
                         icon={<QuestionCircleOutlined style={{fontSize: '1.375rem'}}/>} 
                     />

@@ -4,7 +4,7 @@ import { UserOutlined } from '@ant-design/icons'
 import { DotsHorizontalOutlined } from '/src/components/icons'
 
 const NotificationItem = ({ name, value }) => (
-    <div className="flex gap-3 py-2">
+    <div className="flex gap-3">
 
         <Avatar size='large' icon={<UserOutlined />} />
 
@@ -44,7 +44,7 @@ export default function ()
     ]
 
     return (
-        <div className='max-w-lg mx-auto sm:rounded-lg bg-white my-4 border border-gray-300 p-8'>
+        <div className='max-w-lg mx-auto sm:rounded-lg bg-white my-4 border border-gray-300 p-6'>
             <div className="flex justify-between">
                 <div className="font-bold text-xl sm:text-2xl text-gray-700">Notifications</div>
                 <Button type='text' icon={<DotsHorizontalOutlined />}/>

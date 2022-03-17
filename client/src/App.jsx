@@ -5,6 +5,7 @@ import MainLayout from './components/layout/MainLayout'
 import Home from './pages/Home/Home'
 import Notifications from './pages/Notifications/Notifications'
 import Post from './pages/Post/[id]'
+import Questions from './pages/Qustions/Qustions'
 
 export default () => (
     <BrowserRouter>
@@ -14,6 +15,7 @@ export default () => (
                 <Route index element={<Home />}/>
                 <Route path='/post/:id' element={<Post />} />
                 <Route path='/notifications' element={<Notifications />} />
+                <Route path='/questions' element={<Questions />} />
             </Route>
 
         </Routes>

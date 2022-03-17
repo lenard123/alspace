@@ -16,3 +16,7 @@ a {
 a:hover {
     color: unset;
 }
+
+.ant-input {
+    background-color: inherit;
+}
