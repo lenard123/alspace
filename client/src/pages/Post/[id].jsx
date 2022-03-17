@@ -7,8 +7,11 @@ import PostComment from '/src/components/Comment/Comment'
 const CommentList = ({ comments }) => {
     return (
         <List
-            header={`${comments.length} ${comments.length > 1 ? 'comments' : 'comments'}`}
+            header={comments.length > 0 && `${comments.length} ${comments.length > 1 ? 'comments' : 'comments'}`}
             dataSource={comments}
+            locale={{
+                emptyText: 'Be the first to comment'
+            }}
             renderItem={comment => (
                 <List.Item className='py-0'>
                     <PostComment comment={comment}/>
@@ -29,19 +32,20 @@ export default function()
         setComments(comments => {
             return [...comments, comment]
         })
+        setComment('')
     }
 
     return (
         <div className='my-4 max-w-xl mx-auto'>
             <Post>
 
-                { comments.length > 0 && <CommentList comments={comments} />}
+                <CommentList comments={comments} />
 
                 <Comment 
                     avatar={<Avatar icon={<UserOutlined />}/>}
                     content={
                         <div className='space-y-2'>
-                            <Input.TextArea onChange={e=>setComment(e.target.value)} rows={2} placeholder='Write a comment' />
+                            <Input.TextArea value={comment} onChange={e=>setComment(e.target.value)} rows={2} placeholder='Write a comment' />
                             <Button onClick={submitComment} type='primary'>Submit</Button>
                         </div>
                     }
