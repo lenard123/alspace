@@ -37,7 +37,8 @@ export default function()
                     /> 
 
                     <Item 
-                        title="Chats" 
+                        to='/message'
+                        title="Message" 
                         icon={<MessageOutlined style={{fontSize: '1.375rem'}}/>} 
                     />
 
@@ -60,16 +61,19 @@ export default function()
                     />
 
                     <Item 
+                        to='/events'
                         title="Event" 
                         icon={<CalendarOutlined style={{fontSize: '1.375rem'}}/>} 
                     />
 
                     <Item 
-                        title="Profiles" 
+                        to='/profile'
+                        title="Profile" 
                         icon={<UserOutlined style={{fontSize: '1.375rem'}}/>} 
                     />
 
                     <Item 
+                        to='/settings'
                         title="Settings" 
                         icon={<SettingOutlined style={{fontSize: '1.375rem'}}/>} 
                     />
