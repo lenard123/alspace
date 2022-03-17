@@ -54,6 +54,7 @@ export default function()
                     />
 
                     <Item 
+                        to="/jobs"
                         title="Jobs" 
                         icon={<BriefcaseOutlined style={{fontSize: '1.375rem'}}/>} 
                     />
