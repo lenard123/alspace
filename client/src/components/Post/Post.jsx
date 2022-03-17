@@ -50,7 +50,7 @@ export default function ({ children })
                         }
                     </Spin>
                 </button>
-                <Link to='/post/1' className='flex-grow py-1 text-center bg-white hover:bg-gray-100 rounded-full'><CommentOutlined /></Link>
+                <Link to='/posts/1' className='flex-grow py-1 text-center bg-white hover:bg-gray-100 rounded-full'><CommentOutlined /></Link>
             </div>
 
             {
