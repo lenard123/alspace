@@ -1,4 +1,4 @@
-import { Avatar, Input } from 'antd'
+import { Avatar, Input, Timeline, Card } from 'antd'
 import { CameraFilled, UserOutlined } from '@ant-design/icons'
 
 import Post from '/src/components/Post/Post'
@@ -22,12 +22,30 @@ export default function()
             </div>
 
             {/* Wrapper */}
-            <div className='flex mt-8'>
+            <div className='flex mt-8 flex-col gap-y-4 md:flex-row-reverse'>
 
-                <div className='w-full lg:w-2/3'>
+                <div className='w-full flex-grow max-w-xl sm:px-4 mx-auto'>
+
+                    <Card 
+                        title={
+                            <span className='font-bold text-xl'>About</span>
+                        }
+                        >
+                        <Timeline>
+                            <Timeline.Item>Course: BSCS</Timeline.Item>
+                            <Timeline.Item>Batch: 2019</Timeline.Item>
+                            <Timeline.Item>Info: Abcd</Timeline.Item>
+                            <Timeline.Item>Info2: Test</Timeline.Item>
+                        </Timeline>,
+                    </Card>
+
+                </div>
+
+
+                <div className='max-w-xl mx-auto sm:px-4'>
 
                     {/* Write Post */}
-                    <div className='flex gap-2 max-w-xl mx-auto sm:rounded-lg bg-white border border-solid p-4 border-gray-300'>
+                    <div className='flex gap-2 sm:rounded-lg bg-white border border-solid p-4 border-gray-300'>
                         <Avatar size='large' icon={<UserOutlined />} />
                         <div className='flex-grow flex flex-col gap-2'>
                             <Input.TextArea className='rounded-lg' rows={2} placeholder='Write something...'/>
@@ -42,7 +60,7 @@ export default function()
                         </div>
                     </div>
 
-                    <div className='my-4 flex flex-col gap-4 max-w-xl mx-auto'>
+                    <div className='my-4 flex flex-col gap-4'>
                         <Post />
                         <Post />
                         <Post />
