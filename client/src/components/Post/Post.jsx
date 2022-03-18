@@ -45,7 +45,7 @@ export default function ({ children })
                 <button onClick={likePost} className='cursor-pointer flex-grow py-1 bg-white hover:bg-gray-100 rounded-full'>
                     <Spin spinning={liking}>
                         {isLike 
-                            ? <LikeFilled /> 
+                            ? <LikeFilled className='text-blue-500'/> 
                             : <LikeOutlined />
                         }
                     </Spin>
