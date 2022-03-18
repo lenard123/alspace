@@ -9,20 +9,19 @@
   <body class="font-sans">
     <div id="root"></div>
 
-    @if (env('VITE_ENV') == 'gitpod')
+    @if(config('app.env') === 'production')
+      @vite
+    @else
       <script type="module">
-        import RefreshRuntime from "{{ env('VITE_SERVER_HOST') }}/@@react-refresh"
+        import RefreshRuntime from "{{ env('VITE_SERVER_HOST', 'http://localhost:3000') }}/@@react-refresh"
         RefreshRuntime.injectIntoGlobalHook(window)
         window.$RefreshReg$ = () => {}
         window.$RefreshSig$ = () => (type) => type
         window.__vite_plugin_react_preamble_installed__ = true
       </script>
 
-      <script type="module" src="{{ env('VITE_SERVER_HOST') }}/@@vite/client"></script>
-
-      <script type="module" src="{{ env('VITE_SERVER_HOST') }}/resources/js/main.jsx"></script>
-    @else
-      @vite
+      <script type="module" src="{{ env('VITE_SERVER_HOST', 'http://localhost:3000') }}/@@vite/client"></script>
+      <script type="module" src="{{ env('VITE_SERVER_HOST', 'http://localhost:3000') }}/resources/js/main.jsx"></script>
     @endif
 
   </body>
