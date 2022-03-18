@@ -2,7 +2,7 @@ import { Avatar, Input, Timeline, Card } from 'antd'
 import { CameraFilled, UserOutlined } from '@ant-design/icons'
 
 import Post from '@/js/components/Post/Post'
-import CoverImage from '@/images/cover.png'
+//import CoverImage from '@/images/cover.png'
 import './index.css'
 
 export default function()
@@ -10,7 +10,7 @@ export default function()
     return (
         <div className="profile">
             <div className="profile-cover">
-                <img src={CoverImage} className='absolute inset-0 object-cover' width='100%' height='100%'/>
+                <img src='/images/cover.png' className='absolute inset-0 object-cover' width='100%' height='100%'/>
                 <img 
                     className='profile-avatar' 
                     src='https://avatars.dicebear.com/api/initials/Lenard+Mangay-ayam.svg' />

@@ -1,4 +1,4 @@
-import Logo from '@/images/logo.png'
+//import Logo from '../../../images/logo.png'
 import { Avatar, Button, Input, } from 'antd'
 import { MenuOutlined, SearchOutlined, UserOutlined, MessageOutlined, BellOutlined } from '@ant-design/icons'
 
@@ -10,7 +10,7 @@ export default function()
             {/* Logo */}
             <div className='col-span-3 flex justify-between items-center'>
                 <div className='flex gap-2 items-center'>
-                    <img className='rounded' src={Logo} height='32' width='auto' />
+                    <img className='rounded' src='/images/logo.png' height='32' width='auto' />
                     <span className='font-bold text-xl'>Alspace</span>
                 </div>
                 <Button className='lg:hidden' icon={<MenuOutlined/>} />
