@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+@import 'antd/dist/antd.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*, img {
+    border-width: 0;
+    border-style: solid;
+}
+
+a {
+    color: unset;
+}
+
+a:hover {
+    color: unset;
+}
+
+.ant-input {
+    background-color: inherit;
+}
+
+.thin-scrollbar {
+    scrollbar-color: rgb(179, 179, 179) #f1f1f1; /* thumb and track color */
+    scrollbar-width: thin;
+}
+
+.thin-scrollbar::-webkit-scrollbar { width: 5px; }
+.thin-scrollbar::-webkit-scrollbar-track { background-color: #f1f1f1; }
+.thin-scrollbar::-webkit-scrollbar-thumb { background-color: rgb(179, 179, 179); }
