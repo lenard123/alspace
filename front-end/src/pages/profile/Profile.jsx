@@ -7,7 +7,7 @@ export default function Profile() {
     return (
         <div>
             <div className="cover">
-                <img className="cover-img" src={Cover}/>
+                <img className="bg-gray-100 h-full w-full cover-img" src={Cover}/>
                 <Avatar className="profile-picture" size="120px" src="https://avatars.dicebear.com/api/initials/Lenard+Mangay-ayam.svg" />
             </div>
 

@@ -26,7 +26,7 @@ export default function()
     }
 
     return (
-        <div className='hidden lg:block max-h-full -ml-4'>
+        <div className='hidden lg:block max-h-full -ml-4 self-start sticky top-[54px]'>
             <div className='py-4'>
                 <div className='flex flex-col'>
 

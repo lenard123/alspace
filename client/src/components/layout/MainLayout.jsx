@@ -3,7 +3,7 @@ import Topbar from '/src/components/layout/Topbar'
 import Sidebar from '/src/components/layout/Sidebar'
 
 export default ({children}) => (
-    <div className='bg-gray-100 min-h-screen text-gray-700 flex flex-col'>
+    <div className='bg-gray-50 min-h-screen text-gray-700 flex flex-col'>
 
         <Topbar />
         

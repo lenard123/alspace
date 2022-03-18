@@ -1,0 +1,35 @@
+.profile {
+    --cover: 40%;
+    --sm-cover: 30%;
+    --lg-cover: 25%;
+
+    --avatar: 90px;
+}
+
+/* SM */
+@media (min-width: 640px) {
+    .profile {
+        --cover: 30%;
+        --avatar: 120px;
+    }
+}
+
+/* LG */
+@media (min-width: 1024px) {
+    .profile {
+        --cover: 25%;
+    }
+}
+
+.profile-cover {
+    @apply relative -mx-4 lg:ml-0 flex justify-center;
+    padding-top: var(--cover);
+    margin-bottom: calc(var(--avatar) / 2);
+}
+
+.profile-avatar {
+    @apply absolute rounded-full border-2 border-white;
+    height: var(--avatar);
+    width: var(--avatar);
+    top: calc(100% - var(--avatar) + var(--avatar)/2); /* Para macenter sa bottom lol */
+}
