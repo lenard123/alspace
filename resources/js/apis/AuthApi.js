@@ -10,6 +10,11 @@ export const login = async(formData) => {
     return await Http.post('/login', formData)
 }
 
+export const logout = async() => {
+    await requestCookie()
+    return await Http.post('/logout')
+}
+
 export const fetchCurrentUser = async() => {
     await requestCookie()
     return await Http.get('/user')
@@ -18,5 +23,6 @@ export const fetchCurrentUser = async() => {
 export default {
     register,
     login,
+    logout,
     fetchCurrentUser
 }

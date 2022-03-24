@@ -13,18 +13,22 @@ import {
 import { BriefcaseOutlined } from '@/js/components/icons'
 import Item from './SidebarItem'
 import { useAuthState } from '@/js/states'
+import useApi from '@/js/hooks/useApi'
+import { AuthApi } from '@/js/apis'
 
 export default function()
 {
-    const navigate = useNavigate()
+    const { execute, navigate, message } = useApi(AuthApi.logout)
     const { dispatch } = useAuthState()
 
     const logout = () => {
         Modal.confirm({
             title: 'Are you sure to Logout?',
-            onOk() {
+            async onOk() {
+                await execute()
                 dispatch('LOGOUT')
                 navigate('/login')
+                message.success('Logout successfully')
             }
         })
     }
