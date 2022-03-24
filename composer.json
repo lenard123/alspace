@@ -50,6 +50,14 @@
             "@php artisan config:cache",
             "@php artisan route:cache",
             "@php artisan view:cache"
+        ],
+        "install-php8.1": [
+            "sudo add-apt-repository ppa:ondrej/php -y",
+            "sudo install-packages php8.1 php8.1-curl php8.1-dom"
+        ],
+        "setup": [
+            "cp .env.example .env",
+            "php artisan key:generate"
         ]
     },
     "extra": {
