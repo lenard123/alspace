@@ -6,7 +6,7 @@ export default function()
 {
     const { 
         isLoading, 
-        execute:register, 
+        execute, 
         status, 
         isSuccess, 
         navigate,
@@ -20,6 +20,10 @@ export default function()
             navigate('/login')
         }
     }, [status])
+
+    const register = (formData) => {
+        execute({...formData, year_graduated: formData.year_graduated.year()})
+    }
 
     return {
         isLoading,
