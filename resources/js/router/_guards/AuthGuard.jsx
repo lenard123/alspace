@@ -7,9 +7,9 @@ import Logo from '@/js/components/Logo'
 import { AuthApi } from '@/js/apis'
 
 const Validating = () => (
-    <div className='h-screen flex flex-col justify-center'>
+    <div className='h-screen flex flex-col justify-center items-center'>
         <Spin />
-        <Logo />
+        <span className='text-md'>Display some random tips while loading</span>
     </div>
 )
 
