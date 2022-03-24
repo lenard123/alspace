@@ -17,6 +17,7 @@ import Settings from '@/js/pages/settings'
 
 import Login from '@/js/pages/login'
 import Register from '@/js/pages/register'
+import GuestGuard from './_guards/GuestGuard'
 
 export default () => (
     <BrowserRouter>
@@ -37,9 +38,10 @@ export default () => (
                 </Route>
             </Route>
 
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-
+            <Route path='' element={<GuestGuard />}>
+                <Route path='/login' element={<Login />} />
+                <Route path='/register' element={<Register />} />
+            </Route>
         </Routes>
     </BrowserRouter>
 )
