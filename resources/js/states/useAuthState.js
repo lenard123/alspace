@@ -1,4 +1,4 @@
-import { atom, selector, useRecoilState, useRecoilValue } from "recoil";
+import { atom, selector, useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import useUsersState, { usersState } from './useUsersState';
 
 export const userIdState = atom({
@@ -28,7 +28,7 @@ export const currentUserState = selector({
 const useAuthState = () => {
     const { dispatch:dispatchUser } = useUsersState()
     const currentUser = useRecoilValue(currentUserState)
-    const [userId, setUserId] = useRecoilState(userIdState)
+    const setUserId = useSetRecoilState(userIdState)
     const [isAuthenticated, setIsAuthenticated] = useRecoilState(isAuthenticatedState)
     const [isValidated, setIsValidated] = useRecoilState(isValidatedState)
 
@@ -46,6 +46,11 @@ const useAuthState = () => {
                 const { isAuthenticated } = payload
                 setIsAuthenticated(isAuthenticated)
                 localStorage.setItem('authenticated', isAuthenticated)
+                break;
+            case 'LOGOUT':
+                setIsAuthenticated(false)
+                setIsValidated(false)
+                localStorage.removeItem('authenticated')
                 break;
         }
     }

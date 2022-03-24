@@ -12,14 +12,18 @@ import {
 } from '@ant-design/icons'
 import { BriefcaseOutlined } from '@/js/components/icons'
 import Item from './SidebarItem'
+import { useAuthState } from '@/js/states'
 
 export default function()
 {
     const navigate = useNavigate()
+    const { dispatch } = useAuthState()
+
     const logout = () => {
         Modal.confirm({
             title: 'Are you sure to Logout?',
             onOk() {
+                dispatch('LOGOUT')
                 navigate('/login')
             }
         })
