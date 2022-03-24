@@ -13,6 +13,7 @@ import Profile from './pages/profile'
 import Settings from './pages/settings'
 
 import Login from './pages/login'
+import Register from './pages/register'
 
 export default () => (
     <BrowserRouter>
@@ -32,6 +33,7 @@ export default () => (
             </Route>
 
             <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
 
         </Routes>
     </BrowserRouter>
