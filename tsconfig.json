@@ -20,7 +20,9 @@
             "@/*": [
                 "resources/*"
             ]
-        }
+        },
+        "allowJs": true,
+        "noEmit": true
     },
     "include": [
         "resources/**/*"
