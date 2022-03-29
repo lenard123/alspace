@@ -4,9 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
-*, img {
+* {
     border-width: 0;
     border-style: solid;
+    --header-height: 4rem;
 }
 
 a {
@@ -29,3 +30,8 @@ a:hover {
 .thin-scrollbar::-webkit-scrollbar { width: 5px; }
 .thin-scrollbar::-webkit-scrollbar-track { background-color: #f1f1f1; }
 .thin-scrollbar::-webkit-scrollbar-thumb { background-color: rgb(179, 179, 179); }
+
+
+.header-height {
+    height: var(--header-height);
+}
