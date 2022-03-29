@@ -2,29 +2,17 @@ import { Modal, Avatar, Divider, Menu } from 'antd'
 import { LogoutOutlined, QuestionCircleOutlined, SettingOutlined } from '@ant-design/icons'
 import { useRecoilValue } from 'recoil'
 import { Link } from 'react-router-dom'
-import useApi from '@/js/hooks/useApi'
-import { AuthApi } from '@/js/apis'
-import useAuthActions from '@/js/recoil/actions/useAuthActions'
 import currentUserSelector from '@/js/recoil/selectors/currentUserSelector'
+import useMainLayoutLogic from '../useMainLayoutLogic'
 
 const UserAvatarMenu = ({ setIsOpen }) => {
-    const { execute, navigate, message } = useApi(AuthApi.logout)
-    const { removeCurrentUser } = useAuthActions()
     const currentUser = useRecoilValue(currentUserSelector)
+    const { showLogoutModal } = useMainLayoutLogic()
 
     const menuClicked = ({key}) => {
         setIsOpen(false)
         if (key === 'logout') {
-            Modal.confirm({
-                title: 'Confirm logout',
-                content: 'Are you sure to logout?',
-                async onOk() {
-                    await execute()
-                    removeCurrentUser()
-                    navigate('/login')
-                    message.success('Logout successfully')
-                }
-            })
+            showLogoutModal()
         }
     }
     
