@@ -2,14 +2,15 @@ import { Modal, Avatar, Divider, Menu } from 'antd'
 import { LogoutOutlined, QuestionCircleOutlined, SettingOutlined } from '@ant-design/icons'
 import { useRecoilValue } from 'recoil'
 import { Link } from 'react-router-dom'
-import useAuthState, { currentUserState } from '@/js/states/useAuthState'
 import useApi from '@/js/hooks/useApi'
 import { AuthApi } from '@/js/apis'
+import useAuthActions from '@/js/recoil/actions/useAuthActions'
+import currentUserSelector from '@/js/recoil/selectors/currentUserSelector'
 
 const UserAvatarMenu = ({ setIsOpen }) => {
     const { execute, navigate, message } = useApi(AuthApi.logout)
-    const { dispatch } = useAuthState()
-    const currentUser = useRecoilValue(currentUserState)
+    const { removeCurrentUser } = useAuthActions()
+    const currentUser = useRecoilValue(currentUserSelector)
 
     const menuClicked = ({key}) => {
         setIsOpen(false)
@@ -19,7 +20,7 @@ const UserAvatarMenu = ({ setIsOpen }) => {
                 content: 'Are you sure to logout?',
                 async onOk() {
                     await execute()
-                    dispatch('LOGOUT')
+                    removeCurrentUser()
                     navigate('/login')
                     message.success('Logout successfully')
                 }

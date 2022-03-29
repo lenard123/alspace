@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
-import { useAuthState } from "@/js/states"
 import { Navigate, Outlet } from "react-router-dom"
 import useApi from '@/js/hooks/useApi'
 import { Spin } from 'antd'
-import Logo from '@/js/components/Logo'
 import { AuthApi } from '@/js/apis'
+import { useRecoilValue } from 'recoil'
+import authState from '@/js/recoil/states/authState'
+import useAuthActions from '@/js/recoil/actions/useAuthActions'
 
 const Validating = () => (
     <div className='h-screen flex flex-col justify-center items-center'>
@@ -14,33 +15,27 @@ const Validating = () => (
 )
 
 const AuthGuard = () => {
-    const { isAuthenticated, isValidated, dispatch } = useAuthState()
-    const { isLoading, execute, status, data:user } = useApi(AuthApi.fetchCurrentUser)
+    const { setCurrentUser } = useAuthActions()
+    const { isLoading, execute, data:user, isSuccess } = useApi(AuthApi.fetchCurrentUser)
+    const { currentUserId, isAuthenticated } = useRecoilValue(authState)
+    const isValidated = !!currentUserId
 
+    //OnMount
     useEffect(() => {
-        if (status == 'success') {
-            dispatch('SET_USER', {user})
-        }
-    }, [status])
-
-    useEffect(() => {
+        //Revalidate if Authenticated but not validated
         if (isAuthenticated && !isValidated) {
             execute()
         }
     }, [])
 
-    if (isLoading) {
-        return <Validating />
-    }
-    
-    if (!isAuthenticated) {
-        return <Navigate to="/login" />
-    }
+    //On Success
+    useEffect(() => {
+        if (isSuccess) setCurrentUser(user)
+    }, [isSuccess])
 
-    if (isValidated) {
-        return <Outlet />
-    }
-
+    if (isLoading) return <Validating />
+    if (!isAuthenticated) return <Navigate to='/login' />
+    if (isValidated) return <Outlet />
     return null
 }
 

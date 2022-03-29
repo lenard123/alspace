@@ -1,9 +1,9 @@
-import { isAuthenticatedState } from "@/js/states/useAuthState"
+import authState from "@/js/recoil/states/authState"
 import { Navigate, Outlet } from "react-router-dom"
 import { useRecoilValue } from "recoil"
 
-export default () => {
-    const isAuthenticated = useRecoilValue(isAuthenticatedState)
+export default function GuestGuard(){
+    const { isAuthenticated } = useRecoilValue(authState)
 
     if (isAuthenticated) {
         return <Navigate to='/' />
