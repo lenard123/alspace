@@ -22,3 +22,8 @@ tasks:
     command: |
         gp await-port 8000
         npm run dev -- --mode=gitpod
+
+github:
+  prebuilds:
+    master: false
+    pullRequests: false
