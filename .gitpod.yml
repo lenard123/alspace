@@ -7,13 +7,16 @@ tasks:
         composer install-php8.1
         composer install
         npm install
-        php artisan migrate:fresh --seed
     env:
+       APP_DEBUG: true
+       APP_NAME: Alspace
        DB_CONNECTION: sqlite
        DB_FOREIGN_KEYS: false
   - name: Server
     command: |
         composer install-php8.1
+        touch database/database.sqlite
+        php artisan migrate:fresh --seed
         php artisan serve
   - name: Client
     command: |

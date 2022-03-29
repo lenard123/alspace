@@ -1,8 +1,9 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
+import config from '../config'
 
 const Http = axios.create({
-    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000/api'
+    baseURL: config('API_URL')
 })
 
 Http.defaults.withCredentials = true
