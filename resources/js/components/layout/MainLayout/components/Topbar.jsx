@@ -3,12 +3,15 @@ import { MenuOutlined, SearchOutlined, UserOutlined, MessageOutlined, BellOutlin
 import { Link } from 'react-router-dom'
 import { BriefcaseOutlined } from '@/js/components/icons'
 import NavLink from './NavLink'
+import UserAvatar from './UserAvatar'
 
 export default function Topbar() {
     return (
-        <div className='sticky top-0 z-[1] w-full bg-white header-height shadow px-4'>
+        <header className='sticky top-0 z-[1] w-full bg-white header-height shadow px-4'>
 
+            {/* Container */}
             <div className='max-w-5xl mx-auto h-full flex justify-between items-center'>
+                {/* Left */}
                 <div className='flex w-full lg:w-auto'>
                     {/* Logo */}
                     <div className='flex w-full lg:w-auto justify-between items-center'>
@@ -17,7 +20,7 @@ export default function Topbar() {
                             <span className='font-bold text-xl'>Alspace</span>
                         </Link>
                         <Button className='lg:hidden' icon={<MenuOutlined />} />
-                    </div>
+                    </div>{/* End Logo */}
                     {/* Searchbox */}
                     <div className='ml-8 hidden lg:block'>
                         <Input
@@ -26,8 +29,8 @@ export default function Topbar() {
                             size='large'
                             placeholder='Search for users or post'
                         />
-                    </div>
-                </div>
+                    </div>{/* End Searchbox */}
+                </div>{/* End Left */}
 
                 {/* Right */}
                 <div className='hidden lg:flex justify-end items-center gap-8'>
@@ -37,16 +40,9 @@ export default function Topbar() {
                         <NavLink to='/jobs' title='Jobs' icon={<BriefcaseOutlined className='text-gray-500' />} />
                         <NavLink to='/events' title='Events' icon={<CalendarOutlined className='text-gray-500' />} />
                     </nav>
-
-                    <Avatar size='large' icon={<UserOutlined />} />
-                </div>
-
-            </div>
-
-
-
-
-
-        </div>
+                    <UserAvatar />
+                </div>{/* End Right */}
+            </div> {/* End Container */}
+        </header>
     )
 }
