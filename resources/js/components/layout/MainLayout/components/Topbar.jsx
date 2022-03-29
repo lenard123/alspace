@@ -1,11 +1,15 @@
-import { Avatar, Button, Input } from 'antd'
-import { MenuOutlined, SearchOutlined, UserOutlined, MessageOutlined, BellOutlined, CalendarOutlined } from '@ant-design/icons'
+import { Button, Input } from 'antd'
+import { MenuOutlined, SearchOutlined, MessageOutlined, BellOutlined, CalendarOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import { BriefcaseOutlined } from '@/js/components/icons'
 import NavLink from './NavLink'
 import UserAvatar from './UserAvatar'
+import useMainLayoutLogic from '../useMainLayoutLogic'
 
 export default function Topbar() {
+
+    const {setIsDrawerVisible} = useMainLayoutLogic()
+
     return (
         <header className='sticky top-0 z-[1] w-full bg-white header-height shadow px-4'>
 
@@ -19,7 +23,7 @@ export default function Topbar() {
                             <img className='rounded' src='/images/logo.png' height='32' width='auto' />
                             <span className='font-bold text-xl'>Alspace</span>
                         </Link>
-                        <Button className='lg:hidden' icon={<MenuOutlined />} />
+                        <Button onClick={() => setIsDrawerVisible(true)} className='lg:hidden' icon={<MenuOutlined />} />
                     </div>{/* End Logo */}
                     {/* Searchbox */}
                     <div className='ml-8 hidden lg:block'>
