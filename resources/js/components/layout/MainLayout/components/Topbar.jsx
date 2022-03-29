@@ -1,5 +1,5 @@
-import { Avatar, Button, Input } from 'antd'
-import { MenuOutlined, SearchOutlined, UserOutlined, MessageOutlined, BellOutlined, CalendarOutlined } from '@ant-design/icons'
+import { Button, Input } from 'antd'
+import { MenuOutlined, SearchOutlined, MessageOutlined, BellOutlined, CalendarOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import { BriefcaseOutlined } from '@/js/components/icons'
 import NavLink from './NavLink'

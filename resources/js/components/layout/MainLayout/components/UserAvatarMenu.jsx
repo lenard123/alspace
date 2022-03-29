@@ -31,7 +31,7 @@ const UserAvatarMenu = ({ setIsOpen }) => {
     return (
         <div className='bg-white p-4 shadow'>
             <div className='flex items-center gap-4'>
-                <Avatar src={currentUser.avatar} size={60}/>
+                <Avatar src={currentUser.avatarUrl} size={60}/>
                 <div className='flex flex-col leading-3 text-gray-700'>
                     <span className='text-lg font-bold'>{currentUser.firstname} {currentUser.lastname}</span>
                     <Link onClick={() => setIsOpen(false)} to={`/profile/${currentUser.id}`}>See your profile</Link>
