@@ -9,6 +9,9 @@ tasks:
         npm install
         touch database/database.sqlite
         php artisan migrate:fresh --seed
+    env:
+       DB_CONNECTION: sqlite
+       DB_FOREIGN_KEYS: false
   - name: Server
     command: |
         composer install-php8.1
