@@ -7,7 +7,6 @@ tasks:
         composer install-php8.1
         composer install
         npm install
-        touch database/database.sqlite
         php artisan migrate:fresh --seed
     env:
        DB_CONNECTION: sqlite
