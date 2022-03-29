@@ -1,20 +1,10 @@
-//import Logo from '../../../images/logo.png'
-import { Avatar, Button, Input, Tooltip, } from 'antd'
+import { Avatar, Button, Input } from 'antd'
 import { MenuOutlined, SearchOutlined, UserOutlined, MessageOutlined, BellOutlined, CalendarOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
-import { BriefcaseOutlined } from '../icons'
+import { BriefcaseOutlined } from '@/js/components/icons'
+import NavLink from './NavLink'
 
-const NavLink = ({ to, title, icon }) => {
-    return (
-        <Link to={to}>
-            <Tooltip title={title}>
-                <Button className='rounded-lg' icon={icon} />
-            </Tooltip>
-        </Link>
-    )
-}
-
-export default function () {
+export default function Topbar() {
     return (
         <div className='sticky top-0 z-[1] w-full bg-white header-height shadow px-4'>
 
