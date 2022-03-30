@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
@@ -48,7 +51,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected static function booted()
+    protected static function booted() : void
     {
         static::created(function ($user) {
             //Generate default Avatar
@@ -56,27 +59,27 @@ class User extends Authenticatable
         });
     }
 
-    public function alumnus()
+    public function alumnus() : HasOne
     {
         return $this->hasOne(Alumnus::class);
     }
 
-    public function setPasswordAttribute($password)
+    public function setPasswordAttribute($password) : void
     {
         $this->attributes['password'] = Hash::make($password);
     }
 
-    public function avatar()
+    public function avatar(): MorphOne
     {
         return $this->morphOne(Image::class, 'imageable');
     }
 
-    public function getAvatarUrlAttribute()
+    public function getAvatarUrlAttribute() : string
     {
         return $this->avatar->url;
     }
 
-    public function regenerateAvatar()
+    public function regenerateAvatar() : void
     {
         //Delete if has avatar
         $this->avatar()->delete();
@@ -87,5 +90,10 @@ class User extends Authenticatable
             'source' => 'url',
             'reference' => "https://avatars.dicebear.com/api/initials/$name.svg"
         ]);
+    }
+
+    public function posts() : HasMany
+    {
+        return $this->hasMany(Post::class);
     }
 }
