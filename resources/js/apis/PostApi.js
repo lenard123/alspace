@@ -11,3 +11,13 @@ export const fetchPosts = async (page = 1) => {
         params: {page}
     })
 }
+
+export const likePost = async (postId) => {
+    await requestCookie()
+    return await Http.post(`/posts/${postId}/like`)
+}
+
+export const unlikePost = async (postId) => {
+    await requestCookie()
+    return await Http.post(`/posts/${postId}/unlike`)
+}
