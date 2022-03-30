@@ -35,3 +35,11 @@ a:hover {
 .header-height {
     height: var(--header-height);
 }
+
+.btn-green {
+    @apply py-1 px-4 text-white bg-green-500 border-none hover:bg-green-600 hover:text-white rounded transition;
+}
+
+.btn-green:active, .btn-green:focus{
+    @apply text-white bg-green-500 border-none;
+}
