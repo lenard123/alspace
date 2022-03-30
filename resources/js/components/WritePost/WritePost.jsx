@@ -5,16 +5,19 @@ import { useRecoilValue } from 'recoil'
 import currentUserSelector from '@/js/recoil/selectors/currentUserSelector'
 import useApi from '@/js/hooks/useApi'
 import { createPost } from '@/js/apis/PostApi'
+import useFeedActions from '@/js/recoil/actions/useFeedActions'
 
 export default function WritePost() {
 
     const { avatarUrl } = useRecoilValue(currentUserSelector)
     const [content, setContent] = useState('')
-    const { isLoading, execute, status, message } = useApi(createPost)
+    const { prependPost } = useFeedActions()
+    const { isLoading, execute, status, message, data:post } = useApi(createPost)
 
     useEffect(() => {
         if (status === 'success') {
             message.success('Successfully posted')
+            prependPost(post)
             setContent('')
         }
     }, [status])

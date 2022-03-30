@@ -29,7 +29,7 @@ class User extends Authenticatable
     ];
 
     protected $with = ['avatar'];
-    protected $appends = ['avatarUrl'];
+    protected $appends = ['avatarUrl', 'fullname'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -79,13 +79,18 @@ class User extends Authenticatable
         return $this->avatar->url;
     }
 
+    public function getFullnameAttribute() : string
+    {
+        return $this->firstname.' '.$this->lastname;
+    }
+
     public function regenerateAvatar() : void
     {
         //Delete if has avatar
         $this->avatar()->delete();
 
         //Generate new
-        $name = strtolower(urlencode($this->firstname.' '.$this->lastname));
+        $name = strtolower(urlencode($this->fullname));
         $this->avatar()->create([
             'source' => 'url',
             'reference' => "https://avatars.dicebear.com/api/initials/$name.svg"

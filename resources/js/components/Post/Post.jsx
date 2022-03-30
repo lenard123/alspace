@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Avatar, Spin } from 'antd'
-import { UserOutlined, LikeOutlined, LikeFilled, CommentOutlined } from '@ant-design/icons'
+import { LikeOutlined, LikeFilled, CommentOutlined } from '@ant-design/icons'
 import { useToggler, sleep } from '@/js/hooks'
+import moment from 'moment'
+import useUser from '@/js/recoil/selectors/useUser'
 
-export default function ({ children }) 
+export default function ({ post, children }) 
 {
-
+    const author = useUser(post.user_id)
     const [isLike, toggleLike] = useToggler(false)
     const [liking, toggleLiking] = useState(false)
 
@@ -24,17 +26,17 @@ export default function ({ children })
         <div className='flex flex-col w-full sm:rounded-lg bg-white border border-solid p-4 pb-1 border-gray-300'>
                 
             <div className='flex gap-2 items-center'>
-                <Avatar size='large' icon={<UserOutlined />} />
+                <Avatar size='large' src={author.avatarUrl} />
                 <div className='flex justify-between'>
                     <div className='flex flex-col leading-3'>
-                        <span className='font-bold'>Lenard Mangay-ayam</span>
-                        <span className='text-sm'>2 hours ago</span>
+                        <span className='font-bold'>{ author.fullname }</span>
+                        <span className='text-sm'>{ moment(post.created_at).fromNow() }</span>
                     </div>
                 </div>
             </div>
 
             <div className='my-4'>
-                lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, 
+                { post.content }
             </div>
 
             <div>
