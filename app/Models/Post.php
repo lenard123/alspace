@@ -27,9 +27,4 @@ class Post extends Model implements Likeable, Commentable
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
-    protected function getLikerIdsAttribute()
-    {
-        return $this->likes->pluck('user_id');
-    }
 }

@@ -11,4 +11,10 @@ trait Likes
     {
         return $this->morphMany(Like::class, 'likeable');
     }
+
+    protected function getLikerIdsAttribute()
+    {
+        return $this->likes->pluck('user_id');
+    }
+
 }
