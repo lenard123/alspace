@@ -6,10 +6,11 @@ import useUser from '@/js/recoil/selectors/useUser'
 import LikeButton from './components/LikeButton'
 import { usePostLikeCount } from '@/js/recoil/selectors/usePost'
 
-export default function ({ post, children }) 
+export default function Post({ post, children }) 
 {
     const author = useUser(post.user_id)
     const likeCount = usePostLikeCount(post.id)
+    const comments_count = post.comments_count
 
     return (
         <div className='flex flex-col w-full sm:rounded-lg bg-white border border-solid p-4 pb-1 border-gray-300'>
@@ -30,7 +31,7 @@ export default function ({ post, children })
 
             <div className='text-xs flex justify-between py-1'>
                 <span>{ likeCount > 0 && `${likeCount} ${likeCount > 1 ? 'Likes' : 'Like'}` }</span>
-                <span>1 Comment</span>
+                <span>{ comments_count > 0 && `${comments_count} ${comments_count > 1 ? 'Comments' : 'Comment'}` }</span>
             </div>
 
             <div className='flex gap-2 text-lg py-1 border-t border-gray-300'>
