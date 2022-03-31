@@ -24,6 +24,22 @@ export const arrayPluckAndExclude = (array, key) => {
     ]
 }
 
+export const arrayDropKeys = (array, ...keys) => {
+    let dropKeys = keys.reduce((acm, key) => ({...acm, [key]: []}), {})
+    let newArray = array.map(element => {
+        let valid = {}
+        for (var key in element) {
+            if (keys.some(_key => key == _key)) {
+                dropKeys[key].push(element[key])                
+            } else {
+                valid[key] = element[key]
+            }
+        }
+        return valid
+    })
+    return [newArray, dropKeys]
+}
+
 //Add loading object to array if isLoading
 export const arrayIsLoading = (array, isLoading = false, count = 3) => {
     if (!isLoading) return array

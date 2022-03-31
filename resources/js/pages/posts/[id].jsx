@@ -50,7 +50,7 @@ export default function ViewPostPage() {
                         locale={{ emptyText: 'Be the first to comment' }}
                         dataSource={arrayIsLoading(comments, isLoading && comments.length <= 0)}
                         renderItem={comment => (
-                            <List.Item>
+                            <List.Item style={{padding:0}}>
                                 <Skeleton rows={1} avatar loading={comment.isLoading}>
                                     <PostComment comment={comment} />
                                 </Skeleton>

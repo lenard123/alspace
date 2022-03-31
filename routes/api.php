@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/posts/{post}/like', [PostController::class, 'like']);
     Route::post('/posts/{post}/unlike', [PostController::class, 'unlike']);
     Route::post('/posts/{post}/comment', [PostController::class, 'comment']);
+
+    Route::post('/comments/{comment}/like', [CommentController::class, 'like']);
+    Route::post('/comments/{comment}/unlike', [CommentController::class, 'unlike']);
+
     Route::post('/logout', [AuthController::class, 'logout']);
     
 });
