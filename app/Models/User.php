@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Contracts\Likeable;
+use App\Models\Concerns\CanComment;
 use App\Models\Concerns\HasAvatar;
 use App\Models\Concerns\CanLike;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -16,7 +17,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasAvatar, CanLike;
+    use HasApiTokens, HasFactory, Notifiable, HasAvatar, CanLike, CanComment;
 
     /**
      * The attributes that are mass assignable.
