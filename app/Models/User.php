@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use App\Contracts\Likable;
 use App\Contracts\Likeable;
+use App\Models\Concerns\HasAvatar;
 use App\Models\Concerns\CanLike;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
@@ -17,7 +16,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, CanLike;
+    use HasApiTokens, HasFactory, Notifiable, HasAvatar, CanLike;
 
     /**
      * The attributes that are mass assignable.
@@ -72,32 +71,9 @@ class User extends Authenticatable
         $this->attributes['password'] = Hash::make($password);
     }
 
-    public function avatar(): MorphOne
-    {
-        return $this->morphOne(Image::class, 'imageable');
-    }
-
-    public function getAvatarUrlAttribute() : string
-    {
-        return $this->avatar->url;
-    }
-
     public function getFullnameAttribute() : string
     {
         return $this->firstname.' '.$this->lastname;
-    }
-
-    public function regenerateAvatar() : void
-    {
-        //Delete if has avatar
-        $this->avatar()->delete();
-
-        //Generate new
-        $name = strtolower(urlencode($this->fullname));
-        $this->avatar()->create([
-            'source' => 'url',
-            'reference' => "https://avatars.dicebear.com/api/initials/$name.svg"
-        ]);
     }
 
     public function posts() : HasMany
