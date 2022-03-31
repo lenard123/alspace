@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Contracts\Likable;
 use App\Contracts\Likeable;
+use App\Models\Concerns\CanLike;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -16,7 +17,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, CanLike;
 
     /**
      * The attributes that are mass assignable.
@@ -104,46 +105,8 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
-    public function likes()
+    public function likes() : HasMany
     {
         return $this->hasMany(Like::class);
-    }
-
-    public function like(Likeable $likeable): self
-    {
-        if ($this->hasLiked($likeable)) {
-            return $this;
-        }
-
-        (new Like())
-            ->user()->associate($this)
-            ->likeable()->associate($likeable)
-            ->save();
-
-        return $this;
-    }
-
-    public function unlike(Likeable $likeable): self
-    {
-        if (! $this->hasLiked($likeable)) {
-            return $this;
-        }
-
-        $likeable->likes()
-            ->whereHas('user', fn($q) => $q->whereId($this->id))
-            ->delete();
-
-        return $this;
-    }
-
-    public function hasLiked(Likeable $likeable): bool
-    {
-        if (! $likeable->exists) {
-            return false;
-        }
-
-        return $likeable->likes()
-            ->whereHas('user', fn($q) =>  $q->whereId($this->id))
-            ->exists();
     }
 }
