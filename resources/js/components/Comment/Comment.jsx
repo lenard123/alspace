@@ -1,26 +1,31 @@
 import moment from 'moment'
-import { Avatar,  Comment, Tooltip} from 'antd'
+import { Avatar,  Comment as AntComment, Tooltip} from 'antd'
 import { LikeOutlined } from '@ant-design/icons'
+import useUser from '@/js/recoil/selectors/useUser'
 
-export default function({comment})
+export default function Comment({comment})
 {
+
+    const author = useUser(comment.user_id)
+
     return (
-        <Comment 
+        <AntComment 
             actions={[
-                <span key='comment-like'>
+                <span key='like'>
                     <LikeOutlined />
                     <span className='pl-1'>Like</span>
                 </span>,
-                <span key='comment-reply'>View Replies</span>
+                <span key='reply'>Reply</span>,
+                <span key='view-replies'>View Replies</span>
             ]}
-            author='Lenard Mangay-ayam'
-            avatar={<Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />}
+            author={author.fullname}
+            avatar={<Avatar src={author.avatarUrl} />}
             content={
-                <p>{comment}</p>
+                <p>{comment.content}</p>
             }
             datetime={
-                <Tooltip title={moment().format('YYYY-MM-DD HH:mm:ss')}>
-                <span>{moment().fromNow()}</span>
+                <Tooltip title={moment(comment.created_at).format('YYYY-MM-DD HH:mm:ss')}>
+                    <span>{moment(comment.created_at).fromNow()}</span>
                 </Tooltip>
             }
         />

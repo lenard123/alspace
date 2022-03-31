@@ -26,3 +26,8 @@ export const unlikePost = async (postId) => {
     await requestCookie()
     return await Http.post(`/posts/${postId}/unlike`)
 }
+
+export const commentOnPost = async (postId, content) => {
+    await requestCookie()
+    return await Http.post(`/posts/${postId}/comment`, {content})
+}

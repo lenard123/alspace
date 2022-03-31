@@ -36,12 +36,12 @@ export default function Post({ post, children })
 
             <div className='flex gap-2 text-lg py-1 border-t border-gray-300'>
                 <LikeButton id={post.id}/>
-                <Link to='/posts/1' className='flex-grow py-1 text-center bg-white hover:bg-gray-100 rounded-full'><CommentOutlined /></Link>
+                <Link to={`/posts/${post.id}`} className='flex-grow py-1 text-center bg-white hover:bg-gray-100 rounded-full'><CommentOutlined /></Link>
             </div>
 
             {
                 !!children && (
-                    <div className='mt-1 mb-4 border-t border-gray-300'>
+                    <div className='my-1 border-t border-gray-300'>
                         { children }
                     </div>
                 )
