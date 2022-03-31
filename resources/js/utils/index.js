@@ -10,7 +10,18 @@ export const arrayKeyBy = (array, key) => {
 }
 
 export const arrayPluck = (array, key) => {
-    return array.map(element => element[key])
+    const result = []
+    array.forEach(element => {
+        if(element[key]) result.push(element[key]);
+    })
+    return result
+}
+
+export const arrayPluckAndExclude = (array, key) => {
+    return [
+        arrayPluck(array, key), 
+        array.map(({[key]:_, ...element}) => element)
+    ]
 }
 
 //Add loading object to array if isLoading

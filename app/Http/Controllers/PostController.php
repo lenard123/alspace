@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CommentRequest;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +13,12 @@ class PostController extends Controller
     public function index()
     {
         return response()->json(Post::latest()->paginate(2));
+    }
+
+    public function view(Post $post)
+    {
+        $post->load('comments');
+        return $post;
     }
 
     public function create(PostRequest $postRequest)
@@ -31,5 +38,11 @@ class PostController extends Controller
     {
         Auth::user()->unlike($post);
         return response()->json($post->likes()->pluck('user_id'));
+    }
+
+    public function comment(Post $post, CommentRequest $request)
+    {
+        $comment = Auth::user()->comment($post, $request->content);
+        return response()->json($comment);
     }
 }
