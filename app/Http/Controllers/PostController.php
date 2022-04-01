@@ -12,7 +12,7 @@ class PostController extends Controller
 
     public function index()
     {
-        return response()->json(Post::latest()->paginate(2));
+        return response()->json(Post::latest()->paginate(10));
     }
 
     public function view(Post $post)
