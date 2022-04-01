@@ -1,6 +1,7 @@
 import { arrayKeyBy, arrayPluck } from "@/js/utils"
 import { useSetRecoilState } from "recoil"
 import postsState from "../states/postsState"
+import useFeedActions from "./useFeedActions"
 import usePostsCommentIdsAction from "./usePostsCommentIdsActions"
 import usePostsLikerIdsActions from "./usePostsLikerIdsActions"
 import useUsersAction from "./useUsersAction"
@@ -27,7 +28,11 @@ const usePostsActions = () => {
 
     const setPost = post => setPosts([post])
 
-    return { setPosts, setPost }
+    const deletePost = (postId) => {
+        setPostsState( ({[postId]:_, ...posts}) => posts)
+    }
+
+    return { setPosts, setPost, deletePost }
 
 }
 
