@@ -23,6 +23,7 @@ class PostController extends Controller
 
     public function create(PostRequest $postRequest)
     {
+        $this->authorize('create', Post::class);
         $user = $postRequest->user();
         $post = $user->posts()->create($postRequest->validated());
         return response()->json($post);
@@ -44,5 +45,12 @@ class PostController extends Controller
     {
         $comment = Auth::user()->comment($post, $request->content);
         return response()->json($comment);
+    }
+
+    public function delete(Post $post)
+    {
+        $this->authorize('delete', $post);
+        $post->delete();
+        return 'Post deleted successfully';
     }
 }

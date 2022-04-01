@@ -5,23 +5,27 @@ import moment from 'moment'
 import useUser from '@/js/recoil/selectors/useUser'
 import LikeButton from './components/LikeButton'
 import { usePostLikeCount } from '@/js/recoil/selectors/usePost'
+import Options from './components/Options'
+import usePostLogic from './usePostLogic'
 
-export default function Post({ post, children }) 
+export default function Post({ post, children, onDelete }) 
 {
     const author = useUser(post.user_id)
     const likeCount = usePostLikeCount(post.id)
     const comments_count = post.comments_count
+    const { isBelongsToUser, showDeleteModal } = usePostLogic(post, onDelete)
 
     return (
         <div className='flex flex-col w-full sm:rounded-lg bg-white border border-solid p-4 pb-1 border-gray-300'>
                 
             <div className='flex gap-2 items-center'>
                 <Avatar size='large' src={author.avatarUrl} />
-                <div className='flex justify-between'>
+                <div className='flex flex-grow justify-between'>
                     <div className='flex flex-col leading-3'>
                         <span className='font-bold'>{ author.fullname }</span>
                         <span className='text-sm'>{ moment(post.created_at).fromNow() }</span>
                     </div>
+                    <Options isBelongsToUser={isBelongsToUser} showDeleteModal={showDeleteModal}/>
                 </div>
             </div>
 

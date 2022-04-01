@@ -7,7 +7,10 @@ const feedPostsSelector = selector({
     get: ({get}) => {
         const { postIds } = get(feedState)
         const posts = get(postsState)
-        return postIds.map(id => posts[id])
+        return postIds.reduce((acm, id) => {
+            if (posts[id]) return [...acm, posts[id]]
+            return acm
+        }, [])
     }
 })
 

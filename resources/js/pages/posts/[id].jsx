@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react'
-import { Avatar, Input, Button, List, Skeleton } from 'antd'
-import { LikeOutlined, SendOutlined, UserOutlined } from '@ant-design/icons'
+import { useEffect } from 'react'
+import { List, Skeleton } from 'antd'
 import Post from '@/js/components/Post/Post'
 import PostComment from '@/js/components/Comment/Comment'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import useApi from '@/js/hooks/useApi'
 import { commentOnPost, fetchPost } from '@/js/apis/PostApi'
 import usePost from '@/js/recoil/selectors/usePost'
@@ -11,7 +10,6 @@ import usePostsActions from '@/js/recoil/actions/usePostsActions'
 import WriteComment from '@/js/components/WriteComment'
 import { arrayIsLoading } from '@/js/utils'
 import usePostComments from '@/js/recoil/selectors/usePostComments'
-import moment from 'moment'
 import usePostsCommentIdsAction from '@/js/recoil/actions/usePostsCommentIdsActions'
 
 export default function ViewPostPage() {
@@ -21,6 +19,7 @@ export default function ViewPostPage() {
     const { setPost } = usePostsActions()
     const { appendPostCommentIds } = usePostsCommentIdsAction()
     const comments = usePostComments(id)
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (status === 'success') {
@@ -40,10 +39,14 @@ export default function ViewPostPage() {
         appendPostCommentIds(id, comment)
     }
 
+    const onDelete = () => {
+        navigate('/')
+    }
+
     return (
         <div className='max-w-xl mx-auto sm:pt-4 pb-4'>
             <Skeleton loading={!post} avatar active>
-                <Post post={post}>
+                <Post post={post} onDelete={onDelete}>
 
                     <List
                         size='small'

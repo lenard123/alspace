@@ -8,10 +8,11 @@ use App\Models\Concerns\HasComments;
 use App\Models\Concerns\Likes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model implements Likeable, Commentable
 {
-    use HasFactory, Likes, HasComments;
+    use HasFactory, Likes, HasComments, SoftDeletes;
 
     protected $fillable = ['user_id', 'content'];
 
