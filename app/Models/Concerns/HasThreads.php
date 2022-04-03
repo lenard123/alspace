@@ -15,7 +15,16 @@ trait HasThreads
     {
         if ($this->is_admin) return null;
 
-        return $this->threads()->firstOrCreate(['is_support'=>true]);
+        $thread =  $this->threads()->where('is_support', true)->first();
+
+        if (is_null($thread)) {
+            $thread = new Thread();
+            $thread->is_support = true;
+            $thread->save();
+            $thread->members()->attach($this->id);
+        }
+
+        return $thread;
     }
 
     public function conversations()
