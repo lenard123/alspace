@@ -11,7 +11,7 @@ function DebugButton() {
       }
     }, []);
   
-    return <Button className='fixed right-8 bottom-8' onClick={onClick}>Dump State</Button>
+    return <Button className='fixed left-8 bottom-8' onClick={onClick}>Dump State</Button>
 }
 
 const App = () => (

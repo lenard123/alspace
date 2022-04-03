@@ -29,8 +29,8 @@ export default function DrawerMenu() {
             </Link>
             <Menu size='large' onClick={menuClicked}>
                 
-                <Menu.Item key='message' icon={<MessageOutlined />}>
-                    <Link to='/message'>Message</Link>
+                <Menu.Item key='messages' icon={<MessageOutlined />}>
+                    <Link to='/messages'>Message</Link>
                 </Menu.Item>
                 
                 <Menu.Item key='notifications' icon={<BellOutlined />}>

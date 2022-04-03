@@ -3,11 +3,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import AuthGuard from './_guards/AuthGuard'
 
 import MainLayout from '@/js/components/layout/MainLayout'
-
+import MessageLayout from '../components/layout/MessageLayout'
 
 import Home from '@/js/pages/home'
 import Notifications from '@/js/pages/notifications'
 import Message from '@/js/pages/message'
+import ChatPage from '../pages/message/[id]/ChatPage'
 import Post from '@/js/pages/posts/[id]'
 import Questions from '@/js/pages/questions'
 import Jobs from '@/js/pages/jobs'
@@ -28,7 +29,10 @@ export default () => (
                     <Route index element={<Home />} />
                     <Route path='posts/:id' element={<Post />} />
                     <Route path='notifications' element={<Notifications />} />
-                    <Route path='message' element={<Message />} />
+                    <Route path='messages' element={<MessageLayout />} >
+                        <Route index element={<Message />} />
+                        <Route path=':id' element={<ChatPage />} />
+                    </Route>
                     <Route path='questions' element={<Questions />} />
                     <Route path='jobs' element={<Jobs />} />
                     <Route path='events' element={<Events />} />

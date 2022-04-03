@@ -39,7 +39,7 @@ export default function Topbar() {
                 {/* Right */}
                 <div className='hidden lg:flex justify-end items-center gap-8'>
                     <nav className='flex gap-2'>
-                        <NavLink to='/message' title='Message' icon={<MessageOutlined className='text-gray-500' />} />
+                        <NavLink to='/messages' title='Message' icon={<MessageOutlined className='text-gray-500' />} />
                         <NavLink to='/notifications' title='Notifications' icon={<BellOutlined className='text-gray-500' />} />
                         <NavLink to='/jobs' title='Jobs' icon={<BriefcaseOutlined className='text-gray-500' />} />
                         <NavLink to='/events' title='Events' icon={<CalendarOutlined className='text-gray-500' />} />
