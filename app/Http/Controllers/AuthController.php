@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\AlumniRegistered;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
@@ -14,6 +15,9 @@ class AuthController extends Controller
     {
         $user = User::create($request->validated());
         $user->alumnus()->create($request->validated());
+
+        AlumniRegistered::dispatch($user);
+
         return 'Successfully Registered';
     }
 
