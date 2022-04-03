@@ -20,9 +20,6 @@ class DatabaseSeeder extends Seeder
             'lastname' => env('USER_LNAME', 'John'),
             'password' => env('USER_PASSWORD', 'user1234'),
             'is_admin' => true
-        ])->alumnus()->create([
-            'year_graduated' => 2021,
-            'course' => 'bscs'
         ]);
     }
 }
