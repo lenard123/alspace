@@ -6,6 +6,7 @@ use App\Contracts\Likeable;
 use App\Models\Concerns\CanComment;
 use App\Models\Concerns\HasAvatar;
 use App\Models\Concerns\CanLike;
+use App\Models\Concerns\HasThreads;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -17,7 +18,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasAvatar, CanLike, CanComment;
+    use HasApiTokens, HasFactory, Notifiable, HasAvatar, CanLike, CanComment, HasThreads;
 
     /**
      * The attributes that are mass assignable.
@@ -85,5 +86,15 @@ class User extends Authenticatable
     public function likes() : HasMany
     {
         return $this->hasMany(Like::class);
+    }
+
+    public function sendMessageOn(Thread $thread, string $content)
+    {
+        $message = new Message();
+        $message->content = $content;
+        $message->user()->associate($this);
+        $message->thread()->associate($thread);
+        $message->save();
+        return $message;
     }
 }
