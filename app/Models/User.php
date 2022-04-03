@@ -87,4 +87,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Like::class);
     }
+
+    public function sendMessageOn(Thread $thread, string $content)
+    {
+        $message = new Message();
+        $message->content = $content;
+        $message->user()->associate($this);
+        $message->thread()->associate($thread);
+        $message->save();
+        return $message;
+    }
 }

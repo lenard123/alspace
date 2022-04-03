@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
         User::updateOrCreate(['email' => env('USER_EMAIL', 'user@gmail.com')],[
             'firstname' => env('USER_FNAME', 'John'),
             'lastname' => env('USER_LNAME', 'John'),
-            'password' => env('USER_PASSWORD', 'user1234')
+            'password' => env('USER_PASSWORD', 'user1234'),
+            'is_admin' => true
         ])->alumnus()->create([
             'year_graduated' => 2021,
             'course' => 'bscs'

@@ -43,3 +43,17 @@ a:hover {
 .btn-green:active, .btn-green:focus{
     @apply text-white bg-green-500 border-none;
 }
+
+.scroller {
+    scrollbar-color: rgb(179, 179, 179) #f1f1f1; /* thumb and track color */
+    scrollbar-width: thin;
+}
+
+.scroller::-webkit-scrollbar { width: 5px; }
+.scroller::-webkit-scrollbar-track { background-color: #f1f1f1; }
+.scroller::-webkit-scrollbar-thumb { background-color: rgb(179, 179, 179); }
+
+/*Scroller will apply to child*/
+.child-scroller > div{
+    @apply scroller;
+}

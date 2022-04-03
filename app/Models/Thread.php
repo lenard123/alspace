@@ -20,6 +20,11 @@ class Thread extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+
     public function getAvatarAttribute()
     {
         if ($this->is_support) {
