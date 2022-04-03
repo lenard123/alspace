@@ -97,4 +97,15 @@ class User extends Authenticatable
         $message->save();
         return $message;
     }
+
+    public static function admins()
+    {
+        return User::where('is_admin', true);
+    }
+    
+    public static function sendMessageSupport(User $user, string $content)
+    {
+        $thread = $user->supportThread();
+        return User::admins()->first()->sendMessageOn($thread, $content);
+    }
 }

@@ -11,6 +11,13 @@ trait HasThreads
         return $this->belongsToMany(Thread::class);
     }
 
+    public function supportThread() : Thread
+    {
+        if ($this->is_admin) return null;
+
+        return $this->threads()->firstOrCreate(['is_support'=>true]);
+    }
+
     public function conversations()
     {
         return $this->threads()
