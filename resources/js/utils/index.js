@@ -1,5 +1,6 @@
 export { default as Http } from './Http'
 export { default as Cache } from './Cache'
+export { default as Echo } from './Echo'
 
 export const arrayKeyBy = (array, key) => {
     return array.reduce((acm, item) => {
