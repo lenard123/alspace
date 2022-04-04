@@ -28,6 +28,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user/conversations', [UserController::class, 'conversations']);
 
     Route::get('/users/search', [UserController::class, 'search']);
+    Route::get('/users/{user}/thread', [UserController::class, 'thread']);
 
     Route::get('/threads/{thread}', [ThreadController::class, 'view']);
     Route::post('/threads/{thread}', [ThreadController::class, 'sendMessage']);

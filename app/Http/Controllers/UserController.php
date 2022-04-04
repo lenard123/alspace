@@ -17,4 +17,9 @@ class UserController extends Controller
     {
         return User::search($request->query('query'))->get()->where('id', '<>',  Auth::id())->values();
     }
+
+    public function thread(User $user)
+    {
+        return $user->threadWith($user)->loadInfo(Auth::user());
+    }
 }
