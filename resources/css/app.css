@@ -57,3 +57,14 @@ a:hover {
 .child-scroller > div{
     @apply scroller;
 }
+
+.new-message-modal .ant-modal-content{
+    @apply fixed sm:static inset-0 sm:max-h-[80vh];
+    overflow-y: scroll;
+}
+
+.new-message-modal .ant-form-item .ant-form-item-label,
+.new-message-modal .ant-form-item .ant-form-item-control{
+    flex: unset;
+    padding-bottom: 0;
+}
