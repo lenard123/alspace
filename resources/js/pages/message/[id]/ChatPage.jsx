@@ -10,10 +10,12 @@ import useThreadsAction from "@/js/recoil/actions/useThreadsAction";
 import useMessages from "@/js/recoil/selectors/useMessages";
 import MessagesList from "./components/MessagesList";
 import WriteMessage from "./components/WriteMessage";
+import useThreadListener from "@/js/listeners/useThreadListener";
 
 export default function ChatPage() {
 
     const { id } = useParams()
+    const temp = useThreadListener(id)
     const { execute, status, data, isLoading } = useApi(fetchThread)
     const thread = useThread(id)
     const messages = useMessages(id)

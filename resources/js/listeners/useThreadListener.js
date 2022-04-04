@@ -5,8 +5,12 @@ const useThreadListener = (id) => {
     const [connection, setConnection] = useState(null)
 
     useEffect(() => {
-        if (connection) {
-            connection.listen('NewMessageReceived')
+        connection?.listen('MessageReceived', ({message}) => {
+            console.log(message)
+        })
+
+        return () => {
+            connection?.stopListening('NewMessageReceived')
         }
     }, [connection])
 
@@ -15,3 +19,5 @@ const useThreadListener = (id) => {
     }, [id])
 
 }
+
+export default useThreadListener

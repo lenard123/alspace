@@ -10,9 +10,11 @@ const authorizer = (channel) => {
         authorize: (socket_id, callback) => {
             Http.post('/broadcasting/auth', { socket_id, channel_name: channel.name })
                 .then(response => {
+                    console.log(response)
                     callback(null, response.data)
                 })
                 .catch(error => {
+                    console.log(error)
                     callback(new Error(`Error calling auth endpoint: ${error}`), {
                         auth: ""
                     });
@@ -21,7 +23,7 @@ const authorizer = (channel) => {
     }
 };
 
-const PusherClient = new Pusher(KEY, {
+window.pusher = new Pusher(KEY, {
     cluster: CLUSTER,
     forceTLS: true,
     authorizer
@@ -29,7 +31,12 @@ const PusherClient = new Pusher(KEY, {
 
 const EchoClient =  new Echo({
     broadcaster: 'pusher',
-    client: PusherClient
+    key: KEY,
+    cluster: CLUSTER,
+    forceTLS: true,
+    encrypted: true,
+    authEndpoint: '/broadcasting/auth',
+    authorizer
 })
 
 Http.interceptors.request.use((config) => {

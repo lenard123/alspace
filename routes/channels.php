@@ -18,6 +18,9 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
 
+Broadcast::channel('chatroom', function ($user) {
+    return $user;
+});
 
 Broadcast::channel('thread.{thread_id}', function ($user, $thread_id) {
     $thread = Thread::find($thread_id);
