@@ -15,10 +15,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
+use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasAvatar, CanLike, CanComment, HasThreads;
+    use Searchable, HasApiTokens, HasFactory, Notifiable, HasAvatar, CanLike, CanComment, HasThreads;
 
     /**
      * The attributes that are mass assignable.
@@ -102,7 +103,27 @@ class User extends Authenticatable
     {
         return User::where('is_admin', true);
     }
-    
+
+    public function getScoutKey()
+    {
+        return $this->email;
+    }
+
+    public function getScoutKeyName()
+    {
+        return 'email';
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'email' => $this->email,
+            'firstname' => $this->firstname,
+            'lastname' => $this->lastname
+        ];
+    }
+
     public static function sendMessageSupport(User $user, string $content)
     {
         $thread = $user->supportThread();
