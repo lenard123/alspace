@@ -11,6 +11,7 @@
         "innocenzi/laravel-vite": "0.2.*",
         "laravel/framework": "^9.2",
         "laravel/sanctum": "^2.14",
+        "laravel/scout": "^9.4",
         "laravel/tinker": "^2.7"
     },
     "require-dev": {
