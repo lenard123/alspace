@@ -10,11 +10,9 @@ const authorizer = (channel) => {
         authorize: (socket_id, callback) => {
             Http.post('/broadcasting/auth', { socket_id, channel_name: channel.name })
                 .then(response => {
-                    console.log(response)
                     callback(null, response.data)
                 })
                 .catch(error => {
-                    console.log(error)
                     callback(new Error(`Error calling auth endpoint: ${error}`), {
                         auth: ""
                     });
@@ -35,7 +33,6 @@ const EchoClient =  new Echo({
     cluster: CLUSTER,
     forceTLS: true,
     encrypted: true,
-    authEndpoint: '/broadcasting/auth',
     authorizer
 })
 

@@ -1,16 +1,18 @@
 import { useState, useEffect } from 'react'
+import useMessagesAction from '../recoil/actions/useMessagesAction'
 import Echo from '../utils/Echo'
 
 const useThreadListener = (id) => {
     const [connection, setConnection] = useState(null)
+    const { appendMessage } = useMessagesAction()
 
     useEffect(() => {
         connection?.listen('MessageReceived', ({message}) => {
-            console.log(message)
+            appendMessage(message)
         })
 
         return () => {
-            connection?.stopListening('NewMessageReceived')
+            connection?.stopListening('MessageReceived')
         }
     }, [connection])
 
