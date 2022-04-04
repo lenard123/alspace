@@ -4,3 +4,8 @@ export const fetchConversations = async() => {
     await requestCookie()
     return await Http.get('/user/conversations')
 }
+
+export const searchUser = async(query) => {
+    await requestCookie()
+    return await Http.get('/users/search', {params: {query}})
+}
