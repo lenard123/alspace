@@ -20,6 +20,6 @@ class UserController extends Controller
 
     public function thread(User $user)
     {
-        return $user->threadWith($user)->loadInfo(Auth::user());
+        return Auth::user()->threadWith($user)->loadInfo($user);
     }
 }
