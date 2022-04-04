@@ -3,6 +3,7 @@
 namespace App\Models\Concerns;
 
 use App\Models\Thread;
+use App\Models\User;
 
 trait HasThreads
 {
@@ -24,6 +25,17 @@ trait HasThreads
             $thread->members()->attach($this->id);
         }
 
+        return $thread;
+    }
+
+    public function threadWith(User $user) : Thread
+    {
+        $thread = $this->threads()->whereHas('members', fn($q) => $q->whereId($user->id));
+        if ($thread->exists()) {
+            return $thread->first();
+        }
+        $thread = $this->threads()->create();
+        $thread->members()->attach($user->id);
         return $thread;
     }
 
