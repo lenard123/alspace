@@ -6,7 +6,7 @@
   <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Laravel + Vite App</title>
-  @if (config('app.env') === 'gitpod')
+  @if (env('APP_GITPOD', false))
         <script type="module">
             import RefreshRuntime from "{{ env('VITE_CLIENT_HOST', 'http://localhost:3000') }}/@@react-refresh"
             RefreshRuntime.injectIntoGlobalHook(window)
