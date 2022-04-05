@@ -11,9 +11,12 @@ import WriteComment from '@/js/components/WriteComment'
 import { arrayIsLoading } from '@/js/utils'
 import usePostComments from '@/js/recoil/selectors/usePostComments'
 import usePostsCommentIdsAction from '@/js/recoil/actions/usePostsCommentIdsActions'
+import useSetTitle from '@/js/hooks/useSetTitle'
+import useSetPostPageTitle from './useSetPostPageTitle'
 
 export default function ViewPostPage() {
     const { id } = useParams()
+    useSetPostPageTitle(id)
     const { execute, status, data, isLoading } = useApi(fetchPost)
     const post = usePost(id)
     const { setPost } = usePostsActions()

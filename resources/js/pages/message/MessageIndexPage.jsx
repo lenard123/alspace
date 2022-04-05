@@ -1,8 +1,10 @@
+import useSetTitle from "@/js/hooks/useSetTitle";
 import { MessageOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 
 export default function MessagePageIndex()
 {
+    useSetTitle('Messages')
     return (
         <div className='hidden md:flex h-full text-gray-400 flex-col items-center justify-center'>
             <span className='text-6xl'><MessageOutlined /></span>

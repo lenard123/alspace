@@ -3,10 +3,11 @@ import { Card, Input, Button, Form, Select, DatePicker } from 'antd'
 import Logo from '@/js/components/Logo'
 import rules from './validationRules'
 import useRegistrationLogic from './useRegistrationLogic'
+import useSetTitle from '@/js/hooks/useSetTitle'
 const { Option } = Select
 
 export default function Register() {
-
+    useSetTitle('Register')
     const { register, isLoading, validationErrors } = useRegistrationLogic()
 
     return (
