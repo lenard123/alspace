@@ -1,3 +1,1 @@
-export default () => (
-    <>Events</>
-)
+export { default } from './EventsPageIndex'
