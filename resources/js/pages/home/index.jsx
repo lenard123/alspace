@@ -7,9 +7,10 @@ import { useRecoilValue } from 'recoil'
 import feedState from '@/js/recoil/states/feedState'
 import useFeedActions from '@/js/recoil/actions/useFeedActions'
 import feedPostsSelector from '@/js/recoil/selectors/feedPostsSelector'
+import useSetTitle from '@/js/hooks/useSetTitle'
 
 export default function Home() {
-
+    useSetTitle('Home')
     const [initLoading, setInitLoading] = useState(false)
     const { current_page, next_page_url } = useRecoilValue(feedState)
     const { setFeed } = useFeedActions()

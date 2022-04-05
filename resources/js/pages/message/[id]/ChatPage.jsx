@@ -11,15 +11,22 @@ import useMessages from "@/js/recoil/selectors/useMessages";
 import MessagesList from "./components/MessagesList";
 import WriteMessage from "./components/WriteMessage";
 import useThreadListener from "@/js/listeners/useThreadListener";
+import useSetTitle from "@/js/hooks/useSetTitle";
 
 export default function ChatPage() {
 
     const { id } = useParams()
-    //const temp = useThreadListener(id)
+    const setTitle = useSetTitle()
     const { execute, status, data, isLoading } = useApi(fetchThread)
     const thread = useThread(id)
     const messages = useMessages(id)
     const { setThread } = useThreadsAction()
+
+    useEffect(() => {
+        if (thread) {
+            setTitle(thread.title)
+        }
+    }, [thread])
 
     useEffect(() => {
         if (status === 'success') {
