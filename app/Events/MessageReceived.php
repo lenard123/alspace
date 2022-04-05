@@ -16,16 +16,17 @@ class MessageReceived implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public Message $message;
+    private int $receiver_id;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Message $message)
+    public function __construct(int $receiver_id, Message $message)
     {
+        $this->receiver_id = $receiver_id;
         $this->message = $message;
-        $this->dontBroadcastToCurrentUser();
     }
 
     /**
@@ -35,6 +36,6 @@ class MessageReceived implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel("thread.{$this->message->thread_id}");
+        return new PrivateChannel("users.{$this->receiver_id}");
     }
 }
