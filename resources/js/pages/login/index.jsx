@@ -57,8 +57,8 @@ export default () => {
                                 Sign in
                             </Button>
                             <p className='mt-2 text-center'>
-                                Don't have an account? Sign up
-                                <Link to='/register'> here</Link>
+                                <span>Don't have an account? Sign up </span>
+                                <Link className='link' to='/register'>here</Link>.
                             </p>
                         </Form.Item>
 

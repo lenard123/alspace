@@ -68,3 +68,7 @@ a:hover {
     flex: unset;
     padding-bottom: 0;
 }
+
+.link, .link:hover {
+    @apply text-blue-500 underline;
+}
