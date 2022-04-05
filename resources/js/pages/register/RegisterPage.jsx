@@ -127,8 +127,8 @@ export default function Register() {
                                 Create Account
                             </Button>
                             <p className='mt-2 text-center'>
-                                Already have an account? Log in
-                                <Link to='/login'> here</Link>
+                                <span>Already have an account? Log in </span>
+                                <Link className='link' to='/login'>here</Link>.
                             </p>
                         </Form.Item>
 
