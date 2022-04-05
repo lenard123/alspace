@@ -15,7 +15,7 @@ import useThreadListener from "@/js/listeners/useThreadListener";
 export default function ChatPage() {
 
     const { id } = useParams()
-    const temp = useThreadListener(id)
+    //const temp = useThreadListener(id)
     const { execute, status, data, isLoading } = useApi(fetchThread)
     const thread = useThread(id)
     const messages = useMessages(id)

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\MessageReceived;
+use App\Events\MessageSent;
 use App\Models\Thread;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +17,7 @@ class ThreadController extends Controller
     public function sendMessage(Thread $thread, Request $request)
     {
         $message = Auth::user()->sendMessageOn($thread, $request->content);
-        MessageReceived::dispatch($message);
+        MessageSent::dispatch($message);
         return $message;
     }
 }
