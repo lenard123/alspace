@@ -14,7 +14,7 @@ const useRegister = () => {
         onError: (error) => {
             setValidationErrors(error.validationErrors)
         },
-        onSuccess: ({ data }) => {
+        onSuccess: (data) => {
             message.success('Successfully Registered')
             queryClient.setQueryData(['users', 'current'], data)
         }

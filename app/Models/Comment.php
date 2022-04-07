@@ -9,9 +9,9 @@ use App\Models\Concerns\Likes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model implements Commentable, Likeable
+class Comment extends Likeable implements Commentable
 {
-    use HasFactory, HasComments, Likes;
+    use HasFactory, HasComments;
 
     protected $fillable = ['content'];
 

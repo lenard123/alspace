@@ -4,7 +4,13 @@ import { Button } from 'antd'
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from 'react-query/devtools'
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 5
+    }
+  }
+})
 
 function DebugButton() {
   const onClick = useRecoilCallback(({ snapshot }) => async () => {

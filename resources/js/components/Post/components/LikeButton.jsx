@@ -5,32 +5,41 @@ import { useIsCurrentUserLikePost } from "@/js/recoil/selectors/currentUserSelec
 import { likePost, unlikePost } from "@/js/apis/PostApi"
 import usePostsLikerIdsActions from "@/js/recoil/actions/usePostsLikerIdsActions"
 import useApi from "@/js/hooks/useApi"
+import { useMutation } from 'react-query'
+import usePostMutator from '@/js/queries/usePostMutator'
 
-const toggleLike = (id, isLike) => {   
-    return isLike ? unlikePost(id) : likePost(id)
+const toggleLike = ({id, is_like}) => {   
+    return is_like ? unlikePost(id) : likePost(id)
 }
 
-export default function LikeButton({ id })
+export default function LikeButton({ post })
 {
-    const { isLoading, status, data:newLikerIds, execute } = useApi(toggleLike)
-    const isLike = useIsCurrentUserLikePost(id)
-    const { setPostLikerIds } = usePostsLikerIdsActions()
-
-    useEffect(() => {
-        if (status === 'success') {
-            setPostLikerIds(id, newLikerIds)
+    const { is_like, id } = post
+    const { updatePost } = usePostMutator()
+    const { isLoading, mutate } = useMutation(toggleLike, {
+        onSuccess: data => {
+            updatePost(data)
         }
-    }, [status])
+    })
+    // const { isLoading, status, data:newLikerIds, execute } = useApi(toggleLike)
+    // const isLike = useIsCurrentUserLikePost(id)
+    // const { setPostLikerIds } = usePostsLikerIdsActions()
+
+    // useEffect(() => {
+    //     if (status === 'success') {
+    //         setPostLikerIds(id, newLikerIds)
+    //     }
+    // }, [status])
 
     const likePost = () => {
         if (isLoading) return;
-        execute(id, isLike)
+        mutate({id, is_like})
     }
 
     return (
         <button onClick={likePost} className='cursor-pointer flex-grow py-1 bg-white hover:bg-gray-100 rounded-full'>
             <Spin spinning={isLoading}>
-                {isLike 
+                {is_like 
                     ? <LikeFilled className='text-blue-500'/> 
                     : <LikeOutlined />
                 }

@@ -2,16 +2,13 @@ import { Link } from 'react-router-dom'
 import { Avatar } from 'antd'
 import { CommentOutlined } from '@ant-design/icons'
 import moment from 'moment'
-import useUser from '@/js/recoil/selectors/useUser'
 import LikeButton from './components/LikeButton'
-import { usePostLikeCount } from '@/js/recoil/selectors/usePost'
 import Options from './components/Options'
 import usePostLogic from './usePostLogic'
 
 export default function Post({ post, children, onDelete }) 
 {
-    const author = useUser(post.user_id)
-    const likeCount = usePostLikeCount(post.id)
+    const { author, likers_count } = post
     const comments_count = post.comments_count
     const { isBelongsToUser, showDeleteModal } = usePostLogic(post, onDelete)
 
@@ -34,12 +31,12 @@ export default function Post({ post, children, onDelete })
             </div>
 
             <div className='text-xs flex justify-between py-1'>
-                <span>{ likeCount > 0 && `${likeCount} ${likeCount > 1 ? 'Likes' : 'Like'}` }</span>
+                <span>{ likers_count > 0 && `${likers_count} ${likers_count > 1 ? 'Likes' : 'Like'}` }</span>
                 <span>{ comments_count > 0 && `${comments_count} ${comments_count > 1 ? 'Comments' : 'Comment'}` }</span>
             </div>
 
             <div className='flex gap-2 text-lg py-1 border-t border-gray-300'>
-                <LikeButton id={post.id}/>
+                <LikeButton post={post}/>
                 <Link to={`/posts/${post.id}`} className='flex-grow py-1 text-center bg-white hover:bg-gray-100 rounded-full'><CommentOutlined /></Link>
             </div>
 

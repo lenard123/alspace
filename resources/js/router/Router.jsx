@@ -36,21 +36,21 @@ export default () => {
             <Routes>
 
                 <Route path='' element={<AuthGuard />}>
-                    {/* <Route path='/' element={<MainLayout />} >
+                    <Route path='/' element={<MainLayout />} >
                         <Route index element={<Home />} />
-                        <Route path='posts/:id' element={<Post />} />
+                        {/* {/* <Route path='posts/:id' element={<Post />} /> */}
                         <Route path='notifications' element={<Notifications />} />
-                        <Route path='messages' element={<MessageLayout />} >
+                        {/* <Route path='messages' element={<MessageLayout />} >
                             <Route index element={<Message />} />
                             <Route path=':id' element={<ChatPage />} />
-                        </Route>
+                        </Route> */}
                         <Route path='questions' element={<Questions />} />
                         <Route path='jobs' element={<Jobs />} />
                         <Route path='events' element={<Events />} />
-                        <Route path='profile' element={<Profile />} />
-                        <Route path='profile/:id' element={<Profile />} />
+                        {/* <Route path='profile' element={<Profile />} /> */}
+                        {/* <Route path='profile/:id' element={<Profile />} /> */}
                         <Route path='settings' element={<Settings />} />
-                    </Route> */}
+                    </Route>
                 </Route>
 
                 <Route path='' element={<GuestGuard />}>

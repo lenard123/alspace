@@ -1,31 +1,26 @@
-import { useState, useEffect } from 'react'
-import { Avatar, Input, Button } from 'antd'
+import { useState } from 'react'
+import { Avatar, Input, Button, message } from 'antd'
 import { CameraFilled } from '@ant-design/icons'
-import { useRecoilValue } from 'recoil'
-import currentUserSelector from '@/js/recoil/selectors/currentUserSelector'
-import useApi from '@/js/hooks/useApi'
 import { createPost } from '@/js/apis/PostApi'
-import useFeedActions from '@/js/recoil/actions/useFeedActions'
+import { useCurrentUser } from '@/js/queries/useCurrentUserQuery'
+import { useMutation, useQueryClient } from 'react-query'
 
 export default function WritePost() {
 
-    const { avatarUrl } = useRecoilValue(currentUserSelector)
+    const { avatarUrl } = useCurrentUser()
     const [content, setContent] = useState('')
-    const { prependPost } = useFeedActions()
-    const { isLoading, execute, status, message, data:post } = useApi(createPost)
-
-    useEffect(() => {
-        if (status === 'success') {
-            message.success('Successfully posted')
-            prependPost(post)
-            setContent('')
+    const queryClient = useQueryClient()
+    const { mutate, isLoading } = useMutation(createPost, {
+        onSuccess: () => {
+            queryClient.invalidateQueries(['posts'])
+            message.success('Posted successfully')
         }
-    }, [status])
+    })
 
     const handleSubmit = (e) => {
         e.preventDefault()
         if (isLoading || content.trim().length === 0) return;
-        execute(content)
+        mutate(content)
     }
 
     return (

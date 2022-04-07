@@ -1,15 +1,16 @@
 import { Avatar, Button, Drawer, Menu } from "antd"
 import { ArrowLeftOutlined, BellOutlined, CalendarOutlined, LogoutOutlined, MessageOutlined, QuestionCircleOutlined, SearchOutlined, SettingOutlined } from "@ant-design/icons"
-import { useRecoilValue } from "recoil"
-import currentUserSelector from "@/js/recoil/selectors/currentUserSelector"
 import { BriefcaseOutlined } from "@/js/components/icons"
 import { Link } from "react-router-dom"
 import useMainLayoutLogic from "../useMainLayoutLogic"
+import { useCurrentUser } from "@/js/queries/useCurrentUserQuery"
+import useLogout from "../useLogout"
 
 export default function DrawerMenu() {
 
-    const { showLogoutModal, isDrawerVisible, setIsDrawerVisible } = useMainLayoutLogic()
-    const currentUser = useRecoilValue(currentUserSelector)
+    const { isDrawerVisible, setIsDrawerVisible } = useMainLayoutLogic()
+    const { showLogoutModal } = useLogout()
+    const currentUser = useCurrentUser()
 
     const menuClicked = ({key}) => {
         setIsDrawerVisible(false)

@@ -16,7 +16,7 @@ const useLogin = () => {
         onError: (error) => {
             setValidationErrors(error.validationErrors)
         },
-        onSuccess: ({ data }) => {
+        onSuccess: (data) => {
             message.success('Successfully Login')
             queryClient.setQueryData(['users', 'current'], data)
         }

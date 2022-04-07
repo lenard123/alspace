@@ -1,12 +1,11 @@
-import { Modal, Avatar, Divider, Menu } from 'antd'
+import { Avatar, Divider, Menu } from 'antd'
 import { LogoutOutlined, QuestionCircleOutlined, SettingOutlined } from '@ant-design/icons'
-import { useRecoilValue } from 'recoil'
 import { Link } from 'react-router-dom'
-import currentUserSelector from '@/js/recoil/selectors/currentUserSelector'
 import useMainLayoutLogic from '../useMainLayoutLogic'
+import { useCurrentUser } from '@/js/queries/useCurrentUserQuery'
 
 const UserAvatarMenu = ({ setIsOpen }) => {
-    const currentUser = useRecoilValue(currentUserSelector)
+    const currentUser = useCurrentUser()
     const { showLogoutModal } = useMainLayoutLogic()
 
     const menuClicked = ({key}) => {

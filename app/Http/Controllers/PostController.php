@@ -12,7 +12,7 @@ class PostController extends Controller
 
     public function index()
     {
-        return response()->json(Post::latest()->paginate(10));
+        return response()->json(Post::latest()->paginate(2));
     }
 
     public function view(Post $post)
@@ -31,14 +31,12 @@ class PostController extends Controller
 
     public function like(Post $post)
     {
-        Auth::user()->like($post);
-        return response()->json($post->likes()->pluck('user_id'));
+        return Auth::user()->like($post);
     }
 
     public function unlike(Post $post)
     {
-        Auth::user()->unlike($post);
-        return response()->json($post->likes()->pluck('user_id'));
+        return Auth::user()->unlike($post);
     }
 
     public function comment(Post $post, CommentRequest $request)

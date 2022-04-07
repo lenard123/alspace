@@ -8,10 +8,10 @@ use App\Models\Like;
 trait CanLike
 {
 
-    public function like(Likeable $likeable): self
+    public function like(Likeable $likeable): Likeable
     {
         if ($this->hasLiked($likeable)) {
-            return $this;
+            return $likeable;
         }
 
         (new Like())
@@ -19,20 +19,20 @@ trait CanLike
             ->likeable()->associate($likeable)
             ->save();
 
-        return $this;
+        return $likeable->refresh();
     }
 
-    public function unlike(Likeable $likeable): self
+    public function unlike(Likeable $likeable): Likeable
     {
         if (! $this->hasLiked($likeable)) {
-            return $this;
+            return $likeable;
         }
 
-        $likeable->likes()
+        $likeable->likers()
             ->whereHas('user', fn($q) => $q->whereId($this->id))
             ->delete();
 
-        return $this;
+        return $likeable->refresh();
     }
 
     public function hasLiked(Likeable $likeable): bool
@@ -41,7 +41,7 @@ trait CanLike
             return false;
         }
 
-        return $likeable->likes()
+        return $likeable->likers()
             ->whereHas('user', fn($q) =>  $q->whereId($this->id))
             ->exists();
     }

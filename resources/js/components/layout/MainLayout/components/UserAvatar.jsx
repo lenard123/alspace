@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { Dropdown, Avatar } from 'antd'
 import UserAvatarMenu from './UserAvatarMenu'
-import { useRecoilValue } from 'recoil'
-import currentUserSelector from '@/js/recoil/selectors/currentUserSelector'
+import { useCurrentUser } from '@/js/queries/useCurrentUserQuery'
 
 export default function UserAvatar() {
 
     const [isOpen, setIsOpen] = useState(false)
-    const { avatarUrl } = useRecoilValue(currentUserSelector)
+    // const { avatarUrl } = useRecoilValue(currentUserSelector)
+    const { avatarUrl } = useCurrentUser()
 
     return (
         <Dropdown onVisibleChange={setIsOpen} visible={isOpen} trigger={['click']} overlay={<UserAvatarMenu setIsOpen={setIsOpen}/>} placement='bottomRight'>
