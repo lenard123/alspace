@@ -4,12 +4,17 @@ import { Link } from 'react-router-dom'
 import Logo from '@/js/components/Logo'
 import rules from './validationRules'
 import useLogin from './useLogin'
+import { Helmet } from 'react-helmet'
 
 export default function LoginPage() {
 
     const { validationErrors, handleSubmit, isLoading } = useLogin()
 
     return (
+        <>
+        <Helmet>
+            <title>Login</title>
+        </Helmet>
         <div className='bg-blue-700 min-h-screen flex flex-col justify-center'>
             <div className="py-8">
                 <Card title={<Logo />} className='max-w-md mx-auto rounded'>
@@ -67,5 +72,6 @@ export default function LoginPage() {
                 </Card>
             </div>
         </div>
+        </>
     )
 }
