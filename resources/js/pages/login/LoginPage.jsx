@@ -3,11 +3,11 @@ import { MailOutlined, LockOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import Logo from '@/js/components/Logo'
 import rules from './validationRules'
-import useLoginLogic from './useLoginLogic'
+import useLogin from './useLogin'
 
-export default () => {
+export default function LoginPage() {
 
-    const { validationErrors, handleSubmit, isLoading } = useLoginLogic()
+    const { validationErrors, handleSubmit, isLoading } = useLogin()
 
     return (
         <div className='bg-blue-700 min-h-screen flex flex-col justify-center'>

@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'antd/dist/antd.css';
+@import './tailwind.css';
 
 * {
     border-width: 0;
@@ -71,4 +69,8 @@ a:hover {
 
 .link, .link:hover {
     @apply text-blue-500 underline;
+}
+
+.ReactQueryDevtoolsPanel button{
+    color: black;
 }

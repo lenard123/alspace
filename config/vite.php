@@ -16,6 +16,7 @@ return [
                 'ssr' => 'resources/scripts/ssr.ts',
                 'paths' => [
                     'resources/js/main.jsx',
+                    'resources/css/app.css'
                 ],
                 'ignore' => '/\\.(d\\.ts|json)$/',
             ],

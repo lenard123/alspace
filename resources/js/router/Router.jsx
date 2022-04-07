@@ -20,15 +20,23 @@ import Login from '@/js/pages/login'
 import Register from '@/js/pages/register'
 import GuestGuard from './_guards/GuestGuard'
 import useCurrentUserEvents from '../listeners/useCurrentUserEvents'
+import useCurrentUserQuery from '../queries/useCurrentUserQuery'
+import PageLoading from '../components/PageLoading'
 
 export default () => {
     useCurrentUserEvents()
+    const { isLoading } = useCurrentUserQuery()
+
+    if (isLoading) {
+        return <PageLoading />
+    }
+
     return (
         <BrowserRouter>
             <Routes>
 
                 <Route path='' element={<AuthGuard />}>
-                    <Route path='/' element={<MainLayout />} >
+                    {/* <Route path='/' element={<MainLayout />} >
                         <Route index element={<Home />} />
                         <Route path='posts/:id' element={<Post />} />
                         <Route path='notifications' element={<Notifications />} />
@@ -42,7 +50,7 @@ export default () => {
                         <Route path='profile' element={<Profile />} />
                         <Route path='profile/:id' element={<Profile />} />
                         <Route path='settings' element={<Settings />} />
-                    </Route>
+                    </Route> */}
                 </Route>
 
                 <Route path='' element={<GuestGuard />}>

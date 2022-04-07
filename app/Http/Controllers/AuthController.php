@@ -29,7 +29,7 @@ class AuthController extends Controller
             ]);
         }
 
-        return 'Successfully login';
+        return Auth::user();
     }
 
     public function logout()
