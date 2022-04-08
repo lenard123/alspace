@@ -6,35 +6,41 @@ import { Spin } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons'
 import { useCommentLikerIds } from '@/js/recoil/selectors/useComment'
 import useCommentsLikerIdsActions from '@/js/recoil/actions/useCommentsLikerIdsActions'
+import { useMutation, useQueryClient } from 'react-query'
+import queryKeyFactory from '@/js/queries/queryKeyFactory'
+import { updatePagination } from '@/js/utils/paginationReducer'
 
-const toggleLike = async (isLike, id) => {
-    return isLike 
-        ? await unlikeComment(id)
-        : await likeComment(id)
+const toggleLike = ({id, is_like}) => {
+    return is_like
+        ? unlikeComment(id)
+        : likeComment(id)
 }
 
-export default function LikeButton({id}) {
-
-    const { isLoading, status, data, execute } = useApi(toggleLike)
-    const isLike = useIsCurrentUserLikeComment(id)
-    const { setCommentLikerIds } = useCommentsLikerIdsActions()
-
-    useEffect(() => {
-        if (status==='success') {
-            setCommentLikerIds(id, data)
+export default function LikeButton({comment}) 
+{
+    const { id, is_like, commentable_id } = comment
+    const queryClient = useQueryClient()
+    const { isLoading, mutate } = useMutation(toggleLike, {
+        onSuccess: (data) => {
+            if (data.commentable_type === 'App\\Models\\Post') {
+                queryClient.setQueryData(queryKeyFactory.postComments(commentable_id), updatePagination(data))
+            }
+            if (data.commentable_type === 'App\\Models\\Comment') {
+                queryClient.setQueryData(queryKeyFactory.commentReplies(commentable_id), updatePagination(data))
+            }
         }
-    }, [status])
+    })
     
     const handleClick = () => {
         if (isLoading)return;
-        execute(isLike, id)
+        mutate({id, is_like})
     }
 
     return (
         <span onClick={handleClick}>
             {isLoading 
                 ? <LoadingOutlined />
-                : <span className={isLike ? 'text-blue-500 font-semibold' : ''}>Like</span>
+                : <span className={is_like ? 'text-blue-500 font-semibold' : ''}>Like</span>
             }
         </span>
     )

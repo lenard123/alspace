@@ -4,6 +4,8 @@ import { CameraFilled } from '@ant-design/icons'
 import { createPost } from '@/js/apis/PostApi'
 import { useCurrentUser } from '@/js/queries/useCurrentUserQuery'
 import { useMutation, useQueryClient } from 'react-query'
+import queryKeyFactory from '@/js/queries/queryKeyFactory'
+import { prependPagination } from '@/js/utils/paginationReducer'
 
 export default function WritePost() {
 
@@ -11,9 +13,10 @@ export default function WritePost() {
     const [content, setContent] = useState('')
     const queryClient = useQueryClient()
     const { mutate, isLoading } = useMutation(createPost, {
-        onSuccess: () => {
+        onSuccess: (data) => {
             setContent('')
-            queryClient.invalidateQueries(['posts'])
+            queryClient.setQueryData(queryKeyFactory.posts, prependPagination(data))
+            //queryClient.invalidateQueries(['posts'])
             message.success('Posted successfully')
         }
     })

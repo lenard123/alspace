@@ -13,9 +13,11 @@ class Comment extends Likeable implements Commentable
 
     protected $fillable = ['content'];
 
-    protected $hidden = ['commentable_id', 'commentable_type', 'likes'];
-
     protected $with = ['user'];
+
+    protected $withCount = ['likers', 'comments'];
+
+    protected $appends = ['is_like'];
 
     public function user()
     {

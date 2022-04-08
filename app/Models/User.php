@@ -6,6 +6,7 @@ use App\Contracts\Likeable;
 use App\Models\Concerns\CanComment;
 use App\Models\Concerns\HasAvatar;
 use App\Models\Concerns\CanLike;
+use App\Models\Concerns\CanPost;
 use App\Models\Concerns\HasThreads;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,7 +20,7 @@ use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
 {
-    use Searchable, HasApiTokens, HasFactory, Notifiable, HasAvatar, CanLike, CanComment, HasThreads;
+    use Searchable, HasApiTokens, HasFactory, Notifiable, HasAvatar, CanLike, CanComment, HasThreads, CanPost;
 
     /**
      * The attributes that are mass assignable.

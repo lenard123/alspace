@@ -1,14 +1,18 @@
-import { Avatar, Comment, List, Skeleton, Spin } from "antd"
-import moment from 'moment'
-import usePostCommentsQuery from "@/js/queries/usePostCommentsQuery"
+import { List, Skeleton, Spin } from "antd"
+import usePostCommentsQuery, { useCommentsQuery } from "@/js/queries/usePostCommentsQuery"
 import { LoadingOutlined } from "@ant-design/icons"
 import WriteComment from "@/js/components/WriteComment"
+import Comment from "../Comment"
 
-export default function CommentsList({ id }) {
-    const { data, hasNextPage, isFetchingNextPage, fetchNextPage } = usePostCommentsQuery(id)
+export default function CommentsList({ type, id, fullname }) {
+    const { data, hasNextPage, isFetchingNextPage, fetchNextPage, isLoading } = useCommentsQuery(type, id)
+
+    if (isLoading) {
+        return <Skeleton className="p-4" loading={true} avatar active/>
+    }
+
     return (
         <List
-            className="list-class-ytest"
             size='small'
             header={hasNextPage && (
                 <a onClick={fetchNextPage} className='font-bold'>
@@ -16,25 +20,13 @@ export default function CommentsList({ id }) {
                 </a>
             )}
             footer={
-                <WriteComment submitHandler={() => {}} callback={() => {}} />
+                <WriteComment type={type} id={id} fullname={fullname}/>
             }
-            locale={{ emptyText: 'Be the first to comment' }}
+            locale={{ emptyText: type === 'post' ? 'Be the first to comment' : <span/> }}
             dataSource={data}
             renderItem={comment => (
                 <List.Item key={comment.id} style={{ padding: 0 }}>
-                    <Skeleton rows={1} avatar loading={comment.isLoading}>
-                        <Comment
-                            actions={[
-                                <span key='like'>Like</span>,
-                                <span key='reply'>Reply</span>,
-                                <span key='view'>View Replies</span>,
-                            ]}
-                            avatar={<Avatar src={comment.user.avatarUrl} />}
-                            author={comment.user.fullname}
-                            content={comment.content}
-                            datetime={moment(comment.created_at).fromNow()}
-                        />
-                    </Skeleton>
+                    <Comment comment={comment} />
                 </List.Item>
             )}
         />

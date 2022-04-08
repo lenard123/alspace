@@ -12,7 +12,7 @@ class PostController extends Controller
 
     public function index()
     {
-        return response()->json(Post::latest()->paginate(8));
+        return Post::latest()->paginate(8);
     }
 
     public function view(Post $post)
@@ -25,12 +25,10 @@ class PostController extends Controller
         return $post->comments()->latest()->paginate(5);
     }
 
-    public function create(PostRequest $postRequest)
+    public function create(PostRequest $request)
     {
         $this->authorize('create', Post::class);
-        $user = $postRequest->user();
-        $post = $user->posts()->create($postRequest->validated());
-        return response()->json($post);
+        return $request->user()->post($request->validated());
     }
 
     public function like(Post $post)

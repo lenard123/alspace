@@ -47,6 +47,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/comments/{comment}/like', [CommentController::class, 'like']);
     Route::post('/comments/{comment}/unlike', [CommentController::class, 'unlike']);
+    Route::get('/comments/{comment}/replies', [CommentController::class, 'replies']);
+    Route::post('/comments/{comment}/replies', [CommentController::class, 'reply']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
     

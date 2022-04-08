@@ -1,27 +1,17 @@
-import { useState, useEffect } from 'react'
 import { SendOutlined } from "@ant-design/icons";
 import { Avatar, Button, Comment, Input } from "antd";
-import useApi from '@/js/hooks/useApi';
 import { useCurrentUser } from '@/js/queries/useCurrentUserQuery';
+import useWriteComment from './useWriteComment';
 
 
-export default function WriteComment({ type, id }) {
+export default function WriteComment({ type, id, fullname }) {
 
-    // const { isLoading, data, execute, status, message } = useApi(submitHandler)
+    const { isLoading, mutate, content, setContent } = useWriteComment(type, id)
     const { avatarUrl } = useCurrentUser()
-    const [comment, setComment] = useState('')
-
-    // useEffect(() => {
-    //     if (status === 'success') {
-    //         setComment('')
-    //         message.success('Commented successfully')
-    //         callback(data)
-    //     }
-    // }, [status])
     
     const submitComment = () => {
-        // if (isLoading) return;
-        // execute(comment)
+        if (isLoading) return;
+        mutate(content)
     }
 
     return (
@@ -32,13 +22,13 @@ export default function WriteComment({ type, id }) {
                     <Input
                         size='large'
                         className='rounded-full'
-                        value={comment}
-                        onChange={e => setComment(e.target.value)}
+                        value={content}
+                        onChange={e => setContent(e.target.value)}
                         onPressEnter={submitComment}
-                        placeholder='Write a comment'
+                        placeholder={type === 'post' ? 'Write a comment' : `Reply to ${fullname}`}
                         suffix={
-                            comment.trim().length > 0
-                                ? <Button onClick={submitComment} loading={false} type='text' size='small' icon={<SendOutlined className='cursor-pointer text-blue-500' />} />
+                            content.trim().length > 0
+                                ? <Button onClick={submitComment} loading={isLoading} type='text' size='small' icon={<SendOutlined className='cursor-pointer text-blue-500' />} />
                                 : <span />
                         }
                     />

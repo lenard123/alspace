@@ -9,18 +9,22 @@ use Illuminate\Support\Facades\Auth;
 class CommentController extends Controller
 {
     public function like(Comment $comment)
-    {
-        Auth::user()->like($comment);
-        return response()->json(
-            $comment->likes()->pluck('user_id')
-        );
+    {        
+        return Auth::user()->like($comment);
     }
 
     public function unlike(Comment $comment)
     {
-        Auth::user()->unlike($comment);
-        return response()->json(
-            $comment->likes()->pluck('user_id')
-        );
+        return Auth::user()->unlike($comment);
+    }
+
+    public function replies(Comment $comment)
+    {
+        return $comment->comments()->paginate(3);
+    }
+
+    public function reply(Comment $comment, Request $request)
+    {
+        return Auth::user()->comment($comment, $request->content);
     }
 }
