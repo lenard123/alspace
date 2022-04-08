@@ -15,7 +15,7 @@ class Comment extends Likeable implements Commentable
 
     protected $with = ['user'];
 
-    protected $withCount = ['likers', 'comments'];
+    protected $withCount = ['likers'];
 
     protected $appends = ['is_like'];
 

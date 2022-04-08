@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Contracts\Likeable;
 use App\Models\Concerns\CanComment;
 use App\Models\Concerns\HasAvatar;
 use App\Models\Concerns\CanLike;
@@ -119,10 +118,8 @@ class User extends Authenticatable
     public function toSearchableArray()
     {
         return [
-            'id' => $this->id,
-            'email' => $this->email,
             'firstname' => $this->firstname,
-            'lastname' => $this->lastname
+            'lastname' => $this->lastname,
         ];
     }
 

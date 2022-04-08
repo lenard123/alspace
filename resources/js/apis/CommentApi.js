@@ -10,9 +10,11 @@ export const unlikeComment = async (commentId) => {
     return await Http.post(`/comments/${commentId}/unlike`);
 }
 
-export const fetchReplies = async (commentId) => {
+export const fetchReplies = async (commentId, page) => {
     await requestCookie()
-    return await Http.get(`/comments/${commentId}/replies`);
+    return await Http.get(`/comments/${commentId}/replies`, {
+        params: {page}
+    });
 }
 
 export const replyOnComment = async (commentId, content) => {

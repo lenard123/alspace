@@ -40,10 +40,10 @@ export default () => {
                         <Route index element={<Home />} />
                         <Route path='posts/:id' element={<Post />} />
                         <Route path='notifications' element={<Notifications />} />
-                        {/* <Route path='messages' element={<MessageLayout />} >
+                        <Route path='messages' element={<MessageLayout />} >
                             <Route index element={<Message />} />
                             <Route path=':id' element={<ChatPage />} />
-                        </Route> */}
+                        </Route>
                         <Route path='questions' element={<Questions />} />
                         <Route path='jobs' element={<Jobs />} />
                         <Route path='events' element={<Events />} />

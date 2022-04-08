@@ -34,6 +34,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/users/{user}/thread', [UserController::class, 'thread']);
 
     Route::get('/threads/{thread}', [ThreadController::class, 'view']);
+    Route::get('/threads/{thread}/messages', [ThreadController::class, 'messages']);
     Route::post('/threads/{thread}', [ThreadController::class, 'sendMessage']);
 
     Route::get('/posts', [PostController::class, 'index']);

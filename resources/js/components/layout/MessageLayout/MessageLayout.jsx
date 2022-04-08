@@ -8,19 +8,15 @@ import { useEffect, useMemo, useState } from 'react'
 import { useRecoilValue } from "recoil";
 import threadsState from "@/js/recoil/states/threadsState";
 import NewMessage from "./components/NewMessage";
+import useConversationQuery from "@/js/queries/useConversationQuery";
 
 export default function MessageLayout() {
     const [isOpen, setIsOpen] = useState(false)
-    const { setThreads } = useThreadsAction()
-    const { data, status, isLoading } = useApi(fetchConversations, { executeOnMount: true });
-    const threads = useRecoilValue(threadsState)
-    const conversations = useMemo(() => Object.values(threads), [threads])
-
-    useEffect(() => {
-        if (status === 'success') {
-            setThreads(data)
-        }
-    }, [status])
+    const { isLoading, data:conversations } = useConversationQuery()
+    // const { setThreads } = useThreadsAction()
+    // const { data, status, isLoading } = useApi(fetchConversations, { executeOnMount: true });
+    // const threads = useRecoilValue(threadsState)
+    // const conversations = useMemo(() => Object.values(threads), [threads])
 
     return (
         <>
@@ -36,7 +32,7 @@ export default function MessageLayout() {
                         />
 
                         <List
-                            loading={conversations.length <= 0 && isLoading}
+                            loading={isLoading}
                             dataSource={conversations}
                             renderItem={thread => (
                                 <List.Item>

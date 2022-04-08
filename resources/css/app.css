@@ -62,7 +62,7 @@ a:hover {
 
 .new-message-modal .ant-modal-content{
     @apply fixed sm:static inset-0 sm:max-h-[80vh];
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .new-message-modal .ant-form-item .ant-form-item-label,

@@ -4,7 +4,9 @@ import queryKeyFactory from "./queryKeyFactory"
 
 
 const usePostQuery =  (id) => {
-    return useQuery(queryKeyFactory.post(id), () => fetchPost(id), {
+    return useQuery({
+        queryKey: queryKeyFactory.post(id), 
+        queryFn: () => fetchPost(id),
         enabled: !!id
     })
 }

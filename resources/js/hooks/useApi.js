@@ -39,7 +39,7 @@ const useApi = function(promise, config) {
             setValidationErrors({})
             setStatus(STATUS_LOADING)
             const response = await promise(...params)
-            setData(response.data)
+            setData(response)
             setStatus(STATUS_SUCCESS)
         } catch (error) {
             setError(error)
