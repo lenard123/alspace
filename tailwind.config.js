@@ -1,5 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
-
+const plugin = require('tailwindcss/plugin')
 
 module.exports = {
   content: [
@@ -18,5 +18,9 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(({addVariant}) => {
+      addVariant('children', '& > *')
+    })
+  ],
 }

@@ -5,9 +5,7 @@ namespace App\Models;
 use App\Contracts\Commentable;
 use App\Contracts\Likeable;
 use App\Models\Concerns\HasComments;
-use App\Models\Concerns\Likes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Likeable implements Commentable
 {
@@ -18,8 +16,6 @@ class Comment extends Likeable implements Commentable
     protected $hidden = ['commentable_id', 'commentable_type', 'likes'];
 
     protected $with = ['user'];
-
-    protected $appends = ['likerIds'];
 
     public function user()
     {

@@ -21,7 +21,7 @@ tasks:
   - name: Client
     command: |
         gp await-port 8000
-        npm run dev -- --mode=gitpod
+        npm run dev
 
 github:
   prebuilds:

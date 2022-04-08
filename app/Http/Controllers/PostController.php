@@ -12,13 +12,17 @@ class PostController extends Controller
 
     public function index()
     {
-        return response()->json(Post::latest()->paginate(2));
+        return response()->json(Post::latest()->paginate(8));
     }
 
     public function view(Post $post)
     {
-        $post->load('comments');
         return $post;
+    }
+
+    public function comments(Post $post)
+    {
+        return $post->comments()->latest()->paginate(5);
     }
 
     public function create(PostRequest $postRequest)
@@ -41,8 +45,7 @@ class PostController extends Controller
 
     public function comment(Post $post, CommentRequest $request)
     {
-        $comment = Auth::user()->comment($post, $request->content);
-        return response()->json($comment);
+        return Auth::user()->comment($post, $request->content);
     }
 
     public function delete(Post $post)

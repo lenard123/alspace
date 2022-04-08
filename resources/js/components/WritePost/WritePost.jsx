@@ -12,6 +12,7 @@ export default function WritePost() {
     const queryClient = useQueryClient()
     const { mutate, isLoading } = useMutation(createPost, {
         onSuccess: () => {
+            setContent('')
             queryClient.invalidateQueries(['posts'])
             message.success('Posted successfully')
         }
