@@ -1,7 +1,9 @@
 
 export const updatePagination = (newData) => {
     return (pagination) => {
-        if (!pagination) return
+        if (!pagination) return {
+            pages: [ {data:[newData]}]
+        }
         return {
             ...pagination,
             pages: pagination.pages.map(page => ({
@@ -14,7 +16,9 @@ export const updatePagination = (newData) => {
 
 export const prependPagination = (newData) => {
     return (pagination) => {
-        if (!pagination) return;
+        if (!pagination) return {
+            pages: [ {data:[newData]}]
+        }
         return {
             ...pagination,
             pages: pagination.pages.map( (page, i) => ({
