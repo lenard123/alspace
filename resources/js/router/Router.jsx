@@ -25,7 +25,7 @@ import PageLoading from '../components/PageLoading'
 export default () => {
     const { isLoading } = useCurrentUserQuery()
 
-    if (isLoading) {
+    if (true) {
         return <PageLoading />
     }
 
