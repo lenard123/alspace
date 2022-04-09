@@ -1,6 +1,5 @@
 import { LoadingOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
-import Logo from "../Logo";
 
 export default function PageLoading() {
     return (
