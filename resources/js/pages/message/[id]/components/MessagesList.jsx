@@ -1,5 +1,3 @@
-import authState from "@/js/recoil/states/authState"
-import { useRecoilValue } from "recoil"
 import moment from 'moment'
 import { useCurrentUser } from "@/js/queries/useCurrentUserQuery"
 

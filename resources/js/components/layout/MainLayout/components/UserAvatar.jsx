@@ -6,7 +6,6 @@ import { useCurrentUser } from '@/js/queries/useCurrentUserQuery'
 export default function UserAvatar() {
 
     const [isOpen, setIsOpen] = useState(false)
-    // const { avatarUrl } = useRecoilValue(currentUserSelector)
     const { avatarUrl } = useCurrentUser()
 
     return (

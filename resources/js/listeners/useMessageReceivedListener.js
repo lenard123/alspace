@@ -1,21 +1,33 @@
 import { message } from "antd"
 import { useQueryClient } from "react-query"
-import { useLocation } from "react-router-dom"
 import useSocket from "../hooks/useSocket"
 import queryKeyFactory from "../queries/queryKeyFactory"
+import useConversationQuery from "../queries/useConversationQuery"
 import { prependPagination } from "../utils/paginationReducer"
+import { map } from 'lodash'
 
 const useMessageReceivedListener = () => {
+    const { data:conversations } = useConversationQuery({ enabled: false })
     const queryClient = useQueryClient()
     useSocket({
         event: 'MESSAGE_RECEIVED',
         callback: ({message: newMessage}) => {
+            const { thread_id } = newMessage
+
+            //Push new message
             queryClient.setQueryData(
-                queryKeyFactory.conversationMessages(newMessage.thread_id), 
+                queryKeyFactory.conversationMessages(thread_id), 
                 prependPagination(newMessage)
             )
-            if (window.location.pathname !== `/messages/${newMessage.thread_id}`) {
+            
+            //Notify if not on chat page
+            if (window.location.pathname !== `/messages/${thread_id}`) {
                 message.info('New message received')  
+            }
+
+            //Invalidate thread if the newMessage thread not exists
+            if (! map(conversations, 'id').includes(thread_id)) {
+                queryClient.invalidateQueries(queryKeyFactory.conversations)
             }
         }
     })

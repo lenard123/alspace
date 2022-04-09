@@ -1,12 +1,12 @@
 import { Avatar, Divider, Menu } from 'antd'
 import { LogoutOutlined, QuestionCircleOutlined, SettingOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
-import useMainLayoutLogic from '../useMainLayoutLogic'
 import { useCurrentUser } from '@/js/queries/useCurrentUserQuery'
+import useLogout from '../useLogout'
 
 const UserAvatarMenu = ({ setIsOpen }) => {
     const currentUser = useCurrentUser()
-    const { showLogoutModal } = useMainLayoutLogic()
+    const { showLogoutModal } = useLogout()
 
     const menuClicked = ({key}) => {
         setIsOpen(false)

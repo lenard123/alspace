@@ -2,13 +2,13 @@ import { Avatar, Button, Drawer, Menu } from "antd"
 import { ArrowLeftOutlined, BellOutlined, CalendarOutlined, LogoutOutlined, MessageOutlined, QuestionCircleOutlined, SearchOutlined, SettingOutlined } from "@ant-design/icons"
 import { BriefcaseOutlined } from "@/js/components/icons"
 import { Link } from "react-router-dom"
-import useMainLayoutLogic from "../useMainLayoutLogic"
 import { useCurrentUser } from "@/js/queries/useCurrentUserQuery"
 import useLogout from "../useLogout"
+import useDrawerVisibleState from "../useDrawerVisibleState"
 
 export default function DrawerMenu() {
 
-    const { isDrawerVisible, setIsDrawerVisible } = useMainLayoutLogic()
+    const [isDrawerVisible, setIsDrawerVisible] = useDrawerVisibleState()
     const { showLogoutModal } = useLogout()
     const currentUser = useCurrentUser()
 

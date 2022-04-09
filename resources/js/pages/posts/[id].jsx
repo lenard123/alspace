@@ -1,7 +1,7 @@
 import Post from "@/js/components/Post"
 import usePostQuery from "@/js/queries/usePostQuery"
 import { Skeleton } from "antd"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { Helmet } from 'react-helmet'
 import CommentsList from "@/js/components/CommentsList"
 
@@ -9,7 +9,11 @@ import CommentsList from "@/js/components/CommentsList"
 export default function ViewPostPage() {
     const { id } = useParams()
     const { isLoading, data, isSuccess } = usePostQuery(id)
+    const navigate = useNavigate()
 
+    const onDelete = () => {
+        navigate('/')
+    }
 
     return (
         <>
@@ -18,7 +22,7 @@ export default function ViewPostPage() {
             </Helmet>
             <div className='max-w-xl mx-auto sm:pt-4 pb-4'>
                 <Skeleton className='p-4' loading={isLoading} avatar active>
-                    <Post post={data}>
+                    <Post post={data} onDelete={onDelete}>
                         <CommentsList type='post' id={id} />
                     </Post>
                 </Skeleton>

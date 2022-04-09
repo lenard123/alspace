@@ -1,10 +1,6 @@
-import { useEffect } from 'react'
 import { Spin } from "antd"
 import { LikeFilled, LikeOutlined } from "@ant-design/icons"
-import { useIsCurrentUserLikePost } from "@/js/recoil/selectors/currentUserSelector"
 import { likePost, unlikePost } from "@/js/apis/PostApi"
-import usePostsLikerIdsActions from "@/js/recoil/actions/usePostsLikerIdsActions"
-import useApi from "@/js/hooks/useApi"
 import { useMutation } from 'react-query'
 import usePostMutator from '@/js/queries/usePostMutator'
 
@@ -21,15 +17,6 @@ export default function LikeButton({ post })
             updatePost(data)
         }
     })
-    // const { isLoading, status, data:newLikerIds, execute } = useApi(toggleLike)
-    // const isLike = useIsCurrentUserLikePost(id)
-    // const { setPostLikerIds } = usePostsLikerIdsActions()
-
-    // useEffect(() => {
-    //     if (status === 'success') {
-    //         setPostLikerIds(id, newLikerIds)
-    //     }
-    // }, [status])
 
     const likePost = () => {
         if (isLoading) return;

@@ -1,13 +1,11 @@
 import { sendMessage } from "@/js/apis/ThreadApi";
-import useApi from "@/js/hooks/useApi";
 import queryKeyFactory from "@/js/queries/queryKeyFactory";
 import { useCurrentUser } from "@/js/queries/useCurrentUserQuery";
 import { prependPagination } from "@/js/utils/paginationReducer";
 import { SendOutlined } from "@ant-design/icons";
 import { Avatar, Button, Comment, Input } from "antd";
-import { useState, useEffect } from 'react'
+import { useState} from 'react'
 import { useMutation, useQueryClient } from "react-query";
-import { useRecoilValue } from "recoil";
 
 export default function WriteMessage({ id }) {
 

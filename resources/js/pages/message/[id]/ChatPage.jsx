@@ -1,15 +1,8 @@
-import useThread from "@/js/recoil/selectors/useThread";
 import { Button, PageHeader, Spin } from "antd";
 import { useParams } from "react-router-dom";
 import ScrollToBottom from 'react-scroll-to-bottom'
-import { useEffect } from 'react'
-import useApi from "@/js/hooks/useApi";
-import { fetchThread } from "@/js/apis/ThreadApi";
-import useThreadsAction from "@/js/recoil/actions/useThreadsAction";
-import useMessages from "@/js/recoil/selectors/useMessages";
 import MessagesList from "./components/MessagesList";
 import WriteMessage from "./components/WriteMessage";
-import useSetTitle from "@/js/hooks/useSetTitle";
 import useThreadQuery from "@/js/queries/useThreadQuery";
 import { Helmet } from 'react-helmet'
 import useConversationMessagesQuery from "@/js/queries/useConversationMessagesQuery";

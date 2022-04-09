@@ -14,6 +14,20 @@ export const updatePagination = (newData) => {
     }
 }
 
+export const removeFromPagination = (id) => {
+    return(pagination) => {
+        if (!pagination) return undefined
+
+        return {
+            ...pagination,
+            pages: pagination.pages.map(page => ({
+                ...page,
+                data: page.data.filter(oldData => oldData.id !== id)
+            }))
+        }
+    }
+}
+
 export const prependPagination = (newData) => {
     return (pagination) => {
         if (!pagination) return {

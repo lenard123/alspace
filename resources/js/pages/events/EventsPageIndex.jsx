@@ -34,7 +34,7 @@ const eventsData = [
         cover: 'https://cdn.hashnode.com/res/hashnode/image/upload/v1622008722227/ResNcwZyph.png'
     },
     {
-        id: 3,
+        id: 4,
         title: 'Webinar: Introduction to VueJs',
         cover: 'https://miro.medium.com/max/1200/1*nq9cdMxtdhQ0ZGL8OuSCUQ.jpeg'
     },

@@ -19,12 +19,10 @@ import Settings from '@/js/pages/settings'
 import Login from '@/js/pages/login'
 import Register from '@/js/pages/register'
 import GuestGuard from './_guards/GuestGuard'
-import useCurrentUserEvents from '../listeners/useCurrentUserEvents'
 import useCurrentUserQuery from '../queries/useCurrentUserQuery'
 import PageLoading from '../components/PageLoading'
 
 export default () => {
-    // useCurrentUserEvents()
     const { isLoading } = useCurrentUserQuery()
 
     if (isLoading) {

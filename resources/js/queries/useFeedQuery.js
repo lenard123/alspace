@@ -6,7 +6,7 @@ const fetchPosts = ({ pageParam = 1 }) => {
     return PostApi.fetchPosts(pageParam)
 }
 
-const useFeedQuery = () => {
+const useFeedQuery = (options = {}) => {
     const queryClient = useQueryClient()
 
     return useInfiniteQuery({
@@ -27,7 +27,8 @@ const useFeedQuery = () => {
             return pages.map(page => {
                 return page.data
             }).flat()
-        }
+        },
+        ...options
     })
 }
 
