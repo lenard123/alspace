@@ -32,6 +32,13 @@ export const commentOnPost = async (postId, content) => {
     return await Http.post(`/posts/${postId}/comment`, {content})
 }
 
+export const fetchComments = async (postId, page = 1) => {
+    await requestCookie()
+    return await Http.get(`/posts/${postId}/comments`, {
+        params: {page}
+    });
+}
+
 export const deletePost = async (postId) => {
     await requestCookie()
     return await Http.delete(`/posts/${postId}`)

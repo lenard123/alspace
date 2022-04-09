@@ -1,31 +1,21 @@
-import { fetchThreadWith, searchUser } from "@/js/apis/UserApi";
-import useApi from "@/js/hooks/useApi";
-import useThreadsAction from "@/js/recoil/actions/useThreadsAction";
+import { searchUser } from "@/js/apis/UserApi";
+import useDebounce from "@/js/hooks/useDebounce";
 import { Avatar, Form, Input, List, Modal, Spin } from "antd";
-import { debounce  } from 'lodash'
-import { useMemo, useEffect, useState } from 'react'
-import { useNavigate } from "react-router-dom";
-import useSearchUser from "./useSearchUser";
+import { useState } from 'react'
+import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
 
-export default function NewMessage({ isOpen, setIsOpen })
-{
-    const { suggestions, searching, handleSearch } = useSearchUser()
-    const { execute, isLoading, status, data } = useApi(fetchThreadWith)
-    const { setThreads } = useThreadsAction()
-    const navigate = useNavigate()
+export default function NewMessage({ isOpen, setIsOpen }) {
 
-    useEffect(() => {
-        if (status === 'success') {
-            console.log(data)
-            setThreads([data])
-            navigate(`/messages/${data.id}`)
-            setIsOpen(false)
+    const [query, setQuery] = useState('')
+    const debouncedQuery = useDebounce(query, 500)
+    const { isLoading: searching, data: suggestions } = useQuery(
+        ['users', { query: debouncedQuery }],
+        () => searchUser(debouncedQuery),
+        {
+            enabled: query !== ''
         }
-    }, [status])
-
-    const findThread = (userId) => {
-        execute(userId)
-    }
+    )
 
     return (
         <Modal
@@ -34,32 +24,32 @@ export default function NewMessage({ isOpen, setIsOpen })
             visible={isOpen}
             title='New Message'
             onCancel={() => setIsOpen(false)}
-            bodyStyle={{padding: 0, backgroundColor:'white'}}
+            bodyStyle={{ padding: 0, backgroundColor: 'white' }}
             footer={false}
-            >
-            <Spin spinning={isLoading}>
-                <Form layout="inline" className='w-full'>
-                    <Form.Item style={{flexWrap: 'nowrap'}} className="w-full px-4 py-2 border-b border-gray-200 mb-0" colon={false} label={<span className='font-bold'>To:</span>}>
-                        <Input onChange={handleSearch} className='flex-none' placeholder='Search...' bordered={false}/>
-                    </Form.Item>
-                </Form>
+        >
+            <Form className='w-full'>
+                <Form.Item className="w-full px-4 py-2 border-b border-gray-200 mb-0" colon={false} label={<span className='font-bold'>To:</span>}>
+                    <Input value={query} onChange={(e) => setQuery(e.target.value)} className='flex-none w-full' placeholder='Search...' bordered={false} />
+                </Form.Item>
+            </Form>
 
-                <div className='p-4'>
-                    <span className='block font-semibold'>Suggestions</span>
-                    <List
-                        loading={searching}
-                        dataSource={suggestions}
-                        renderItem={user => (
-                            <List.Item>
-                                <div onClick={() => findThread(user.id)} className='cursor-pointer flex gap-4'>
+            <div className='p-4'>
+                <span className='block font-semibold'>Suggestions</span>
+                <List
+                    loading={searching}
+                    dataSource={suggestions}
+                    renderItem={user => (
+                        <List.Item>
+                            <Link onClick={() => setIsOpen(false)} to={`/messages?user_id=${user.id}`}>
+                                <div className='cursor-pointer flex gap-4'>
                                     <Avatar src={user.avatarUrl} />
                                     <span>{user.fullname}</span>
                                 </div>
-                            </List.Item>
-                        )}
-                    />
-                </div>
-            </Spin>
+                            </Link>
+                        </List.Item>
+                    )}
+                />
+            </div>
 
         </Modal>
     )

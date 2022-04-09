@@ -1,13 +1,12 @@
-import authState from "@/js/recoil/states/authState"
-import { useRecoilValue } from "recoil"
 import moment from 'moment'
+import { useCurrentUser } from "@/js/queries/useCurrentUserQuery"
 
 export default function MessagesList({messages}) {
 
-    const { currentUserId } = useRecoilValue(authState)
+    const { id:currentUserId } = useCurrentUser()
 
     return (
-        <>
+        <div>
         {
             messages.map(message => {
                 const isOwn = message.user_id === currentUserId
@@ -28,7 +27,7 @@ export default function MessagesList({messages}) {
                 )
             })
         }
-        </>
+        </div>
     )
 
 }

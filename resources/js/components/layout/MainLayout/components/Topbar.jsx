@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom'
 import { BriefcaseOutlined } from '@/js/components/icons'
 import NavLink from './NavLink'
 import UserAvatar from './UserAvatar'
-import useMainLayoutLogic from '../useMainLayoutLogic'
+import useDrawerVisibleState from '../useDrawerVisibleState'
 
 export default function Topbar() {
 
-    const {setIsDrawerVisible} = useMainLayoutLogic()
+    const [_isDrawerVisible, setIsDrawerVisible] = useDrawerVisibleState()
 
     return (
         <header className='sticky top-0 z-[1] w-full bg-white header-height shadow px-4'>

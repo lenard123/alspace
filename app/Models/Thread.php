@@ -28,10 +28,10 @@ class Thread extends Model
     public function getAvatarAttribute()
     {
         if ($this->is_support) {
-            return asset('images/logo.png');
+            return '/images/logo.png';
         }
 
-        return $this->getOtherMember()->avatarUrl;
+        return $this->getOtherMemberAttribute()->avatarUrl;
     }
 
     public function getTitleAttribute()
@@ -40,10 +40,10 @@ class Thread extends Model
             return 'Alspace Support';
         }
 
-        return $this->getOtherMember()->fullname;
+        return $this->getOtherMemberAttribute()->fullname;
     }
 
-    private function getOtherMember()
+    public function getOtherMemberAttribute()
     {
         if (is_null($this->otherMember)) {
             $this->otherMember = $this->members->where('id', '<>', $this->currentUser->id)->first();
@@ -54,7 +54,7 @@ class Thread extends Model
     public function loadInfo(User $user)
     {
         $this->currentUser = $user;
-        $this->append('title', 'avatar');
+        $this->append('title', 'avatar', 'other_member');
         return $this;
     }
 

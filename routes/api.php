@@ -34,6 +34,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/users/{user}/thread', [UserController::class, 'thread']);
 
     Route::get('/threads/{thread}', [ThreadController::class, 'view']);
+    Route::get('/threads/{thread}/messages', [ThreadController::class, 'messages']);
     Route::post('/threads/{thread}', [ThreadController::class, 'sendMessage']);
 
     Route::get('/posts', [PostController::class, 'index']);
@@ -42,10 +43,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/posts/{post}/like', [PostController::class, 'like']);
     Route::post('/posts/{post}/unlike', [PostController::class, 'unlike']);
     Route::post('/posts/{post}/comment', [PostController::class, 'comment']);
+    Route::get('/posts/{post}/comments', [PostController::class, 'comments']);
     Route::delete('/posts/{post}', [PostController::class, 'delete']);
 
     Route::post('/comments/{comment}/like', [CommentController::class, 'like']);
     Route::post('/comments/{comment}/unlike', [CommentController::class, 'unlike']);
+    Route::get('/comments/{comment}/replies', [CommentController::class, 'replies']);
+    Route::post('/comments/{comment}/replies', [CommentController::class, 'reply']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
     

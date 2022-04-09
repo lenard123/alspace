@@ -11,7 +11,7 @@ class ThreadController extends Controller
 {
     public function view(Thread $thread)
     {
-        return $thread->loadInfo(Auth::user())->load('messages');
+        return $thread->loadInfo(Auth::user());
     }
 
     public function sendMessage(Thread $thread, Request $request)
@@ -19,5 +19,10 @@ class ThreadController extends Controller
         $message = Auth::user()->sendMessageOn($thread, $request->content);
         MessageSent::dispatch($message);
         return $message;
+    }
+
+    public function messages(Thread $thread)
+    {
+        return $thread->messages()->latest()->paginate(10);
     }
 }

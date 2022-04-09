@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'antd/dist/antd.css';
+@import './tailwind.css';
 
 * {
     border-width: 0;
@@ -20,6 +18,10 @@ a:hover {
 
 .ant-input {
     background-color: inherit;
+}
+
+.Comment .ant-list-empty-text {
+    padding: 0;
 }
 
 .thin-scrollbar {
@@ -60,7 +62,7 @@ a:hover {
 
 .new-message-modal .ant-modal-content{
     @apply fixed sm:static inset-0 sm:max-h-[80vh];
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .new-message-modal .ant-form-item .ant-form-item-label,
@@ -71,4 +73,8 @@ a:hover {
 
 .link, .link:hover {
     @apply text-blue-500 underline;
+}
+
+.ReactQueryDevtoolsPanel button{
+    color: black;
 }

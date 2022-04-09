@@ -12,39 +12,38 @@ class PostController extends Controller
 
     public function index()
     {
-        return response()->json(Post::latest()->paginate(10));
+        return Post::latest()->paginate(8);
     }
 
     public function view(Post $post)
     {
-        $post->load('comments');
         return $post;
     }
 
-    public function create(PostRequest $postRequest)
+    public function comments(Post $post)
+    {
+        return $post->comments()->latest()->paginate(5);
+    }
+
+    public function create(PostRequest $request)
     {
         $this->authorize('create', Post::class);
-        $user = $postRequest->user();
-        $post = $user->posts()->create($postRequest->validated());
-        return response()->json($post);
+        return $request->user()->post($request->validated());
     }
 
     public function like(Post $post)
     {
-        Auth::user()->like($post);
-        return response()->json($post->likes()->pluck('user_id'));
+        return Auth::user()->like($post);
     }
 
     public function unlike(Post $post)
     {
-        Auth::user()->unlike($post);
-        return response()->json($post->likes()->pluck('user_id'));
+        return Auth::user()->unlike($post);
     }
 
     public function comment(Post $post, CommentRequest $request)
     {
-        $comment = Auth::user()->comment($post, $request->content);
-        return response()->json($comment);
+        return Auth::user()->comment($post, $request->content);
     }
 
     public function delete(Post $post)

@@ -1,18 +1,19 @@
 import React from 'react'
-import usePost from "@/js/recoil/selectors/usePost"
-import authState from "@/js/recoil/states/authState"
 import { ExclamationCircleOutlined } from "@ant-design/icons"
 import { Modal } from "antd"
-import { useRecoilValue } from "recoil"
 import * as PostApi from '@/js/apis/PostApi'
 import useApi from '@/js/hooks/useApi'
-import usePostsActions from '@/js/recoil/actions/usePostsActions'
+import { useCurrentUser } from '@/js/queries/useCurrentUserQuery'
+import { useQueryClient } from 'react-query'
+import queryKeyFactory from '@/js/queries/queryKeyFactory'
+import { removeFromPagination } from '@/js/utils/paginationReducer'
+import usePostMutator from '@/js/queries/usePostMutator'
 
 
 const usePostLogic = (post, onDelete) => {
     const { execute, message } = useApi(PostApi.deletePost)
-    const { currentUserId } = useRecoilValue(authState)
-    const { deletePost } = usePostsActions()
+    const { id:currentUserId } = useCurrentUser()
+    const { removePost } = usePostMutator()
     const isBelongsToUser = post.user_id == currentUserId
 
     const showDeleteModal = () => {
@@ -24,8 +25,8 @@ const usePostLogic = (post, onDelete) => {
             cancelText: 'No',
             async onOk() {
                 await execute(post.id)
-                deletePost(post.id)
                 if (typeof onDelete === 'function') onDelete()
+                removePost(post.id)
                 message.info('Post deleted successfully')
             }
         })

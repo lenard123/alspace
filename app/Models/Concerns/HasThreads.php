@@ -44,6 +44,7 @@ trait HasThreads
         return $this->threads()
             ->with('members')
             ->get()
-            ->map(fn($thread) => $thread->loadInfo($this));
+            ->map(fn($thread) => $thread->loadInfo($this))
+            ->values();
     }
 }

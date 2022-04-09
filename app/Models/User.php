@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use App\Contracts\Likeable;
 use App\Models\Concerns\CanComment;
 use App\Models\Concerns\HasAvatar;
 use App\Models\Concerns\CanLike;
+use App\Models\Concerns\CanPost;
 use App\Models\Concerns\HasThreads;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,7 +19,7 @@ use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
 {
-    use Searchable, HasApiTokens, HasFactory, Notifiable, HasAvatar, CanLike, CanComment, HasThreads;
+    use Searchable, HasApiTokens, HasFactory, Notifiable, HasAvatar, CanLike, CanComment, HasThreads, CanPost;
 
     /**
      * The attributes that are mass assignable.
@@ -44,7 +44,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-        'avatar'
+        'avatar',
+        'email',
     ];
 
     /**
@@ -117,10 +118,8 @@ class User extends Authenticatable
     public function toSearchableArray()
     {
         return [
-            'id' => $this->id,
-            'email' => $this->email,
             'firstname' => $this->firstname,
-            'lastname' => $this->lastname
+            'lastname' => $this->lastname,
         ];
     }
 

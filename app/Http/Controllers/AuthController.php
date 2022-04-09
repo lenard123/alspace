@@ -18,7 +18,9 @@ class AuthController extends Controller
 
         AlumniRegistered::dispatch($user);
 
-        return 'Successfully Registered';
+        Auth::login($user);
+
+        return $user;
     }
 
     public function login(LoginRequest $request)
@@ -29,7 +31,7 @@ class AuthController extends Controller
             ]);
         }
 
-        return 'Successfully login';
+        return Auth::user();
     }
 
     public function logout()

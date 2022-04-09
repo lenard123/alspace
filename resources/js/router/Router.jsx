@@ -19,10 +19,16 @@ import Settings from '@/js/pages/settings'
 import Login from '@/js/pages/login'
 import Register from '@/js/pages/register'
 import GuestGuard from './_guards/GuestGuard'
-import useCurrentUserEvents from '../listeners/useCurrentUserEvents'
+import useCurrentUserQuery from '../queries/useCurrentUserQuery'
+import PageLoading from '../components/PageLoading'
 
 export default () => {
-    useCurrentUserEvents()
+    const { isLoading } = useCurrentUserQuery()
+
+    if (isLoading) {
+        return <PageLoading />
+    }
+
     return (
         <BrowserRouter>
             <Routes>
@@ -39,8 +45,8 @@ export default () => {
                         <Route path='questions' element={<Questions />} />
                         <Route path='jobs' element={<Jobs />} />
                         <Route path='events' element={<Events />} />
-                        <Route path='profile' element={<Profile />} />
-                        <Route path='profile/:id' element={<Profile />} />
+                        {/* <Route path='profile' element={<Profile />} /> */}
+                        {/* <Route path='profile/:id' element={<Profile />} /> */}
                         <Route path='settings' element={<Settings />} />
                     </Route>
                 </Route>

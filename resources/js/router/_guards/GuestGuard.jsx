@@ -1,11 +1,13 @@
-import authState from "@/js/recoil/states/authState"
-import { Navigate, Outlet } from "react-router-dom"
-import { useRecoilValue } from "recoil"
+import { useCurrentUser } from "@/js/queries/useCurrentUserQuery";
+import { Navigate, Outlet } from "react-router-dom";
 
-export default function GuestGuard(){
-    const { isAuthenticated } = useRecoilValue(authState)
 
-    if (isAuthenticated) {
+
+export default function AuthGuard() {
+    const currentUser = useCurrentUser()
+    const isLoggedIn = currentUser !== null
+
+    if (isLoggedIn) {
         return <Navigate to='/' />
     }
 

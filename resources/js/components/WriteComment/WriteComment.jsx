@@ -1,43 +1,33 @@
-import { useState, useEffect } from 'react'
 import { SendOutlined } from "@ant-design/icons";
 import { Avatar, Button, Comment, Input } from "antd";
-import { useRecoilValue } from 'recoil';
-import currentUserSelector from '@/js/recoil/selectors/currentUserSelector';
-import useApi from '@/js/hooks/useApi';
+import { useCurrentUser } from '@/js/queries/useCurrentUserQuery';
+import useWriteComment from './useWriteComment';
 
 
-export default function WriteComment({ submitHandler, callback }) {
+export default function WriteComment({ type, id, fullname }) {
 
-    const { isLoading, data, execute, status, message } = useApi(submitHandler)
-    const { avatarUrl } = useRecoilValue(currentUserSelector)
-    const [comment, setComment] = useState('')
-
-    useEffect(() => {
-        if (status === 'success') {
-            setComment('')
-            message.success('Commented successfully')
-            callback(data)
-        }
-    }, [status])
+    const { isLoading, mutate, content, setContent } = useWriteComment(type, id)
+    const { avatarUrl } = useCurrentUser()
     
     const submitComment = () => {
         if (isLoading) return;
-        execute(comment)
+        mutate(content)
     }
 
     return (
         <Comment
+            className='children:p-0'
             avatar={<Avatar src={avatarUrl} />}
             content={
                     <Input
                         size='large'
                         className='rounded-full'
-                        value={comment}
-                        onChange={e => setComment(e.target.value)}
+                        value={content}
+                        onChange={e => setContent(e.target.value)}
                         onPressEnter={submitComment}
-                        placeholder='Write a comment'
+                        placeholder={type === 'post' ? 'Write a comment' : `Reply to ${fullname}`}
                         suffix={
-                            comment.trim().length > 0
+                            content.trim().length > 0
                                 ? <Button onClick={submitComment} loading={isLoading} type='text' size='small' icon={<SendOutlined className='cursor-pointer text-blue-500' />} />
                                 : <span />
                         }

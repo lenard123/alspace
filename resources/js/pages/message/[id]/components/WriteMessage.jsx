@@ -1,32 +1,41 @@
 import { sendMessage } from "@/js/apis/ThreadApi";
-import useApi from "@/js/hooks/useApi";
-import useMessagesAction from "@/js/recoil/actions/useMessagesAction";
-import currentUserSelector from "@/js/recoil/selectors/currentUserSelector";
+import queryKeyFactory from "@/js/queries/queryKeyFactory";
+import { useCurrentUser } from "@/js/queries/useCurrentUserQuery";
+import { prependPagination } from "@/js/utils/paginationReducer";
 import { SendOutlined } from "@ant-design/icons";
 import { Avatar, Button, Comment, Input } from "antd";
-import { useState, useEffect } from 'react'
-import { useRecoilValue } from "recoil";
+import { useState} from 'react'
+import { useMutation, useQueryClient } from "react-query";
 
 export default function WriteMessage({ id }) {
 
-    const { execute, isLoading, status, data } = useApi(sendMessage)
+    // const { execute, isLoading, status, data } = useApi(sendMessage)
 
-    const { avatarUrl } = useRecoilValue(currentUserSelector)
+    const { avatarUrl } = useCurrentUser()
 
     const [content, setContent] = useState('')
 
-    const { appendMessage } = useMessagesAction()
+    const queryClient = useQueryClient()
 
-    useEffect(() => {
-        if (status === 'success') {
-            setContent('')
-            appendMessage(data)
+    const { isLoading, mutate } = useMutation(
+        () => sendMessage(id, content), 
+        {
+            onSuccess: (data) => {
+                queryClient.setQueryData(queryKeyFactory.conversationMessages(id), prependPagination(data))
+                setContent('')
+            }
         }
-    }, [status])
+    )
+    // useEffect(() => {
+    //     if (status === 'success') {
+    //         setContent('')
+    //     }
+    // }, [status])
 
     const handleSubmit = () => {
         if (isLoading || content.trim().length <= 0) return;
-        execute(id, content)
+        mutate()
+        // execute(id, content)
     }
 
     return (

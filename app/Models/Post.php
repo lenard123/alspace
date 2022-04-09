@@ -10,19 +10,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Post extends Model implements Likeable, Commentable
+class Post extends Likeable implements Commentable
 {
-    use HasFactory, Likes, HasComments, SoftDeletes;
+    use HasFactory, HasComments, SoftDeletes;
 
     protected $fillable = ['user_id', 'content'];
 
-    protected $with = ['author', 'likes'];
+    protected $with = ['author'];
 
-    protected $withCount = ['comments'];
+    protected $withCount = ['comments', 'likers'];
 
-    protected $hidden = ['likes'];
-
-    protected $appends = ['likerIds'];
+    protected $appends = ['is_like'];
 
     public function author()
     {

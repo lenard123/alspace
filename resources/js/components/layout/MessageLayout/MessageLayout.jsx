@@ -1,32 +1,19 @@
-import { fetchConversations } from "@/js/apis/UserApi";
-import useApi from "@/js/hooks/useApi";
-import useThreadsAction from "@/js/recoil/actions/useThreadsAction";
 import { EditOutlined } from "@ant-design/icons";
 import { Avatar, Button, List, PageHeader } from "antd";
 import { Link, Outlet } from "react-router-dom";
-import { useEffect, useMemo, useState } from 'react'
-import { useRecoilValue } from "recoil";
-import threadsState from "@/js/recoil/states/threadsState";
+import { useState } from 'react'
 import NewMessage from "./components/NewMessage";
+import useConversationQuery from "@/js/queries/useConversationQuery";
 
 export default function MessageLayout() {
     const [isOpen, setIsOpen] = useState(false)
-    const { setThreads } = useThreadsAction()
-    const { data, status, isLoading } = useApi(fetchConversations, { executeOnMount: true });
-    const threads = useRecoilValue(threadsState)
-    const conversations = useMemo(() => Object.values(threads), [threads])
-
-    useEffect(() => {
-        if (status === 'success') {
-            setThreads(data)
-        }
-    }, [status])
+    const { isLoading, data:conversations } = useConversationQuery()
 
     return (
         <>
             <div className='lg:py-4' style={{ height: 'calc(100vh - var(--header-height))' }}>
                 <div className='bg-white border flex border-gray-200 rounded-lg flex-grow w-full h-full max-w-5xl mx-auto'>
-                    <div className='border-r border-gray-200 w-full min-w-[300px] md:w-[300px]'>
+                    <div className='border-r border-gray-200 w-full min-w-[300px] sm:w-[300px]'>
                         <PageHeader
                             className='border-b border-gray-200'
                             title='Conversations'
@@ -36,7 +23,7 @@ export default function MessageLayout() {
                         />
 
                         <List
-                            loading={conversations.length <= 0 && isLoading}
+                            loading={isLoading}
                             dataSource={conversations}
                             renderItem={thread => (
                                 <List.Item>
