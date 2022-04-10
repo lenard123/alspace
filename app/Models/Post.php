@@ -16,7 +16,7 @@ class Post extends Likeable implements Commentable
 
     protected $fillable = ['user_id', 'content'];
 
-    protected $with = ['author'];
+    protected $with = ['author', 'images'];
 
     protected $withCount = ['comments', 'likers'];
 
@@ -25,5 +25,10 @@ class Post extends Likeable implements Commentable
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
     }
 }

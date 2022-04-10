@@ -1,22 +1,25 @@
 import { useState } from 'react'
 import { Avatar, Input, Button, message } from 'antd'
-import { CameraFilled } from '@ant-design/icons'
 import { createPost } from '@/js/apis/PostApi'
 import { useCurrentUser } from '@/js/queries/useCurrentUserQuery'
 import { useMutation, useQueryClient } from 'react-query'
 import queryKeyFactory from '@/js/queries/queryKeyFactory'
 import { prependPagination } from '@/js/utils/paginationReducer'
+import classNames from 'classnames'
+import ImageUploader from './ImageUploader'
+
 
 export default function WritePost() {
-
+    
+    const [files, setFiles] = useState([])
     const { avatarUrl } = useCurrentUser()
     const [content, setContent] = useState('')
     const queryClient = useQueryClient()
     const { mutate, isLoading } = useMutation(createPost, {
         onSuccess: (data) => {
             setContent('')
+            setFiles([])
             queryClient.setQueryData(queryKeyFactory.posts, prependPagination(data))
-            //queryClient.invalidateQueries(['posts'])
             message.success('Posted successfully')
         }
     })
@@ -24,20 +27,17 @@ export default function WritePost() {
     const handleSubmit = (e) => {
         e.preventDefault()
         if (isLoading || content.trim().length === 0) return;
-        mutate(content)
+        mutate({content, files})
     }
 
     return (
         <div className='flex gap-2 sm:rounded-lg bg-white border border-solid p-4 border-gray-300'>
-            <Avatar size='large' src={avatarUrl} />
+            <Avatar className='flex-shrink-0' size='large' src={avatarUrl} />
             <form onSubmit={handleSubmit} className='flex-grow flex flex-col gap-2'>
-                <Input.TextArea value={content} onChange={e=>setContent(e.target.value)} className='rounded-lg' rows={2} placeholder='Write something...'/>
-                <div className='flex justify-between'>
-                    <div className='space-x-2'>
-                        <CameraFilled/>
-                        <span>Attach a photo</span>
-                    </div>
-                    <Button loading={isLoading} htmlType='submit' className='btn-green'>Share</Button>
+                <Input.TextArea value={content} onChange={e => setContent(e.target.value)} className='rounded-lg' rows={2} placeholder='Write something...' />
+                <div className={classNames('flex justify-between', { 'flex-col': files.length > 0 })}>
+                    <ImageUploader files={files} setFiles={setFiles} />
+                    <Button loading={isLoading} htmlType='submit' className='btn-green self-end'>Share</Button>
                 </div>
             </form>
         </div>

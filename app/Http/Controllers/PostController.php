@@ -28,7 +28,7 @@ class PostController extends Controller
     public function create(PostRequest $request)
     {
         $this->authorize('create', Post::class);
-        return $request->user()->post($request->validated());
+        return $request->user()->post($request);
     }
 
     public function like(Post $post)

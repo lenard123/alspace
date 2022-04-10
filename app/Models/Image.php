@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Image extends Model
 {
@@ -14,6 +15,8 @@ class Image extends Model
         'reference'
     ];
 
+    protected $appends = ['url'];
+
     public function imageable()
     {
         return $this->morphTo();
@@ -21,7 +24,12 @@ class Image extends Model
 
     public function getUrlAttribute()
     {
-        return $this->reference;
+        switch($this->source) {
+            case 'storage':
+                return Storage::url($this->reference);
+            default:
+                return $this->reference;
+        }
     }
 
 }
