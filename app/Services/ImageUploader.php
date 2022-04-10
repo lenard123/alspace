@@ -34,7 +34,7 @@ class ImageUploader
     {
         switch(config('filesystems.default')) {
             case 'cloudinary':
-                return $file->storeOnCloudinary()->getSecurePath();
+                return $file->storeOnCloudinary("alspace/$folder")->getSecurePath();
             default:
                 return Storage::putFile($folder, $file);
         }
