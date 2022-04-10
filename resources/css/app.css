@@ -60,6 +60,17 @@ a:hover {
     @apply scroller;
 }
 
+.FullpageOnMobileModal .ant-modal-content{
+    @apply fixed sm:static inset-0 sm:max-h-[80vh] scroller;
+    overflow-y: auto;
+}
+
+.FullpageOnMobileModal .ant-form-item .ant-form-item-label,
+.FullpageOnMobileModal .ant-form-item .ant-form-item-control{
+    flex: unset;
+    padding-bottom: 0;
+}
+
 .new-message-modal .ant-modal-content{
     @apply fixed sm:static inset-0 sm:max-h-[80vh];
     overflow-y: auto;
@@ -73,6 +84,10 @@ a:hover {
 
 .link, .link:hover {
     @apply text-blue-500 underline;
+}
+
+.btn-secondary {
+    @apply bg-gray-200 text-gray-500 hover:bg-gray-300;
 }
 
 .ReactQueryDevtoolsPanel button{

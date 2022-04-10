@@ -9,7 +9,7 @@ const Http = axios.create({
 
 const attachValidationErrors = (error) => {
     let validationErrors = {}
-    if (error?.response.status === 422) {
+    if (error?.response?.status === 422) {
         const { errors } = error.response.data
         validationErrors = Object.keys(errors).reduce( (acm, field) => ({
             ...acm,
