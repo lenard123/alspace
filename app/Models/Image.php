@@ -26,6 +26,7 @@ class Image extends Model
     {
         switch($this->source) {
             case 'storage':
+            case 'public':
                 return Storage::url($this->reference);
             default:
                 return $this->reference;
