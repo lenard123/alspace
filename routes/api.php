@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\UserController;
@@ -51,13 +52,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/comments/{comment}/replies', [CommentController::class, 'replies']);
     Route::post('/comments/{comment}/replies', [CommentController::class, 'reply']);
 
+    Route::post('/events', [EventController::class, 'create']);
+
     Route::post('/logout', [AuthController::class, 'logout']);
     
 });
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-
-Route::post('/test', function(Request $request) {
-    dd($request->images);
-});
