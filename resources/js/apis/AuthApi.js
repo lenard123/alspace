@@ -19,10 +19,3 @@ export const fetchCurrentUser = async() => {
     await requestCookie()
     return await Http.get('/user')
 }
-
-export default {
-    register,
-    login,
-    logout,
-    fetchCurrentUser
-}

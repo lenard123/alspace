@@ -1,7 +1,7 @@
-import AuthApi from "@/js/apis/AuthApi"
 import { useMutation, useQueryClient } from "react-query"
 import { useState } from 'react'
 import { message } from "antd"
+import { AuthApi } from "@/js/apis"
 
 const useRegister = () => {
     const [validationErrors, setValidationErrors] = useState({})
