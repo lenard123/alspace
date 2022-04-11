@@ -25,7 +25,7 @@ class PostRequest extends FormRequest
     {
         return [
             'content' => 'required',
-            'images' => 'nullable'
+            'images.*' => 'image'
         ];
     }
 }

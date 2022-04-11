@@ -18,6 +18,7 @@ export default function ImageUploader ({ files, setFiles }) {
             }
 
             <Upload
+                accept='image/*'
                 ref={uploader}
                 fileList={files}
                 onChange={({ fileList }) => setFiles(fileList)}
