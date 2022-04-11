@@ -9,26 +9,31 @@ export default function AddEventModal(props) {
 
     const [isOnline, setIsOnline] = useState(false)
     const [image, setImage] = useState(null)
-    const { isLoading, mutate } = useMutation(EventApi.createEvent)
+    const { isLoading, mutate } = useMutation(EventApi.createEvent, {
+        onSuccess: (data) => {
+            props.onCancel()
+        }
+    })
 
     const handleSubmit = (formData) => {
         if (isLoading) return;
-        formData = {
+        mutate({
             is_online: isOnline,
             image,
             ...formData
-        }
-        console.log(formData)
-        mutate(formData)
+        })
     }
 
     return (
         <Modal
+            afterClose={() => setImage(null)}
             className='FullpageOnMobileModal'
             centered={true}
             title='Host Event'
             bodyStyle={{ paddingBottom: '0',backgroundColor: 'white' }}
             footer={false}
+            destroyOnClose={true}
+            maskClosable={false}
             {...props}
         >
             <Form onFinish={handleSubmit} layout="vertical" >
