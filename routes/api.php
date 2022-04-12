@@ -52,6 +52,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/comments/{comment}/replies', [CommentController::class, 'replies']);
     Route::post('/comments/{comment}/replies', [CommentController::class, 'reply']);
 
+    Route::get('/events', [EventController::class, 'index']);
     Route::post('/events', [EventController::class, 'create']);
 
     Route::post('/logout', [AuthController::class, 'logout']);

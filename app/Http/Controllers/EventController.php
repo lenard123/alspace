@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\EventRequest;
 use App\Models\Event;
 use App\Services\ImageUploader;
+use Carbon\Carbon;
 
 class EventController extends Controller
 {
@@ -13,6 +14,7 @@ class EventController extends Controller
     {
         $event = new Event();
         $event->fill($request->validated());
+        $event->is_online = $request->has('is_online');
         $event->user()->associate($request->user());
         $event->save();
 
@@ -21,5 +23,17 @@ class EventController extends Controller
         }
 
         return $event->load('cover');
+    }
+
+    public function index(Request $request)
+    {
+        $filter = $request->input('filter');
+        $today = Carbon::today();
+        $event = Event::select('*')
+            ->when($filter === 'active', fn($q) => $q->where('start_at', '>=', $today))
+            ->when($filter === 'past', fn($q) => $q->where('start_at', '<', $today))
+            ->paginate(10);
+
+        return $event;
     }
 }

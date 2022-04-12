@@ -14,3 +14,10 @@ export const createEvent = async(data) => {
         }
     })
 }
+
+export const fetchEvents = async(page = 1, filter = '') => {
+    await requestCookie();
+    return await Http.get('/events', {
+        params: { filter, page }
+    })
+}

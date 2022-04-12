@@ -18,7 +18,7 @@ export default function AddEventModal(props) {
     const handleSubmit = (formData) => {
         if (isLoading) return;
         mutate({
-            is_online: isOnline,
+            is_online: Boolean(isOnline),
             image,
             ...formData
         })
