@@ -6,6 +6,7 @@
   <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Alspace</title>
+  <link rel="manifest" href="/manifest.json">
   @if (config('app.env') === 'local')
   <script type="module">
     import RefreshRuntime from "{{ env('DEV_SERVER_URL', 'http://localhost:3000') }}/@@react-refresh"
