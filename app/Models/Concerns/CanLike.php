@@ -19,6 +19,8 @@ trait CanLike
             ->likeable()->associate($likeable)
             ->save();
 
+        $this->load('likes');
+
         return $likeable->refresh();
     }
 
@@ -31,6 +33,8 @@ trait CanLike
         $likeable->likers()
             ->whereHas('user', fn($q) => $q->whereId($this->id))
             ->delete();
+        
+        $this->load('likes');
 
         return $likeable->refresh();
     }
@@ -41,9 +45,10 @@ trait CanLike
             return false;
         }
 
-        return $likeable->likers()
-            ->whereHas('user', fn($q) =>  $q->whereId($this->id))
-            ->exists();
+        return $this->likes
+            ->where('likeable_id', $likeable->id)
+            ->where('likeable_type', get_class($likeable))
+            ->count() > 0;
     }
 
 }

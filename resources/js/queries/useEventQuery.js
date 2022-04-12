@@ -6,7 +6,10 @@ import { EventApi } from "../apis"
 
 export const filters = ObjectToArray({
     'active': 'Home',
-    'past': 'Past Events'
+    'interested': 'Interested',
+    'hosting': 'Hosting',
+    'going': 'Going',
+    'past': 'Past Events',
 })
 
 export default function useEventQuery(filter) {
