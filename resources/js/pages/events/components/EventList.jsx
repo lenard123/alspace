@@ -4,7 +4,7 @@ import EventSkeletonCard from "./EventSkeletonCard";
 
 export default function EventList({ isLoading, events }) {
 
-    if (isLoading) {
+    if (!events || isLoading) {
         return (
             <div className='mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
                 {Array.from({ length: 3 }).map(
@@ -14,12 +14,11 @@ export default function EventList({ isLoading, events }) {
         )
     }
 
-    if (events?.length <= 0) {
+    if (events.length <= 0) {
         return (
             <Empty className='py-8' description="No events" />
         )
     }
-
     return (
         <div className='mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
             {events.map(
