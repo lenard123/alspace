@@ -16,7 +16,7 @@ const App = () => (
     <RecoilRoot>
       <Router />
     </RecoilRoot>
-    <ReactQueryDevtools />
+    <ReactQueryDevtools position='bottom-right' />
   </QueryClientProvider>
 )
 
