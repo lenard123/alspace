@@ -25,7 +25,7 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-        if (!Auth::attempt($request->validated())) {
+        if (!Auth::attempt($request->validated(), $request->input('remember'))) {
             throw ValidationException::withMessages([
                 'email' => 'Wrong email or password.'
             ]);

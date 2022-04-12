@@ -5,6 +5,7 @@ import { message } from "antd"
 
 const useLogin = () => {
 
+    const [remember, setRemember] = useState(false)
     const [validationErrors, setValidationErrors] = useState({})
     const queryClient = useQueryClient()
 
@@ -24,13 +25,15 @@ const useLogin = () => {
 
     const handleSubmit = (formData) => {
         if (mutation.isLoading) return;
-        mutation.mutate(formData)
+        mutation.mutate({remember, ...formData})
     }
 
     return {
         ...mutation,
         validationErrors,
-        handleSubmit
+        handleSubmit,
+        remember,
+        setRemember
     }
 }
 
