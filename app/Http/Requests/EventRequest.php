@@ -26,7 +26,6 @@ class EventRequest extends FormRequest
         return [
             'image' => 'required|image',
             'title' => 'required',
-            'is_online' => 'nullable|boolean',
             'location' => 'nullable',
             'start_at' => 'required|date',
             'description' => 'required'

@@ -32,4 +32,9 @@ class Event extends Model
     {
         return $this->morphOne(Image::class, 'imageable');
     }
+
+    public static function active()
+    {
+        return self::where('start_at', '<=', 'today');
+    }
 }

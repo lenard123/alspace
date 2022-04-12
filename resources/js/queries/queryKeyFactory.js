@@ -1,12 +1,23 @@
 
 export default {
+
     posts: ['posts'],
-    post: (id) => ['posts', id.toString()],
-    postComments: (postId) => ['posts', postId.toString() ,'comments'],
-    commentReplies: (commentId) => ['comments', commentId.toString(), 'replies'],
+
+    post: (id) => ['posts', Number(id)],
+
+    postComments: (postId) => ['posts', Number(postId) ,'comments'],
+
+    commentReplies: (commentId) => ['comments', Number(commentId), 'replies'],
+
     currentUser: ['users', 'current'],
+
     conversations: ['conversations'],
-    conversation: (threadId) => ['conversations', threadId.toString()],
-    conversationMessages: (threadId) => ['conversations', threadId.toString(), 'messages'],
-    threadWith: (userId) => ['users', userId.toString(), 'thread']
+
+    conversation: (threadId) => ['conversations', Number(threadId)],
+
+    conversationMessages: (threadId) => ['conversations', Number(threadId), 'messages'],
+
+    threadWith: (userId) => ['users', Number(userId), 'thread'],
+
+    events: (filter) => ['events', {filter}]
 }

@@ -46,3 +46,10 @@ export const arrayIsLoading = (array, isLoading = false, count = 3) => {
     if (!isLoading) return array
     return [...array, ...Array(count).fill({isLoading: true})]
 }
+
+export const ObjectToArray = (object) => {
+    return Object.keys(object).map(key => ({
+        key,
+        value: object[key]
+    }))
+}
