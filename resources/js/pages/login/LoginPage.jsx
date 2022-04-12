@@ -8,7 +8,7 @@ import { Helmet } from 'react-helmet'
 
 export default function LoginPage() {
 
-    const { validationErrors, handleSubmit, isLoading } = useLogin()
+    const { validationErrors, handleSubmit, isLoading, remember, setRemember } = useLogin()
 
     return (
         <>
@@ -52,7 +52,10 @@ export default function LoginPage() {
                         </Form.Item>
 
                         <Form.Item className='mt-4'>
-                            <Checkbox>Remember me</Checkbox>
+                            <Checkbox 
+                                checked={remember} 
+                                onChange={e => setRemember(e.target.checked)} 
+                            >Remember me</Checkbox>
 
                             <a className='float-right' href='#'>Forgot Password</a>
                         </Form.Item>
