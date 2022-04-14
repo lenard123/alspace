@@ -1,3 +1,4 @@
 {
-    "files.autoSave": "off"
+    "files.autoSave": "off",
+    "keyboard.dispatch": "keyCode"
 }

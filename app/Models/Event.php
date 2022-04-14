@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Event extends Model
 {
@@ -23,6 +24,8 @@ class Event extends Model
 
     protected $with = ['cover'];
 
+    protected $appends = ['is_interested', 'is_going'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -33,8 +36,32 @@ class Event extends Model
         return $this->morphOne(Image::class, 'imageable');
     }
 
-    public static function active()
+    public function interested()
     {
-        return self::where('start_at', '<=', 'today');
+        return $this->participants()
+            ->wherePivot('status', 'interested');
     }
+
+    public function going()
+    {
+        return $this->participants()
+            ->wherePivot('status', 'going');
+    }
+
+    public function getIsInterestedAttribute()
+    {
+        return Auth::check() && Auth::user()->interested_event_ids->contains($this->id);
+    }
+
+    public function getIsGoingAttribute()
+    {
+        return Auth::check() && Auth::user()->going_event_ids->contains($this->id);
+    }
+
+    public function participants()
+    {
+        return $this->belongsToMany(User::class, 'events_participants', 'event_id', 'user_id');
+    }
+
+
 }

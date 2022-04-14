@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('thread_user', function (Blueprint $table) {
+        Schema::create('events_participants', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('thread_id')->constrained();
-            $table->string('status')->default('interested');
-            $table->timestamps();
+            $table->foreignId('event_id')->constrained();
+            $table->string('status');
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('thread_user');
+        Schema::dropIfExists('events_participants');
     }
 };

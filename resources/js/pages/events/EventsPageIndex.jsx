@@ -13,7 +13,6 @@ import EventList from "./components/EventList"
 export default function EventsPageIndex() {
     const [isAddEventModalVisible, setIsAddEventModalVisible] = useState(false)
     const filter = useCurrentFilter()
-    const { data: events, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } = useEventQuery(filter)
 
     return (
         <>
@@ -32,14 +31,7 @@ export default function EventsPageIndex() {
                         ))}
                     </div>
 
-                    <EventList
-                        isLoading={isLoading}
-                        events={events}
-                    />
-
-                    {hasNextPage && 
-                        <Button loading={isFetchingNextPage} onClick={fetchNextPage} className='mx-auto mt-8 block'>Load more</Button>
-                    }
+                    <EventList filter={filter}/>
 
                 </div>
             </div>
