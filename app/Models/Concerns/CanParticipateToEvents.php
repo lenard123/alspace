@@ -41,7 +41,7 @@ trait CanParticipateToEvents
     }
 
     // Add Participants
-    public function participateEvent(Event $event, $status) : Event
+    public function participateEvent(Event $event, $status)
     {
         $event->participants()
             ->syncWithoutDetaching([$this->id => [
@@ -50,7 +50,7 @@ trait CanParticipateToEvents
 
         //Refresh
         $this->append('interested_event_ids', 'going_event_ids');
-        return $event->append('is_interested', 'is_going');
+        $event->append('is_interested', 'is_going');
     }
 
     public function cancelParticipation(Event $event) : Event

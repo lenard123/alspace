@@ -12,12 +12,11 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 
-class AlumniRegistered
+class UserLoggedIn
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public User $user;
-
     /**
      * Create a new event instance.
      *
@@ -27,7 +26,8 @@ class AlumniRegistered
     {
         $this->user = $user;
 
-        Log::info("REGISTER: $user->email");
+        Log::info("LOGIN: $user->email");
+
     }
 
     /**
