@@ -27,6 +27,11 @@ export const addToInterested = async(eventId) => {
     return await Http.post(`/events/${eventId}/participants`);
 }
 
+export const addToGoing = async(eventId) => {
+    await requestCookie()
+    return await Http.put(`/events/${eventId}/participants`)
+}
+
 export const cancelParticipation = async(eventId) => {
     await requestCookie();
     return await Http.delete(`/events/${eventId}/participants`)

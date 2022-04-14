@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\CanComment;
 use App\Models\Concerns\HasAvatar;
 use App\Models\Concerns\CanLike;
+use App\Models\Concerns\CanParticipateToEvents;
 use App\Models\Concerns\CanPost;
 use App\Models\Concerns\HasThreads;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -19,7 +20,16 @@ use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
 {
-    use Searchable, HasApiTokens, HasFactory, Notifiable, HasAvatar, CanLike, CanComment, HasThreads, CanPost;
+    use Searchable, 
+        HasApiTokens, 
+        HasFactory, 
+        Notifiable, 
+        HasAvatar, 
+        CanLike, 
+        CanComment, 
+        HasThreads, 
+        CanPost,
+        CanParticipateToEvents;
 
     /**
      * The attributes that are mass assignable.
@@ -121,54 +131,6 @@ class User extends Authenticatable
             'firstname' => $this->firstname,
             'lastname' => $this->lastname,
         ];
-    }
-
-    public function hostingEvents()
-    {
-        return $this->hasMany(Event::class);
-    }
-
-    public function interestedEvents()
-    {
-        return $this->participatingEvents()
-            ->wherePivot('status', 'interested');
-    }
-
-    public function goingEvents()
-    {
-        return $this->participatingEvents()
-            ->wherePivot('status', 'going');
-    }
-
-    public function participatingEvents()
-    {
-        return $this->belongsToMany(Event::class, 'events_participants','user_id', 'event_id');
-    }
-    
-    public function getParticipatingEventIdsAttribute()
-    {
-        return $this->participatingEvents()->allRelatedIds();
-    }
-
-    public function participateEvent(Event $event, $status) : Event
-    {
-        if ($this->isParticipating($event)) return $event;
-
-        $event->participants()->attach($this->id, ['status' => $status]);
-        $this->append('participating_event_ids');
-        return $event->refresh();
-    }
-
-    public function cancelParticipation(Event $event) : Event
-    {
-        $event->participants()->detach($this->id);
-        $this->append('participating_event_ids');
-        return $event->refresh();
-    }
-
-    public function isParticipating(Event $event)
-    {
-        return $this->participating_event_ids->contains($event->id);
     }
 
     public static function sendMessageSupport(User $user, string $content)

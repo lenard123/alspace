@@ -6,6 +6,7 @@ const useEventMutator = () => {
     const queryClient = useQueryClient()
     const updateEvent = (event) => {
         queryClient.setQueriesData(['events'], updatePagination(event))
+        queryClient.invalidateQueries(['events'])
     }
 
     return {

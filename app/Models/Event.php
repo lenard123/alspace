@@ -24,7 +24,7 @@ class Event extends Model
 
     protected $with = ['cover'];
 
-    protected $appends = ['is_interested'];
+    protected $appends = ['is_interested', 'is_going'];
 
     public function user()
     {
@@ -50,10 +50,12 @@ class Event extends Model
 
     public function getIsInterestedAttribute()
     {
-        if (Auth::check()) {
-            return Auth::user()->isParticipating($this);
-        }
-        return false;
+        return Auth::check() && Auth::user()->interested_event_ids->contains($this->id);
+    }
+
+    public function getIsGoingAttribute()
+    {
+        return Auth::check() && Auth::user()->going_event_ids->contains($this->id);
     }
 
     public function participants()

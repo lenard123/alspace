@@ -31,6 +31,11 @@ class EventController extends Controller
         return Auth::user()->participateEvent($event, 'interested');
     }
 
+    public function going(Event $event)
+    {
+        return Auth::user()->participateEvent($event, 'going');
+    }
+
     public function notInterested(Event $event)
     {
         return Auth::user()->cancelParticipation($event);

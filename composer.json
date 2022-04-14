@@ -15,6 +15,7 @@
         "laravel/scout": "^9.4",
         "laravel/telescope": "^4.8",
         "laravel/tinker": "^2.7",
+        "predis/predis": "^1.1",
         "pusher/pusher-php-server": "^7.0"
     },
     "require-dev": {
@@ -57,15 +58,12 @@
             "@php artisan route:cache",
             "@php artisan view:cache"
         ],
-        "install-php8.1": [
-            "sudo add-apt-repository ppa:ondrej/php -y",
-            "sudo install-packages php8.1 php8.1-curl php8.1-dom php8.1-sqlite3"
-        ],
         "setup": [
-            "cp .env.example .env",
-            "php artisan key:generate",
-            "touch database/database.sqlite",
-            "php artisan migrate:fresh"
+            "sudo add-apt-repository ppa:ondrej/php -y",
+            "curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg",
+            "echo \"deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main\" | sudo tee /etc/apt/sources.list.d/redis.list",
+            "sudo apt-get update",
+            "sudo install-packages php8.1 php8.1-curl php8.1-dom php8.1-sqlite3 redis"
         ]
     },
     "extra": {
