@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\AlumniRegistered;
+use App\Events\UserLoggedIn;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
@@ -31,7 +32,11 @@ class AuthController extends Controller
             ]);
         }
 
-        return Auth::user();
+        $user = Auth::user();
+
+        UserLoggedIn::dispatch($user);
+
+        return $user;
     }
 
     public function logout()

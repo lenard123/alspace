@@ -36,7 +36,7 @@ class DispatchMessageReceived
         //Dispatch MessageReceived event
         foreach($members as $member)
         {
-            event(new MessageReceived($member->id, $message));
+            MessageReceived::dispatch($member->id, $message);
         }
     }
 }

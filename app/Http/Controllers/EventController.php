@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserParticipateToEvent;
 use Illuminate\Http\Request;
 use App\Http\Requests\EventRequest;
 use App\Models\Event;
@@ -28,12 +29,22 @@ class EventController extends Controller
 
     public function interested(Event $event)
     {
-        return Auth::user()->participateEvent($event, 'interested');
+        $this->participate($event, 'interested');
+        return $event;
     }
+    
 
     public function going(Event $event)
     {
-        return Auth::user()->participateEvent($event, 'going');
+        $this->participate($event, 'going');
+        return $event;
+    }
+
+    private function participate(Event $event, $status)
+    {
+        $user = Auth::user();
+        $user->participateEvent($event, $status);
+        UserParticipateToEvent::dispatch($user, $event, $status);
     }
 
     public function notInterested(Event $event)

@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\Event;
 use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
@@ -12,22 +13,23 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 
-class AlumniRegistered
+class UserParticipateToEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-
-    public User $user;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(User $user, Event $event, $status)
     {
-        $this->user = $user;
-
-        Log::info("REGISTER: $user->email");
+        Log::info('USER_PARTICIPATE_TO_EVENT', [
+            'user_email' => $user->email,
+            'event_id' => $event->id,
+            'event_title' => $event->title,
+            'status' => $status,
+        ]);
     }
 
     /**
