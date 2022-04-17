@@ -1,5 +1,6 @@
 import { useInfiniteQuery, useQueryClient } from "react-query"
 import { PostApi } from "../apis"
+import { getPaginationPayload, getPayload } from "../utils"
 import queryKeyFactory from "./queryKeyFactory"
 
 const fetchPosts = ({ pageParam = 1 }) => {
@@ -12,6 +13,7 @@ const useFeedQuery = (options = {}) => {
     return useInfiniteQuery({
         queryKey: queryKeyFactory.posts, 
         queryFn: fetchPosts, 
+        initialData: getPaginationPayload(),
         getNextPageParam: (lastPage) => {
             if (lastPage.current_page < lastPage.last_page) {
                 return lastPage.current_page + 1

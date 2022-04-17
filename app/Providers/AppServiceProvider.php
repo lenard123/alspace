@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\SSRRoute;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\URL;
@@ -34,6 +35,8 @@ class AppServiceProvider extends ServiceProvider
                 URL::forceScheme('https');
             }
         }
+
+        $this->app->singleton(SSRRoute::class);
 
     }
 }

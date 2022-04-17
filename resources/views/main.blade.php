@@ -17,6 +17,11 @@
   </script>
   @endif
 
+  <script>
+    window.user = @json($user);
+    window.payload = @json($payload);
+  </script>
+
   <!-- Scripts and CSS import -->
   @vite
 </head>

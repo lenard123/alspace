@@ -1,5 +1,7 @@
 <?php
 
+use App\Facades\SSRRoute;
+use App\Http\Controllers\SSRController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::view('{path}', 'main')->where('path', '(.*)');
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
+// Route::view('{path}', 'main')->where('path', '(.*)');
+SSRRoute::api('/', 'posts');
+SSRRoute::api('/posts/{id}');
+Route::get('{path}', SSRController::class)->where('path', '(.*)');

@@ -11,7 +11,8 @@ const useCurrentUserQuery = () => {
             if (error?.response.status === 401) {
                 queryClient.setQueryData(queryKeyFactory.currentUser, null)
             }
-        }
+        },
+        initialData: window.user
     })
 
 }
