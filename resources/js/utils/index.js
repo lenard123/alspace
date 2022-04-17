@@ -53,3 +53,16 @@ export const ObjectToArray = (object) => {
         value: object[key]
     }))
 }
+
+export const getPayload = () => {
+    const payload = window.payload
+    if (!payload) return undefined;
+    window.payload = undefined;
+    return payload
+}
+
+export const getPaginationPayload = () => {
+    const payload = getPayload()
+    if (payload) return { pages: [payload] }
+    return undefined
+}
