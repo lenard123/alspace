@@ -13,6 +13,7 @@ import Post from '@/js/pages/posts/[id]'
 import Questions from '@/js/pages/questions'
 import Jobs from '@/js/pages/jobs'
 import Events from '@/js/pages/events'
+import EventDetails from '@/js/pages/events/[id]'
 import Profile from '@/js/pages/profile'
 import Settings from '@/js/pages/settings'
 
@@ -44,7 +45,10 @@ export default () => {
                         </Route>
                         <Route path='questions' element={<Questions />} />
                         <Route path='jobs' element={<Jobs />} />
-                        <Route path='events' element={<Events />} />
+                        <Route path='events'>
+                            <Route index element={<Events />} />
+                            <Route path=':id' element={<EventDetails />} />
+                        </Route>
                         {/* <Route path='profile' element={<Profile />} /> */}
                         {/* <Route path='profile/:id' element={<Profile />} /> */}
                         <Route path='settings' element={<Settings />} />
