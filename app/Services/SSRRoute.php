@@ -3,12 +3,9 @@
 namespace App\Services;
 
 use App\Http\Controllers\SSRController;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
-use function PHPUnit\Framework\isNull;
 
 class SSRRoute
 {
@@ -39,15 +36,9 @@ class SSRRoute
         if (! Auth::check() ) return null;
 
         $endPoint = $endPoint ?? $this->request->path();
-
         $apiRequest = Request::create("api/$endPoint");
         $newRequest = Request::createFrom($apiRequest, $this->request);
 
-        $response = Route::dispatch($newRequest);
-
-        if ($response->isOk())
-            return $response->getOriginalContent();
-
-        return null;
+        return Route::getRoutes()->match($newRequest)->run();
     }
 }

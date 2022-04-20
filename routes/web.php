@@ -19,4 +19,4 @@ use Illuminate\Support\Facades\Route;
 // Route::view('{path}', 'main')->where('path', '(.*)');
 SSRRoute::api('/', 'posts');
 SSRRoute::api('/posts/{id}');
-Route::get('{path}', SSRController::class)->where('path', '^api');
+Route::get('{path}', SSRController::class)->where('path', '(.*)');
