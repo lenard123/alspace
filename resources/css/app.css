@@ -86,6 +86,10 @@ a:hover {
     @apply text-blue-500 underline;
 }
 
+.page-wrapper {
+    @apply max-w-5xl mx-auto px-4;
+}
+
 .btn {
     @apply whitespace-nowrap py-2 px-6 font-bold text-sm cursor-pointer transition;
 }
