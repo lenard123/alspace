@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Http\Controllers\SSRController;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -34,8 +35,15 @@ class SSRRoute
     function call($endPoint)
     {
         $endPoint = $endPoint ?? $this->request->path();
-        $request = Request::create("api/$endPoint", 'GET',$this->request->query());
-        $response = Route::dispatch($request);
-        return $response->getOriginalContent();
+
+        $apiRequest = Request::create("api/$endPoint");
+        $newRequest = Request::createFrom($apiRequest, $this->request);
+
+        $response = Route::dispatch($newRequest);
+
+        if ($response->isOk())
+            return $response->getOriginalContent();
+
+        return null;
     }
 }
