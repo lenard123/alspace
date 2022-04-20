@@ -1,7 +1,10 @@
 <?php
 
 use App\Facades\SSRRoute;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\SSRController;
+use App\Http\Controllers\UserController;
+use App\Http\Middleware\SSRMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-// Route::view('{path}', 'main')->where('path', '(.*)');
 SSRRoute::api('/', 'posts');
-SSRRoute::api('/posts/{id}');
-Route::get('{path}', SSRController::class)->where('path', '(.*)');
+SSRRoute::api('/posts/{post}');
+// SSRRoute::controller('/messages', [UserController::class, 'conversations']);
+SSRRoute::none('{path}')->where('path', '(.*)');

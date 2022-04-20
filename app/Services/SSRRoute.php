@@ -3,42 +3,26 @@
 namespace App\Services;
 
 use App\Http\Controllers\SSRController;
+use App\Http\Middleware\SSRMiddleware;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 class SSRRoute
 {
-    private Request $request;
-
-    public function __construct(Request $request)
+    public function api($path, $api = 'self')
     {
-        $this->request = $request;
+        return Route::get($path)->middleware("ssr:$api");
     }
 
-    public function api($path, $endPoint = null)
+    public function none($path)
     {
-        $callback = $this->getCallback($endPoint);
-        return Route::get($path, $callback);
+        return Route::get($path)->middleware("ssr");
     }
 
-    function getCallback($endPoint)
+    public function controller($path, $action)
     {
-        return function(SSRController $controller) use ($endPoint) {
-            $controller->inject($this->call($endPoint));
-            return $controller();
-        };
-    }
-
-    function call($endPoint)
-    {
-
-        if (! Auth::check() ) return null;
-
-        $endPoint = $endPoint ?? $this->request->path();
-        $apiRequest = Request::create("api/$endPoint");
-        $newRequest = Request::createFrom($apiRequest, $this->request);
-
-        return Route::getRoutes()->match($newRequest)->run();
+        return Route::get($path, $action)->middleware("ssr");
     }
 }
