@@ -10,7 +10,7 @@ export default function useDates(date) {
         return {
             formatted: `${momentInstance.format('ddd, MMM DD')} at ${momentInstance.format('ha')}`,
 
-            formattedFull: `${momentInstance.format('dddd, MMMM DD')} as ${momentInstance.format('ha')}`,
+            formattedFull: `${momentInstance.format('dddd, MMMM DD')} at ${momentInstance.format('ha')}`,
 
             isToday: momentInstance.isSame(TODAY, 'd'),
 
