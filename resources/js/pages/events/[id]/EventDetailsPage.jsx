@@ -1,14 +1,34 @@
-import { FileWordOutlined, UsergroupAddOutlined, UserOutlined } from "@ant-design/icons";
-import { Card, Divider, Image, Tabs } from "antd";
+import { Image, Skeleton, Tabs } from "antd";
 import useTab from './useTab'
-import { useEffect } from 'react'
 import EventDetailsPageAbout from "./EventDetailsPageAbout";
 import EventDetailsPageParticipants from "./EventDetailsPageParticipants";
+import useEventQuery from "@/js/queries/useEventQuery";
+import { useParams } from "react-router";
+import { fallbackImage } from "@/js/utils";
+import useDates from "@/js/hooks/useDates";
 
 export default function EventDetailsPage() {
 
+    const { id } = useParams()
     const [ active, setActive ] = useTab()
+    const { isLoading, data: event } = useEventQuery(id)
+    const { formattedFull } = useDates(event?.start_at)
     
+    if (isLoading) {
+        return (
+            <>
+                <Skeleton.Image className='block' style={{width:'100%', height:'min(300px, 60vw)'}}/>
+                <div className='page-wrapper pt-2'>
+                    <Skeleton 
+                        loading 
+                        title={{width: 300}}
+                        active
+                    />
+                </div>
+            </>
+        )
+    }
+
     return (
         <>
             <div>
@@ -17,14 +37,15 @@ export default function EventDetailsPage() {
                     height='min(300px, 60vw)'
                     className='object-cover'
                     preview={false}
-                    src="https://res.cloudinary.com/djasbri35/image/upload/v1649750499/alspace/events/elswo9xz2hx6htjaoxng.jpg"
+                    src={event.cover?.url || fallbackImage}
+                    fallback={fallbackImage}
                 />
             </div>
 
             <div className='bg-white pt-2 border-b border-gray-300'>
                 <div className='page-wrapper'>
-                    <div className='font-bold text-lg text-rose-500'>TUESDAY, MAY 10, 2022 AT 6:30 PM UTC+08</div>
-                    <div className='font-bold text-3xl text-gray-900'>Web Development Seminar</div>
+                    <div className='font-bold text-lg text-rose-500 uppercase'>{ formattedFull }</div>
+                    <div className='font-bold text-3xl text-gray-900'>{ event.title }</div>
                     <div>Online</div>
 
                     {/* <Divider className='my-2'/> */}
@@ -39,7 +60,7 @@ export default function EventDetailsPage() {
             </div>
 
             {active === 'about'  
-                ? <EventDetailsPageAbout /> 
+                ? <EventDetailsPageAbout event={event}/> 
                 : <EventDetailsPageParticipants type={active} />
             }
         </>

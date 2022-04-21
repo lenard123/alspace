@@ -21,11 +21,6 @@ const authorizer = (channel) => {
     }
 };
 
-window.pusher = new Pusher(KEY, {
-    cluster: CLUSTER,
-    forceTLS: true,
-    authorizer
-})
 
 const EchoClient =  new Echo({
     broadcaster: 'pusher',

@@ -71,4 +71,9 @@ class EventController extends Controller
 
         return $event;
     }
+
+    public function view(Event $event)
+    {
+        return $event->load('user');
+    }
 }

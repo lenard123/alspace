@@ -24,6 +24,8 @@ class Event extends Model
 
     protected $with = ['cover'];
 
+    protected $withCount = ['interested'];
+
     protected $appends = ['is_interested', 'is_going'];
 
     public function user()
