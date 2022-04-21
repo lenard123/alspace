@@ -22,6 +22,11 @@ export const fetchEvents = async(page = 1, filter = '') => {
     })
 }
 
+export const fetchEvent = async (eventId) => {
+    await requestCookie();
+    return await Http.get(`events/${eventId}`)
+}
+
 export const addToInterested = async(eventId) => {
     await requestCookie();
     return await Http.post(`/events/${eventId}/participants`);

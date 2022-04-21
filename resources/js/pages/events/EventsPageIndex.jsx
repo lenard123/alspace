@@ -1,12 +1,11 @@
 import { EditOutlined } from "@ant-design/icons"
-import { Button, List, Skeleton, Spin } from "antd"
+import { Button } from "antd"
 import { Helmet } from 'react-helmet'
 import AddEventModal from "./components/AddEventModal"
 import { useState } from 'react'
 import useCurrentFilter from "./useCurrentFilter"
 import FilterLink from "./components/FilterLink"
-import EventCard from "./components/EventCard"
-import useEventQuery, { filters } from "@/js/queries/useEventQuery"
+import { filters } from "@/js/queries/useEventsQuery"
 import EventList from "./components/EventList"
 
 

@@ -1,6 +1,6 @@
 import { useSearchParams, useNavigate } from "react-router-dom"
 import { useEffect } from 'react'
-import { filters } from "@/js/queries/useEventQuery"
+import { filters } from "@/js/queries/useEventsQuery"
 
 const useCurrentFilter = () => {
     const [searchParams] = useSearchParams()
