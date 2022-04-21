@@ -27,6 +27,11 @@ export const fetchEvent = async (eventId) => {
     return await Http.get(`events/${eventId}`)
 }
 
+export const fetchEventParticipants = async(eventId, type) => {
+    await requestCookie();
+    return await Http.get(`events/${eventId}/participants?type=${type}`)
+}
+
 export const addToInterested = async(eventId) => {
     await requestCookie();
     return await Http.post(`/events/${eventId}/participants`);

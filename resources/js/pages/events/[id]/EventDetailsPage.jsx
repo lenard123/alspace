@@ -60,7 +60,7 @@ export default function EventDetailsPage() {
 
             {active === 'about'  
                 ? <EventDetailsPageAbout event={event}/> 
-                : <EventDetailsPageParticipants type={active} />
+                : <EventDetailsPageParticipants type={active} id={id}/>
             }
         </>
     )

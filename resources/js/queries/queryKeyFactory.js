@@ -21,5 +21,7 @@ export default {
 
     events: (filter) => ['events', {filter}],
 
-    event: (eventId) => ['events', Number(eventId)]
+    event: (eventId) => ['events', Number(eventId)],
+
+    eventParticipants: (eventId, type) => ['events', Number(eventId), type],
 }
