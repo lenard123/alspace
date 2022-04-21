@@ -49,8 +49,7 @@ export default () => {
                             <Route index element={<Events />} />
                             <Route path=':id' element={<EventDetails />} />
                         </Route>
-                        {/* <Route path='profile' element={<Profile />} /> */}
-                        {/* <Route path='profile/:id' element={<Profile />} /> */}
+                        <Route path='profile/:id' element={<Profile />} />
                         <Route path='settings' element={<Settings />} />
                     </Route>
                 </Route>
