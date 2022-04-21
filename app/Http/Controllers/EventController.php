@@ -76,4 +76,14 @@ class EventController extends Controller
     {
         return $event->load('user');
     }
+
+    public function participants(Event $event, Request $request)
+    {
+        $type = $request->get('type');
+        switch ($type) {
+            case 'interested': return $event->interested;
+            case 'going': return $event->going;
+            default: return $event->participants;
+        }
+    }
 }
