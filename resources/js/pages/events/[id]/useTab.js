@@ -16,7 +16,7 @@ export default function useTab()
     }, [params.get('tab')]);
 
     const setActive = (tab) => {
-        navigate(`/events/${id}?tab=${tab}`)
+        navigate(`/events/${id}?tab=${tab}`, { replace: true })
     }
 
     return [
