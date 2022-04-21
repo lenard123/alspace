@@ -36,7 +36,6 @@ export default function EventDetailsPage() {
                     width='100%'
                     height='min(300px, 60vw)'
                     className='object-cover'
-                    preview={false}
                     src={event.cover?.url || fallbackImage}
                     fallback={fallbackImage}
                 />
