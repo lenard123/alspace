@@ -4,6 +4,7 @@ import AuthGuard from './_guards/AuthGuard'
 
 import MainLayout from '@/js/components/layout/MainLayout'
 import MessageLayout from '../components/layout/MessageLayout'
+import ProfileLayout from '@/js/components/layout/ProfileLayout'
 
 import Home from '@/js/pages/home'
 import Notifications from '@/js/pages/notifications'
@@ -22,6 +23,7 @@ import Register from '@/js/pages/register'
 import GuestGuard from './_guards/GuestGuard'
 import useCurrentUserQuery from '../queries/useCurrentUserQuery'
 import PageLoading from '../components/PageLoading'
+import ProfilePage from '@/js/pages/profile'
 
 export default () => {
     const { isLoading } = useCurrentUserQuery()
@@ -49,8 +51,9 @@ export default () => {
                             <Route index element={<Events />} />
                             <Route path=':id' element={<EventDetails />} />
                         </Route>
-                        {/* <Route path='profile' element={<Profile />} /> */}
-                        {/* <Route path='profile/:id' element={<Profile />} /> */}
+                        <Route path='profile/:id' element={<ProfileLayout />}>
+                            <Route index element={<ProfilePage />} />
+                        </Route>
                         <Route path='settings' element={<Settings />} />
                     </Route>
                 </Route>
