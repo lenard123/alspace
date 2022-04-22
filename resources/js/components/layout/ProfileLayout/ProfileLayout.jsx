@@ -1,12 +1,18 @@
 import { Avatar, Button, Image, Tabs } from "antd";
+import { Outlet } from "react-router";
+import Helmet from 'react-helmet'
+import { useState } from 'react'
+import SkeletonLayout from "./SkeletonLayout";
 
-export default function ProfilePage() {
+export default function ProfileLayout() 
+{
 
-    return 'Test';
+    // const [title, setTitle] = useState('Profile')
+
+    // if (true) return <SkeletonLayout />
 
     return (
         <>
-
             <div className='bg-white border-b border-gray-300'>
                 <Image
                     width='100%'
@@ -42,6 +48,9 @@ export default function ProfilePage() {
                 </div>
             </div>
 
+            <div className='page-wrapper mt-4'>
+                <Outlet />
+            </div>
             
         </>
     )
