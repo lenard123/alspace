@@ -43,6 +43,8 @@ trait HasThreads
     {
         return $this->threads()
             ->with('members')
+            ->whereHas('messages')
+            ->latest()
             ->get()
             ->map(fn($thread) => $thread->loadInfo($this))
             ->values();

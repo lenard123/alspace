@@ -31,7 +31,7 @@ export default function MessageLayout() {
                                         <Avatar size='large' src={thread.avatar} />
                                         <div className='flex flex-col h-full flex-grow leading-4'>
                                             <span className='font-semibold'>{thread.title}</span>
-                                            <span>5 new messages</span>
+                                            <span>No unread messages</span>
                                         </div>
                                     </Link>
                                 </List.Item>
