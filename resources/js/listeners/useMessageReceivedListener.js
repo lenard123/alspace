@@ -8,7 +8,7 @@ import { map } from 'lodash'
 import useThreadMutator from "../queries/useThreadMutator"
 
 const useMessageReceivedListener = () => {
-    const { data:conversations } = useConversationQuery({ enabled: false })
+    const { data:conversations, refetch } = useConversationQuery({ enabled: false })
     const { incrementUnreadCount } = useThreadMutator()
     const queryClient = useQueryClient()
     useSocket({
@@ -30,7 +30,7 @@ const useMessageReceivedListener = () => {
 
             //Invalidate thread if the newMessage thread not exists
             if (! map(conversations, 'id').includes(thread_id)) {
-                queryClient.invalidateQueries(queryKeyFactory.conversations)
+                refetch()
             }
         }
     })

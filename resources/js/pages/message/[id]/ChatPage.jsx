@@ -9,18 +9,19 @@ import useConversationMessagesQuery from "@/js/queries/useConversationMessagesQu
 import { useQueryClient } from "react-query";
 import queryKeyFactory from "@/js/queries/queryKeyFactory";
 import { useEffect } from 'react'
+import useConversationQuery from "@/js/queries/useConversationQuery";
 
 export default function ChatPage() {
     const { id } = useParams()
     const { data: thread, isLoading: loadingThread, } = useThreadQuery(id)
-    const queryClient = useQueryClient()
+    const { refetch } = useConversationQuery()
     const { isLoading, data: messages, hasNextPage, fetchNextPage, isFetchingNextPage } = useConversationMessagesQuery(id, {
         staleTime: 0,
         enabled: !!thread?.id
     })
 
     useEffect(() => {
-        queryClient.refetchQueries(queryKeyFactory.conversations)
+        refetch()
     }, [id])
 
     if (loadingThread) {
