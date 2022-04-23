@@ -31,6 +31,7 @@ export default function useThreadMutator()
     }
 
     return {
-        incrementUnreadCount
+        incrementUnreadCount,
+        updateThread
     }
 }
