@@ -10,7 +10,6 @@ tasks:
 
   - name: Server
     command: |
-        composer setup
         touch database/database.sqlite
         cp .env.gitpod .env
         php artisan key:generate
