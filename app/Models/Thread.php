@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Thread extends Model
 {
@@ -11,6 +12,7 @@ class Thread extends Model
 
     protected $fillable = ['is_support'];
     protected $hidden = ['members'];
+    protected $withCount = ['unreadMessages'];
 
     private $currentUser;
     private $otherMember;
@@ -23,6 +25,13 @@ class Thread extends Model
     public function messages()
     {
         return $this->hasMany(Message::class);
+    }
+
+    public function unreadMessages()
+    {
+        return $this->messages()
+            ->whereNot('user_id', Auth::id())
+            ->where('has_read', false);
     }
 
     public function getAvatarAttribute()

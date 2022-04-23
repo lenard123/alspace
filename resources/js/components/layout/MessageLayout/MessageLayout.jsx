@@ -4,6 +4,7 @@ import { Link, Outlet } from "react-router-dom";
 import { useState } from 'react'
 import NewMessage from "./components/NewMessage";
 import useConversationQuery from "@/js/queries/useConversationQuery";
+import classNames from "classnames";
 
 export default function MessageLayout() {
     const [isOpen, setIsOpen] = useState(false)
@@ -31,7 +32,7 @@ export default function MessageLayout() {
                                         <Avatar size='large' src={thread.avatar} />
                                         <div className='flex flex-col h-full flex-grow leading-4'>
                                             <span className='font-semibold'>{thread.title}</span>
-                                            <span>No unread messages</span>
+                                            <span className={classNames({'font-bold': thread.unread_messages_count})}>{thread.unread_messages_count ? thread.unread_messages_count : 'No'} unread messages</span>
                                         </div>
                                     </Link>
                                 </List.Item>

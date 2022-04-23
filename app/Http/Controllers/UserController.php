@@ -13,6 +13,12 @@ class UserController extends Controller
         return Auth::user()->conversations();
     }
 
+    public function current()
+    {
+        return Auth::user()
+            ->loadCount('unreadThread');
+    }
+
     public function search(Request $request)
     {
         return User::search($request->query('query'))->get()->where('id', '<>',  Auth::id())->values();

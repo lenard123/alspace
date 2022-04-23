@@ -6,7 +6,7 @@ import { RecoilRoot } from "recoil";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1000 * 20
+      staleTime: 3000
     }
   }
 })

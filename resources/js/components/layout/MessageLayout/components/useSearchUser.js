@@ -19,7 +19,6 @@ const useSearchUser = () => {
     useEffect(() => {
         if (status === 'success') {
             setSuggestions(data)
-            console.log(data)
         }
     }, [status])
 
