@@ -7,19 +7,12 @@ tasks:
         composer setup
         composer install
         npm install
-    env:
-       APP_DEBUG: true
-       APP_GITPOD: true
-       APP_ENV: local
-       APP_NAME: Alspace
-       DB_CONNECTION: sqlite
-       DB_FOREIGN_KEYS: false
-       SESSION_DRIVER: database
 
   - name: Server
     command: |
         composer setup
         touch database/database.sqlite
+        cp .env.gitpod .env
         php artisan migrate:fresh --seed
         php artisan serve
   - name: Client
