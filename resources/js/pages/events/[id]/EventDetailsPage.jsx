@@ -42,7 +42,7 @@ export default function EventDetailsPage() {
             </div>
 
             <div className='bg-white pt-2 border-b border-gray-300'>
-                <div className='page-wrapper'>
+                <div className='page-wrapper px-4'>
                     <div className='font-bold text-lg text-rose-500 uppercase'>{ formattedFull }</div>
                     <div className='font-bold text-3xl text-gray-900'>{ event.title }</div>
                     <div>Online</div>

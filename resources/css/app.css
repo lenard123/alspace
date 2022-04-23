@@ -87,7 +87,7 @@ a:hover {
 }
 
 .page-wrapper {
-    @apply max-w-5xl mx-auto px-4;
+    @apply max-w-5xl mx-auto sm:px-4;
 }
 
 .btn {

@@ -32,7 +32,7 @@ export default function ProfileLayout()
                     src='https://res.cloudinary.com/djasbri35/image/upload/v1649750683/alspace/events/aghom7lqat9harfvaaqv.png'
                 />
 
-                <div className='page-wrapper'>
+                <div className='page-wrapper px-4'>
                     <div className='-mt-[60px]'>
                         <div className='flex flex-col items-center sm:flex-row sm:items-end gap-2'>
                             <Avatar
