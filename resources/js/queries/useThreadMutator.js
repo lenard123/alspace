@@ -10,6 +10,7 @@ export default function useThreadMutator()
         queryClient.setQueryData(
             queryKeyFactory.conversations,
             (data) => {
+                if (!data) return [];
                 return data.map(oldThread => {
                     if(typeof newThread === 'function') return newThread(oldThread)
                     if (newThread.id === oldThread.id) return newThread
