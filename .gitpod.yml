@@ -5,11 +5,11 @@
 tasks:
   - init: |
         composer setup
-        composer install
         npm install
 
   - name: Server
     command: |
+        composer install
         touch database/database.sqlite
         cp .env.gitpod .env
         php artisan key:generate
