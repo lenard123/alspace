@@ -46,7 +46,7 @@ export default function ProfileLayout()
                                 <div className='flex sm:self-end justify-center'>
                                     { isCurrentUser 
                                         ? <Button size='large' type='secondary' shape='round'>Edit Profile</Button>
-                                        : <Button size='large' type='secondary' shape='round'>Send Message</Button>
+                                        : <Link to={`/messages?user_id=${id}`}><Button size='large' type='secondary' shape='round'>Send Message</Button></Link>
                                     }
                                 </div>
                             </div>
