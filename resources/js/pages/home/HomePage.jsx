@@ -13,30 +13,28 @@ export default function HomePage() {
             <Helmet>
                 <title>Home</title>
             </Helmet>
-            <div className='max-w-xl mx-auto sm:pt-4 pb-4'>
 
-                <WritePost />
+            <List
+                className='max-w-xl mx-auto sm:pt-4 pb-4'
+                dataSource={data}
+                header={<WritePost />}
+                loading={isLoading}
+                loadMore={
+                    <div className='text-center leading-8 mt-3 h-8'>
+                        {
+                            hasNextPage
+                                ? <Button loading={isFetchingNextPage} disabled={isFetchingNextPage} onClick={fetchNextPage}>See more</Button>
+                                : !isLoading && <span>You reach the end</span>
+                        }
+                    </div>
+                }
+                renderItem={post => (
+                    <List.Item key={post.id}>
+                        <Post post={post} />
+                    </List.Item>
+                )}
+            />
 
-                <List
-                    dataSource={data}
-                    loading={isLoading}
-                    loadMore={
-                        <div className='text-center leading-8 mt-3 h-8'>
-                            {
-                                hasNextPage
-                                    ? <Button loading={isFetchingNextPage} disabled={isFetchingNextPage} onClick={fetchNextPage}>See more</Button>
-                                    : <span>You reach the end</span>
-                            }
-                        </div>
-                    }
-                    renderItem={post => (
-                        <List.Item key={post.id}>
-                            <Post post={post} />
-                        </List.Item>
-                    )}
-                />
-
-            </div>
         </>
     )
 }

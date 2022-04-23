@@ -13,6 +13,8 @@ export default {
 
     user: (userId) => ['users', Number(userId)],
 
+    userPosts: (userId) => ['users', Number(userId), 'posts'],
+
     conversations: ['conversations'],
 
     conversation: (threadId) => ['conversations', Number(threadId)],

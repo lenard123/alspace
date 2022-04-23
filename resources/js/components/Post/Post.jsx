@@ -9,8 +9,7 @@ import { useState } from 'react'
 
 export default function Post({ post, children, onDelete }) {
     const [previewVisible, setPreviewVisible] = useState(false)
-    const { author, likers_count } = post
-    const comments_count = post.comments_count
+    const { author, likers_count, comments_count, user_id } = post
     const { isBelongsToUser, showDeleteModal } = usePostLogic(post, onDelete)
 
     return (
@@ -20,7 +19,7 @@ export default function Post({ post, children, onDelete }) {
                 <Avatar size='large' src={author.avatarUrl} />
                 <div className='flex flex-grow justify-between'>
                     <div className='flex flex-col leading-3'>
-                        <span className='font-bold'>{author.fullname}</span>
+                        <Link to={`/profile/${user_id}`} className='font-bold'>{author.fullname}</Link>
                         <span className='text-sm'>{moment(post.created_at).fromNow()}</span>
                     </div>
                     <Options isBelongsToUser={isBelongsToUser} showDeleteModal={showDeleteModal} />

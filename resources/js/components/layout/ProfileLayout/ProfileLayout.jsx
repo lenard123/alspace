@@ -1,11 +1,9 @@
 import { Avatar, Button, Image, Tabs } from "antd";
 import { Outlet, useParams } from "react-router";
 import Helmet from 'react-helmet'
-import { useState } from 'react'
 import SkeletonLayout from "./SkeletonLayout";
 import useUserQuery from "@/js/queries/useUserQuery";
-import { useCurrentUser, useIsCurrentUser } from "@/js/queries/useCurrentUserQuery";
-import { useMemo } from 'react'
+import { useIsCurrentUser } from "@/js/queries/useCurrentUserQuery";
 import useTabs from "./useTabs";
 import { Link } from "react-router-dom";
 
@@ -22,6 +20,10 @@ export default function ProfileLayout()
 
     return (
         <>
+            <Helmet>
+                <title>{fullname}</title>
+            </Helmet>
+
             <div className='bg-white border-b border-gray-300'>
                 <Image
                     width='100%'

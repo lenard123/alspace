@@ -9,7 +9,7 @@ import classNames from 'classnames'
 import ImageUploader from './ImageUploader'
 
 
-export default function WritePost() {
+export default function WritePost({ className }) {
     
     const [files, setFiles] = useState([])
     const { avatarUrl } = useCurrentUser()
@@ -31,7 +31,7 @@ export default function WritePost() {
     }
 
     return (
-        <div className='flex gap-2 sm:rounded-lg bg-white border border-solid p-4 border-gray-300'>
+        <div className={`flex gap-2 sm:rounded-lg bg-white border border-solid p-4 border-gray-300 ${className}`}>
             <Avatar className='flex-shrink-0' size='large' src={avatarUrl} />
             <form onSubmit={handleSubmit} className='flex-grow flex flex-col gap-2'>
                 <Input.TextArea value={content} onChange={e => setContent(e.target.value)} className='rounded-lg' rows={2} placeholder='Write something...' />

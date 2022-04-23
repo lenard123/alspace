@@ -27,4 +27,9 @@ class UserController extends Controller
     {
         return $user;
     }
+
+    public function posts(User $user)
+    {
+        return $user->posts()->paginate(10);
+    }
 }

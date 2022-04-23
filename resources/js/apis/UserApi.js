@@ -15,6 +15,11 @@ export const fetchThreadWith = async(userId) => {
     return await Http.get(`/users/${userId}/thread`);
 }
 
+export const fetchUserPosts = async (userId, page = 1) => {
+    await requestCookie()
+    return await Http.get(`/users/${userId}/posts?page=${page}`)
+}
+
 export const fetchUser = async(userId) => {
     await requestCookie()
     return await Http.get(`/users/${userId}`);

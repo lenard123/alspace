@@ -11,6 +11,7 @@ const usePostMutator = () => {
 
     const updatePost = (post) => {
         queryClient.setQueryData(queryKeyFactory.posts, updatePagination(post))
+        queryClient.setQueryData(queryKeyFactory.userPosts(post.user_id), updatePagination(post))
         queryClient.setQueryData(queryKeyFactory.post(post.id), post)
     }
 
