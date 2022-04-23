@@ -13,6 +13,7 @@ tasks:
         composer setup
         touch database/database.sqlite
         cp .env.gitpod .env
+        php artisan key:generate
         php artisan migrate:fresh --seed
         php artisan serve
   - name: Client
