@@ -4,17 +4,23 @@
 
 tasks:
   - init: |
-        composer install-php8.1
+        composer setup
         composer install
         npm install
     env:
        APP_DEBUG: true
+       APP_GITPOD: true
+       APP_ENV: local
        APP_NAME: Alspace
        DB_CONNECTION: sqlite
        DB_FOREIGN_KEYS: false
+       SESSION_DRIVER: database
+
   - name: Server
     command: |
-        composer install-php8.1
+        composer setup
+        touch database/database.sqlite
+        php artisan migrate:fresh --seed
         php artisan serve
   - name: Client
     command: |
