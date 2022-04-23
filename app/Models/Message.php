@@ -13,6 +13,8 @@ class Message extends Model
     
     protected $hidden = ['user', 'thread'];
 
+    protected $touches = ['thread'];
+
     public function user()
     {
         return $this->belongsTo(User::class);

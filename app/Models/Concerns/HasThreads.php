@@ -44,7 +44,7 @@ trait HasThreads
         return $this->threads()
             ->with('members')
             ->whereHas('messages')
-            ->latest()
+            ->orderBy('updated_at', 'desc')
             ->get()
             ->map(fn($thread) => $thread->loadInfo($this))
             ->values();
