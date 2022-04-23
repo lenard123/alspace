@@ -6,14 +6,22 @@ import WriteMessage from "./components/WriteMessage";
 import useThreadQuery from "@/js/queries/useThreadQuery";
 import { Helmet } from 'react-helmet'
 import useConversationMessagesQuery from "@/js/queries/useConversationMessagesQuery";
+import { useQueryClient } from "react-query";
+import queryKeyFactory from "@/js/queries/queryKeyFactory";
+import { useEffect } from 'react'
 
 export default function ChatPage() {
     const { id } = useParams()
-    const { data: thread, isLoading: loadingThread } = useThreadQuery(id)
+    const { data: thread, isLoading: loadingThread, } = useThreadQuery(id)
+    const queryClient = useQueryClient()
     const { isLoading, data: messages, hasNextPage, fetchNextPage, isFetchingNextPage } = useConversationMessagesQuery(id, {
         staleTime: 0,
         enabled: !!thread?.id
     })
+
+    useEffect(() => {
+        queryClient.refetchQueries(queryKeyFactory.conversations)
+    }, [id])
 
     if (loadingThread) {
         return <div className='bg-white z-[5] flex h-full items-center justify-center fixed sm:static inset-0'><Spin spinning /></div>

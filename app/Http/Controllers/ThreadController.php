@@ -23,6 +23,9 @@ class ThreadController extends Controller
 
     public function messages(Thread $thread)
     {
-        return $thread->messages()->latest()->paginate(10);
+        $messages = $thread->messages()->latest()->paginate(10);
+        $user = Auth::user();
+        $messages->each(fn($message) => $user->readMessage($message));
+        return $messages;
     }
 }

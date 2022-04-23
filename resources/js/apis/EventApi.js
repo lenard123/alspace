@@ -1,7 +1,6 @@
 import Http, { requestCookie } from "../utils/Http"
 
 export const createEvent = async(data) => {
-    //console.log(data); return;
     const formData = new FormData()
     await requestCookie()
     Object.keys(data).forEach(key => {

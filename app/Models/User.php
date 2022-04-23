@@ -100,6 +100,11 @@ class User extends Authenticatable
         return $this->hasMany(Like::class);
     }
 
+    public function unreadThread()
+    {
+        return $this->threads()->whereHas('unreadMessages');
+    }
+
     public function sendMessageOn(Thread $thread, string $content)
     {
         $message = new Message();
@@ -131,6 +136,13 @@ class User extends Authenticatable
             'firstname' => $this->firstname,
             'lastname' => $this->lastname,
         ];
+    }
+
+    public function readMessage(Message $message)
+    {
+        if ($message->user_id === $this->id) return;
+        if ($message->has_read) return;
+        $message->update(['has_read' => true]);
     }
 
     public static function sendMessageSupport(User $user, string $content)

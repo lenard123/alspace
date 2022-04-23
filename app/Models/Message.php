@@ -9,9 +9,11 @@ class Message extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'content'];
+    protected $fillable = ['user_id', 'content', 'has_read'];
     
     protected $hidden = ['user', 'thread'];
+
+    protected $touches = ['thread'];
 
     public function user()
     {

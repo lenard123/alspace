@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\UserController;
@@ -21,14 +22,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Broadcast::routes(['middleware' => 'auth:sanctum']);
 
 Route::middleware('auth:sanctum')->group(function () {
 
+    Route::get('/user', [UserController::class, 'current']);
     Route::get('/user/conversations', [UserController::class, 'conversations']);
 
     Route::get('/users/search', [UserController::class, 'search']);
@@ -39,6 +41,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/threads/{thread}', [ThreadController::class, 'view']);
     Route::get('/threads/{thread}/messages', [ThreadController::class, 'messages']);
     Route::post('/threads/{thread}', [ThreadController::class, 'sendMessage']);
+
+    Route::put('/messages/{message}', [MessageController::class, 'readMessage']);
 
     Route::get('/posts', [PostController::class, 'index']);
     Route::get('/posts/{post}', [PostController::class, 'view']);

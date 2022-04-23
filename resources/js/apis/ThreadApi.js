@@ -16,3 +16,8 @@ export const sendMessage = async(threadId, content) => {
     await requestCookie()
     return await Http.post(`/threads/${threadId}`, {content})
 }
+
+export const readMessage = async(messageId) => {
+    await requestCookie()
+    return await Http.put(`/messages/${messageId}`)
+}
