@@ -11,6 +11,8 @@ export default {
 
     currentUser: ['users', 'current'],
 
+    user: (userId) => ['users', Number(userId)],
+
     conversations: ['conversations'],
 
     conversation: (threadId) => ['conversations', Number(threadId)],

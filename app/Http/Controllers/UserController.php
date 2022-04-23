@@ -22,4 +22,9 @@ class UserController extends Controller
     {
         return Auth::user()->threadWith($user)->loadInfo(Auth::user());
     }
+
+    public function view(User $user)
+    {
+        return $user;
+    }
 }

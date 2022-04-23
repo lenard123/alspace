@@ -1,15 +1,24 @@
 import { Avatar, Button, Image, Tabs } from "antd";
-import { Outlet } from "react-router";
+import { Outlet, useParams } from "react-router";
 import Helmet from 'react-helmet'
 import { useState } from 'react'
 import SkeletonLayout from "./SkeletonLayout";
+import useUserQuery from "@/js/queries/useUserQuery";
+import { useCurrentUser, useIsCurrentUser } from "@/js/queries/useCurrentUserQuery";
+import { useMemo } from 'react'
+import useTabs from "./useTabs";
+import { Link } from "react-router-dom";
 
 export default function ProfileLayout() 
 {
+    const { id } = useParams()
+    const isCurrentUser = useIsCurrentUser(id)
+    const { isLoading, data: user } = useUserQuery(id)
+    const { tabs, active } = useTabs(id)
 
-    // const [title, setTitle] = useState('Profile')
+    if (isLoading) return <SkeletonLayout />
 
-    // if (true) return <SkeletonLayout />
+    const { fullname, avatarUrl } = user
 
     return (
         <>
@@ -26,23 +35,26 @@ export default function ProfileLayout()
                         <div className='flex flex-col items-center sm:flex-row sm:items-end gap-2'>
                             <Avatar
                                 className='border-2 border-white'
-                                src='https://avatars.dicebear.com/api/initials/lenard+mangay-ayam.svg'
+                                src={avatarUrl}
                                 size={120}
                             />
 
                             <div className='sm:pb-2 flex flex-col sm:flex-row justify-between flex-grow gap-2'>
-                                <div className='text-2xl md:text-3xl text-center font-bold text-gray-800'>Lenard Mangay-ayam</div>
+                                <div className='text-2xl md:text-3xl text-center font-bold text-gray-800'>{fullname}</div>
                                 <div className='flex sm:self-end justify-center'>
-                                    <Button size='large' type='secondary' shape='round'>Send Message</Button>
+                                    { isCurrentUser 
+                                        ? <Button size='large' type='secondary' shape='round'>Edit Profile</Button>
+                                        : <Button size='large' type='secondary' shape='round'>Send Message</Button>
+                                    }
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <Tabs size='large' tabBarStyle={{marginBottom: 0}}>
-                        <Tabs.TabPane key={1} tab={'Posts'} />
-                        <Tabs.TabPane key={2} tab='About' />
-                        <Tabs.TabPane key={3} tab='Jobs' />
+                    <Tabs defaultActiveKey={active} size='large' tabBarStyle={{marginBottom: 0}}>
+                        {tabs.map( ({title, link}) => (
+                            <Tabs.TabPane key={title} tabKey={title} tab={<Link to={link}>{title}</Link>} />
+                        ))}
                     </Tabs>
 
                 </div>

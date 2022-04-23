@@ -53,6 +53,8 @@ export default () => {
                         </Route>
                         <Route path='profile/:id' element={<ProfileLayout />}>
                             <Route index element={<ProfilePage />} />
+                            <Route path='about' element={null} />
+                            <Route path='jobs' element={null} />
                         </Route>
                         <Route path='settings' element={<Settings />} />
                     </Route>

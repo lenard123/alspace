@@ -22,4 +22,9 @@ export const useCurrentUser = () => {
     return data
 }
 
+export const useIsCurrentUser = (userId) => {
+    const { id } = useCurrentUser()
+    return userId == id
+}
+
 export default useCurrentUserQuery
