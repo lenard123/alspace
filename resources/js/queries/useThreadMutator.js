@@ -1,11 +1,9 @@
 import { useQueryClient } from "react-query"
 import queryKeyFactory from "./queryKeyFactory"
-import useConversationQuery from "./useConversationQuery"
 
 
 export default function useThreadMutator()
 {
-    const { data } = useConversationQuery({ enabled: false })
     const queryClient = useQueryClient()
 
     const updateThread = (newThread) => {

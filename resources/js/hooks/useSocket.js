@@ -12,15 +12,16 @@ function listen(callback, channel, event) {
     }
 }
 
-const useSocket = ({ event, callback }) => {
+const useSocket = ({ event, callback }, dependencies = []) => {
     const { id } = useCurrentUser()
 
     useEffect(() => {
+        console.log('Socket Callback updated')
         switch (event) {
             case 'MESSAGE_RECEIVED':
                 return listen(callback, `users.${id}`, 'MessageReceived')
         }
-    }, [])
+    }, dependencies)
 }
 
 export default useSocket

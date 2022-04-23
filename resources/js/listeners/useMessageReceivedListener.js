@@ -30,10 +30,11 @@ const useMessageReceivedListener = () => {
 
             //Invalidate thread if the newMessage thread not exists
             if (! map(conversations, 'id').includes(thread_id)) {
+                console.log('test')
                 refetch()
             }
         }
-    })
+    }, [conversations?.length])
 }
 
 export default useMessageReceivedListener
