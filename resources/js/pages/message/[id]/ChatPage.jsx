@@ -20,9 +20,9 @@ export default function ChatPage() {
         enabled: !!thread?.id
     })
 
-    useEffect(() => {
-        refetch()
-    }, [id])
+    // useEffect(() => {
+    //     refetch()
+    // }, [id])
 
     if (loadingThread) {
         return <div className='bg-white z-[5] flex h-full items-center justify-center fixed sm:static inset-0'><Spin spinning /></div>

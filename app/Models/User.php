@@ -14,7 +14,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Scout\Searchable;
 
@@ -69,6 +71,16 @@ class User extends Authenticatable
 
     protected static function booted() : void
     {
+        $currentUserId = Auth::id();
+
+        static::retrieved(function ($user) use ($currentUserId) {
+            if ($user->id === $currentUserId && $user->unread_thread_count === null)
+            {
+                $user->loadCount('unreadThread');
+            }
+
+        });
+
         static::created(function ($user) {
             //Generate default Avatar
             $user->regenerateAvatar();
@@ -142,7 +154,10 @@ class User extends Authenticatable
     {
         if ($message->user_id === $this->id) return;
         if ($message->has_read) return;
-        $message->update(['has_read' => true]);
+
+        //To prevent touching parent timestamp when reading
+        $message->has_read = true;
+        Message::where('id', $message->id)->update(['has_read' => true]);
     }
 
     public static function sendMessageSupport(User $user, string $content)

@@ -5,7 +5,7 @@ export default function MessageItem({message, own, reader})
 {
     useEffect(() => {
         if (!own && !message.has_read) {
-            reader(message.id)
+            reader(message)
         }
     }, [])
 

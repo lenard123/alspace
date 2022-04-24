@@ -1,4 +1,4 @@
-import { Avatar, Button, Drawer, Menu } from "antd"
+import { Avatar, Badge, Button, Drawer, Menu } from "antd"
 import { ArrowLeftOutlined, BellOutlined, CalendarOutlined, LogoutOutlined, MessageOutlined, QuestionCircleOutlined, SearchOutlined, SettingOutlined } from "@ant-design/icons"
 import { BriefcaseOutlined } from "@/js/components/icons"
 import { Link } from "react-router-dom"
@@ -10,7 +10,7 @@ export default function DrawerMenu() {
 
     const [isDrawerVisible, setIsDrawerVisible] = useDrawerVisibleState()
     const { showLogoutModal } = useLogout()
-    const currentUser = useCurrentUser()
+    const {id, fullname, avatarUrl, unread_thread_count,...currentUser} = useCurrentUser()
 
     const menuClicked = ({key}) => {
         setIsDrawerVisible(false)
@@ -21,17 +21,18 @@ export default function DrawerMenu() {
 
     return (
         <Drawer bodyStyle={{padding:'0 .5rem'}} width={300} extra={<Button type='text' icon={<SearchOutlined />}/>} closeIcon={<ArrowLeftOutlined />} title="Menu" placement="right" onClose={() => setIsDrawerVisible(false)} visible={isDrawerVisible}>
-            <Link onClick={() => setIsDrawerVisible(false)} to={`/profile/${currentUser.id}`} className='flex gap-2 items-center p-2 border-b border-gray-200'>
-                <Avatar size='large' src={currentUser.avatarUrl}/>
+            <Link onClick={() => setIsDrawerVisible(false)} to={`/profile/${id}`} className='flex gap-2 items-center p-2 border-b border-gray-200'>
+                <Avatar size='large' src={avatarUrl}/>
                 <div className='flex flex-col flex-grow h-full leading-4'>
-                    <div className='font-semibold'>{currentUser.firstname} {currentUser.lastname}</div>
+                    <div className='font-semibold'>{currentUser.fullname}</div>
                     <div>View your profile</div>
                 </div>
             </Link>
             <Menu size='large' onClick={menuClicked}>
                 
-                <Menu.Item key='messages' icon={<MessageOutlined />}>
+                <Menu.Item className='tesgvs' key='messages' icon={<MessageOutlined />}>
                     <Link to='/messages'>Message</Link>
+                    <Badge className='ml-auto' dot={unread_thread_count} />
                 </Menu.Item>
                 
                 <Menu.Item key='notifications' icon={<BellOutlined />}>
