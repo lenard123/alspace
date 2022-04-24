@@ -1,11 +1,13 @@
-import { Button, Tooltip, } from 'antd'
+import { Badge, Button, Tooltip, } from 'antd'
 import { Link } from 'react-router-dom'
 
-const NavLink = ({ to, title, icon }) => {
+const NavLink = ({ to, title, icon, badge }) => {
     return (
         <Link to={to}>
-            <Tooltip title={title}>
-                <Button className='rounded-lg' icon={icon} />
+            <Tooltip placement='bottom' title={title}>
+                <Badge {...(badge || {})}>
+                    <Button className='rounded-lg' icon={icon} />
+                </Badge>
             </Tooltip>
         </Link>
     )

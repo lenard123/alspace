@@ -9,7 +9,7 @@ import useThreadMutator from "../queries/useThreadMutator"
 
 const useMessageReceivedListener = () => {
     const { data:conversations, refetch } = useConversationQuery({ enabled: false })
-    const { incrementUnreadCount } = useThreadMutator()
+    const { incrementUnreadCount, refetchIfNotExists } = useThreadMutator()
     const queryClient = useQueryClient()
     useSocket({
         event: 'MESSAGE_RECEIVED',
@@ -28,13 +28,9 @@ const useMessageReceivedListener = () => {
                 incrementUnreadCount(thread_id)
             }
 
-            //Invalidate thread if the newMessage thread not exists
-            if (! map(conversations, 'id').includes(thread_id)) {
-                console.log('test')
-                refetch()
-            }
+            refetchIfNotExists(thread_id)
         }
-    }, [conversations?.length])
+    })
 }
 
 export default useMessageReceivedListener

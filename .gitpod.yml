@@ -3,12 +3,9 @@
 # and commit this file to your remote git repository to share the goodness with others.
 
 tasks:
-  - init: |
-        composer setup
-        npm install
-
   - name: Server
     command: |
+        composer setup
         composer install
         touch database/database.sqlite
         cp .env.gitpod .env
@@ -18,6 +15,7 @@ tasks:
   - name: Client
     command: |
         gp await-port 8000
+        npm install
         npm run dev
 
 github:

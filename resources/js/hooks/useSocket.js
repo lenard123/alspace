@@ -1,6 +1,6 @@
 import { useCurrentUser } from "../queries/useCurrentUserQuery"
 import { Echo } from "../utils"
-import { useEffect } from 'react'
+import { useEffect, useCallback } from 'react'
 
 function listen(callback, channel, event) {
     Echo.private(channel).listen(event, (payload) => {
@@ -12,7 +12,7 @@ function listen(callback, channel, event) {
     }
 }
 
-const useSocket = ({ event, callback }, dependencies = []) => {
+const useSocket = ({ event, callback }) => {
     const { id } = useCurrentUser()
 
     useEffect(() => {
@@ -20,7 +20,7 @@ const useSocket = ({ event, callback }, dependencies = []) => {
             case 'MESSAGE_RECEIVED':
                 return listen(callback, `users.${id}`, 'MessageReceived')
         }
-    }, dependencies)
+    }, [])
 }
 
 export default useSocket

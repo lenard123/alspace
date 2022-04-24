@@ -15,8 +15,7 @@ class UserController extends Controller
 
     public function current()
     {
-        return Auth::user()
-            ->loadCount('unreadThread');
+        return Auth::user();
     }
 
     public function search(Request $request)
