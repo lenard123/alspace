@@ -24,3 +24,9 @@ A Simple Alumni Management System
 - Event Management
 - Jobs Posting
 - Realtime Chat 
+
+## Contributors
+
+<a href="https://github.com/lenard123/alspace/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=lenard123/alspace" />
+</a>
