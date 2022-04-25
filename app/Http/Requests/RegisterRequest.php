@@ -29,7 +29,7 @@ class RegisterRequest extends FormRequest
             'firstname' => ['required', new HumanName()],
             'lastname' => ['required',  new HumanName()],
             'course' => ['required', 'regex:/bscs|bsit|bsemc|bsis/'],
-            'year_graduated' => 'required',
+            'year_graduated' => 'required|integer',
             'password' => 'required|min:8|confirmed'
         ];
     }
