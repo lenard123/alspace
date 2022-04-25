@@ -25,6 +25,9 @@ A Simple Alumni Management System
 - Jobs Posting
 - Realtime Chat 
 
+## Prerequisites
+Be sure to have Nodejs (v16.x) and PHP (v8.1) installed.
+
 ## Contributors
 
 <a href="https://github.com/lenard123/alspace/graphs/contributors">
