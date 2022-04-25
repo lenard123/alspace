@@ -14,8 +14,8 @@ A Simple Alumni Management System
 [![GitHub stars](https://img.shields.io/github/stars/lenard123/alspace?style=flat-square&color=yellow)](https://github.com/lenard123/alspace/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/lenard123/alspace?style=flat-square)](https://github.com/lenard123/alspace/network)
 [![antd](https://img.shields.io/badge/antd-^4.19.1-blue.svg?style=flat-square)](https://github.com/ant-design/ant-design)
-[![antd](https://img.shields.io/badge/react-17.0.2-blue.svg?style=flat-square)](https://github.com/facebook/react)    
-[![antd](https://img.shields.io/badge/laravel-9.2-red.svg?style=flat-square)](https://github.com/laravel/laravel)
+[![react](https://img.shields.io/badge/react-17.0.2-blue.svg?style=flat-square)](https://github.com/facebook/react)    
+[![laravel](https://img.shields.io/badge/laravel-9.2-red.svg?style=flat-square)](https://github.com/laravel/laravel)
     
 </div>
 
