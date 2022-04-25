@@ -24,15 +24,15 @@ export default function DrawerMenu() {
             <Link onClick={() => setIsDrawerVisible(false)} to={`/profile/${id}`} className='flex gap-2 items-center p-2 border-b border-gray-200'>
                 <Avatar size='large' src={avatarUrl}/>
                 <div className='flex flex-col flex-grow h-full leading-4'>
-                    <div className='font-semibold'>{currentUser.fullname}</div>
+                    <div className='font-semibold'>{fullname}</div>
                     <div>View your profile</div>
                 </div>
             </Link>
             <Menu size='large' onClick={menuClicked}>
                 
-                <Menu.Item className='tesgvs' key='messages' icon={<MessageOutlined />}>
+                <Menu.Item key='messages' icon={<MessageOutlined />}>
                     <Link to='/messages'>Message</Link>
-                    <Badge className='ml-auto' dot={unread_thread_count} />
+                    <Badge dot={unread_thread_count} />
                 </Menu.Item>
                 
                 <Menu.Item key='notifications' icon={<BellOutlined />}>
