@@ -20,9 +20,12 @@ const useRegister = () => {
         }
     })
 
-    const register = (formData) => {
+    const register = ({year_graduated, ...formData}) => {
         if (mutation.isLoading) return;
-        mutation.mutate(formData)
+        mutation.mutate({
+            ...formData,
+            year_graduated: year_graduated.year()
+        })
     }
 
     return {

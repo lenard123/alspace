@@ -25,8 +25,8 @@ export default function Topbar() {
                             <img className='rounded' src='/images/logo.png' height='32' width='auto' />
                             <span className='font-bold text-xl'>Alspace</span>
                         </Link>
-                        <Badge dot={unread_thread_count}>
-                            <Button onClick={() => setIsDrawerVisible(true)} className='lg:hidden' icon={<MenuOutlined />} />
+                        <Badge dot={unread_thread_count} className='lg:hidden'>
+                            <Button onClick={() => setIsDrawerVisible(true)} icon={<MenuOutlined />} />
                         </Badge>
                     </div>{/* End Logo */}
                     {/* Searchbox */}
