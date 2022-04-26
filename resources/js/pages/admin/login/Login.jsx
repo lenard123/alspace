@@ -1,4 +1,5 @@
 import { Button, Form, Input } from "antd"
+import { useNavigate } from "react-router-dom"
 
 const rules = {
     email: [
@@ -12,6 +13,12 @@ const rules = {
 
 export default function Login()
 {
+    const navigate = useNavigate()
+
+    const handleSubmit = (data) => {
+        navigate('/admin')
+    }
+
     return (
         <div className='bg-gray-100 min-h-screen flex flex-col justify-center'>
 
@@ -28,14 +35,14 @@ export default function Login()
                     >Alspace Admin</span>
                 </div>
 
-                <Form>
+                <Form onFinish={handleSubmit}>
                     <Form.Item name='email' rules={rules.email} className="mb-4" hasFeedback>
                         <Input placeholder='Email'/>
                     </Form.Item>
                     <Form.Item name='password' rules={rules.password} className="mb-4" hasFeedback>
                         <Input.Password placeholder='Password'/>
                     </Form.Item>
-                    <Button type='primary' block>Sign in</Button>
+                    <Button htmlType='submit' type='primary' block>Sign in</Button>
                     <p className='text-center text-gray-500'>Forgot Password</p>
                 </Form>
 
