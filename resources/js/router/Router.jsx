@@ -15,23 +15,15 @@ import Questions from '@/js/pages/questions'
 import Jobs from '@/js/pages/jobs'
 import Events from '@/js/pages/events'
 import EventDetails from '@/js/pages/events/[id]'
-import Profile from '@/js/pages/profile'
 import Settings from '@/js/pages/settings'
 
 import Login from '@/js/pages/login'
 import Register from '@/js/pages/register'
 import GuestGuard from './_guards/GuestGuard'
-import useCurrentUserQuery from '../queries/useCurrentUserQuery'
-import PageLoading from '../components/PageLoading'
 import ProfilePage from '@/js/pages/profile'
+import AdminRoutes from './AdminRoutes'
 
 export default () => {
-    const { isLoading } = useCurrentUserQuery()
-
-    if (isLoading) {
-        return <PageLoading />
-    }
-
     return (
         <BrowserRouter>
             <Routes>
@@ -64,6 +56,9 @@ export default () => {
                     <Route path='/login' element={<Login />} />
                     <Route path='/register' element={<Register />} />
                 </Route>
+
+                {AdminRoutes}
+
             </Routes>
         </BrowserRouter>
     )
