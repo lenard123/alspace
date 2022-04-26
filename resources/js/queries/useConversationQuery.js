@@ -19,8 +19,6 @@ const useConversationQuery = (options = {}) => {
 
                 if (thread.unread_messages_count) unreadThreadCount++;
 
-                queryClient.setQueryData(queryKeyFactory.conversation(thread.id), thread)
-
                 if(thread.other_member?.id) {
                     const userId = thread.other_member?.id
                     queryClient.setQueryData(queryKeyFactory.threadWith(userId), thread)
@@ -31,6 +29,11 @@ const useConversationQuery = (options = {}) => {
         },
         ...options
     })
+}
+
+export const useConversation = (threadId) => {
+    const { data } = useConversationQuery({ enabled: false })
+    return data?.find(thread => thread.id == threadId)
 }
 
 export default useConversationQuery

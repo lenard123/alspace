@@ -6,11 +6,17 @@ use App\Events\MessageSent;
 use App\Models\Thread;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class ThreadController extends Controller
 {
     public function view(Thread $thread)
     {
+        $thread->messages()
+            ->whereNot('user_id', Auth::id())
+            ->update(['has_read' => true]);
+        $thread->unread_messages_count = 0;
         return $thread->loadInfo(Auth::user());
     }
 
@@ -23,9 +29,6 @@ class ThreadController extends Controller
 
     public function messages(Thread $thread)
     {
-        $messages = $thread->messages()->latest()->paginate(10);
-        $user = Auth::user();
-        $messages->each(fn($message) => $user->readMessage($message));
-        return $messages;
+        return $thread->messages()->latest()->paginate(10);    
     }
 }

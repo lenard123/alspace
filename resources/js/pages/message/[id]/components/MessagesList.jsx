@@ -1,4 +1,3 @@
-import moment from 'moment'
 import { useCurrentUser } from "@/js/queries/useCurrentUserQuery"
 import MessageItem from './MessageItem'
 import useMessageMutator from '@/js/queries/useMessageMutator'
