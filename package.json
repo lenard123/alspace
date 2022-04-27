@@ -1,5 +1,5 @@
 {
-  "name": "Alspace",
+  "name": "alspace",
   "private": true,
   "version": "0.0.0",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
-    "antd": "^4.19.1",
+    "antd": "^4.20.0",
     "axios": "^0.26.1",
     "classnames": "^2.3.1",
     "js-cookie": "^3.0.1",
