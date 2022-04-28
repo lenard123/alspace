@@ -57,7 +57,7 @@ export default function LoginPage() {
                                 onChange={e => setRemember(e.target.checked)} 
                             >Remember me</Checkbox>
 
-                            <a className='float-right' href='#'>Forgot Password</a>
+                            <Link className='float-right' to='/forgot-password'>Forgot Password</Link>
                         </Form.Item>
 
                         <Form.Item>
