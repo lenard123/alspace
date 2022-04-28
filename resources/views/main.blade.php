@@ -26,7 +26,7 @@
   @vite
 </head>
 
-<body class="font-sans">
+<body class="font-sans" style='margin-bottom: 0'>
   <div id="root"></div>
 </body>
 
