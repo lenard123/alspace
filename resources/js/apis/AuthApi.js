@@ -19,3 +19,8 @@ export const fetchCurrentUser = async() => {
     await requestCookie()
     return await Http.get('/user')
 }
+
+export const forgotPassword = async(email) => {
+    await requestCookie()
+    return await Http.post('/forgot-password', { email })
+}
