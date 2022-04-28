@@ -24,3 +24,8 @@ export const forgotPassword = async(email) => {
     await requestCookie()
     return await Http.post('/forgot-password', { email })
 }
+
+export const resetPassword = async({ email, password, password_confirmation, token }) => {
+    await requestCookie()
+    return await Http.post('/reset-password', { email, password, password_confirmation, token })
+}

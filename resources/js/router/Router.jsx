@@ -25,6 +25,7 @@ import useCurrentUserQuery from '../queries/useCurrentUserQuery'
 import PageLoading from '../components/PageLoading'
 import ProfilePage from '@/js/pages/profile'
 import ForgotPassword from '../pages/forgot-password'
+import ResetPassword from '../pages/reset-password'
 
 export default () => {
     const { isLoading } = useCurrentUserQuery()
@@ -65,6 +66,7 @@ export default () => {
                     <Route path='/login' element={<Login />} />
                     <Route path='/register' element={<Register />} />
                     <Route path='/forgot-password' element={<ForgotPassword />} />
+                    <Route path='/reset-password/:token' element={<ResetPassword />} />
                 </Route>
             </Routes>
         </BrowserRouter>
