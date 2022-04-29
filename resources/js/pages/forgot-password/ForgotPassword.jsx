@@ -18,7 +18,6 @@ export default function ForgotPassword() {
     const { mutate, isLoading, isSuccess, data } = useMutation(AuthApi.forgotPassword, {
         onMutate() { setValidationErrors({}) },
         onError(error) {
-            console.log(error)
             setValidationErrors(error.validationErrors)
         }
     });
@@ -33,7 +32,7 @@ export default function ForgotPassword() {
             <Helmet>
                 <title>Forgot Password</title>
             </Helmet>
-            <div className='bg-gray-100 min-h-screen flex flex-col justify-center'>
+            <div className='bg-gray-200 min-h-screen flex flex-col justify-center'>
                 {isSuccess
                     ? <Result
                         status='success'

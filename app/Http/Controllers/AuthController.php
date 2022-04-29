@@ -24,7 +24,7 @@ class AuthController extends Controller
 
         AlumniRegistered::dispatch($user);
 
-        Auth::login($user);
+        //Auth::login($user);
 
         return $user;
     }

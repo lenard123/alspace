@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\HumanName;
+use App\Rules\Otp;
 
 class RegisterRequest extends FormRequest
 {
@@ -25,12 +26,14 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'email', 'unique:users'],
+            'email' => ['bail', 'required', 'email', 'unique:users'],
+            'otp' => ['bail', 'required', new Otp()],
+            'student_id' => 'required',
             'firstname' => ['required', new HumanName()],
             'lastname' => ['required',  new HumanName()],
             'course' => ['required', 'regex:/bscs|bsit|bsemc|bsis/'],
             'year_graduated' => 'required|integer',
-            'password' => 'required|min:8|confirmed'
+            'password' => 'required|min:8'
         ];
     }
 }

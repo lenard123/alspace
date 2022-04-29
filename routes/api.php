@@ -5,6 +5,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RegisterValidatorController;
 use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -22,9 +23,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 
 Broadcast::routes(['middleware' => 'auth:sanctum']);
 
@@ -71,6 +69,8 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::post('/register', [AuthController::class, 'register']);
+Route::post('/register-validator', [RegisterValidatorController::class, 'registerValidator']);
+Route::post('/register-validator/send-otp', [RegisterValidatorController::class, 'sendOTP']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
 Route::post('/reset-password', [AuthController::class, 'resetPassword']);
