@@ -11,70 +11,81 @@ export default function LoginPage() {
     const { validationErrors, handleSubmit, isLoading, remember, setRemember } = useLogin()
 
     return (
-        <>
-        <Helmet>
-            <title>Login</title>
-        </Helmet>
-        <div className='bg-blue-700 min-h-screen flex flex-col justify-center'>
-            <div className="py-8">
-                <Card title={<Logo />} className='max-w-md mx-auto rounded'>
+        <div className='bg-gray-200 min-h-screen py-8 flex items-center'>
+            <Helmet>
+                <title>Login to your Alspace Account</title>
+            </Helmet>
+            <div className='flex-grow max-w-4xl min-h-[500px] mx-auto rounded grid grid-cols-1 lg:grid-cols-2'>
+                <div className='w-full max-w-[360px] sm:max-w-none sm:w-auto bg-white p-4 flex flex-col mx-auto lg:mx-0'>
+                    <Link to='/'><Logo small/></Link>
 
-                    <Form layout='vertical' onFinish={handleSubmit}>
-                        <Form.Item
-                            rules={rules.email}
-                            className='mb-4'
-                            label='Email'
-                            name='email'
-                            {...(validationErrors.email)}
-                        >
-                            <Input
-                                type='email'
-                                prefix={<MailOutlined className='mr-2' />}
-                                placeholder='Enter your email here'
-                                size='large'
-                                className='rounded'
-                            />
-                        </Form.Item>
+                    <div className='w-full sm:w-[360px] flex-grow mx-auto flex flex-col justify-center pt-12'>
 
-                        <Form.Item
-                            rules={rules.password}
-                            className='mb-4'
-                            label='Password'
-                            name='password'
-                            {...(validationErrors.password)}
-                        >
-                            <Input.Password
-                                prefix={<LockOutlined className='mr-2' />}
-                                className='rounded'
-                                placeholder="Enter your password here."
-                                size='large'
-                            />
-                        </Form.Item>
+                        <div className='font-bold text-2xl mb-4'>Login to your account</div>
 
-                        <Form.Item className='mt-4'>
-                            <Checkbox 
-                                checked={remember} 
-                                onChange={e => setRemember(e.target.checked)} 
-                            >Remember me</Checkbox>
+                        <Form layout='vertical' onFinish={handleSubmit}>
+                            <Form.Item
+                                rules={rules.email}
+                                className='mb-4'
+                                label='Email'
+                                name='email'
+                                {...(validationErrors.email)}
+                                hasFeedback
+                            >
+                                <Input
+                                    type='email'
+                                    prefix={<MailOutlined className='mr-2' />}
+                                    placeholder='Enter your email here'
+                                    className='rounded'
+                                    size='large'
+                                />
+                            </Form.Item>
 
-                            <a className='float-right' href='#'>Forgot Password</a>
-                        </Form.Item>
+                            <Form.Item
+                                rules={rules.password}
+                                className='mb-4'
+                                label='Password'
+                                name='password'
+                                hasFeedback
+                                {...(validationErrors.password)}
+                            >
+                                <Input.Password
+                                    prefix={<LockOutlined className='mr-2' />}
+                                    className='rounded'
+                                    placeholder="Enter your password here."
+                                    size='large'
+                                />
+                            </Form.Item>
 
-                        <Form.Item>
-                            <Button size='large' loading={isLoading} className='w-full' type='primary' htmlType='submit'>
-                                Sign in
-                            </Button>
-                            <p className='mt-2 text-center'>
-                                <span>Don't have an account? Sign up </span>
-                                <Link className='link' to='/register'>here</Link>.
-                            </p>
-                        </Form.Item>
+                            <Form.Item className='my-4'>
+                                <Checkbox
+                                    checked={remember}
+                                    onChange={e => setRemember(e.target.checked)}
+                                >Remember me</Checkbox>
+
+                                <Link className='float-right' to='/forgot-password'>Forgot Password</Link>
+                            </Form.Item>
+
+                            <Form.Item>
+                                <Button size='large' loading={isLoading} className='w-full' type='primary' htmlType='submit'>
+                                    Submit
+                                </Button>
+                                <p className='mt-2 text-center'>
+                                    <span>Don't have an account? Sign up </span>
+                                    <Link className='link' to='/register'>here</Link>.
+                                </p>
+                            </Form.Item>
 
 
-                    </Form>
-                </Card>
+                        </Form>
+                    </div>
+
+                    <span className='text-xs text-gray-500 font-mono text-center'>(c) Alspace 2022</span>
+
+                </div>
+                <div className='hidden lg:block bg-blue-400'></div>
             </div>
         </div>
-        </>
     )
+
 }

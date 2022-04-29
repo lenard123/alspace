@@ -21,6 +21,10 @@ import Login from '@/js/pages/login'
 import Register from '@/js/pages/register'
 import GuestGuard from './_guards/GuestGuard'
 import ProfilePage from '@/js/pages/profile'
+import ForgotPassword from '../pages/forgot-password'
+import ResetPassword from '../pages/reset-password'
+
+
 import AdminRoutes from './AdminRoutes'
 
 export default () => {
@@ -55,6 +59,8 @@ export default () => {
                 <Route path='' element={<GuestGuard />}>
                     <Route path='/login' element={<Login />} />
                     <Route path='/register' element={<Register />} />
+                    <Route path='/forgot-password' element={<ForgotPassword />} />
+                    <Route path='/reset-password/:token' element={<ResetPassword />} />
                 </Route>
 
                 {AdminRoutes}

@@ -22,4 +22,5 @@ use Illuminate\Support\Facades\Route;
 SSRRoute::api('/', 'posts');
 SSRRoute::api('/posts/{post}');
 // SSRRoute::controller('/messages', [UserController::class, 'conversations']);
+SSRRoute::none('/reset-password/{token}')->name('password.reset');
 SSRRoute::none('{path}')->where('path', '(.*)');
