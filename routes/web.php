@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/mailable', function () {
+    return new App\Mail\EmailVerification('lenard.mangayayam@gmail.com');
+});
 
 SSRRoute::api('/', 'posts');
 SSRRoute::api('/posts/{post}');
