@@ -15,7 +15,6 @@ import Questions from '@/js/pages/questions'
 import Jobs from '@/js/pages/jobs'
 import Events from '@/js/pages/events'
 import EventDetails from '@/js/pages/events/[id]'
-import Profile from '@/js/pages/profile'
 import Settings from '@/js/pages/settings'
 
 import Login from '@/js/pages/login'
@@ -26,6 +25,7 @@ import PageLoading from '../components/PageLoading'
 import ProfilePage from '@/js/pages/profile'
 import ForgotPassword from '../pages/forgot-password'
 import ResetPassword from '../pages/reset-password'
+import LandingPage from '@/js/pages/index'
 
 export default () => {
     const { isLoading } = useCurrentUserQuery()
@@ -38,9 +38,11 @@ export default () => {
         <BrowserRouter>
             <Routes>
 
-                <Route path='' element={<AuthGuard />}>
-                    <Route path='/' element={<MainLayout />} >
-                        <Route index element={<Home />} />
+                <Route index element={<LandingPage />} />
+
+                <Route path='/' element={<AuthGuard />}>
+                    <Route path='' element={<MainLayout />} >
+                        <Route path='home' element={<Home />} />
                         <Route path='posts/:id' element={<Post />} />
                         <Route path='notifications' element={<Notifications />} />
                         <Route path='messages' element={<MessageLayout />} >
