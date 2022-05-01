@@ -5,6 +5,16 @@ export const register = async(formData) => {
     return await Http.post('/register', formData)
 }
 
+export const registerValidate = async(formData, step = 0) => {
+    await requestCookie()
+    return await Http.post(`/register-validator?step=${step}`, formData)
+}
+
+export const sendOTP = async(email) => {
+    await requestCookie()
+    return await Http.post('/register-validator/send-otp', { email })
+}
+
 export const login = async(formData) => {
     await requestCookie()
     return await Http.post('/login', formData)

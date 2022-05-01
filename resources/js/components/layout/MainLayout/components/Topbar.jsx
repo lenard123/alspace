@@ -21,7 +21,7 @@ export default function Topbar() {
                 <div className='flex w-full lg:w-auto'>
                     {/* Logo */}
                     <div className='flex w-full lg:w-auto justify-between items-center'>
-                        <Link to='/' className='flex gap-2 items-center'>
+                        <Link to='/home' className='flex gap-2 items-center'>
                             <img className='rounded' src='/images/logo.png' height='32' width='auto' />
                             <span className='font-bold text-xl'>Alspace</span>
                         </Link>

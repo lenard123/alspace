@@ -23,6 +23,7 @@ import GuestGuard from './_guards/GuestGuard'
 import ProfilePage from '@/js/pages/profile'
 import ForgotPassword from '../pages/forgot-password'
 import ResetPassword from '../pages/reset-password'
+import LandingPage from '@/js/pages/index'
 
 
 import AdminRoutes from './AdminRoutes'
@@ -32,9 +33,11 @@ export default () => {
         <BrowserRouter>
             <Routes>
 
-                <Route path='' element={<AuthGuard />}>
-                    <Route path='/' element={<MainLayout />} >
-                        <Route index element={<Home />} />
+                <Route index element={<LandingPage />} />
+
+                <Route path='/' element={<AuthGuard />}>
+                    <Route path='' element={<MainLayout />} >
+                        <Route path='home' element={<Home />} />
                         <Route path='posts/:id' element={<Post />} />
                         <Route path='notifications' element={<Notifications />} />
                         <Route path='messages' element={<MessageLayout />} >

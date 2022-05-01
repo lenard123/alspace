@@ -1,146 +1,71 @@
 import { Link } from 'react-router-dom'
-import { Card, Input, Button, Form, Select, DatePicker } from 'antd'
+import { Button, Result, Steps } from 'antd'
 import Logo from '@/js/components/Logo'
-import rules from './validationRules'
-import useRegister from './useRegister'
 import { Helmet } from 'react-helmet'
+import classNames from 'classnames'
+import { useState } from 'react'
+import _ from 'lodash'
+import Form1 from './components/Form1'
+import Form2 from './components/Form2'
+import Form3 from './components/Form3'
 
-const { Option } = Select
+const { Step } = Steps
 
 export default function Register() {
-    const { register, isLoading, validationErrors } = useRegister()
+    const [step, setStep] = useState(0)
+    const [data, setData] = useState({})
+    const [success, setSuccess] = useState(false)
+
+    const next = (data) => {
+        setStep(step => step + 1)
+        setData(oldData => {
+            return { ...oldData, ...data }
+        })
+    }
+
+    if (success) {
+        return (
+                <Result
+                    className='min-h-screen flex flex-col justify-center'
+                    status='success'
+                    title='Success'
+                    subTitle='Account created Successfully'
+                    extra={[
+                        <Link to='/login' key='login'><Button type='primary'>Go to Login</Button></Link>
+                    ]}
+                />
+        )
+    }
 
     return (
-        <>
+        <div className='bg-gray-200 min-h-screen py-8 flex flex-col items-center'>
             <Helmet>
-                <title>Register</title>
+                <title>Create an Account</title>
             </Helmet>
-            <div className='bg-blue-700'>
-                <div className="py-8">
-                    <Card title={<Logo />} className='max-w-md mx-auto rounded'>
-                        <Form layout='vertical' onFinish={register}>
+            <div className='w-full max-w-lg min-h-[500px] mx-auto rounded flex'>
+                <div className='bg-white flex-grow p-4 flex flex-col'>
 
-                            <Form.Item
-                                rules={rules.email}
-                                className='mb-4'
-                                label='Email'
-                                name='email'
-                                {...(validationErrors.email)}
-                            >
-                                <Input
-                                    type='email'
-                                    placeholder='Enter your email here'
-                                    size='large'
-                                    className='rounded'
-                                />
-                            </Form.Item>
+                    <Link to='/' className='mb-8'>
+                        <Logo small />
+                    </Link>
 
-                            <Form.Item
-                                rules={rules.firstname}
-                                className='mb-4'
-                                label='Firstame'
-                                name='firstname'
-                                {...(validationErrors.firstname)}
-                            >
-                                <Input
-                                    type='text'
-                                    placeholder='Enter your firstname here'
-                                    size='large'
-                                    className='rounded'
-                                />
-                            </Form.Item>
+                    <div className='px-8'>
+                        <div className='font-bold text-2xl mb-6 text-center'>Create Your Account</div>
 
-                            <Form.Item
-                                rules={rules.lastname}
-                                className='mb-4'
-                                label='Lastname'
-                                name='lastname'
-                                {...(validationErrors.lastname)}
-                            >
-                                <Input
-                                    type='text'
-                                    placeholder='Enter your lastname here'
-                                    size='large'
-                                    className='rounded'
-                                />
-                            </Form.Item>
+                        <Steps size='small' className='mb-8' current={step}>
+                            <Step title='Personal Details' />
+                            <Step title='Account Setup' />
+                            <Step title='Verification' />
+                        </Steps>
 
-                            <Form.Item
-                                name='course'
-                                label='Course'
-                                rules={rules.course}
-                            >
-                                <Select size='large' placeholder='Select course'>
-                                    <Option value="bscs">BSCS</Option>
-                                    <Option value="bsis">BSIS</Option>
-                                    <Option value="bsit">BSIT</Option>
-                                    <Option value="bsemc">BSEMC</Option>
-                                </Select>
-                            </Form.Item>
+                        <Form1 className={classNames({ 'hidden': step != 0 })} onFinish={next} />
+                        <Form2 className={classNames({ 'hidden': step != 1 })} onFinish={next} back={() => setStep(0)} />
+                        <Form3 className={classNames({ 'hidden': step != 2 })} onFinish={() => setSuccess(true)} data={data} back={() => setStep(1)} />
 
-                            <Form.Item
-                                name='year_graduated'
-                                label='Year Graduated'
-                                rules={rules.year_graduated}
-                            >
-                                <DatePicker
-                                    disabledDate={currentDate => {
-                                        const year = currentDate.year()
-                                        const start = 1990
-                                        const end = moment().year()
-                                        return year < start || year > end
-                                    }}
-                                    className='w-full'
-                                    size='large'
-                                    picker='year'
-                                />
-                            </Form.Item>
+                    </div>
 
-
-                            <Form.Item
-                                rules={rules.password}
-                                className='mb-4'
-                                label='Password'
-                                name='password'
-                                required
-                                tooltip={
-                                    <span>
-                                        - Must be atleast 8 characters<br />
-                                        - Must Contain Letters and Numbers
-                                    </span>
-                                }
-                                {...(validationErrors.password)}
-                            >
-                                <Input.Password
-                                    placeholder='Enter your password here'
-                                    size='large'
-                                    className='rounded'
-                                />
-                            </Form.Item>
-
-                            <Form.Item rules={rules.password_confirmation} className='mb-4' label='Confirm Password' name='password_confirmation' required>
-                                <Input.Password
-                                    placeholder='Confrm your password here'
-                                    size='large'
-                                    className='rounded'
-                                />
-                            </Form.Item>
-
-                            <Form.Item>
-                                <Button size='large' loading={isLoading} className='w-full' type='primary' htmlType='submit'>
-                                    Create Account
-                                </Button>
-                                <p className='mt-2 text-center'>
-                                    <span>Already have an account? Log in </span>
-                                    <Link className='link' to='/login'>here</Link>.
-                                </p>
-                            </Form.Item>
-
-
-                        </Form>
-                    </Card>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
