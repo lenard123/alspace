@@ -28,8 +28,8 @@ export default function Register() {
                 <Result
                     className='min-h-screen flex flex-col justify-center'
                     status='success'
-                    title='Success'
-                    subTitle='Account created Successfully'
+                    title='Registration Successfull'
+                    subTitle='We will send you a mail once the admin verify your account'
                     extra={[
                         <Link to='/login' key='login'><Button type='primary'>Go to Login</Button></Link>
                     ]}

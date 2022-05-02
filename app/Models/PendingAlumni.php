@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\AlumniRegistered;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
@@ -21,6 +22,13 @@ class PendingAlumni extends Model
     ];
 
     protected $appends = ['fullname'];
+
+    protected static function booted() : void
+    {
+        static::created(function($alumni) {
+            AlumniRegistered::dispatch($alumni);
+        });
+    }
 
     public function setPasswordAttribute($password) : void
     {

@@ -17,6 +17,8 @@ export default {
 
     pendingUsers: (page) => ['users', 'pending', {page}],
 
+    pendingUsersAll: ['users', 'pending'],
+
     conversations: ['conversations'],
 
     conversation: (threadId) => ['conversations', Number(threadId)],

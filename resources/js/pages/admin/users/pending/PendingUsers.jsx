@@ -1,11 +1,12 @@
 import usePendingUsersQuery from "@/js/queries/usePendingUsersQuery";
-import { Breadcrumb, Button, PageHeader, Space, Table } from "antd";
+import { Breadcrumb, Button, PageHeader, Popconfirm, Space, Table } from "antd";
 import BreadcrumbItem from "antd/lib/breadcrumb/BreadcrumbItem";
 import Column from "antd/lib/table/Column";
+import ApproveButton from "./components/ApproveButton";
 
 export default function PendingUsers() {
 
-    const { data } = usePendingUsersQuery()
+    const { data, isLoading } = usePendingUsersQuery()
 
     return (
         <>
@@ -19,7 +20,7 @@ export default function PendingUsers() {
                 title='Pending Users'
             />
 
-            <Table dataSource={data} className='px-8'>
+            <Table dataSource={data} className='px-8' rowKey='id' loading={isLoading}>
                 <Column title='Student ID' dataIndex='student_id' key='student_id' />
                 <Column title='Name' dataIndex='fullname' key='fullname' />
                 <Column title='Email' dataIndex='email' key='email' />
@@ -29,9 +30,9 @@ export default function PendingUsers() {
                     title='Action' 
                     key='action'
                     render={(text, record) => (
-                        <Space size="middle">
+                        <Space size="middle" key='test'>
                             <Button danger>Deny</Button>
-                            <Button type='primary' ghost>Approve</Button>
+                            <ApproveButton id={record.id} />
                         </Space>
                     )}
                 />

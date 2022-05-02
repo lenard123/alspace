@@ -94,7 +94,7 @@ class User extends Authenticatable
 
     public function setPasswordAttribute($password) : void
     {
-        $this->attributes['password'] = Hash::make($password);
+        $this->attributes['password'] = Hash::needsRehash($password) ? Hash::make($password) : $password;
     }
 
     public function getFullnameAttribute() : string
