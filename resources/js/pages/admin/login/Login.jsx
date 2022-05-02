@@ -1,22 +1,27 @@
+import { AuthApi } from "@/js/apis"
+import { LockOutlined, MailOutlined } from "@ant-design/icons"
 import { Button, Form, Input } from "antd"
-import { useNavigate } from "react-router-dom"
-
-const rules = {
-    email: [
-        {required: true, message: 'Please enter your email.'},
-        {type: 'email', message: 'Please enter a valid email.'},
-    ],
-    password: [
-        {required: true, message: 'Please enter your password.'},
-    ]
-}
+import { useMutation, useQueryClient } from "react-query"
+import rules from "./rules"
+import { useState } from 'react'
 
 export default function Login()
 {
-    const navigate = useNavigate()
+    const [validationErrors, setValidationErrors] = useState({})
+    const queryClient = useQueryClient()
+    const { mutate, isLoading } = useMutation(AuthApi.adminLogin, {
+        onSuccess(data) {
+            queryClient.setQueryData(['users', 'current'], data)
+        },
+        onError(error) {
+            setValidationErrors(error.validationErrors)
+        }
+    })
 
     const handleSubmit = (data) => {
-        navigate('/admin')
+        if (isLoading) return;
+        setValidationErrors({})
+        mutate(data)
     }
 
     return (
@@ -36,13 +41,13 @@ export default function Login()
                 </div>
 
                 <Form onFinish={handleSubmit}>
-                    <Form.Item name='email' rules={rules.email} className="mb-4" hasFeedback>
-                        <Input placeholder='Email'/>
+                    <Form.Item {...validationErrors.email} name='email' rules={rules.email} className="mb-4" hasFeedback>
+                        <Input prefix={<MailOutlined className='mr-2' />} placeholder='Email'/>
                     </Form.Item>
-                    <Form.Item name='password' rules={rules.password} className="mb-4" hasFeedback>
-                        <Input.Password placeholder='Password'/>
+                    <Form.Item {...validationErrors.password} name='password' rules={rules.password} className="mb-4" hasFeedback>
+                        <Input.Password prefix={<LockOutlined className='mr-2' />} placeholder='Password'/>
                     </Form.Item>
-                    <Button htmlType='submit' type='primary' block>Sign in</Button>
+                    <Button loading={isLoading} htmlType='submit' type='primary' block>Sign in</Button>
                     <p className='text-center text-gray-500'>Forgot Password</p>
                 </Form>
 

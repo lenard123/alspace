@@ -3,20 +3,17 @@ import useCurrentUserQuery from "@/js/queries/useCurrentUserQuery";
 import { Navigate, Outlet } from "react-router-dom";
 
 
-export default function AdminGuard() {
+export default function AdminAuthGuard() {
     const {  data:currentUser, isLoading } = useCurrentUserQuery()
-    const isLoggedIn = currentUser !== null
     const isAdmin = currentUser?.is_admin
 
     if (isLoading) {
         return <PageLoading />        
     }
 
-    if (!isLoggedIn || !isAdmin) {
+    if (!isAdmin) {
         return <Navigate to='/admin/login' />
-    } else {
-        return <Outlet />
-    }
+    } 
 
-    return null
+    return <Outlet />
 }

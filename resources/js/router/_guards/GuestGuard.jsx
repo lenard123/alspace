@@ -8,7 +8,7 @@ export default function AuthGuard() {
     const isLoggedIn = currentUser !== null
 
     if (isLoggedIn) {
-        return <Navigate to='/' />
+        return <Navigate to='/home' />
     }
 
     return <Outlet />
