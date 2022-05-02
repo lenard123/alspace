@@ -20,20 +20,15 @@ import Settings from '@/js/pages/settings'
 import Login from '@/js/pages/login'
 import Register from '@/js/pages/register'
 import GuestGuard from './_guards/GuestGuard'
-import useCurrentUserQuery from '../queries/useCurrentUserQuery'
-import PageLoading from '../components/PageLoading'
 import ProfilePage from '@/js/pages/profile'
 import ForgotPassword from '../pages/forgot-password'
 import ResetPassword from '../pages/reset-password'
 import LandingPage from '@/js/pages/index'
 
+
+import AdminRoutes from './AdminRoutes'
+
 export default () => {
-    const { isLoading } = useCurrentUserQuery()
-
-    if (isLoading) {
-        return <PageLoading />
-    }
-
     return (
         <BrowserRouter>
             <Routes>
@@ -70,6 +65,9 @@ export default () => {
                     <Route path='/forgot-password' element={<ForgotPassword />} />
                     <Route path='/reset-password/:token' element={<ResetPassword />} />
                 </Route>
+
+                {AdminRoutes}
+
             </Routes>
         </BrowserRouter>
     )

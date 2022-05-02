@@ -75,4 +75,4 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
 Route::post('/reset-password', [AuthController::class, 'resetPassword']);
 
-Route::get('{path}', fn() => response()->json(null, 404))->where('path', '(.*)');
+// Route::get('{path}', fn() => response()->json(null, 404))->where('path', '(.*)');
