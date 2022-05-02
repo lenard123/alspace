@@ -75,5 +75,3 @@ Route::post('/register-validator/send-otp', [RegisterValidatorController::class,
 Route::post('/login', LoginController::class);
 Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
 Route::post('/reset-password', [AuthController::class, 'resetPassword']);
-
-// Route::get('{path}', fn() => response()->json(null, 404))->where('path', '(.*)');

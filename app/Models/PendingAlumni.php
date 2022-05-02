@@ -20,8 +20,15 @@ class PendingAlumni extends Model
         'password'
     ];
 
+    protected $appends = ['fullname'];
+
     public function setPasswordAttribute($password) : void
     {
         $this->attributes['password'] = Hash::make($password);
+    }
+
+    public function getFullnameAttribute()
+    {
+        return $this->firstname." ".$this->lastname;
     }
 }
