@@ -29,7 +29,11 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        if (env('APP_GITPOD', false)) {
+        /**
+         * This will use the app.url config as baseurl
+         * when generating a url.
+         */
+        if (env('APP_FORCE_ROOT_URL', false)) {
             URL::forceRootUrl(config('app.url'));
             if (Str::contains(config('app.url'), 'https://')) {
                 URL::forceScheme('https');
