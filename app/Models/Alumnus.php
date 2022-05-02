@@ -9,5 +9,5 @@ class Alumnus extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['year_graduated', 'course'];
+    protected $fillable = ['year_graduated', 'course', 'student_id'];
 }

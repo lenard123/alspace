@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterValidatorController;
@@ -71,7 +72,7 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/register-validator', [RegisterValidatorController::class, 'registerValidator']);
 Route::post('/register-validator/send-otp', [RegisterValidatorController::class, 'sendOTP']);
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', LoginController::class);
 Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
 Route::post('/reset-password', [AuthController::class, 'resetPassword']);
 

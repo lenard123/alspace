@@ -26,9 +26,9 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['bail', 'required', 'email', 'unique:users'],
+            'email' => ['bail', 'required', 'email', 'unique:users', 'unique:pending_alumnis'],
             'otp' => ['bail', 'required', new Otp()],
-            'student_id' => 'required',
+            'student_id' => 'required|unique:alumni',
             'firstname' => ['required', new HumanName()],
             'lastname' => ['required',  new HumanName()],
             'course' => ['required', 'regex:/bscs|bsit|bsemc|bsis/'],

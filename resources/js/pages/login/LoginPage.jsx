@@ -1,5 +1,5 @@
-import { Card, Form, Input, Button, Checkbox } from 'antd'
-import { MailOutlined, LockOutlined } from '@ant-design/icons'
+import { Form, Input, Button, Checkbox } from 'antd'
+import { LockOutlined, UserOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import Logo from '@/js/components/Logo'
 import rules from './validationRules'
@@ -25,17 +25,16 @@ export default function LoginPage() {
 
                         <Form layout='vertical' onFinish={handleSubmit}>
                             <Form.Item
-                                rules={rules.email}
+                                rules={rules.user_id}
                                 className='mb-4'
-                                label='Email'
-                                name='email'
-                                {...(validationErrors.email)}
+                                label='Email or Student ID'
+                                name='user_id'
+                                {...(validationErrors.user_id)}
                                 hasFeedback
                             >
                                 <Input
-                                    type='email'
-                                    prefix={<MailOutlined className='mr-2' />}
-                                    placeholder='Enter your email here'
+                                    prefix={<UserOutlined className='mr-2' />}
+                                    placeholder='Enter your email or student id here'
                                     className='rounded'
                                     size='large'
                                 />

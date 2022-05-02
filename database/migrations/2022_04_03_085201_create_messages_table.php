@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('content');
             $table->foreignId('thread_id')->constrained();
             $table->foreignId('user_id')->constrained();
+            $table->boolean('has_read')->default(false);
             $table->timestamps();
         });
     }

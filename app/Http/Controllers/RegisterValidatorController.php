@@ -22,12 +22,12 @@ class RegisterValidatorController extends Controller
     private function getRules()
     {
         return collect([
-            'student_id' => 'required',
+            'student_id' => 'required|unique:alumni',
             'firstname' => ['required', new HumanName()],
             'lastname' => ['required', new HumanName()],
             'course' => ['required', 'regex:/bscs|bsit|bsemc|bsis/'],
             'year_graduated' => 'required|integer',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email|unique:users|unique:pending_alumnis',
             'password' => 'required|min:8|confirmed',
         ]);
     }
