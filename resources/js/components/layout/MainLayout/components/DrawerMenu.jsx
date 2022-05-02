@@ -3,8 +3,8 @@ import { ArrowLeftOutlined, BellOutlined, CalendarOutlined, LogoutOutlined, Mess
 import { BriefcaseOutlined } from "@/js/components/icons"
 import { Link } from "react-router-dom"
 import { useCurrentUser } from "@/js/queries/useCurrentUserQuery"
-import useLogout from "../useLogout"
 import useDrawerVisibleState from "../useDrawerVisibleState"
+import { useLogout } from "@/js/hooks"
 
 export default function DrawerMenu() {
 

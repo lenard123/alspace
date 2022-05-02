@@ -4,3 +4,4 @@ export const sleep = (ms) => new Promise(resolve => {
 })
 
 export { default as useToggler } from './useToggler'
+export { default as useLogout } from './useLogout'

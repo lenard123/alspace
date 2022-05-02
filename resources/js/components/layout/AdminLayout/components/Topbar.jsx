@@ -1,8 +1,9 @@
-import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined } from "@ant-design/icons";
-import { Avatar, Button } from "antd";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import { Button } from "antd";
 import { Header } from "antd/lib/layout/layout";
 import { useContext } from 'react'
 import { AdminLayoutContext } from "../AdminLayout";
+import TopbarAvatar from "./TopbarAvatar";
 
 export default function Topbar() {
     const {collapsed, setCollapsed} = useContext(AdminLayoutContext)
@@ -17,7 +18,7 @@ export default function Topbar() {
             />
 
             <div>
-                <Avatar icon={<UserOutlined />} />
+                <TopbarAvatar />
             </div>
 
         </Header>
