@@ -28,7 +28,7 @@ class SendWelcomeMessage implements ShouldQueue
      */
     public function handle(AlumniVerified $event)
     {
-        $user = $event->alumnus->user;
+        $user = User::find($event->user_id);
         User::sendMessageSupport($user, "Hello {$user->firstname}, Thanks for signing up.");
     }
 }

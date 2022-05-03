@@ -16,16 +16,16 @@ class AlumniVerified
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public Alumnus $alumnus;
+    public int $user_id;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Alumnus $alumnus)
+    public function __construct(int $user_id)
     {
-        $this->alumnus = $alumnus;
-        Log::info('Alumni verified', compact('alumnus')); 
+        $this->user_id = $user_id;
+        Log::info('Alumni verified', compact('user_id')); 
     }
 
     /**

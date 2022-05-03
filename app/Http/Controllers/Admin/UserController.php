@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Alumnus;
 use App\Models\PendingAlumni;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,11 +19,13 @@ class UserController extends Controller
 
     public function approve(PendingAlumni $alumni)
     {
-        $user = User::create($alumni->only('firstname', 'lastname', 'email', 'password'));
+        DB::transaction(function() use ($alumni) {
+            $user = User::create($alumni->only('firstname', 'lastname', 'email', 'password'));
 
-        $user->alumnus()->create($alumni->only('year_graduated', 'course', 'student_id'));
+            $user->alumnus()->create($alumni->only('year_graduated', 'course', 'student_id'));
 
-        $alumni->delete();
+            $alumni->delete();
+        });
         
         return response()->json('', 204);
     }

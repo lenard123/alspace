@@ -15,10 +15,12 @@ class Alumnus extends Model
 
     protected $primaryKey = 'user_id';
 
+    public $incrementing = false;
+
     public static function booted() : void
     {
         static::created(function($alumnus) {
-            AlumniVerified::dispatch($alumnus);
+            AlumniVerified::dispatch($alumnus->user_id);
         });
     }
 
