@@ -10,15 +10,17 @@ import AdminGuestGuard from "./_guards/AdminGuestGuard";
 const AdminRoutes = (
     <Route path='admin' element={<Outlet />}>
 
-        <Route path='' element={<AdminAuthGuard />}>
-            <Route path='' element={<AdminLayout />}>
-                <Route index element={<Dashboard />}/>
-                <Route path="users/pending" element={<PendingUsers />}/>
-            </Route>
-        </Route>
-
         <Route path='' element={<AdminGuestGuard />}>
             <Route path='login' element={<Login />} />
+        </Route>
+
+
+        <Route path='' element={<AdminAuthGuard />}>
+            <Route path='' element={<AdminLayout />}>
+                <Route index element={<Dashboard />} />
+                <Route path="users/pending" element={<PendingUsers />} />
+                <Route path=':any' element={null} />
+            </Route>
         </Route>
 
     </Route>

@@ -1,4 +1,4 @@
-import { DesktopOutlined, FileOutlined, HomeOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
+import { DesktopOutlined, FileOutlined, HomeOutlined, SettingOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
 import { Menu } from "antd";
 import { useContext } from 'react'
 import { useLocation, useNavigate } from "react-router-dom";
@@ -13,7 +13,7 @@ const items = [
         getItem('Pending Users', '/admin/users/pending'),
     ]),
     getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-    getItem('Files', '9', <FileOutlined />),
+    getItem('System Settings', '/admin/settings', <SettingOutlined />),
 ];
 
 export default function SidebarMenu() {
