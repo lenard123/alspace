@@ -36,7 +36,7 @@ class Thread extends Model
 
     public function getAvatarAttribute()
     {
-        if ($this->is_support) {
+        if ($this->is_support && !$this->currentUser->is_admin) {
             return '/images/logo.png';
         }
 
@@ -45,7 +45,7 @@ class Thread extends Model
 
     public function getTitleAttribute()
     {
-        if ($this->is_support) {
+        if ($this->is_support && !$this->currentUser->is_admin) {
             return 'Alspace Support';
         }
 

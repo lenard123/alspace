@@ -27,6 +27,8 @@ export default {
 
     threadWith: (userId) => ['users', Number(userId), 'thread'],
 
+    supportThreads: ['threads', 'support'],
+
     events: (filter) => ['events', {filter}],
 
     event: (eventId) => ['events', Number(eventId)],

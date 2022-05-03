@@ -6,7 +6,7 @@ import PendingUsers from "../pages/admin/users/pending/PendingUsers";
 import AdminAuthGuard from "./_guards/AdminAuthGuard";
 import AdminLayout from "../components/layout/AdminLayout";
 import AdminGuestGuard from "./_guards/AdminGuestGuard";
-import MessageLayout from "../components/layout/MessageLayout";
+import MessageIndexPage from "../pages/admin/messages/MessageIndexPage";
 
 const AdminRoutes = (
     <Route path='admin' element={<Outlet />}>
@@ -20,7 +20,7 @@ const AdminRoutes = (
             <Route path='' element={<AdminLayout />}>
                 <Route index element={<Dashboard />} />
                 <Route path="users/pending" element={<PendingUsers />} />
-                <Route path="messages" element={<MessageLayout admin/>} />
+                <Route path="messages" element={<MessageIndexPage />} />
                 <Route path=':any' element={null} />
             </Route>
         </Route>
