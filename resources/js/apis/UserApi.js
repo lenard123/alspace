@@ -24,3 +24,13 @@ export const fetchUser = async(userId) => {
     await requestCookie()
     return await Http.get(`/users/${userId}`);
 }
+
+export const fetchPendingUsers = async (page = 1) => {
+    await requestCookie()
+    return await Http.get(`/admin/users/pending?page=${page}`)
+}
+
+export const approveUser = async (pendingUserId) => {
+    await requestCookie()
+    return await Http.post(`/admin/users/pending/${pendingUserId}`)
+}

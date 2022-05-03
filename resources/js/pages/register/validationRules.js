@@ -1,5 +1,10 @@
 export default {
 
+    student_id: [
+        { required: true, message: 'Please enter your student number.' },
+        { pattern: /^[0-9]{8}-[A-Z]/, message: 'Please enter a valid student id' }
+    ],
+
     email: [
         { required: true, message: 'Please enter your email' },
         { type: 'email', message: 'Please enter a valid email' }

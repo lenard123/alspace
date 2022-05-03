@@ -13,9 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('alumni', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained()->primary();
-            $table->string('student_id')->unique();
+        Schema::create('pending_alumnis', function (Blueprint $table) {
+            $table->id();
+            $table->string('student_id');
+            $table->string('firstname');
+            $table->string('lastname');
+            $table->string('email')->unique();
+            $table->string('password');
             $table->string('course');
             $table->integer('year_graduated');
             $table->timestamps();
@@ -29,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('alumni');
+        Schema::dropIfExists('pending_alumnis');
     }
 };

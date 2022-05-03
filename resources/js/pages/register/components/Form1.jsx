@@ -20,7 +20,9 @@ const Form1 = ({ onFinish, className }) => {
                 label='Student Number'
                 name='student_id'
                 hasFeedback
-                rules={[{ required: true, message: 'Please enter your student number.' }]}
+                rules={rules.student_id}
+                tooltip='Example: 20001001-C'
+                {...(validationErrors.student_id)}
             >
                 <Input
                     type='text'

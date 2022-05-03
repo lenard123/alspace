@@ -15,6 +15,10 @@ export default {
 
     userPosts: (userId) => ['users', Number(userId), 'posts'],
 
+    pendingUsers: (page) => ['users', 'pending', {page}],
+
+    pendingUsersAll: ['users', 'pending'],
+
     conversations: ['conversations'],
 
     conversation: (threadId) => ['conversations', Number(threadId)],

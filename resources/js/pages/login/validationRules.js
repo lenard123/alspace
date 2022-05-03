@@ -1,12 +1,8 @@
 export default {
-    email: [
+    user_id: [
         {
             required: true,
-            message: 'Email is required.'
-        },
-        {
-            type: 'email',
-            message: 'Please enter a valid email.'
+            message: 'Please enter your email or student id'
         }
     ],
 

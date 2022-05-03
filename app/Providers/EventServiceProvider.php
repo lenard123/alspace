@@ -25,7 +25,6 @@ class EventServiceProvider extends ServiceProvider
         ],
 
         \App\Events\AlumniRegistered::class => [
-            \App\Listeners\SendWelcomeMessage::class,
         ],
 
     ];
