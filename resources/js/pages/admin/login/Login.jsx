@@ -4,6 +4,7 @@ import { Button, Form, Input } from "antd"
 import { useMutation, useQueryClient } from "react-query"
 import rules from "./rules"
 import { useState } from 'react'
+import { Link } from "react-router-dom"
 
 export default function Login()
 {
@@ -28,7 +29,7 @@ export default function Login()
         <div className='bg-gray-100 min-h-screen flex flex-col justify-center'>
 
             <div className='bg-white min-h-[320px] w-[320px] mx-auto shadow-lg p-8'>
-                <div className='flex justify-center items-center mb-8'>
+                <Link to='/' className='flex justify-center items-center mb-8'>
                     <img className='rounded mr-2' src='/images/logo.png' width={40}/>
                     <span 
                         className='text-base uppercase inline-block font-bold text-transparent '
@@ -38,7 +39,7 @@ export default function Login()
                             textFillColor: 'transparent'
                         }}
                     >Alspace Admin</span>
-                </div>
+                </Link>
 
                 <Form onFinish={handleSubmit}>
                     <Form.Item {...validationErrors.email} name='email' rules={rules.email} className="mb-4" hasFeedback>

@@ -6,7 +6,7 @@ import NewMessage from "./components/NewMessage";
 import useConversationQuery from "@/js/queries/useConversationQuery";
 import classNames from "classnames";
 
-export default function MessageLayout() {
+export default function MessageLayout({ admin = false }) {
     const [isOpen, setIsOpen] = useState(false)
     const { isLoading, data:conversations } = useConversationQuery()
 

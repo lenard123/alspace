@@ -3,7 +3,7 @@ import { fetchConversations } from "../apis/UserApi"
 import queryKeyFactory from "./queryKeyFactory"
 import useCurrentUserMutator from "./useCurrentUserMutator"
 
-const useConversationQuery = (options = {}) => {
+const useConversationQuery = (options = {}, admin = false) => {
     const queryClient = useQueryClient()
     const { updateUnreadThreadCount } = useCurrentUserMutator()
     return useQuery({

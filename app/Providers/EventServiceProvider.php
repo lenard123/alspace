@@ -27,6 +27,10 @@ class EventServiceProvider extends ServiceProvider
         \App\Events\AlumniRegistered::class => [
         ],
 
+        \App\Events\AlumniVerified::class => [
+            \App\Listeners\SendWelcomeMessage::class
+        ],
+
     ];
 
     /**

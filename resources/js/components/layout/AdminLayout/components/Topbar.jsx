@@ -20,11 +20,15 @@ export default function Topbar() {
 
             <div className='flex justify-end items-center gap-8'>
                 <nav className='flex gap-2'>
-                    <Button className='rounded-lg' icon={<BellOutlined className='text-gray-500' />} />
+                    
+                    <Link to='/admin/notifications'>
+                        <Button className='rounded-lg' icon={<BellOutlined className='text-gray-500' />} />
+                    </Link>
 
                     <Link to='/admin/messages'>
                         <Button className='rounded-lg' icon={<MessageOutlined className='text-gray-500' />} />
                     </Link>
+
                 </nav>
                 <TopbarAvatar />
             </div>
