@@ -5,12 +5,12 @@ import MessagesList from "./components/MessagesList";
 import WriteMessage from "./components/WriteMessage";
 import useThreadQuery from "@/js/queries/useThreadQuery";
 import { Helmet } from 'react-helmet'
-import useConversationMessagesQuery from "@/js/queries/useConversationMessagesQuery";
+import useThreadMessagesQuery from "@/js/queries/useThreadMessagesQuery";
 
 export default function ChatPage() {
     const { id } = useParams()
     const { data: thread, isLoading: loadingThread, } = useThreadQuery(id)
-    const { isLoading, data: messages, hasNextPage, fetchNextPage, isFetchingNextPage } = useConversationMessagesQuery(id, {
+    const { isLoading, data: messages, hasNextPage, fetchNextPage, isFetchingNextPage } = useThreadMessagesQuery(id, {
         staleTime: 0,
         enabled: !!thread?.id
     })
