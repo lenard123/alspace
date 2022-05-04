@@ -15,7 +15,7 @@ const useMessageReceivedListener = () => {
 
             //Push new message
             queryClient.setQueryData(
-                queryKeyFactory.conversationMessages(thread_id), 
+                queryKeyFactory.threadMessages(thread_id), 
                 prependPagination(newMessage)
             )
             

@@ -21,7 +21,7 @@ export default function WriteMessage({ id }) {
         () => sendMessage(id, content), 
         {
             onSuccess: (data) => {
-                queryClient.setQueryData(queryKeyFactory.conversationMessages(id), prependPagination(data))
+                queryClient.setQueryData(queryKeyFactory.threadMessages(id), prependPagination(data))
                 setContent('')
             }
         }

@@ -5,7 +5,7 @@ import queryKeyFactory from "./queryKeyFactory"
 
 const useThreadMessagesQuery = (threadId, options = {}) => {
     return useInfiniteQuery({
-        queryKey: queryKeyFactory.conversationMessages(threadId),
+        queryKey: queryKeyFactory.threadMessages(threadId),
         queryFn: ({pageParam = 1}) => fetchMessage(threadId, pageParam),
         getNextPageParam: (lastPage) => {
             if (lastPage.current_page < lastPage.last_page) {
