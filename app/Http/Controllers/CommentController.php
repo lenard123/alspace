@@ -20,7 +20,7 @@ class CommentController extends Controller
 
     public function replies(Comment $comment)
     {
-        return $comment->comments()->latest()->paginate(3);
+        return $comment->comments()->latest()->simplePaginate(10);
     }
 
     public function reply(Comment $comment, Request $request)

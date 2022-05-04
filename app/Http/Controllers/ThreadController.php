@@ -29,7 +29,7 @@ class ThreadController extends Controller
 
     public function messages(Thread $thread)
     {
-        return $thread->messages()->latest()->paginate(10);    
+        return $thread->messages()->latest()->simplePaginate(10);    
     }
 
     public function supportThreads()

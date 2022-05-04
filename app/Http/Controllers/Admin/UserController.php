@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     public function pending()
     {
-        return PendingAlumni::paginate(20);
+        return PendingAlumni::simplePaginate(20);
     }
 
     public function approve(PendingAlumni $alumni)
