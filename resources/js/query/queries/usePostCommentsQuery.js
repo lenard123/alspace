@@ -1,8 +1,8 @@
 import { useInfiniteQuery } from "react-query"
-import { PostApi } from "../apis"
-import { fetchReplies } from "../apis/CommentApi"
-import { fetchComments } from "../apis/PostApi"
-import queryKeyFactory from "./queryKeyFactory"
+import { PostApi } from "../../apis"
+import { fetchReplies } from "../../apis/CommentApi"
+import { fetchComments } from "../../apis/PostApi"
+import queryKeyFactory from "../queryKeyFactory"
 
 const getQueryKey = (type, id) => {
     if (type === 'comment') {

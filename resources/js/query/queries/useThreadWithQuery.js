@@ -1,6 +1,6 @@
 import { useQuery } from "react-query"
-import { fetchThreadWith } from "../apis/UserApi"
-import queryKeyFactory from "./queryKeyFactory"
+import { fetchThreadWith } from "../../apis/UserApi"
+import queryKeyFactory from "../queryKeyFactory"
 
 
 const useThreadWithQuery = (userId, options = {}) => {

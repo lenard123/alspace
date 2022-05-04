@@ -1,7 +1,7 @@
 import { likeComment, unlikeComment } from '@/js/apis/CommentApi'
 import { LoadingOutlined } from '@ant-design/icons'
 import { useMutation, useQueryClient } from 'react-query'
-import queryKeyFactory from '@/js/queries/queryKeyFactory'
+import queryKeyFactory from '@/js/query/queryKeyFactory'
 import { updatePagination } from '@/js/utils/paginationReducer'
 
 const toggleLike = ({id, is_like}) => {

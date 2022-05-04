@@ -1,8 +1,8 @@
 import { useInfiniteQuery } from "react-query"
-import { ObjectToArray } from "../utils"
-import queryKeyFactory from "./queryKeyFactory"
+import { ObjectToArray } from "../../utils"
+import queryKeyFactory from "../queryKeyFactory"
 import { map } from 'lodash'
-import { EventApi } from "../apis"
+import { EventApi } from "../../apis"
 
 export const filters = ObjectToArray({
     'active': 'Home',

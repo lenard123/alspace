@@ -1,7 +1,7 @@
 import { useInfiniteQuery, useQueryClient } from "react-query"
-import { PostApi } from "../apis"
-import { getPaginationPayload, getPayload } from "../utils"
-import queryKeyFactory from "./queryKeyFactory"
+import { PostApi } from "../../apis"
+import { getPaginationPayload, getPayload } from "../../utils"
+import queryKeyFactory from "../queryKeyFactory"
 
 const fetchPosts = ({ pageParam = 1 }) => {
     return PostApi.fetchPosts(pageParam)
@@ -19,11 +19,6 @@ const useFeedQuery = (options = {}) => {
                 return lastPage.current_page + 1
             }
             return undefined
-        },
-        onSuccess: (data) => {
-            data.forEach(post => {
-                queryClient.setQueryData(queryKeyFactory.post(post.id), post)
-            })
         },
         select: ({ pages }) => {
             return pages.map(page => {

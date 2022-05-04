@@ -21,3 +21,8 @@ export const readMessage = async(messageId) => {
     await requestCookie()
     return await Http.put(`/messages/${messageId}`)
 }
+
+export const fetchSupportThreads = async () => {
+    await requestCookie()
+    return await Http.get('/admin/threads');
+}

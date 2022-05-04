@@ -19,13 +19,15 @@ export default {
 
     pendingUsersAll: ['users', 'pending'],
 
-    conversations: ['conversations'],
+    threads: ['threads'],
 
-    conversation: (threadId) => ['conversations', Number(threadId)],
+    thread: (threadId) => ['thread', Number(threadId)],
 
-    conversationMessages: (threadId) => ['conversations', Number(threadId), 'messages'],
+    threadMessages: (threadId) => ['thread', Number(threadId), 'messages'],
 
     threadWith: (userId) => ['users', Number(userId), 'thread'],
+
+    supportThreads: ['threads', 'support'],
 
     events: (filter) => ['events', {filter}],
 

@@ -31,4 +31,16 @@ class ThreadController extends Controller
     {
         return $thread->messages()->latest()->paginate(10);    
     }
+
+    public function supportThreads()
+    {
+        $user = Auth::user();
+
+        return Thread::query()
+            ->where('is_support', 1)
+            ->orderBy('updated_at', 'desc')
+            ->get()
+            ->map(fn($thread) => $thread->loadInfo($user))
+            ->values();
+    }
 }

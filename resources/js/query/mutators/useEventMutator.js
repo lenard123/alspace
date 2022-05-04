@@ -1,5 +1,5 @@
 import { useQueryClient } from "react-query"
-import { updatePagination } from "../utils/paginationReducer"
+import { updatePagination } from "../../utils/paginationReducer"
 
 
 const useEventMutator = () => {

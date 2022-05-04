@@ -1,4 +1,4 @@
-import useMessageMutator from '@/js/queries/useMessageMutator'
+import useMessageMutator from '@/js/query/mutators/useMessageMutator'
 import { useEffect } from 'react'
 
 export default function MessageItem({message, own, reader})

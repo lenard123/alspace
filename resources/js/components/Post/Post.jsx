@@ -57,7 +57,7 @@ export default function Post({ post, children, onDelete }) {
 
             <div className='flex gap-2 text-lg py-1 border-t border-gray-300'>
                 <LikeButton post={post} />
-                <Link to={`/posts/${post.id}`} className='flex-grow py-1 text-center bg-white hover:bg-gray-100 rounded-full'><CommentOutlined /></Link>
+                <Link to={`/posts/${post.id}`} state={{post}} className='flex-grow py-1 text-center bg-white hover:bg-gray-100 rounded-full'><CommentOutlined /></Link>
             </div>
 
             {

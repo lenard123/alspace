@@ -1,17 +1,14 @@
 import Router from "./router/Router"
-import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from 'react-query/devtools'
 import { RecoilRoot } from "recoil";
+import ReactQueryProvider from "./query/ReactQueryProvider";
 
-const queryClient = new QueryClient()
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
+  <ReactQueryProvider>
     <RecoilRoot>
       <Router />
     </RecoilRoot>
-    <ReactQueryDevtools position='bottom-right' />
-  </QueryClientProvider>
+  </ReactQueryProvider>
 )
 
 export default App

@@ -3,14 +3,14 @@ import { useParams } from "react-router-dom";
 import ScrollToBottom from 'react-scroll-to-bottom'
 import MessagesList from "./components/MessagesList";
 import WriteMessage from "./components/WriteMessage";
-import useThreadQuery from "@/js/queries/useThreadQuery";
+import useThreadQuery from "@/js/query/queries/useThreadQuery";
 import { Helmet } from 'react-helmet'
-import useConversationMessagesQuery from "@/js/queries/useConversationMessagesQuery";
+import useThreadMessagesQuery from "@/js/query/queries/useThreadMessagesQuery";
 
 export default function ChatPage() {
     const { id } = useParams()
     const { data: thread, isLoading: loadingThread, } = useThreadQuery(id)
-    const { isLoading, data: messages, hasNextPage, fetchNextPage, isFetchingNextPage } = useConversationMessagesQuery(id, {
+    const { isLoading, data: messages, hasNextPage, fetchNextPage, isFetchingNextPage } = useThreadMessagesQuery(id, {
         staleTime: 0,
         enabled: !!thread?.id
     })
