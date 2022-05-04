@@ -12,7 +12,7 @@ class PostController extends Controller
 
     public function index()
     {
-        return Post::latest()->simplePaginate(2);
+        return Post::latest()->simplePaginate(10);
     }
 
     public function view(Post $post)
