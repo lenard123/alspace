@@ -1,5 +1,5 @@
 import { useQueryClient } from "react-query"
-import queryKeyFactory from "./queryKeyFactory"
+import queryKeyFactory from "../queryKeyFactory"
 import { map } from 'lodash'
 import useCurrentUserMutator from "./useCurrentUserMutator"
 
@@ -10,7 +10,7 @@ export default function useThreadMutator()
 
     const updateThread = (newThread) => {
         queryClient.setQueryData(
-            queryKeyFactory.conversations,
+            queryKeyFactory.threads,
             (data) => {
                 if (!data) return data;
                 return data.map(oldThread => {
@@ -44,12 +44,12 @@ export default function useThreadMutator()
     }
 
     const refetchIfNotExists = (threadId) => {
-        const threads = queryClient.getQueryData(queryKeyFactory.conversations)
+        const threads = queryClient.getQueryData(queryKeyFactory.threads)
         if (!threads) return;
 
         
         if (! map(threads, 'id').includes(threadId)) {
-            queryClient.invalidateQueries(queryKeyFactory.conversations)
+            queryClient.invalidateQueries(queryKeyFactory.threads)
         }
 
     }

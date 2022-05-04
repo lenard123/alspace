@@ -1,17 +1,17 @@
 import { useQuery } from "react-query"
-import { fetchThread } from "../apis/ThreadApi"
-import queryKeyFactory from "./queryKeyFactory"
-import { useConversation } from "./useConversationQuery"
-import useThreadMutator from "./useThreadMutator"
+import { fetchThread } from "../../apis/ThreadApi"
+import queryKeyFactory from "../queryKeyFactory"
+import { useThread } from "./useThreadsQuery"
+import useThreadMutator from "../mutators/useThreadMutator"
 
 
 const useThreadQuery = (threadId) => {
 
-    const data = useConversation(threadId)
+    const data = useThread(threadId)
     const { updateThread } = useThreadMutator()
 
     return useQuery({
-        queryKey: queryKeyFactory.conversation(threadId),
+        queryKey: queryKeyFactory.thread(threadId),
         queryFn: () => fetchThread(threadId),
         initialData: data,
         onSuccess: (thread) => {

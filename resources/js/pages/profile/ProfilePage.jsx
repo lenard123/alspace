@@ -1,9 +1,9 @@
-import useUserPostsQuery from "@/js/queries/useUserPostsQuery";
+import useUserPostsQuery from "@/js/query/queries/useUserPostsQuery";
 import { useParams } from "react-router";
 import { List } from "antd"
 import Post from "@/js/components/Post";
 import WritePost from "@/js/components/WritePost";
-import { useIsCurrentUser } from "@/js/queries/useCurrentUserQuery";
+import { useIsCurrentUser } from "@/js/query/queries/useCurrentUserQuery";
 
 export default function ProfilePage() 
 {

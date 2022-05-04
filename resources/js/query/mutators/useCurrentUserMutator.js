@@ -1,5 +1,5 @@
 import { useQueryClient } from "react-query"
-import queryKeyFactory from "./queryKeyFactory"
+import queryKeyFactory from "../queryKeyFactory"
 
 
 export default function useCurrentUserMutator()

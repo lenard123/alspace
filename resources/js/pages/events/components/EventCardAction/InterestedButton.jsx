@@ -4,7 +4,7 @@ import { Spin } from "antd";
 import { useMutation } from "react-query";
 import { useContext } from 'react'
 import { EventContext } from "../EventCard";
-import useEventMutator from "@/js/queries/useEventMutator";
+import useEventMutator from "@/js/query/mutators/useEventMutator";
 
 export default function InterestedButton()
 {

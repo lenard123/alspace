@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
-import { ThreadApi } from "../apis";
-import queryKeyFactory from "./queryKeyFactory";
+import { ThreadApi } from "../../apis";
+import queryKeyFactory from "../queryKeyFactory";
 
 export default function useSupportThreadsQuery()
 {

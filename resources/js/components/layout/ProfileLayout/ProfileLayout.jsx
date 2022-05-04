@@ -2,8 +2,8 @@ import { Avatar, Button, Image, Tabs } from "antd";
 import { Outlet, useParams } from "react-router";
 import Helmet from 'react-helmet'
 import SkeletonLayout from "./SkeletonLayout";
-import useUserQuery from "@/js/queries/useUserQuery";
-import { useIsCurrentUser } from "@/js/queries/useCurrentUserQuery";
+import useUserQuery from "@/js/query/queries/useUserQuery";
+import { useIsCurrentUser } from "@/js/query/queries/useCurrentUserQuery";
 import useTabs from "./useTabs";
 import { Link } from "react-router-dom";
 

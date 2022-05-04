@@ -1,5 +1,5 @@
 import { List, Skeleton, Spin } from "antd"
-import usePostCommentsQuery, { useCommentsQuery } from "@/js/queries/usePostCommentsQuery"
+import usePostCommentsQuery, { useCommentsQuery } from "@/js/query/queries/usePostCommentsQuery"
 import { LoadingOutlined } from "@ant-design/icons"
 import WriteComment from "@/js/components/WriteComment"
 import Comment from "../Comment"

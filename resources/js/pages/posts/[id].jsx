@@ -1,14 +1,15 @@
 import Post from "@/js/components/Post"
-import usePostQuery from "@/js/queries/usePostQuery"
+import usePostQuery from "@/js/query/queries/usePostQuery"
 import { Skeleton } from "antd"
-import { useNavigate, useParams } from "react-router-dom"
+import { useLocation, useNavigate, useParams } from "react-router-dom"
 import { Helmet } from 'react-helmet'
 import CommentsList from "@/js/components/CommentsList"
 
 
 export default function ViewPostPage() {
     const { id } = useParams()
-    const { isLoading, data, isSuccess } = usePostQuery(id)
+    const { state } = useLocation()
+    const { isLoading, data, isSuccess } = usePostQuery(id, state.post)
     const navigate = useNavigate()
 
     const onDelete = () => {

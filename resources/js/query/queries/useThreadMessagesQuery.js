@@ -1,11 +1,11 @@
 import { useInfiniteQuery } from "react-query"
-import { fetchMessage } from "../apis/ThreadApi"
-import queryKeyFactory from "./queryKeyFactory"
+import { fetchMessage } from "../../apis/ThreadApi"
+import queryKeyFactory from "../queryKeyFactory"
 
 
-const useConversationMessagesQuery = (threadId, options = {}) => {
+const useThreadMessagesQuery = (threadId, options = {}) => {
     return useInfiniteQuery({
-        queryKey: queryKeyFactory.conversationMessages(threadId),
+        queryKey: queryKeyFactory.threadMessages(threadId),
         queryFn: ({pageParam = 1}) => fetchMessage(threadId, pageParam),
         getNextPageParam: (lastPage) => {
             if (lastPage.current_page < lastPage.last_page) {
@@ -22,4 +22,4 @@ const useConversationMessagesQuery = (threadId, options = {}) => {
     })
 }
 
-export default useConversationMessagesQuery
+export default useThreadMessagesQuery

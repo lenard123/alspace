@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Dropdown, Avatar } from 'antd'
 import UserAvatarMenu from './UserAvatarMenu'
-import { useCurrentUser } from '@/js/queries/useCurrentUserQuery'
+import { useCurrentUser } from '@/js/query/queries/useCurrentUserQuery'
 
 export default function UserAvatar() {
 

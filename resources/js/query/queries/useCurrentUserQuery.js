@@ -1,6 +1,6 @@
 import { useQuery, useQueryClient } from "react-query"
-import { fetchCurrentUser } from "../apis/AuthApi"
-import queryKeyFactory from "./queryKeyFactory"
+import { fetchCurrentUser } from "../../apis/AuthApi"
+import queryKeyFactory from "../queryKeyFactory"
 
 const useCurrentUserQuery = () => {
     const queryClient = useQueryClient()

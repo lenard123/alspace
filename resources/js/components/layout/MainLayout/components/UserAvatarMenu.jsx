@@ -1,7 +1,7 @@
 import { Avatar, Divider, Menu } from 'antd'
 import { LogoutOutlined, QuestionCircleOutlined, SettingOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
-import { useCurrentUser } from '@/js/queries/useCurrentUserQuery'
+import { useCurrentUser } from '@/js/query/queries/useCurrentUserQuery'
 import { useLogout } from '@/js/hooks'
 
 const UserAvatarMenu = ({ setIsOpen }) => {

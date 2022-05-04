@@ -1,4 +1,4 @@
-import { useCurrentUser } from "@/js/queries/useCurrentUserQuery";
+import { useCurrentUser } from "@/js/query/queries/useCurrentUserQuery";
 import { Navigate, Outlet } from "react-router-dom";
 
 

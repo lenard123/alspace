@@ -1,6 +1,6 @@
 import Http, { requestCookie } from '@/js/utils/Http'
 
-export const fetchConversations = async() => {
+export const fetchThreads = async() => {
     await requestCookie()
     return await Http.get('/user/conversations')
 }

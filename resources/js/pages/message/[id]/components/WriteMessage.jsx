@@ -1,6 +1,6 @@
 import { sendMessage } from "@/js/apis/ThreadApi";
-import queryKeyFactory from "@/js/queries/queryKeyFactory";
-import { useCurrentUser } from "@/js/queries/useCurrentUserQuery";
+import queryKeyFactory from "@/js/query/queryKeyFactory";
+import { useCurrentUser } from "@/js/query/queries/useCurrentUserQuery";
 import { prependPagination } from "@/js/utils/paginationReducer";
 import { SendOutlined } from "@ant-design/icons";
 import { Avatar, Button, Comment, Input } from "antd";
@@ -21,7 +21,7 @@ export default function WriteMessage({ id }) {
         () => sendMessage(id, content), 
         {
             onSuccess: (data) => {
-                queryClient.setQueryData(queryKeyFactory.conversationMessages(id), prependPagination(data))
+                queryClient.setQueryData(queryKeyFactory.threadMessages(id), prependPagination(data))
                 setContent('')
             }
         }

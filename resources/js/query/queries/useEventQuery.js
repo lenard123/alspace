@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
-import { EventApi } from "../apis";
-import queryKeyFactory from "./queryKeyFactory";
+import { EventApi } from "../../apis";
+import queryKeyFactory from "../queryKeyFactory";
 
 
 export default function useEventQuery(eventId) {

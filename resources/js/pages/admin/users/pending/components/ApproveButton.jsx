@@ -1,5 +1,5 @@
 import { UserApi } from "@/js/apis";
-import queryKeyFactory from "@/js/queries/queryKeyFactory";
+import queryKeyFactory from "@/js/query/queryKeyFactory";
 import { Button, message, Popconfirm } from "antd";
 import { useMutation, useQueryClient } from "react-query";
 import { useState } from 'react'

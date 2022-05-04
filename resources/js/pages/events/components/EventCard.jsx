@@ -1,5 +1,5 @@
 import useDates from "@/js/hooks/useDates";
-import { useCurrentUser } from "@/js/queries/useCurrentUserQuery";
+import { useCurrentUser } from "@/js/query/queries/useCurrentUserQuery";
 import { Image } from "antd";
 import { createContext } from 'react'
 import { Link } from "react-router-dom";
