@@ -7,7 +7,7 @@ import { useCurrentUser } from '@/js/query/queries/useCurrentUserQuery'
 import { useQueryClient } from 'react-query'
 import queryKeyFactory from '@/js/query/queryKeyFactory'
 import { removeFromPagination } from '@/js/utils/paginationReducer'
-import usePostMutator from '@/js/query/usePostMutator'
+import usePostMutator from '@/js/query/mutators/usePostMutator'
 
 
 const usePostLogic = (post, onDelete) => {

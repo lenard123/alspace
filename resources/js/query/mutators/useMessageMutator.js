@@ -1,5 +1,5 @@
 import { useMutation } from "react-query"
-import { ThreadApi } from "../apis"
+import { ThreadApi } from "../../apis"
 
 
 export default function useMessageMutator()
