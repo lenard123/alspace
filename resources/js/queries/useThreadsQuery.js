@@ -7,7 +7,7 @@ const useThreadsQuery = (options = {}) => {
     const queryClient = useQueryClient()
     const { updateUnreadThreadCount } = useCurrentUserMutator()
     return useQuery({
-        queryKey: queryKeyFactory.conversations,
+        queryKey: queryKeyFactory.threads,
         queryFn: fetchConversations,
         onSuccess: (data) => {
 

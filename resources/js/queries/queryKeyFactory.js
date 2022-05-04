@@ -19,7 +19,7 @@ export default {
 
     pendingUsersAll: ['users', 'pending'],
 
-    conversations: ['conversations'],
+    threads: ['threads'],
 
     conversation: (threadId) => ['conversations', Number(threadId)],
 
