@@ -3,23 +3,25 @@ import queryKeyFactory from "../queryKeyFactory"
 import { map } from 'lodash'
 import useCurrentUserMutator from "./useCurrentUserMutator"
 
+const updater = (newThread) => {
+    return (data) => {
+        if (!data) return data
+        return data.map(oldThread => {
+            if (typeof newThread === 'function') return newThread(oldThread)
+            if (newThread.id === oldThread.id) return newThread
+            return oldThread
+        })
+    }
+}
+
 export default function useThreadMutator()
 {
     const queryClient = useQueryClient()
     const { updateUnreadThreadCount } = useCurrentUserMutator()
 
     const updateThread = (newThread) => {
-        queryClient.setQueryData(
-            queryKeyFactory.threads,
-            (data) => {
-                if (!data) return data;
-                return data.map(oldThread => {
-                    if(typeof newThread === 'function') return newThread(oldThread)
-                    if (newThread.id === oldThread.id) return newThread
-                    return oldThread
-                })
-            }
-        )
+        queryClient.setQueryData(queryKeyFactory.threads, updater(newThread))
+        queryClient.setQueryData(queryKeyFactory.supportThreads, updater(newThread))
     }
 
     const incrementUnreadCount = (threadId) => {

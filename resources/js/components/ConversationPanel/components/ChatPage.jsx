@@ -1,13 +1,13 @@
 import { Button, PageHeader, Spin } from "antd";
 import { useParams } from "react-router-dom";
 import ScrollToBottom from 'react-scroll-to-bottom'
-import MessagesList from "./components/MessagesList";
-import WriteMessage from "./components/WriteMessage";
+import MessagesList from "./MessagesList";
+import WriteMessage from "./WriteMessage";
 import useThreadQuery from "@/js/query/queries/useThreadQuery";
 import { Helmet } from 'react-helmet'
 import useThreadMessagesQuery from "@/js/query/queries/useThreadMessagesQuery";
 
-export default function ChatPage() {
+export default function ChatPage({ admin = false }) {
     const { id } = useParams()
     const { data: thread, isLoading: loadingThread, } = useThreadQuery(id)
     const { isLoading, data: messages, hasNextPage, fetchNextPage, isFetchingNextPage } = useThreadMessagesQuery(id, {
@@ -45,7 +45,7 @@ export default function ChatPage() {
                         </ScrollToBottom>
                 }
 
-                <WriteMessage id={id} />
+                <WriteMessage id={id} admin={admin}/>
 
             </div>
         </>

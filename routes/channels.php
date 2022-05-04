@@ -22,6 +22,10 @@ Broadcast::channel('chatroom', function ($user) {
     return $user;
 });
 
+Broadcast::channel('admin', function ($user) {
+    return $user->is_admin;
+});
+
 Broadcast::channel('thread.{thread_id}', function ($user, $thread_id) {
     $thread = Thread::find($thread_id);
     return $thread->members()->where('id', $user->id)->exists();

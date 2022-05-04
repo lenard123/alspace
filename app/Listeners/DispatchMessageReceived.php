@@ -4,10 +4,14 @@ namespace App\Listeners;
 
 use App\Events\MessageReceived;
 use App\Events\MessageSent;
+use App\Events\SupportMessageReceived;
+use App\Models\Message;
+use App\Models\Thread;
+use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class DispatchMessageReceived
+class DispatchMessageReceived implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -28,15 +32,23 @@ class DispatchMessageReceived
     public function handle(MessageSent $event)
     {
         $message = $event->message;
-        $sender_id = $message->user_id;
+        $thread = $message->thread;
 
-        //Get all members on the thread and exclude the sender
-        $members = $message->thread->members()->where('user_id', '<>', $sender_id)->get();
+        $this->broadCastToMembers($thread, $message);
+        $this->broadCastToAdmins($thread, $message);
+    }
 
-        //Dispatch MessageReceived event
-        foreach($members as $member)
-        {
-            MessageReceived::dispatch($member->id, $message);
-        }
+    private function broadCastToAdmins(Thread $thread, Message $message)
+    {
+        if (! $thread->is_support) return;
+        SupportMessageReceived::dispatch($message);
+    }
+
+    private function broadCastToMembers(Thread $thread, Message $message)
+    {
+        $members_id = $thread->members()->pluck('id');
+        $members_id->each(function($id) use ($message) {
+            MessageReceived::dispatch($id, $message);
+        });
     }
 }
