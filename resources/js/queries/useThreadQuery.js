@@ -1,7 +1,7 @@
 import { useQuery } from "react-query"
 import { fetchThread } from "../apis/ThreadApi"
 import queryKeyFactory from "./queryKeyFactory"
-import { useConversation } from "./useConversationQuery"
+import { useConversation } from "./useThreadsQuery"
 import useThreadMutator from "./useThreadMutator"
 
 

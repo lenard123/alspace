@@ -2,13 +2,10 @@ import { message } from "antd"
 import { useQueryClient } from "react-query"
 import useSocket from "../hooks/useSocket"
 import queryKeyFactory from "../queries/queryKeyFactory"
-import useConversationQuery from "../queries/useConversationQuery"
 import { prependPagination } from "../utils/paginationReducer"
-import { map } from 'lodash'
 import useThreadMutator from "../queries/useThreadMutator"
 
 const useMessageReceivedListener = () => {
-    const { data:conversations, refetch } = useConversationQuery({ enabled: false })
     const { incrementUnreadCount, refetchIfNotExists } = useThreadMutator()
     const queryClient = useQueryClient()
     useSocket({

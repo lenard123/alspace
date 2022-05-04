@@ -3,7 +3,7 @@ import { fetchConversations } from "../apis/UserApi"
 import queryKeyFactory from "./queryKeyFactory"
 import useCurrentUserMutator from "./useCurrentUserMutator"
 
-const useConversationQuery = (options = {}) => {
+const useThreadsQuery = (options = {}) => {
     const queryClient = useQueryClient()
     const { updateUnreadThreadCount } = useCurrentUserMutator()
     return useQuery({
@@ -32,8 +32,8 @@ const useConversationQuery = (options = {}) => {
 }
 
 export const useConversation = (threadId) => {
-    const { data } = useConversationQuery({ enabled: false })
+    const { data } = useThreadsQuery({ enabled: false })
     return data?.find(thread => thread.id == threadId)
 }
 
-export default useConversationQuery
+export default useThreadsQuery
