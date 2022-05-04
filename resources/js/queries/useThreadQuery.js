@@ -11,7 +11,7 @@ const useThreadQuery = (threadId) => {
     const { updateThread } = useThreadMutator()
 
     return useQuery({
-        queryKey: queryKeyFactory.conversation(threadId),
+        queryKey: queryKeyFactory.thread(threadId),
         queryFn: () => fetchThread(threadId),
         initialData: data,
         onSuccess: (thread) => {

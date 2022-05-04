@@ -21,7 +21,7 @@ export default {
 
     threads: ['threads'],
 
-    conversation: (threadId) => ['conversations', Number(threadId)],
+    thread: (threadId) => ['thread', Number(threadId)],
 
     conversationMessages: (threadId) => ['conversations', Number(threadId), 'messages'],
 
