@@ -67,7 +67,7 @@ class EventController extends Controller
                 })->where('start_at', '>=', $today);
             })
             ->orderBy('start_at', 'ASC')
-            ->paginate(10);
+            ->simplePaginate(10);
 
         return $event;
     }

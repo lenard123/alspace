@@ -24,7 +24,7 @@ export const useCommentsQuery = (type, id) => {
         ({ pageParam = 1 }) => fetcher(type, id, pageParam),
         {
             getNextPageParam: (lastPage) => {
-                if (lastPage.current_page < lastPage.last_page) {
+                if (lastPage.next_page_url) {
                     return lastPage.current_page + 1
                 }
                 return undefined
@@ -44,7 +44,7 @@ const usePostCommentsQuery = (postId) => {
         ({ pageParam = 1 }) => PostApi.fetchComments(postId, pageParam),
         {
             getNextPageParam: (lastPage) => {
-                if (lastPage.current_page < lastPage.last_page) {
+                if (lastPage.next_page_url) {
                     return lastPage.current_page + 1
                 }
                 return undefined

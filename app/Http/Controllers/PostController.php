@@ -22,7 +22,7 @@ class PostController extends Controller
 
     public function comments(Post $post)
     {
-        return $post->comments()->latest()->paginate(5);
+        return $post->comments()->latest()->simplePaginate(10);
     }
 
     public function create(PostRequest $request)
