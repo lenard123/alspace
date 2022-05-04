@@ -4,10 +4,14 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import Topbar from "./components/Topbar";
 import { createContext, useState } from "react"
+import useSupportMessageReceivedListener from "@/js/listeners/useSupportMessageReceivedListener";
 
 export const AdminLayoutContext = createContext()
 
 export default function AdminLayout() {
+
+    useSupportMessageReceivedListener()
+
     const [collapsed, setCollapsed] = useState(false)
     const [broken, setBroken] = useState(false)
 

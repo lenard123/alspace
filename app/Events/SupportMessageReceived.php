@@ -26,7 +26,6 @@ class SupportMessageReceived implements ShouldBroadcast
     {
         $this->message = $message;
         $this->dontBroadcastToCurrentUser();
-        Log::info('Support Message Received', compact('message'));
     }
 
     /**
