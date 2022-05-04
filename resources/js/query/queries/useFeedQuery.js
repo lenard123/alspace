@@ -15,7 +15,7 @@ const useFeedQuery = (options = {}) => {
         queryFn: fetchPosts, 
         initialData: getPaginationPayload(),
         getNextPageParam: (lastPage) => {
-            if (lastPage.current_page < lastPage.last_page) {
+            if (lastPage.next_page_url) {
                 return lastPage.current_page + 1
             }
             return undefined
