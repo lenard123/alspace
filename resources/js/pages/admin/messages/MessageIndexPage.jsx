@@ -2,7 +2,8 @@ import ConversationPanel from "@/js/components/ConversationPanel";
 import useSupportThreadsQuery from "@/js/query/queries/useSupportThreadsQuery";
 import { Avatar, List } from "antd";
 import classNames from "classnames";
-import { Link } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
+import ChatPage from "@/js/components/ConversationPanel/components/ChatPage";
 
 export default function MessageIndexPage()
 {
@@ -24,6 +25,13 @@ export default function MessageIndexPage()
                     </Link>
                 </List.Item>
             )}
-        />
+            >
+            <Routes>
+                <Route index element={
+                    <span>index</span>
+                }/>
+                <Route path=":id" element={<ChatPage admin/>} />
+            </Routes>
+        </ConversationPanel>
     )
 }

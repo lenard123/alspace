@@ -20,8 +20,8 @@ const AdminRoutes = (
             <Route path='' element={<AdminLayout />}>
                 <Route index element={<Dashboard />} />
                 <Route path="users/pending" element={<PendingUsers />} />
-                <Route path="messages" element={<MessageIndexPage />} />
-                <Route path=':any' element={null} />
+                <Route path="messages/*" element={<MessageIndexPage />} />
+                <Route path='*' element={null} />
             </Route>
         </Route>
 

@@ -7,9 +7,7 @@ import { Avatar, Button, Comment, Input } from "antd";
 import { useState} from 'react'
 import { useMutation, useQueryClient } from "react-query";
 
-export default function WriteMessage({ id }) {
-
-    // const { execute, isLoading, status, data } = useApi(sendMessage)
+export default function WriteMessage({ id, admin = false }) {
 
     const { avatarUrl } = useCurrentUser()
 
@@ -26,11 +24,6 @@ export default function WriteMessage({ id }) {
             }
         }
     )
-    // useEffect(() => {
-    //     if (status === 'success') {
-    //         setContent('')
-    //     }
-    // }, [status])
 
     const handleSubmit = () => {
         if (isLoading || content.trim().length <= 0) return;
@@ -41,7 +34,7 @@ export default function WriteMessage({ id }) {
     return (
         <Comment
             className='mx-4'
-            avatar={<Avatar src={avatarUrl} />}
+            avatar={<Avatar src={admin ? '/images/logo.png' : avatarUrl} />}
             content={
                 <Input
                     value={content}
