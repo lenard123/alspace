@@ -1,5 +1,5 @@
 import Topbar from "@/js/components/layout/MainLayout/components/Topbar";
-import { useCurrentUser } from "@/js/query/useCurrentUserQuery";
+import { useCurrentUser } from "@/js/query/queries/useCurrentUserQuery";
 import { Alert, Button, Carousel } from "antd";
 import { Link } from "react-router-dom";
 import Helmet from 'react-helmet'

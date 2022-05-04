@@ -1,4 +1,4 @@
-import { useCurrentUser } from "../query/useCurrentUserQuery"
+import { useCurrentUser } from "../query/queries/useCurrentUserQuery"
 import { Echo } from "../utils"
 import { useEffect, useCallback } from 'react'
 

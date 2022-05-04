@@ -1,7 +1,7 @@
 import { useQuery, useQueryClient } from "react-query"
-import { fetchThreads } from "../apis/UserApi"
-import queryKeyFactory from "./queryKeyFactory"
-import useCurrentUserMutator from "./useCurrentUserMutator"
+import { fetchThreads } from "../../apis/UserApi"
+import queryKeyFactory from "../queryKeyFactory"
+import useCurrentUserMutator from "../useCurrentUserMutator"
 
 const useThreadsQuery = (options = {}) => {
     const queryClient = useQueryClient()

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Avatar, Input, Button, message } from 'antd'
 import { createPost } from '@/js/apis/PostApi'
-import { useCurrentUser } from '@/js/query/useCurrentUserQuery'
+import { useCurrentUser } from '@/js/query/queries/useCurrentUserQuery'
 import { useMutation, useQueryClient } from 'react-query'
 import queryKeyFactory from '@/js/query/queryKeyFactory'
 import { prependPagination } from '@/js/utils/paginationReducer'

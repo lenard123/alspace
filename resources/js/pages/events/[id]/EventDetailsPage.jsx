@@ -2,7 +2,7 @@ import { Image, Skeleton, Tabs } from "antd";
 import useTab from './useTab'
 import EventDetailsPageAbout from "./EventDetailsPageAbout";
 import EventDetailsPageParticipants from "./EventDetailsPageParticipants";
-import useEventQuery from "@/js/query/useEventQuery";
+import useEventQuery from "@/js/query/queries/useEventQuery";
 import { useParams } from "react-router";
 import { fallbackImage } from "@/js/utils";
 import useDates from "@/js/hooks/useDates";

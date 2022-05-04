@@ -1,6 +1,6 @@
 import WritePost from '@/js/components/WritePost'
 import { Helmet } from 'react-helmet'
-import useFeedQuery from '@/js/query/useFeedQuery'
+import useFeedQuery from '@/js/query/queries/useFeedQuery'
 import { Button, List } from 'antd'
 import Post from '@/js/components/Post'
 

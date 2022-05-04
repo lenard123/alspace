@@ -1,7 +1,7 @@
 import { useInfiniteQuery, useQueryClient } from "react-query"
-import { PostApi } from "../apis"
-import { getPaginationPayload, getPayload } from "../utils"
-import queryKeyFactory from "./queryKeyFactory"
+import { PostApi } from "../../apis"
+import { getPaginationPayload, getPayload } from "../../utils"
+import queryKeyFactory from "../queryKeyFactory"
 
 const fetchPosts = ({ pageParam = 1 }) => {
     return PostApi.fetchPosts(pageParam)

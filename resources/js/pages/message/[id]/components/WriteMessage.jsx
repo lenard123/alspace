@@ -1,6 +1,6 @@
 import { sendMessage } from "@/js/apis/ThreadApi";
 import queryKeyFactory from "@/js/query/queryKeyFactory";
-import { useCurrentUser } from "@/js/query/useCurrentUserQuery";
+import { useCurrentUser } from "@/js/query/queries/useCurrentUserQuery";
 import { prependPagination } from "@/js/utils/paginationReducer";
 import { SendOutlined } from "@ant-design/icons";
 import { Avatar, Button, Comment, Input } from "antd";

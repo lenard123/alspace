@@ -1,8 +1,8 @@
 import { useQuery } from "react-query"
-import { fetchThread } from "../apis/ThreadApi"
-import queryKeyFactory from "./queryKeyFactory"
+import { fetchThread } from "../../apis/ThreadApi"
+import queryKeyFactory from "../queryKeyFactory"
 import { useThread } from "./useThreadsQuery"
-import useThreadMutator from "./useThreadMutator"
+import useThreadMutator from "../useThreadMutator"
 
 
 const useThreadQuery = (threadId) => {

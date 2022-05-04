@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from "react-query"
-import { fetchMessage } from "../apis/ThreadApi"
-import queryKeyFactory from "./queryKeyFactory"
+import { fetchMessage } from "../../apis/ThreadApi"
+import queryKeyFactory from "../queryKeyFactory"
 
 
 const useThreadMessagesQuery = (threadId, options = {}) => {

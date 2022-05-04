@@ -3,7 +3,7 @@ import { Avatar, Button, List } from "antd";
 import { Link, Outlet } from "react-router-dom";
 import { useState } from 'react'
 import NewMessage from "./components/NewMessage";
-import useThreadsQuery from "@/js/query/useThreadsQuery";
+import useThreadsQuery from "@/js/query/queries/useThreadsQuery";
 import classNames from "classnames";
 import ConversationPanel from "../../ConversationPanel";
 

@@ -1,4 +1,4 @@
-import { useCurrentUser } from "@/js/query/useCurrentUserQuery"
+import { useCurrentUser } from "@/js/query/queries/useCurrentUserQuery"
 import MessageItem from './MessageItem'
 import useMessageMutator from '@/js/query/useMessageMutator'
 

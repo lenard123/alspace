@@ -1,7 +1,7 @@
 import { useQueryClient } from "react-query"
 import { removeFromPagination, updatePagination } from "../utils/paginationReducer"
 import queryKeyFactory from "./queryKeyFactory"
-import useFeedQuery from "./useFeedQuery"
+import useFeedQuery from "./queries/useFeedQuery"
 import { map } from 'lodash'
 
 const usePostMutator = () => {
