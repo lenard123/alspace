@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from "react-query"
-import { fetchConversations } from "../apis/UserApi"
+import { fetchThreads } from "../apis/UserApi"
 import queryKeyFactory from "./queryKeyFactory"
 import useCurrentUserMutator from "./useCurrentUserMutator"
 
@@ -8,7 +8,7 @@ const useThreadsQuery = (options = {}) => {
     const { updateUnreadThreadCount } = useCurrentUserMutator()
     return useQuery({
         queryKey: queryKeyFactory.threads,
-        queryFn: fetchConversations,
+        queryFn: fetchThreads,
         onSuccess: (data) => {
 
             if (!data) return
@@ -31,7 +31,7 @@ const useThreadsQuery = (options = {}) => {
     })
 }
 
-export const useConversation = (threadId) => {
+export const useThread = (threadId) => {
     const { data } = useThreadsQuery({ enabled: false })
     return data?.find(thread => thread.id == threadId)
 }
