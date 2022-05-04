@@ -1,6 +1,6 @@
-import { useCurrentUser } from "@/js/queries/useCurrentUserQuery"
+import { useCurrentUser } from "@/js/query/useCurrentUserQuery"
 import MessageItem from './MessageItem'
-import useMessageMutator from '@/js/queries/useMessageMutator'
+import useMessageMutator from '@/js/query/useMessageMutator'
 
 export default function MessagesList({messages}) {
 

@@ -1,7 +1,7 @@
 import { commentOnPost } from "@/js/apis/PostApi"
 import { useMutation, useQueryClient } from "react-query"
 import { useState } from 'react'
-import queryKeyFactory from "@/js/queries/queryKeyFactory"
+import queryKeyFactory from "@/js/query/queryKeyFactory"
 import { prependPagination } from "@/js/utils/paginationReducer"
 import { replyOnComment } from "@/js/apis/CommentApi"
 

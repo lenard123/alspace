@@ -1,6 +1,6 @@
 import { Spin } from "antd";
 import { Navigate } from "react-router-dom";
-import useThreadWithQuery from "@/js/queries/useThreadWithQuery";
+import useThreadWithQuery from "@/js/query/useThreadWithQuery";
 
 export default function MessageIndexSearchUserPage({userId})
 {

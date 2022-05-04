@@ -1,6 +1,6 @@
 import { SendOutlined } from "@ant-design/icons";
 import { Avatar, Button, Comment, Input } from "antd";
-import { useCurrentUser } from '@/js/queries/useCurrentUserQuery';
+import { useCurrentUser } from '@/js/query/useCurrentUserQuery';
 import useWriteComment from './useWriteComment';
 
 

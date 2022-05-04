@@ -1,5 +1,5 @@
 import PageLoading from "@/js/components/PageLoading";
-import useCurrentUserQuery, { useCurrentUser } from "@/js/queries/useCurrentUserQuery";
+import useCurrentUserQuery, { useCurrentUser } from "@/js/query/useCurrentUserQuery";
 import { Navigate, Outlet } from "react-router-dom";
 
 

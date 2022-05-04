@@ -1,5 +1,5 @@
 import ConversationPanel from "@/js/components/ConversationPanel";
-import useSupportThreadsQuery from "@/js/queries/useSupportThreadsQuery";
+import useSupportThreadsQuery from "@/js/query/useSupportThreadsQuery";
 import { Avatar, List } from "antd";
 import classNames from "classnames";
 import { Link } from "react-router-dom";

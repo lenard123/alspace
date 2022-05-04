@@ -5,7 +5,7 @@ import { Dropdown, Spin, Menu } from "antd";
 import { useMutation } from "react-query";
 import { addToGoing, addToInterested, cancelParticipation } from "@/js/apis/EventApi";
 import { LoadingOutlined } from "@ant-design/icons";
-import useEventMutator from "@/js/queries/useEventMutator";
+import useEventMutator from "@/js/query/useEventMutator";
 import classNames from "classnames";
 
 const action = (type, id) => {

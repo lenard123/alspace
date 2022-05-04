@@ -1,5 +1,5 @@
 import { useLogout } from "@/js/hooks"
-import { useCurrentUser } from "@/js/queries/useCurrentUserQuery"
+import { useCurrentUser } from "@/js/query/useCurrentUserQuery"
 import { LogoutOutlined } from "@ant-design/icons"
 import { Avatar, Button, Dropdown, Menu } from "antd"
 

@@ -1,4 +1,4 @@
-import usePendingUsersQuery from "@/js/queries/usePendingUsersQuery";
+import usePendingUsersQuery from "@/js/query/usePendingUsersQuery";
 import { Breadcrumb, Button, PageHeader, Popconfirm, Space, Table } from "antd";
 import BreadcrumbItem from "antd/lib/breadcrumb/BreadcrumbItem";
 import Column from "antd/lib/table/Column";

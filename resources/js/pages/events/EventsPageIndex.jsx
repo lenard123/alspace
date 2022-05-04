@@ -5,7 +5,7 @@ import AddEventModal from "./components/AddEventModal"
 import { useState } from 'react'
 import useCurrentFilter from "./useCurrentFilter"
 import FilterLink from "./components/FilterLink"
-import { filters } from "@/js/queries/useEventsQuery"
+import { filters } from "@/js/query/useEventsQuery"
 import EventList from "./components/EventList"
 
 

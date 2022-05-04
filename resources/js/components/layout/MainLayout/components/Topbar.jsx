@@ -5,7 +5,7 @@ import { BriefcaseOutlined } from '@/js/components/icons'
 import NavLink from './NavLink'
 import UserAvatar from './UserAvatar'
 import useDrawerVisibleState from '../useDrawerVisibleState'
-import { useCurrentUser } from '@/js/queries/useCurrentUserQuery'
+import { useCurrentUser } from '@/js/query/useCurrentUserQuery'
 
 export default function Topbar() {
 

@@ -1,5 +1,5 @@
 import Post from "@/js/components/Post"
-import usePostQuery from "@/js/queries/usePostQuery"
+import usePostQuery from "@/js/query/usePostQuery"
 import { Skeleton } from "antd"
 import { useNavigate, useParams } from "react-router-dom"
 import { Helmet } from 'react-helmet'

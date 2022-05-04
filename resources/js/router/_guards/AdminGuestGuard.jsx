@@ -1,4 +1,4 @@
-import { useCurrentUser } from "@/js/queries/useCurrentUserQuery"
+import { useCurrentUser } from "@/js/query/useCurrentUserQuery"
 import { Navigate, Outlet } from "react-router-dom"
 
 export default function AdminGuestGuard()

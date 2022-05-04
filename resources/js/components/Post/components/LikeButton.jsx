@@ -2,7 +2,7 @@ import { Spin } from "antd"
 import { LikeFilled, LikeOutlined } from "@ant-design/icons"
 import { likePost, unlikePost } from "@/js/apis/PostApi"
 import { useMutation } from 'react-query'
-import usePostMutator from '@/js/queries/usePostMutator'
+import usePostMutator from '@/js/query/usePostMutator'
 
 const toggleLike = ({id, is_like}) => {   
     return is_like ? unlikePost(id) : likePost(id)

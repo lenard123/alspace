@@ -1,9 +1,9 @@
 import { message } from "antd"
 import { useQueryClient } from "react-query"
 import useSocket from "../hooks/useSocket"
-import queryKeyFactory from "../queries/queryKeyFactory"
+import queryKeyFactory from "../query/queryKeyFactory"
 import { prependPagination } from "../utils/paginationReducer"
-import useThreadMutator from "../queries/useThreadMutator"
+import useThreadMutator from "../query/useThreadMutator"
 
 const useMessageReceivedListener = () => {
     const { incrementUnreadCount, refetchIfNotExists } = useThreadMutator()

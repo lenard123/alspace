@@ -3,11 +3,11 @@ import { ExclamationCircleOutlined } from "@ant-design/icons"
 import { Modal } from "antd"
 import * as PostApi from '@/js/apis/PostApi'
 import useApi from '@/js/hooks/useApi'
-import { useCurrentUser } from '@/js/queries/useCurrentUserQuery'
+import { useCurrentUser } from '@/js/query/useCurrentUserQuery'
 import { useQueryClient } from 'react-query'
-import queryKeyFactory from '@/js/queries/queryKeyFactory'
+import queryKeyFactory from '@/js/query/queryKeyFactory'
 import { removeFromPagination } from '@/js/utils/paginationReducer'
-import usePostMutator from '@/js/queries/usePostMutator'
+import usePostMutator from '@/js/query/usePostMutator'
 
 
 const usePostLogic = (post, onDelete) => {

@@ -1,4 +1,4 @@
-import useEventsQuery from "@/js/queries/useEventsQuery";
+import useEventsQuery from "@/js/query/useEventsQuery";
 import { Empty } from "antd";
 import EventCard from "./EventCard";
 import EventSkeletonCard from "./EventSkeletonCard";

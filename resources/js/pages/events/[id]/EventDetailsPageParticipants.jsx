@@ -1,4 +1,4 @@
-import useEventParticipantsQuery from "@/js/queries/useEventParticipantsQuery";
+import useEventParticipantsQuery from "@/js/query/useEventParticipantsQuery";
 import { Avatar, Card, Empty, List } from "antd";
 
 

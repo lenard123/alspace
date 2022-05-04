@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 import ScrollToBottom from 'react-scroll-to-bottom'
 import MessagesList from "./components/MessagesList";
 import WriteMessage from "./components/WriteMessage";
-import useThreadQuery from "@/js/queries/useThreadQuery";
+import useThreadQuery from "@/js/query/useThreadQuery";
 import { Helmet } from 'react-helmet'
-import useThreadMessagesQuery from "@/js/queries/useThreadMessagesQuery";
+import useThreadMessagesQuery from "@/js/query/useThreadMessagesQuery";
 
 export default function ChatPage() {
     const { id } = useParams()
