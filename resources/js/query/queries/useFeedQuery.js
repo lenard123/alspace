@@ -20,11 +20,6 @@ const useFeedQuery = (options = {}) => {
             }
             return undefined
         },
-        onSuccess: (data) => {
-            data.forEach(post => {
-                queryClient.setQueryData(queryKeyFactory.post(post.id), post)
-            })
-        },
         select: ({ pages }) => {
             return pages.map(page => {
                 return page.data

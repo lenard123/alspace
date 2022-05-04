@@ -4,11 +4,14 @@ import { getPayload } from "../../utils"
 import queryKeyFactory from "../queryKeyFactory"
 
 
-const usePostQuery =  (id) => {
+const usePostQuery =  (id, initialData = undefined) => {
+
+    const payload = getPayload()
+
     return useQuery({
         queryKey: queryKeyFactory.post(id), 
         queryFn: () => fetchPost(id),
-        initialData: getPayload(),
+        initialData: payload || initialData,
         enabled: !!id
     })
 }
