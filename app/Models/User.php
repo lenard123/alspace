@@ -117,6 +117,11 @@ class User extends Authenticatable
         return $this->threads()->whereHas('unreadMessages');
     }
 
+    public function scopeAdmin($query)
+    {
+        return $query->where('is_admin', 1);
+    }
+
     public function sendMessageOn(Thread $thread, string $content)
     {
         $message = new Message();
@@ -125,11 +130,6 @@ class User extends Authenticatable
         $message->thread()->associate($thread);
         $message->save();
         return $message;
-    }
-
-    public static function admins()
-    {
-        return User::where('is_admin', true);
     }
 
     public function getScoutKey()
@@ -163,6 +163,6 @@ class User extends Authenticatable
     public static function sendMessageSupport(User $user, string $content)
     {
         $thread = $user->supportThread();
-        return User::admins()->first()->sendMessageOn($thread, $content);
+        return User::admin()->first()->sendMessageOn($thread, $content);
     }
 }

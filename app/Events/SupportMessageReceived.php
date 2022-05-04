@@ -12,24 +12,21 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 
-class MessageReceived implements ShouldBroadcast
+class SupportMessageReceived implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public Message $message;
-    private int $receiver_id;
-
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(int $receiver_id, Message $message)
+    public function __construct(Message $message)
     {
-        $this->receiver_id = $receiver_id;
         $this->message = $message;
         $this->dontBroadcastToCurrentUser();
-        Log::info("MESSAGE: From: $message->user_id TO: $receiver_id");
+        Log::info('Support Message Received', compact('message'));
     }
 
     /**
@@ -39,6 +36,6 @@ class MessageReceived implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel("users.{$this->receiver_id}");
+        return new PrivateChannel('admin');
     }
 }
