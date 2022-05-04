@@ -29,7 +29,6 @@ class MessageReceived implements ShouldBroadcast
         $this->receiver_id = $receiver_id;
         $this->message = $message;
         $this->dontBroadcastToCurrentUser();
-        Log::info("MESSAGE: From: $message->user_id TO: $receiver_id");
     }
 
     /**
