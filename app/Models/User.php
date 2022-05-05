@@ -71,14 +71,12 @@ class User extends Authenticatable
 
     protected static function booted() : void
     {
-        $currentUserId = Auth::id();
+        $currentUser = Auth::user();
 
-        static::retrieved(function ($user) use ($currentUserId) {
-            if ($user->id === $currentUserId && $user->unread_thread_count === null)
-            {
-                $user->loadCount('unreadThread');
-            }
-
+        static::retrieved(function ($user) use ($currentUser) {
+           if ($currentUser->id === $user->id || $currentUser->is_admin) {
+               $user->makeVisible('email');
+           }
         });
 
         static::created(function ($user) {
@@ -124,7 +122,7 @@ class User extends Authenticatable
 
     public function scopeAlumni($query)
     {
-        return $query->whereHas('alumnus');
+        return $query->whereHas('alumnus')->with('alumnus');
     }
 
     public function sendMessageOn(Thread $thread, string $content)

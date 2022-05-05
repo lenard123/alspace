@@ -18,12 +18,14 @@ class UserController extends Controller
 
     public function current()
     {
-        return Auth::user();
+        return Auth::user()
+            ->loadCount('unreadThread');
     }
 
     public function alumni()
     {
-        return User::alumni()->paginate(10);
+        return User::alumni()
+            ->paginate(10);
     }
 
     public function search(Request $request)
@@ -48,7 +50,7 @@ class UserController extends Controller
 
     public function pending()
     {
-        return PendingAlumni::simplePaginate(20);
+        return PendingAlumni::paginate(10);
     }
 
     public function approve(PendingAlumni $alumni)
