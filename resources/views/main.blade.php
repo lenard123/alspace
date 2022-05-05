@@ -20,6 +20,11 @@
   <script>
     window.user = @json($user);
     window.payload = @json($payload);
+    window.BROADCASTER = @json(config('broadcasting.default'));
+    window.PUSHER_APP_KEY = @json(config('broadcasting.connections.pusher.key'));
+    window.PUSHER_APP_CLUSTER = @json(config('broadcasting.connections.pusher.options.cluster'));
+    window.PUSHER_APP_HOST = @json(config('broadcasting.connections.pusher.options.client_host'));
+    window.PUSHER_APP_PORT = @json(config('broadcasting.connections.pusher.options.port'));
   </script>
 
   <!-- Scripts and CSS import -->
