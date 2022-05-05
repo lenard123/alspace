@@ -1,4 +1,6 @@
 {
     "files.autoSave": "off",
-    "keyboard.dispatch": "keyCode"
+    "keyboard.dispatch": "keyCode",
+    "intelephense.diagnostics.implementationErrors": false,
+    "intelephense.diagnostics.undefinedMethods": false
 }
