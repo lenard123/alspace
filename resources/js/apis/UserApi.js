@@ -32,5 +32,5 @@ export const fetchPendingUsers = async (page = 1) => {
 
 export const approveUser = async (pendingUserId) => {
     await requestCookie()
-    return await Http.post(`/admin/users/pending/${pendingUserId}`)
+    return await Http.post(`/users/pending/${pendingUserId}`)
 }
