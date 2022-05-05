@@ -74,7 +74,7 @@ class User extends Authenticatable
         $currentUser = Auth::user();
 
         static::retrieved(function ($user) use ($currentUser) {
-           if ($currentUser->id === $user->id || $currentUser->is_admin) {
+           if ($currentUser?->id === $user->id || $currentUser?->is_admin) {
                $user->makeVisible('email');
            }
         });
