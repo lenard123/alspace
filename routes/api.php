@@ -30,15 +30,18 @@ Broadcast::routes(['middleware' => 'auth:sanctum']);
 
 Route::middleware('auth:sanctum')->group(function () {
 
-    Route::get('/user', [UserController::class, 'current']);
-    Route::get('/user/conversations', [UserController::class, 'conversations']);
-
-    Route::get('/users/search', [UserController::class, 'search']);
-    Route::get('/users/pending', [UserController::class, 'pending'])->middleware('admin');
-    Route::post('/users/pending/{alumni}', [UserController::class, 'approve'])->middleware('admin');
-    Route::get('/users/{user}/thread', [UserController::class, 'thread']);
-    Route::get('/users/{user}', [UserController::class, 'view']);
-    Route::get('/users/{user}/posts', [UserController::class, 'posts']);
+    Route::controller(UserController::class)->group(function() {
+        Route::get('/user', 'current');
+        Route::get('/user/conversations', 'conversations');
+    
+        Route::get('/users/search','search');
+        Route::get('/users/alumni', 'alumni')->middleware('admin');
+        Route::get('/users/pending', 'pending')->middleware('admin');
+        Route::post('/users/pending/{alumni}', 'approve')->middleware('admin');
+        Route::get('/users/{user}/thread', 'thread');
+        Route::get('/users/{user}', 'view');
+        Route::get('/users/{user}/posts', 'posts');
+    });
 
     Route::get('/threads/support', [ThreadController::class, 'supportThreads'])->middleware('admin');
     Route::get('/threads/{thread}', [ThreadController::class, 'view']);

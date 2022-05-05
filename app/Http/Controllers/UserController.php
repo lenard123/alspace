@@ -21,6 +21,11 @@ class UserController extends Controller
         return Auth::user();
     }
 
+    public function alumni()
+    {
+        return User::alumni()->paginate(10);
+    }
+
     public function search(Request $request)
     {
         return User::search($request->query('query'))->get()->where('id', '<>',  Auth::id())->values();

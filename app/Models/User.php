@@ -122,6 +122,11 @@ class User extends Authenticatable
         return $query->where('is_admin', 1);
     }
 
+    public function scopeAlumni($query)
+    {
+        return $query->whereHas('alumnus');
+    }
+
     public function sendMessageOn(Thread $thread, string $content)
     {
         $message = new Message();
