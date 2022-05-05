@@ -8,18 +8,21 @@ const Http = axios.create({
 })
 
 const attachValidationErrors = (error) => {
-    let validationErrors = {}
+
+    //Intercept Error
     if (error?.response?.status === 422) {
+        let validationErrors = {}
         const { errors } = error.response.data
         validationErrors = Object.keys(errors).reduce( (acm, field) => ({
             ...acm,
             [field]: {validateStatus: 'error', help: errors[field].join('\n')}
         }), {})
+        return {
+            ...error,
+            validationErrors
+        }
     }
-    return {
-        ...error,
-        validationErrors
-    }    
+    return error
 }
 
 const success = (response) => Promise.resolve(response.data)
