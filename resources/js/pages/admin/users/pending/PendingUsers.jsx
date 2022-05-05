@@ -20,9 +20,9 @@ export default function PendingUsers() {
                 title='Pending Users'
             />
 
-            <Table dataSource={data} className='px-8' rowKey='id' loading={isLoading}>
+            <Table dataSource={data} className='sm:px-8' rowKey='id' loading={isLoading} scroll={{ x: true }}>
                 <Column title='Student ID' dataIndex='student_id' key='student_id' />
-                <Column title='Name' dataIndex='fullname' key='fullname' />
+                <Column className='whitespace-nowrap' title='Name' dataIndex='fullname' key='fullname' />
                 <Column title='Email' dataIndex='email' key='email' />
                 <Column title='Course' dataIndex='course' key='course' />
                 <Column title='Batch' dataIndex='year_graduated' key='year_graduated' />
