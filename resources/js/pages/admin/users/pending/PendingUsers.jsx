@@ -2,6 +2,7 @@ import usePendingUsersQuery from "@/js/query/queries/usePendingUsersQuery";
 import { Breadcrumb, Button, PageHeader, Popconfirm, Space, Table } from "antd";
 import BreadcrumbItem from "antd/lib/breadcrumb/BreadcrumbItem";
 import Column from "antd/lib/table/Column";
+import { Link } from "react-router-dom";
 import ApproveButton from "./components/ApproveButton";
 
 export default function PendingUsers() {
@@ -14,6 +15,7 @@ export default function PendingUsers() {
                 breadcrumb={
                     <Breadcrumb>
                         <BreadcrumbItem>Users</BreadcrumbItem>
+                        <BreadcrumbItem><Link to='/admin/users/alumni'>Alumni</Link></BreadcrumbItem>
                         <BreadcrumbItem>Pending</BreadcrumbItem>
                     </Breadcrumb>
                 }

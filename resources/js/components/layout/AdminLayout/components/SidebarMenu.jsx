@@ -11,6 +11,7 @@ const items = [
     getItem('Option 2', '2', <DesktopOutlined />),
     getItem('Users', 'sub1', <UserOutlined />, [
         getItem('Pending Users', '/admin/users/pending'),
+        getItem('Alumni', '/admin/users/alumni')
     ]),
     getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
     getItem('System Settings', '/admin/settings', <SettingOutlined />),
