@@ -1,6 +1,7 @@
 import { useInfiniteQuery } from "react-query"
 import { fetchMessage } from "../../apis/ThreadApi"
 import queryKeyFactory from "../queryKeyFactory"
+import { paginationDataReducer } from "../ReactQueryProvider"
 
 
 const useThreadMessagesQuery = (threadId, options = {}) => {
