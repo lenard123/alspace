@@ -31,7 +31,7 @@ export default function SidebarMenu() {
             theme='dark'
             mode='inline'
             inlineCollapsed={collapsed}
-            defaultSelectedKeys={[pathname]}
+            selectedKeys={[pathname]}
             items={items}
             onClick={handleClick}
         />
