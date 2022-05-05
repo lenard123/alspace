@@ -27,8 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Schema::defaultStringLength(191);
-
+        $this->setDatabaseDefaultStringLength();
         /**
          * This will use the app.url config as baseurl
          * when generating a url.
@@ -42,5 +41,12 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton(SSRRoute::class);
 
+    }
+
+    private function setDatabaseDefaultStringLength()
+    {
+        try {
+            Schema::defaultStringLength(191);
+        } catch (\Exception $e){}
     }
 }
