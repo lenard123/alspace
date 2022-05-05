@@ -31,7 +31,6 @@ class RouteServiceProvider extends ServiceProvider
         $this->routes(function () {
             Route::prefix('api')->middleware('api')->group(function() {
                 Route::group([], base_path('routes/api.php'));
-                Route::prefix('admin')->group(base_path('routes/admin.php'));
 
                 //Fallback
                 Route::any('{any}', fn() => response()->json('Invalid Endpoint', 404))
