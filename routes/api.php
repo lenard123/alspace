@@ -34,6 +34,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user/conversations', [UserController::class, 'conversations']);
 
     Route::get('/users/search', [UserController::class, 'search']);
+    Route::get('/users/pending', [UserController::class, 'pending'])->middleware('admin');
     Route::get('/users/{user}/thread', [UserController::class, 'thread']);
     Route::get('/users/{user}', [UserController::class, 'view']);
     Route::get('/users/{user}/posts', [UserController::class, 'posts']);

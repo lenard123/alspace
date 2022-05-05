@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PendingAlumni;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,5 +37,10 @@ class UserController extends Controller
     public function posts(User $user)
     {
         return $user->posts()->simplePaginate(10);
+    }
+
+    public function pending()
+    {
+        return PendingAlumni::simplePaginate(20);
     }
 }
