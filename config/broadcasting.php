@@ -1,5 +1,18 @@
 <?php
 
+$pusher_options = [
+    'cluster' => env('PUSHER_APP_CLUSTER', 'ap1'),
+    'useTLS' => true,
+    'client_host' => null,
+];
+
+if (env('PUSHER_LOCAL', false)) {
+    $pusher_options['host'] = 'localhost';
+    $pusher_options['client_host'] = env('PUSHER_APP_HOST', 'localhost');
+    $pusher_options['scheme'] = 'http';
+    $pusher_options['port'] = env('LARAVEL_WEBSOCKETS_PORT', 6001);
+}
+
 return [
 
     /*
@@ -35,10 +48,7 @@ return [
             'key' => env('PUSHER_APP_KEY'),
             'secret' => env('PUSHER_APP_SECRET'),
             'app_id' => env('PUSHER_APP_ID'),
-            'options' => [
-                'cluster' => env('PUSHER_APP_CLUSTER', 'ap1'),
-                'useTLS' => true,
-            ],
+            'options' => $pusher_options,
             'client_options' => [
                 // Guzzle client options: https://docs.guzzlephp.org/en/stable/request-options.html
             ],

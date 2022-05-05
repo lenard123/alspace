@@ -2,9 +2,6 @@ import Echo from 'laravel-echo';
 import Pusher from 'pusher-js'
 import Http from './Http';
 
-const KEY = import.meta.env.VITE_APP_PUSHER_APP_KEY
-const CLUSTER = import.meta.env.VITE_APP_PUSHER_APP_CLUSTER
-
 const authorizer = (channel) => {
     return {
         authorize: (socket_id, callback) => {
@@ -23,12 +20,15 @@ const authorizer = (channel) => {
 
 
 const EchoClient =  new Echo({
-    broadcaster: 'pusher',
-    key: KEY,
-    cluster: CLUSTER,
-    forceTLS: true,
+    broadcaster: window.BROADCASTER,
+    key: window.PUSHER_APP_KEY,
+    cluster: window.PUSHER_APP_CLUSTER,
+    wsHost: window.PUSHER_APP_HOST || undefined,
+    wsPort: window.PUSHER_APP_PORT || undefined,
+    forceTLS: false,
     encrypted: true,
-    authorizer
+    authorizer,
+    disableStats: true,
 })
 
 // Pusher.logToConsole = true
