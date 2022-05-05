@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\EventController;
@@ -75,3 +76,4 @@ Route::post('/register-validator/send-otp', [RegisterValidatorController::class,
 Route::post('/login', LoginController::class);
 Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
 Route::post('/reset-password', [AuthController::class, 'resetPassword']);
+Route::post('/admin-login', AdminLoginController::class);

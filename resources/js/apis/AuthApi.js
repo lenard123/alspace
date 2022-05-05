@@ -43,5 +43,5 @@ export const resetPassword = async({ email, password, password_confirmation, tok
 
 export const adminLogin = async({ email, password }) => {
     await requestCookie()
-    return await Http.post('/admin/login', { email, password })
+    return await Http.post('/admin-login', { email, password })
 }
