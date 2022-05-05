@@ -16,3 +16,5 @@ vscode:
   extensions:
     - bmewburn.vscode-intelephense-client
     - mikestead.dotenv
+    - bradlc.vscode-tailwindcss
+    - onecentlin.laravel-blade
