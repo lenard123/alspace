@@ -35,7 +35,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/users/search', [UserController::class, 'search']);
     Route::get('/users/pending', [UserController::class, 'pending'])->middleware('admin');
-    Route::post('/users/pending/{alumni}', [\App\Http\Controllers\Admin\UserController::class, 'approve'])->middleware('admin');
+    Route::post('/users/pending/{alumni}', [UserController::class, 'approve'])->middleware('admin');
     Route::get('/users/{user}/thread', [UserController::class, 'thread']);
     Route::get('/users/{user}', [UserController::class, 'view']);
     Route::get('/users/{user}/posts', [UserController::class, 'posts']);
