@@ -11,7 +11,7 @@ export default function Topbar() {
 
 
     return (
-        <Header className='px-4 bg-white flex justify-between items-center sticky top-0'>
+        <Header className='px-4 bg-white flex justify-between items-center sticky top-0 z-[3]'>
             <Button
                 onClick={() => setCollapsed(collapsed => !collapsed)}
                 icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
