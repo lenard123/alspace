@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\EventController;
@@ -33,10 +34,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user/conversations', [UserController::class, 'conversations']);
 
     Route::get('/users/search', [UserController::class, 'search']);
+    Route::get('/users/pending', [UserController::class, 'pending'])->middleware('admin');
+    Route::post('/users/pending/{alumni}', [\App\Http\Controllers\Admin\UserController::class, 'approve'])->middleware('admin');
     Route::get('/users/{user}/thread', [UserController::class, 'thread']);
     Route::get('/users/{user}', [UserController::class, 'view']);
     Route::get('/users/{user}/posts', [UserController::class, 'posts']);
 
+    Route::get('/threads/support', [ThreadController::class, 'supportThreads'])->middleware('admin');
     Route::get('/threads/{thread}', [ThreadController::class, 'view']);
     Route::get('/threads/{thread}/messages', [ThreadController::class, 'messages']);
     Route::post('/threads/{thread}', [ThreadController::class, 'sendMessage']);
@@ -75,3 +79,4 @@ Route::post('/register-validator/send-otp', [RegisterValidatorController::class,
 Route::post('/login', LoginController::class);
 Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
 Route::post('/reset-password', [AuthController::class, 'resetPassword']);
+Route::post('/admin-login', AdminLoginController::class);

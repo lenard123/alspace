@@ -24,5 +24,5 @@ export const readMessage = async(messageId) => {
 
 export const fetchSupportThreads = async () => {
     await requestCookie()
-    return await Http.get('/admin/threads');
+    return await Http.get('/threads/support');
 }
