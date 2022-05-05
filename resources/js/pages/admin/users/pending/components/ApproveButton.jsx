@@ -22,10 +22,16 @@ export default function ApproveButton({ id }) {
         mutate()        
     }
 
+    const handleCancel = () => {
+        if (isLoading) return
+        setVisible(false)
+    }
+
     return (
         <Popconfirm
             title="Are you sure to Approve this user?"
             onConfirm={handleClick}
+            onCancel={handleCancel}
             okButtonProps={{loading: isLoading}}
             visible={visible}
             >

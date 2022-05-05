@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\PendingAlumni;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -16,7 +18,14 @@ class UserController extends Controller
 
     public function current()
     {
-        return Auth::user();
+        return Auth::user()
+            ->loadCount('unreadThread');
+    }
+
+    public function alumni()
+    {
+        return User::alumni()
+            ->paginate(10);
     }
 
     public function search(Request $request)
@@ -41,6 +50,19 @@ class UserController extends Controller
 
     public function pending()
     {
-        return PendingAlumni::simplePaginate(20);
+        return PendingAlumni::paginate(10);
+    }
+
+    public function approve(PendingAlumni $alumni)
+    {
+        DB::transaction(function() use ($alumni) {
+            $user = User::create($alumni->only('firstname', 'lastname', 'email', 'password'));
+
+            $user->alumnus()->create($alumni->only('year_graduated', 'course', 'student_id'));
+
+            $alumni->delete();
+        });
+        
+        return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 }
