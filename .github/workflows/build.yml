@@ -1,0 +1,31 @@
+# Increment this if you failed
+# Trigger: 1
+
+name: Build source code and push to production branch
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+        with:
+          php-version: '8.1'
+      - run: |
+          composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+          git config user.name lenard123
+          git config user.email lenard.mangayayam@gmail.com
+          git checkout -b build
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - run: npm ci
+      - run: |
+          npm run build
+          git add public/build -f
+          git commit -m "generated"
+          git push --set-upstream origin build --force
