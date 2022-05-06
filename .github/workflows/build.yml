@@ -1,0 +1,27 @@
+# Increment this if you failed
+# Trigger: 1
+
+name: Build source code and push to production branch
+
+on:
+  push:
+    branches: [ automate ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          git config user.name lenard123
+          git config user.email lenard.mangayayam@gmail.com
+          git checkout -b production
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - run: npm ci
+      - run: |
+          npm run build
+          git add public/build
+          git commit -m "generated"
+          git push --set-upstream origin build --force
