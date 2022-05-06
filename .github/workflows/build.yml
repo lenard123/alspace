@@ -5,7 +5,7 @@ name: Build source code and push to production branch
 
 on:
   push:
-    branches: [ automate ]
+    branches: [ main ]
 
 jobs:
   build:
