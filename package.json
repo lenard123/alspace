@@ -21,7 +21,8 @@
     "react-query": "^3.34.19",
     "react-router-dom": "^6.2.2",
     "react-scroll-to-bottom": "^4.2.0",
-    "recoil": "^0.6.1"
+    "recoil": "^0.6.1",
+    "tilg": "^0.1.1"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^1.0.7",

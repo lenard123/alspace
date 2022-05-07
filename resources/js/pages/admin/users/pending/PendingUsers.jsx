@@ -1,20 +1,31 @@
 import usePendingUsersQuery from "@/js/query/queries/usePendingUsersQuery";
 import { toAntdPagination } from "@/js/utils";
-import { Breadcrumb, Button, PageHeader, Popconfirm, Space, Table } from "antd";
+import { Breadcrumb, Button, Dropdown, Menu, Modal, PageHeader, Popconfirm, Space, Table } from "antd";
 import BreadcrumbItem from "antd/lib/breadcrumb/BreadcrumbItem";
 import Column from "antd/lib/table/Column";
 import { Link } from "react-router-dom";
 import ApproveButton from "./components/ApproveButton";
 import { useState } from 'react'
+import { BarsOutlined, CheckOutlined, DownOutlined } from "@ant-design/icons";
+import DropOption from "@/js/components/DropOption";
+import usePendingUserAction from "./usePendingUserAction";
 
 export default function PendingUsers() {
 
     const [page, setPage] = useState(1)
     const { data, isFetching } = usePendingUsersQuery(page)
-    const pagination = toAntdPagination(data)
+    const { approveAlumni } = usePendingUserAction()
 
     const handleTableChange = (data) => {
         setPage(data.current)
+    }
+
+    const handleMenuClick = ({ key }, record) => {
+        switch (key) {
+            case 'approve':
+                approveAlumni(record.id)
+                break;
+        }
     }
 
     return (
@@ -30,32 +41,35 @@ export default function PendingUsers() {
                 title='Pending Users'
             />
 
-            <Table 
-                dataSource={data?.data || []} 
-                pagination={pagination} 
-                className='sm:px-8' 
-                rowKey='id' 
-                loading={isFetching} 
-                scroll={{ x: true }}
-                onChange={handleTableChange}
-                bordered
-                >
-                <Column title='Student ID' dataIndex='student_id' key='student_id' />
-                <Column className='whitespace-nowrap' title='Name' dataIndex='fullname' key='fullname' />
-                <Column title='Email' dataIndex='email' key='email' />
-                <Column title='Course' dataIndex='course' key='course' />
-                <Column title='Batch' dataIndex='year_graduated' key='year_graduated' />
-                <Column 
-                    title='Action' 
-                    key='action'
-                    render={(text, record) => (
-                        <Space size="middle" key='test'>
-                            <Button danger>Deny</Button>
-                            <ApproveButton id={record.id} />
-                        </Space>
-                    )}
-                />
-            </Table>
+            <div className='bg-white p-6 sm:mx-6'>
+                <Table 
+                    dataSource={data?.data || []} 
+                    pagination={toAntdPagination(data)} 
+                    rowKey='id' 
+                    loading={isFetching} 
+                    scroll={{ x: true }}
+                    onChange={handleTableChange}
+                    bordered
+                    simple
+                    >
+                    <Column title='Student ID' dataIndex='student_id' key='student_id' />
+                    <Column className='whitespace-nowrap' title='Name' dataIndex='fullname' key='fullname' />
+                    <Column title='Email' dataIndex='email' key='email' />
+                    <Column title='Course' dataIndex='course' key='course' />
+                    <Column title='Batch' dataIndex='year_graduated' key='year_graduated' />
+                    <Column
+                        title='Action'
+                        key='action'
+                        fixed='right'
+                        render={record => (
+                            <DropOption onMenuClick={e => handleMenuClick(e, record)} menuOptions={[
+                                {key: 'approve', label: 'Approve'},
+                                {key: 'reject', label: 'Reject', danger: true}
+                            ]}/>
+                        )}
+                    />
+                </Table>
+            </div>
 
         </>
     )

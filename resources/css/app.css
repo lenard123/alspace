@@ -82,8 +82,8 @@ a:hover {
     padding-bottom: 0;
 }
 
-.link, .link:hover {
-    @apply text-blue-500 underline;
+.link {
+    @apply text-blue-500 hover:text-blue-600;
 }
 
 .page-wrapper {
@@ -104,4 +104,9 @@ a:hover {
 
 .ReactQueryDevtoolsPanel button{
     color: black;
+}
+
+.ant-table {
+    @apply text-gray-600;
+    font-size: 13px;
 }

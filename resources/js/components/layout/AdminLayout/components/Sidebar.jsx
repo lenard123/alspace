@@ -16,8 +16,10 @@ export default function () {
             onBreakpoint={broken => setBroken(broken)}
             onCollapse={(collapsed) => setCollapsed(collapsed)}
             trigger={null}
+            theme='light'
+            width={256}
         >
-            <div className='flex justify-center items-center p-4 mb-8 overflow-hidden'>
+            <div className='flex justify-center items-center p-4 mb-8 overflow-hidden shadow  header-height'>
                 <img className='rounded mr-2' src='/images/logo.png' width={32} />
                 {!collapsed &&
                     <span
