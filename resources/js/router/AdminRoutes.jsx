@@ -8,6 +8,7 @@ import AdminLayout from "../components/layout/AdminLayout";
 import AdminGuestGuard from "./_guards/AdminGuestGuard";
 import MessageIndexPage from "../pages/admin/messages/MessageIndexPage";
 import AlumniPage from "../pages/admin/users/alumni/AlumniPage";
+import EventsPage from "../pages/admin/events/EventsPage";
 
 const AdminRoutes = (
     <Route path='admin' element={<Outlet />}>
@@ -23,6 +24,7 @@ const AdminRoutes = (
                 <Route path="users/pending" element={<PendingUsers />} />
                 <Route path="users/alumni" element={<AlumniPage />} />
                 <Route path="messages/*" element={<MessageIndexPage />} />
+                <Route path="events" element={<EventsPage />} />
                 <Route path='*' element={null} />
             </Route>
         </Route>

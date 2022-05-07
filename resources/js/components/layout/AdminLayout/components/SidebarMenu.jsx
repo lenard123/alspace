@@ -15,7 +15,7 @@ const items = [
     ]),
     getItem('Events', 'sub2', <CalendarOutlined />, [
         getItem('Requires Approval', '/admin/events?filter=pending'),
-        getItem('Upcoming Events', '/admin/events?filter=upcoming'), 
+        getItem('Upcoming Events', '/admin/events?filter=active'), 
         getItem('Past Events', '/admin/events?filter=past'),
         getItem('Cancelled Events', '/admin/events?filter=cancelled'),
     ]),

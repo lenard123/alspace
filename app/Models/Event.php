@@ -22,7 +22,7 @@ class Event extends Model
         'start_at' => 'datetime',
     ];
 
-    protected $with = ['cover'];
+    protected $with = ['cover', 'user'];
 
     protected $withCount = ['interested'];
 

@@ -31,7 +31,7 @@ export default {
 
     supportThreads: ['threads', 'support'],
 
-    events: (filter) => ['events', {filter}],
+    events: (filter) => ['events', filter],
 
     event: (eventId) => ['events', Number(eventId)],
 
