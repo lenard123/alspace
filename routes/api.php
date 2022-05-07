@@ -6,6 +6,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterValidatorController;
 use App\Http\Controllers\ThreadController;
@@ -71,6 +72,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/events/{event}/participants', [EventController::class, 'interested']);
     Route::put('/events/{event}/participants', [EventController::class, 'going']);
     Route::delete('/events/{event}/participants', [EventController::class, 'notInterested']);
+
+    Route::get('/notifications', [NotificationController::class, 'index']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
     
