@@ -20,6 +20,7 @@ jobs:
       - run: |
           git config user.name lenard123
           git config user.email lenard.mangayayam@gmail.com
+          git fetch origin
           git switch -c build origin/build
           git merge automate
-          git push origin build
+          git push origin
