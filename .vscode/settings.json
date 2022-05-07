@@ -2,5 +2,8 @@
     "files.autoSave": "off",
     "keyboard.dispatch": "keyCode",
     "intelephense.diagnostics.implementationErrors": false,
-    "intelephense.diagnostics.undefinedMethods": false
+    "intelephense.diagnostics.undefinedMethods": false,
+    "yaml.schemas": {
+        "https://json.schemastore.org/github-workflow.json": "file:///workspace/alspace/.github/workflows/build.yml"
+    }
 }
