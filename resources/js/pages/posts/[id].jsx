@@ -9,7 +9,7 @@ import CommentsList from "@/js/components/CommentsList"
 export default function ViewPostPage() {
     const { id } = useParams()
     const { state } = useLocation()
-    const { isLoading, data, isSuccess } = usePostQuery(id, state.post)
+    const { isLoading, data, isSuccess } = usePostQuery(id, state?.post)
     const navigate = useNavigate()
 
     const onDelete = () => {

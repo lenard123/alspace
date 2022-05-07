@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CommentRequest;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
+use App\Notifications\PostLiked;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Notification;
 
 class PostController extends Controller
 {
@@ -33,6 +36,7 @@ class PostController extends Controller
 
     public function like(Post $post)
     {
+        Notification::send($post->author, new PostLiked(Auth::user(), $post));
         return Auth::user()->like($post);
     }
 

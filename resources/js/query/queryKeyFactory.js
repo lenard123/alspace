@@ -36,4 +36,6 @@ export default {
     event: (eventId) => ['events', Number(eventId)],
 
     eventParticipants: (eventId, type) => ['events', Number(eventId), type],
+
+    notifications: (filter) => ['notifications', {filter}]
 }
