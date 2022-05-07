@@ -1,0 +1,25 @@
+name: "Update codes without rebuilding JS"
+
+on:
+  push:
+    branches:
+      - "main"
+      - "automate"
+    paths-ignore:
+      - "resources/js/*"
+      - "resources/css/*"
+      - "package.json"
+      - "package-lock.json"
+      - "vite.config.js"
+      - "tsconfig.json"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          git config user.name lenard123
+          git config user.email lenard.mangayayam@gmail.com
+          git switch -c build origin/build
+          git merge automate
+          git push origin build

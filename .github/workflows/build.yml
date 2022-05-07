@@ -5,9 +5,9 @@ name: "Build source code and push to production branch"
 on:
   push:
     branches:
+      - "main"
       - "automate"
     paths:
-      - ".github/workflows/*"
       - "resources/js/*"
       - "resources/css/*"
       - "package.json"
