@@ -6,13 +6,7 @@ on:
   push:
     branches:
       - "main"
-    paths:
-      - "resources/js/*"
-      - "resources/css/*"
-      - "package.json"
-      - "package-lock.json"
-      - "vite.config.js"
-      - "tsconfig.json"
+    
 jobs:
   build:
     runs-on: ubuntu-latest
