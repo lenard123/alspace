@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 export { default as Http } from './Http'
 export { default as Cache } from './Cache'
 export { default as Echo } from './Echo'
@@ -39,6 +41,13 @@ export const arrayDropKeys = (array, ...keys) => {
         return valid
     })
     return [newArray, dropKeys]
+}
+
+export const mapDate = (array, index) => {
+    return array.map(item => ({
+        ...item,
+        [index]: moment(item[index])
+    }))
 }
 
 //Add loading object to array if isLoading
