@@ -1,4 +1,4 @@
-import useEventsQuery from "@/js/query/queries/useEventsQuery";
+import { useEventsInfiniteQuery } from "@/js/query/queries/useEventsQuery";
 import { Empty } from "antd";
 import EventCard from "./EventCard";
 import EventSkeletonCard from "./EventSkeletonCard";
@@ -13,7 +13,7 @@ const skeletonList = (
 
 export default function EventList({ filter }) {
 
-    const { data: events, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } = useEventsQuery(filter)
+    const { data: events, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } = useEventsInfiniteQuery(filter)
 
     //Display loading
     if (!events || isLoading) return skeletonList;
