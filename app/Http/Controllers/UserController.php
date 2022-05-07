@@ -45,7 +45,7 @@ class UserController extends Controller
 
     public function posts(User $user)
     {
-        return $user->posts()->simplePaginate(10);
+        return $user->posts()->latest()->simplePaginate(10);
     }
 
     public function pending()

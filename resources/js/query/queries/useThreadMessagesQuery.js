@@ -8,7 +8,7 @@ const useThreadMessagesQuery = (threadId, options = {}) => {
     return useInfiniteQuery({
         queryKey: queryKeyFactory.threadMessages(threadId),
         queryFn: ({pageParam = 1}) => fetchMessage(threadId, pageParam),
-        select: paginationDataReducer,
+        select: paginationDataReducer.reverse,
         ...options
     })
 }
