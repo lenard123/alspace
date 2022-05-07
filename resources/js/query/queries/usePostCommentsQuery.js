@@ -23,7 +23,7 @@ export const useCommentsQuery = (type, id) => {
     return useInfiniteQuery({
         queryKey: getQueryKey(type, id),
         queryFn: ({ pageParam }) => fetcher(type, id, pageParam),
-        select: paginationDataReducer
+        select: paginationDataReducer.reverse
     })
 }
 

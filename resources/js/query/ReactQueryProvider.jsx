@@ -16,6 +16,10 @@ export const paginationDataReducer = ({ pages }) => {
     return map(pages, 'data').flat()
 }
 
+paginationDataReducer.reverse = (data) => {
+    return paginationDataReducer(data).reverse()
+}
+
 export default function ReactQueryProvider({children})
 {
     return (
