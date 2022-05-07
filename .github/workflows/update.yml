@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - "main"
-      - "automate"
     paths-ignore:
       - "resources/js/*"
       - "resources/css/*"
@@ -13,7 +12,7 @@ on:
       - "vite.config.js"
       - "tsconfig.json"
 jobs:
-  build:
+  update:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -24,4 +23,4 @@ jobs:
           git checkout origin/build -- public/build
           git add public/build -f
           git commit -m "Copy previous build"
-          git push origin automate:build --force
+          git push origin main:build --force
