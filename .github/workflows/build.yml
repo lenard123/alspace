@@ -1,12 +1,19 @@
-# Increment this if you failed
-# Trigger: 1
+# Increment this if you just want to rerun : 1
 
-name: Build source code and push to production branch
+name: "Build source code and push to production branch"
 
 on:
   push:
-    branches: [ main ]
-
+    branches:
+      - "automate"
+    paths:
+      - ".github/workflows/*"
+      - "resources/js/*"
+      - "resources/css/*"
+      - "package.json"
+      - "package-lock.json"
+      - "vite.config.js"
+      - "tsconfig.json"
 jobs:
   build:
     runs-on: ubuntu-latest
