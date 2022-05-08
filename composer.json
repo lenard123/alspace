@@ -61,8 +61,13 @@
         ],
         "deploy": [
             "git fetch origin",
-            "git reset --hard origin/build",
-            "composer install",
+	    "git pull",
+            "git checkout origin/build",
+	    "rm -R public/build-temp -f",
+	    "cp public/build public/build-temp -r",
+	    "git checkout main",
+	    "rm -R public/build -f",
+	    "mv public/build-temp public/build",
             "composer warmup"
         ],
         "setup": [
