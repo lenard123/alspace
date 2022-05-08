@@ -1,6 +1,6 @@
 # Increment this if you just want to rerun : 1
 
-name: "Build source code and push to production branch"
+name: "Deploy to staging server"
 
 on:
   push:
