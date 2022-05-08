@@ -3,8 +3,9 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="/images/logo.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="description" content="A place for UCC CSD Alumni">
+  <link rel="icon" type="image/png" href="/images/logo.png" />
   <title>Alspace</title>
   <link rel="manifest" href="/manifest.json">
   @if (config('app.env') === 'local')
