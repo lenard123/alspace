@@ -6,7 +6,7 @@ import { queryClient } from './query/ReactQueryProvider'
 
 
 //Export common functions to windows
-// Force Update: 0
+// Force Update: 1
 window._ = _
 window.moment = moment
 window.Http = Http
