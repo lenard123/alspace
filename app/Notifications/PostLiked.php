@@ -9,14 +9,16 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class PostLiked extends Notification implements ShouldQueue
 {
     use Queueable;
 
 
-    protected $notifier_id;
-    protected $post_id;
+    private $notifier_id;
+    private $post_id;
+    private $content;
 
     /**
      * Create a new notification instance.
@@ -27,6 +29,7 @@ class PostLiked extends Notification implements ShouldQueue
     {
         $this->notifier_id = $liker->id;
         $this->post_id = $post->id;
+        $this->content = Str::limit($post->content, 60);
     }
 
     /**
@@ -70,7 +73,8 @@ class PostLiked extends Notification implements ShouldQueue
     {
         return [
             'notifier_id' => $this->notifier_id,
-            'post_id' => $this->post_id
+            'post_id' => $this->post_id,
+            'content' => $this->content,
         ];
     }
 }

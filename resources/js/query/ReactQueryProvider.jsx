@@ -8,6 +8,9 @@ export const queryClient = new QueryClient({
             getNextPageParam(lastPage){
                 return lastPage.next_page_url ? lastPage.current_page + 1 : undefined;
             },
+            retry(failureCount, error) {
+                if (error?.response?.status !== 404 || failureCount >= 3) return false;
+            }
         }
     }
 })

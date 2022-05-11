@@ -192,7 +192,8 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // ...
+        'Notification' => \App\Models\Notification::class,
+        'Thread' => \App\Models\Thread::class,
     ])->toArray(),
 
 ];

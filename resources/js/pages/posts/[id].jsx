@@ -4,16 +4,24 @@ import { Skeleton } from "antd"
 import { useLocation, useNavigate, useParams } from "react-router-dom"
 import { Helmet } from 'react-helmet'
 import CommentsList from "@/js/components/CommentsList"
-
+import { useEffect } from 'react'
+import useNotificationAction from "@/js/query/actions/useNotificationAction"
+import PostNotFoundError from "./components/PostNotFoundError"
 
 export default function ViewPostPage() {
     const { id } = useParams()
     const { state } = useLocation()
-    const { isLoading, data, isSuccess } = usePostQuery(id, state?.post)
+    const { post, notification } = state || {}
+    const { isLoading, data, isSuccess, isError, error } = usePostQuery(id, post)
+    const { readNotification } = useNotificationAction()
     const navigate = useNavigate()
 
-    const onDelete = () => {
-        navigate('/')
+    useEffect(() => {
+        readNotification(notification)
+    }, [notification])
+
+    if (isError) {
+        throw error
     }
 
     return (
@@ -23,7 +31,7 @@ export default function ViewPostPage() {
             </Helmet>
             <div className='max-w-xl mx-auto sm:pt-4 pb-4'>
                 <Skeleton className='p-4' loading={isLoading} avatar active>
-                    <Post post={data} onDelete={onDelete}>
+                    <Post post={data} onDelete={() => navigate('/home', { replace: true })}>
                         <CommentsList type='post' id={id} />
                     </Post>
                 </Skeleton>

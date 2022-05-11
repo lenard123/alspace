@@ -1,3 +1,4 @@
+import ErrorBoundary from '@/js/fallback/ErrorBoundary'
 import useMessageReceivedListener from '@/js/listeners/useMessageReceivedListener'
 import { Outlet } from 'react-router-dom'
 import DrawerMenu from './components/DrawerMenu'
@@ -10,10 +11,12 @@ const MainLayout = () => {
     return (
         <div className='bg-gray-50 min-h-screen text-gray-700 flex flex-col'>
 
-            <Topbar/>
-            <DrawerMenu/>
+            <Topbar />
+            <DrawerMenu />
             <div>
-                <Outlet />
+                <ErrorBoundary>
+                    <Outlet />
+                </ErrorBoundary>
             </div>
 
         </div>
