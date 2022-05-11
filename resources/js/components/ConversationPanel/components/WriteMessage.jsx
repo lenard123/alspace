@@ -6,6 +6,7 @@ import { SendOutlined } from "@ant-design/icons";
 import { Avatar, Button, Comment, Input } from "antd";
 import { useState} from 'react'
 import { useMutation, useQueryClient } from "react-query";
+import useSendMessageAction from "@/js/query/actions/useSendMessageAction";
 
 export default function WriteMessage({ id, admin = false }) {
 
@@ -15,20 +16,12 @@ export default function WriteMessage({ id, admin = false }) {
 
     const queryClient = useQueryClient()
 
-    const { isLoading, mutate } = useMutation(
-        () => sendMessage(id, content), 
-        {
-            onSuccess: (data) => {
-                queryClient.setQueryData(queryKeyFactory.threadMessages(id), prependPagination(data))
-                setContent('')
-            }
-        }
-    )
+    const { isLoading, mutate } = useSendMessageAction()
 
     const handleSubmit = () => {
         if (isLoading || content.trim().length <= 0) return;
-        mutate()
-        // execute(id, content)
+        mutate({ id, content })
+        setContent('')
     }
 
     return (
