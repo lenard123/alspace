@@ -17,7 +17,7 @@ class SSRController extends Controller
 
     public function __invoke()
     {
-        $user = Auth::user()->loadCount('unreadThread', 'unreadNotifications');
+        $user = Auth::user()?->loadCount('unreadThread', 'unreadNotifications');
         $payload = $this->payload;
         return view('main', compact('user', 'payload'));
     }
