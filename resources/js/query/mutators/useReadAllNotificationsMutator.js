@@ -2,11 +2,13 @@ import { NotificationApi } from "@/js/apis"
 import { updatePagination } from "@/js/utils/paginationReducer"
 import { useMutation, useQueryClient } from "react-query"
 import queryKeyFactory from "../queryKeyFactory"
+import useCurrentUserMutator from "./useCurrentUserMutator"
 
 export default function useReadAllNotificationsMutator(filter) {
 
     const queryClient = useQueryClient()
     const queryKey = queryKeyFactory.notifications(filter)
+    const { updateUnreadNotificationsCount } = useCurrentUserMutator()
 
     return useMutation(NotificationApi.markAllAsRead, {
         async onMutate() {
@@ -32,7 +34,8 @@ export default function useReadAllNotificationsMutator(filter) {
         },
 
         onSettled() {
-            queryClient.invalidateQueries(queryKey)
+            updateUnreadNotificationsCount(0)
+            queryClient.invalidateQueries(queryKey, queryKeyFactory.currentUser)
         }
     })
 }

@@ -15,7 +15,17 @@ export default function useCurrentUserMutator()
         });
     }
 
+    const updateUnreadNotificationsCount = (unread_notifications_count) => {
+        queryClient.setQueryData(queryKeyFactory.currentUser, function (user) {
+            return {
+                ...user,
+                unread_notifications_count
+            }
+        })
+    }
+
     return {
-        updateUnreadThreadCount
+        updateUnreadThreadCount,
+        updateUnreadNotificationsCount
     }
 }

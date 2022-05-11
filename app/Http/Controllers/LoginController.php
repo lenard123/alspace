@@ -29,7 +29,7 @@ class LoginController extends Controller
 
         Auth::login($user, $request->input('remember', false));
 
-        return $user;
+        return $user->loadCount('unreadThread', 'unreadNotifications');
     }
 
     private function throwError(string $message)

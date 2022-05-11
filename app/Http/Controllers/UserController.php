@@ -19,7 +19,7 @@ class UserController extends Controller
     public function current()
     {
         return Auth::user()
-            ->loadCount('unreadThread');
+            ->loadCount('unreadThread', 'unreadNotifications');
     }
 
     public function alumni()

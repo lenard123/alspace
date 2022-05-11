@@ -18,7 +18,7 @@ class NotificationController extends Controller
     public function markAsRead(Notification $notification)
     {
         $notification->markAsRead();
-        return response()->noContent();
+        return Notification::owned()->unread()->count();
     }
 
     public function markAllAsRead()

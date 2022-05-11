@@ -10,7 +10,7 @@ export default function DrawerMenu() {
 
     const [isDrawerVisible, setIsDrawerVisible] = useDrawerVisibleState()
     const { showLogoutModal } = useLogout()
-    const {id, fullname, avatarUrl, unread_thread_count,...currentUser} = useCurrentUser()
+    const {id, fullname, avatarUrl, unread_thread_count, unread_notifications_count,...currentUser} = useCurrentUser()
 
     const menuClicked = ({key}) => {
         setIsDrawerVisible(false)
@@ -20,7 +20,16 @@ export default function DrawerMenu() {
     }
 
     return (
-        <Drawer bodyStyle={{padding:'0 .5rem'}} width={300} extra={<Button type='text' icon={<SearchOutlined />}/>} closeIcon={<ArrowLeftOutlined />} title="Menu" placement="right" onClose={() => setIsDrawerVisible(false)} visible={isDrawerVisible}>
+        <Drawer 
+            bodyStyle={{padding:'0 .5rem'}} 
+            width={300} 
+            extra={<Button type='text' icon={<SearchOutlined />}/>} 
+            closeIcon={<ArrowLeftOutlined />} 
+            title="Menu" 
+            placement="right"
+            onClose={() => setIsDrawerVisible(false)} 
+            visible={isDrawerVisible}
+            >
             <Link onClick={() => setIsDrawerVisible(false)} to={`/profile/${id}`} className='flex gap-2 items-center p-2 border-b border-gray-200'>
                 <Avatar size='large' src={avatarUrl}/>
                 <div className='flex flex-col flex-grow h-full leading-4'>
@@ -37,6 +46,7 @@ export default function DrawerMenu() {
                 
                 <Menu.Item key='notifications' icon={<BellOutlined />}>
                     <Link to='/notifications'>Notifications</Link>
+                    <Badge dot={unread_notifications_count} />
                 </Menu.Item>
                 
                 <Menu.Item key='jobs' icon={<BriefcaseOutlined />}>

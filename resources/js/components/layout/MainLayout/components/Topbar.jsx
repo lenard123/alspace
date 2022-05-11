@@ -10,7 +10,7 @@ import { useCurrentUser } from '@/js/query/queries/useCurrentUserQuery'
 export default function Topbar() {
 
     const [_isDrawerVisible, setIsDrawerVisible] = useDrawerVisibleState()
-    const { unread_thread_count } = useCurrentUser()
+    const { unread_thread_count, unread_notifications_count } = useCurrentUser()
 
     return (
         <header className='sticky top-0 z-[1] w-full bg-white header-height shadow px-4'>
@@ -44,7 +44,7 @@ export default function Topbar() {
                 <div className='hidden lg:flex justify-end items-center gap-8'>
                     <nav className='flex gap-2'>
                         <NavLink to='/messages' badge={{ dot: unread_thread_count }} title='Message' icon={<MessageOutlined className='text-gray-500' />} />
-                        <NavLink to='/notifications' title='Notifications' icon={<BellOutlined className='text-gray-500' />} />
+                        <NavLink to='/notifications' badge={{ dot: unread_notifications_count }} title='Notifications' icon={<BellOutlined className='text-gray-500' />} />
                         <NavLink to='/jobs' title='Jobs' icon={<BriefcaseOutlined className='text-gray-500' />} />
                         <NavLink to='/events' title='Events' icon={<CalendarOutlined className='text-gray-500' />} />
                     </nav>

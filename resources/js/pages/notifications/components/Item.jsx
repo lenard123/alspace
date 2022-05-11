@@ -27,24 +27,16 @@ const getNotificationType = (type, payload) => {
 }
 
 export default function Item({ notification }){
-    const { created_at, type, data, read_at } = notification
-    const { message, link } = getNotificationType(type, data)
-    const { data:user, isLoading } = useUserQuery(data.notifier_id)
+    const { created_at, data } = notification
+    const { avatar, link, content, } = data
     const fromNow = useMemo(() => moment(created_at).fromNow(), [created_at])
 
-    if (isLoading) {
-        return <ItemSkeleton />
-    }
-
     return(
-        <Link className="flex gap-3 w-full mx-6" state={{notification}} {...link}>
-            <Avatar className='flex-shrink-0' size='large' src={user.avatarUrl} />
+        <Link className="flex gap-3 w-full mx-6" state={{notification}} to={link}>
+            <Avatar className='flex-shrink-0' size='large' src={avatar} />
 
             <div className="flex flex-col">
-                <span className="text-gray-700">
-                    <strong>{user.fullname} </strong>
-                    {message}
-                </span>
+                <div className="text-gray-700" dangerouslySetInnerHTML={{__html:content}} />
                 <span className="text-gray-500 text-sm">{fromNow}</span>
             </div>
         </Link>

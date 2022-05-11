@@ -15,10 +15,12 @@ class PostLiked extends Notification implements ShouldQueue
 {
     use Queueable;
 
-
-    private $notifier_id;
-    private $post_id;
+    private $link;
+    private $avatar;
     private $content;
+
+    private $liker_id;
+    private $post_id;
 
     /**
      * Create a new notification instance.
@@ -27,9 +29,19 @@ class PostLiked extends Notification implements ShouldQueue
      */
     public function __construct(User $liker, Post $post)
     {
-        $this->notifier_id = $liker->id;
+        $this->liker_id = $liker->id;
         $this->post_id = $post->id;
-        $this->content = Str::limit($post->content, 60);
+
+        $this->link = "/posts/{$post->id}";
+        $this->avatar = $liker->avatarUrl;
+        $this->content = $this->buildContent($liker, $post);
+    }
+
+    private function buildContent(User $liker, Post $post)
+    {
+        $name = htmlspecialchars($liker->fullname);
+        $content = htmlspecialchars(Str::limit($post->content, 60));
+        return "<strong>{$name}</strong> like your post: {$content}.";
     }
 
     /**
@@ -50,14 +62,13 @@ class PostLiked extends Notification implements ShouldQueue
 
     private function isOwner($notifiable)
     {
-        return $notifiable->id === $this->notifier_id;
+        return $notifiable->id === $this->liker_id;
     }
 
     private function hasAlreadyNotified($notifiable)
     {
         return $notifiable->notifications()
-            ->where('data', json_encode($this->toArray($notifiable)))
-            ->where('type', static::class)
+            ->where('data->post_id', $this->post_id)
             ->exists();
     }
 
@@ -72,9 +83,10 @@ class PostLiked extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'notifier_id' => $this->notifier_id,
-            'post_id' => $this->post_id,
+            'avatar' => $this->avatar,
             'content' => $this->content,
+            'link' => $this->link,
+            'post_id' => $this->post_id,
         ];
     }
 }
