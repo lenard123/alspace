@@ -17,6 +17,11 @@ export const markAsRead = async (notification_id) => {
     return await Http.patch(`/notifications/${notification_id}`)
 }
 
+export const markAllAsRead = async () => {
+    await requestCookie()
+    return await Http.patch('/notifications')
+}
+
 export const clearNotifications = async () => {
     await requestCookie()
     return await Http.delete(`/notifications`)

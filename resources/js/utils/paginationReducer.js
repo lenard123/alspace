@@ -1,5 +1,12 @@
 
+
+const mapper = (newData) => {
+    if (typeof newData === 'function') return newData
+    return oldData => oldData.id === newData.id ? newData : oldData
+}
+
 export const updatePagination = (newData) => {
+
     return (pagination) => {
         if (!pagination) return {
             pages: [ {data:[newData]}]
@@ -8,7 +15,7 @@ export const updatePagination = (newData) => {
             ...pagination,
             pages: pagination.pages.map(page => ({
                 ...page,
-                data: page.data.map(oldData => oldData.id === newData.id ? newData : oldData)
+                data: page.data.map(mapper(newData))
             }))
         }
     }
