@@ -14,6 +14,11 @@ export const fetchNotifications = async (filter = null, page = 1) => {
 
 export const markAsRead = async (notification_id) => {
     await requestCookie()
-    return await Http.patch(`/notifications/${notification_id}/read_at`)
+    return await Http.patch(`/notifications/${notification_id}`)
+}
+
+export const clearNotifications = async () => {
+    await requestCookie()
+    return await Http.delete(`/notifications`)
 }
 

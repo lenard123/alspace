@@ -13,7 +13,7 @@ const MainLayout = () => {
 
             <Topbar />
             <DrawerMenu />
-            <div>
+            <div className='flex-grow flex flex-col children:w-full'>
                 <ErrorBoundary>
                     <Outlet />
                 </ErrorBoundary>

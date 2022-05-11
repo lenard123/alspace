@@ -74,7 +74,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/events/{event}/participants', [EventController::class, 'notInterested']);
 
     Route::get('/notifications', [NotificationController::class, 'index']);
-    Route::patch('/notifications/{notification}/read_at', [NotificationController::class, 'markAsRead']);
+    Route::delete('/notifications', [NotificationController::class, 'clear']);
+    Route::patch('/notifications/{notification}', [NotificationController::class, 'markAsRead']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
     

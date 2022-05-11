@@ -37,5 +37,5 @@ export default {
 
     eventParticipants: (eventId, type) => ['events', Number(eventId), type],
 
-    notifications: (filter) => ['notifications', {filter}]
+    notifications: (filter = null) => ['notifications', {filter}]
 }
