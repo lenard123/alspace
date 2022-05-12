@@ -41,7 +41,7 @@ class PostLiked extends Notification implements ShouldQueue
     {
         $name = htmlspecialchars($liker->fullname);
         $content = htmlspecialchars(Str::limit($post->content, 60));
-        return "<strong>{$name}</strong> like your post: {$content}.";
+        return "<strong>{$name}</strong> like your post: \"{$content}\".";
     }
 
     /**
