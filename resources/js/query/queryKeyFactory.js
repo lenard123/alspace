@@ -19,6 +19,8 @@ export default {
 
     alumniUsers: (page) => ['users', 'alumni', {page}],
 
+    alumniWorks: (alumnusId) => ['users', 'alumni', +alumnusId, 'works'],
+
     pendingUsersAll: ['users', 'pending'],
 
     threads: ['threads'],

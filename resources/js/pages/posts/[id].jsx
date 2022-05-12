@@ -16,7 +16,7 @@ export default function ViewPostPage() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (notification === null) return;
+        if (!notification) return;
 
         //has already read
         if (notification.read_at !== null) return;

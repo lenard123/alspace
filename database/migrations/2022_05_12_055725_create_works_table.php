@@ -15,12 +15,13 @@ return new class extends Migration
     {
         Schema::create('works', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('alumnus_id')->constrained();
+            $table->unsignedBigInteger('user_id');
             $table->string('company');
             $table->date('start_at');
             $table->date('end_at')->nullable();
             $table->string('position')->nullable();
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

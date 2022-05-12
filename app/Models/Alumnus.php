@@ -31,7 +31,7 @@ class Alumnus extends Model
 
     public function works()
     {
-        return $this->hasMany(Work::class, 'alumnus_id')
-            ->orderBy('start_at', 'DESC');
+        return $this->hasMany(Work::class, 'user_id')
+            ->orderBy('start_at', 'ASC');
     }
 }

@@ -11,6 +11,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterValidatorController;
 use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WorkController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
@@ -42,8 +43,10 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/users/{user}/thread', 'thread');
         Route::get('/users/{user}', 'view');
         Route::get('/users/{user}/posts', 'posts');
-        Route::get('/users/{alumnus}/works', 'works');
+        Route::get('/users/{user}/works', 'works');
     });
+
+    Route::post('/works', [WorkController::class, 'create']);
 
     Route::get('/threads/support', [ThreadController::class, 'supportThreads'])->middleware('admin');
     Route::get('/threads/{thread}', [ThreadController::class, 'view']);

@@ -29,9 +29,9 @@ class UserController extends Controller
             ->paginate(10);
     }
 
-    public function works(Alumnus $alumnus)
+    public function works(Alumnus $user)
     {
-        return $alumnus->works;
+        return $user->works;
     }
 
     public function search(Request $request)
