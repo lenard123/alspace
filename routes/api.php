@@ -42,6 +42,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/users/{user}/thread', 'thread');
         Route::get('/users/{user}', 'view');
         Route::get('/users/{user}/posts', 'posts');
+        Route::get('/users/{alumnus}/works', 'works');
     });
 
     Route::get('/threads/support', [ThreadController::class, 'supportThreads'])->middleware('admin');

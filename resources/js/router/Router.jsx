@@ -27,6 +27,7 @@ import LandingPage from '@/js/pages/index'
 
 
 import AdminRoutes from './AdminRoutes'
+import WorkHistory from '../pages/profile/WorkHistory'
 
 export default () => {
     return (
@@ -53,7 +54,7 @@ export default () => {
                         <Route path='profile/:id' element={<ProfileLayout />}>
                             <Route index element={<ProfilePage />} />
                             <Route path='about' element={null} />
-                            <Route path='jobs' element={null} />
+                            <Route path='work' element={<WorkHistory />} />
                         </Route>
                         <Route path='settings' element={<Settings />} />
                     </Route>

@@ -8,7 +8,7 @@ export default function useTabs(id)
     const tabs = useMemo(() => [
         { title: 'Posts', link: `/profile/${id}` },
         { title: 'About', link: `/profile/${id}/about` },
-        { title: 'Jobs', link: `/profile/${id}/jobs` },
+        { title: 'Work', link: `/profile/${id}/work` },
     ], [id])
 
     const active = useMemo(() => {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alumnus;
 use App\Models\PendingAlumni;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -26,6 +27,11 @@ class UserController extends Controller
     {
         return User::alumni()
             ->paginate(10);
+    }
+
+    public function works(Alumnus $alumnus)
+    {
+        return $alumnus->works;
     }
 
     public function search(Request $request)

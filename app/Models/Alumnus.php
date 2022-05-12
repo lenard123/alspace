@@ -28,4 +28,10 @@ class Alumnus extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function works()
+    {
+        return $this->hasMany(Work::class, 'alumnus_id')
+            ->orderBy('start_at', 'DESC');
+    }
 }
