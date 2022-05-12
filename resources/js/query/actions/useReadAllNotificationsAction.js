@@ -2,9 +2,9 @@ import { NotificationApi } from "@/js/apis"
 import { updatePagination } from "@/js/utils/paginationReducer"
 import { useMutation, useQueryClient } from "react-query"
 import queryKeyFactory from "../queryKeyFactory"
-import useCurrentUserMutator from "./useCurrentUserMutator"
+import useCurrentUserMutator from "../mutators/useCurrentUserMutator"
 
-export default function useReadAllNotificationsMutator(filter) {
+export default function useReadAllNotificationsAction(filter) {
 
     const queryClient = useQueryClient()
     const queryKey = queryKeyFactory.notifications(filter)

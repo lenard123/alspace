@@ -5,19 +5,23 @@ import { useLocation, useNavigate, useParams } from "react-router-dom"
 import { Helmet } from 'react-helmet'
 import CommentsList from "@/js/components/CommentsList"
 import { useEffect } from 'react'
-import useNotificationAction from "@/js/query/actions/useNotificationAction"
-import PostNotFoundError from "./components/PostNotFoundError"
+import useReadNotificationAction from "@/js/query/actions/useReadNotificationAction"
 
 export default function ViewPostPage() {
     const { id } = useParams()
     const { state } = useLocation()
     const { post, notification } = state || {}
     const { isLoading, data, isSuccess, isError, error } = usePostQuery(id, post)
-    const { readNotification } = useNotificationAction()
+    const { mutate:readNotification } = useReadNotificationAction()
     const navigate = useNavigate()
 
     useEffect(() => {
-        readNotification(notification)
+        if (notification === null) return;
+
+        //has already read
+        if (notification.read_at !== null) return;
+
+        readNotification(notification.id)
     }, [notification])
 
     if (isError) {

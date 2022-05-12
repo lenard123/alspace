@@ -4,7 +4,6 @@ import { prependPagination, updatePagination } from "@/js/utils/paginationReduce
 import { useMutation, useQueryClient } from "react-query"
 import queryKeyFactory from "../queryKeyFactory"
 import { useCurrentUser } from '../queries/useCurrentUserQuery'
-import moment from 'moment'
 import { message } from 'antd'
 
 

@@ -1,13 +1,13 @@
 import { useCurrentUser } from "@/js/query/queries/useCurrentUserQuery"
 import MessageItem from './MessageItem'
-import useMessageMutator from '@/js/query/mutators/useMessageMutator'
+import useReadMessageAction from '@/js/query/actions/useReadMessageAction'
 
 export default function MessagesList({messages}) {
 
     const { id:currentUserId } = useCurrentUser()
 
     const isOwn = (senderId) => senderId === currentUserId
-    const { readMessage } = useMessageMutator()
+    const { mutate:readMessage } = useReadMessageAction()
 
     return (
         <div>

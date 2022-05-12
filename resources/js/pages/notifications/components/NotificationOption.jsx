@@ -1,11 +1,11 @@
 import Option from "@/js/components/Option";
-import useClearNotificationsMutator from "@/js/query/mutators/useClearNotificationsMutator";
-import useReadAllNotificationsMutator from "@/js/query/mutators/useReadAllNotificationsMutator";
+import useClearNotificationsAction from "@/js/query/actions/useClearNotificationsAction";
+import useReadAllNotificationsAction from "@/js/query/actions/useReadAllNotificationsAction";
 
 export default function NotificationOption({ filter }) {
 
-    const { mutate:clearNotifications } = useClearNotificationsMutator(filter)
-    const { mutate:readAllNotifications } = useReadAllNotificationsMutator(filter)
+    const { mutate:clearNotifications } = useClearNotificationsAction(filter)
+    const { mutate:readAllNotifications } = useReadAllNotificationsAction(filter)
 
     const handleMenuClick = ({ key }) => {
         switch (key) {

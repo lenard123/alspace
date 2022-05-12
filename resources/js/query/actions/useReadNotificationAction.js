@@ -1,9 +1,9 @@
 import { NotificationApi } from "@/js/apis";
 import { useMutation } from "react-query";
-import useCurrentUserMutator from "./useCurrentUserMutator";
+import useCurrentUserMutator from "../mutators/useCurrentUserMutator";
 
 
-export default function useReadNotificationMutator()
+export default function useReadNotificationAction()
 {
     const { updateUnreadNotificationsCount } = useCurrentUserMutator()
     return useMutation(

@@ -2,7 +2,7 @@ import { NotificationApi } from "@/js/apis"
 import { useMutation, useQueryClient } from "react-query"
 import queryKeyFactory from "../queryKeyFactory"
 
-export default function useClearNotificationsMutator(filter) {
+export default function useClearNotificationsAction(filter) {
 
     const queryClient = useQueryClient()
     const queryKey = queryKeyFactory.notifications(filter)
