@@ -5,6 +5,6 @@ import { ThreadApi } from "../../apis"
 export default function useReadMessageAction()
 {
     return useMutation(
-        (id) => ThreadApi.readMessage(id),
+        ({id}) => ThreadApi.readMessage(id),
     )
 }
