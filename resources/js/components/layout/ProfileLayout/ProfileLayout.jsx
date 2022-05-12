@@ -62,7 +62,7 @@ export default function ProfileLayout()
                 </div>
             </div>
 
-            <div className='page-wrapper mt-4'>
+            <div className='page-wrapper my-4'>
                 <Outlet />
             </div>
             
