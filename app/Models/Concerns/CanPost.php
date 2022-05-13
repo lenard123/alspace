@@ -5,9 +5,16 @@ namespace App\Models\Concerns;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use App\Services\ImageUploader;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 trait CanPost
 {
+
+    public function posts() : HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
+
     public function post(PostRequest $request) : Post
     {
         $post = new Post();
