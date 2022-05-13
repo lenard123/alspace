@@ -5,7 +5,6 @@ import { prependPagination } from "@/js/utils/paginationReducer";
 import { SendOutlined } from "@ant-design/icons";
 import { Avatar, Button, Comment, Input } from "antd";
 import { useState} from 'react'
-import { useMutation, useQueryClient } from "react-query";
 import useSendMessageAction from "@/js/query/actions/useSendMessageAction";
 
 export default function WriteMessage({ id, admin = false }) {
@@ -13,8 +12,6 @@ export default function WriteMessage({ id, admin = false }) {
     const { avatarUrl } = useCurrentUser()
 
     const [content, setContent] = useState('')
-
-    const queryClient = useQueryClient()
 
     const { isLoading, mutate } = useSendMessageAction()
 

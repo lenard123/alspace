@@ -153,16 +153,6 @@ class User extends Authenticatable
         ];
     }
 
-    public function readMessage(Message $message)
-    {
-        if ($message->user_id === $this->id) return;
-        if ($message->has_read) return;
-
-        //To prevent touching parent timestamp when reading
-        $message->has_read = true;
-        Message::where('id', $message->id)->update(['has_read' => true]);
-    }
-
     public static function sendMessageSupport(User $user, string $content)
     {
         $thread = $user->supportThread();

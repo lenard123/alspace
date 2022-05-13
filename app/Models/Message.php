@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Message extends Model
 {
@@ -23,5 +24,20 @@ class Message extends Model
     public function thread()
     {
         return $this->belongsTo(Thread::class);
+    }
+
+    public function markAsRead()
+    {
+        if ($this->has_read) return;
+
+        $this->updateQuietly([
+            'has_read' => true,
+        ]);
+    }
+
+    public function isSender($id = null)
+    {
+        $id = $id ?: Auth::id();
+        return $id === $this->user_id;
     }
 }
