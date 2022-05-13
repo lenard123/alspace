@@ -7,16 +7,14 @@ use App\Models\Concerns\HasAvatar;
 use App\Models\Concerns\CanLike;
 use App\Models\Concerns\CanParticipateToEvents;
 use App\Models\Concerns\CanPost;
+use App\Models\Concerns\CanSendMessage;
 use App\Models\Concerns\HasThreads;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Scout\Searchable;
 
@@ -29,6 +27,7 @@ class User extends Authenticatable
         HasAvatar, 
         CanLike, 
         CanComment, 
+        CanSendMessage,
         HasThreads, 
         CanPost,
         CanParticipateToEvents;
@@ -57,7 +56,6 @@ class User extends Authenticatable
         'password',
         'remember_token',
         'avatar',
-        'email',
     ];
 
     /**
@@ -68,22 +66,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    protected static function booted() : void
-    {
-        $currentUser = Auth::user();
-
-        static::retrieved(function ($user) use ($currentUser) {
-           if ($currentUser?->id === $user->id || $currentUser?->is_admin) {
-               $user->makeVisible('email');
-           }
-        });
-
-        static::created(function ($user) {
-            //Generate default Avatar
-            $user->regenerateAvatar();
-        });
-    }
 
     public function alumnus() : HasOne
     {
@@ -110,11 +92,6 @@ class User extends Authenticatable
         return $this->hasMany(Like::class);
     }
 
-    public function unreadThread()
-    {
-        return $this->threads()->whereHas('unreadMessages');
-    }
-
     public function scopeAdmin($query)
     {
         return $query->where('is_admin', 1);
@@ -123,16 +100,6 @@ class User extends Authenticatable
     public function scopeAlumni($query)
     {
         return $query->whereHas('alumnus')->with('alumnus');
-    }
-
-    public function sendMessageOn(Thread $thread, string $content)
-    {
-        $message = new Message();
-        $message->content = $content;
-        $message->user()->associate($this);
-        $message->thread()->associate($thread);
-        $message->save();
-        return $message;
     }
 
     public function getScoutKey()
@@ -153,19 +120,4 @@ class User extends Authenticatable
         ];
     }
 
-    public function readMessage(Message $message)
-    {
-        if ($message->user_id === $this->id) return;
-        if ($message->has_read) return;
-
-        //To prevent touching parent timestamp when reading
-        $message->has_read = true;
-        Message::where('id', $message->id)->update(['has_read' => true]);
-    }
-
-    public static function sendMessageSupport(User $user, string $content)
-    {
-        $thread = $user->supportThread();
-        return User::admin()->first()->sendMessageOn($thread, $content);
-    }
 }

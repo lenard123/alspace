@@ -1,23 +1,26 @@
-import { useEffect } from 'react'
+import useMessageReader from '../hooks/useMessageReader'
 
-export default function MessageItem({message, own, reader})
+const bgColor = (message, own) => {
+    //Light Blue when sending
+    if (message.is_sending) return 'rgb(147 197 253)'
+    
+    //Blue for sent message
+    if (own) return '#38BDF8'
+
+    //Light for received message
+    return '#E5E5E5'
+}
+
+export default function MessageItem({ message, own })
 {
-    useEffect(() => {
-        if (!own && !message.has_read) {
-            reader(message)
-        }
-    }, [])
-
-    const backgroundColor = message.is_sending 
-        ? 'rgb(147 197 253)'
-        : own ? '#38BDF8' : '#E5E5E5'
+    useMessageReader(message, own)
 
     return (
         <div key={message.id} className={`flex flex-col m-3 ${own ? 'items-end' : 'items-start'}`}>
             <div
-                className='rounded-lg shadow px-3 py-2 max-w-[60%] bg-blue-300'
+                className='rounded-lg shadow px-3 py-2 max-w-[60%]'
                 style={{
-                    backgroundColor,
+                    backgroundColor: bgColor(message, own),
                     color: own ? '#fff' : '#000',
                     overflowWrap: 'break-word'
                 }}>

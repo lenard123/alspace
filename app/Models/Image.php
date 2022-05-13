@@ -12,7 +12,8 @@ class Image extends Model
 
     protected $fillable = [
         'source',
-        'reference'
+        'reference',
+        'payload',
     ];
 
     protected $appends = ['url'];
