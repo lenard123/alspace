@@ -49,4 +49,9 @@ trait HasThreads
             ->map(fn($thread) => $thread->loadInfo($this))
             ->values();
     }
+
+    public function unreadThread()
+    {
+        return $this->threads()->whereHas('unreadMessages');
+    }
 }
