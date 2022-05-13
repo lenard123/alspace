@@ -109,4 +109,13 @@ class User extends Authenticatable
         ];
     }
 
+    public function cover()
+    {
+        return $this->morphOne(Image::class, 'imageable')
+            ->where('payload', 'cover')
+            ->withDefault([
+                'source' => 'url',
+                'reference' => 'https://res.cloudinary.com/djasbri35/image/upload/v1625929593/assets/error_ay6j96.jpg',
+            ]);
+    }
 }

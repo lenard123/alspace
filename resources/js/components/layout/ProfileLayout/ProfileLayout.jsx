@@ -16,7 +16,7 @@ export default function ProfileLayout()
 
     if (isLoading) return <SkeletonLayout />
 
-    const { fullname, avatarUrl } = user
+    const { fullname, avatarUrl, cover } = user
 
     return (
         <>
@@ -29,7 +29,7 @@ export default function ProfileLayout()
                     width='100%'
                     height='min(300px, 60vw)'
                     className='object-cover'
-                    src='https://res.cloudinary.com/djasbri35/image/upload/v1649750683/alspace/events/aghom7lqat9harfvaaqv.png'
+                    src={cover.url}
                 />
 
                 <div className='page-wrapper px-4'>
