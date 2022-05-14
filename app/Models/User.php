@@ -10,7 +10,6 @@ use App\Models\Concerns\CanPost;
 use App\Models\Concerns\CanSendMessage;
 use App\Models\Concerns\HasThreads;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -82,16 +81,6 @@ class User extends Authenticatable
         return $this->firstname.' '.$this->lastname;
     }
 
-    public function posts() : HasMany
-    {
-        return $this->hasMany(Post::class);
-    }
-
-    public function likes() : HasMany
-    {
-        return $this->hasMany(Like::class);
-    }
-
     public function scopeAdmin($query)
     {
         return $query->where('is_admin', 1);
@@ -120,4 +109,13 @@ class User extends Authenticatable
         ];
     }
 
+    public function cover()
+    {
+        return $this->morphOne(Image::class, 'imageable')
+            ->where('payload', 'cover')
+            ->withDefault([
+                'source' => 'url',
+                'reference' => 'https://res.cloudinary.com/djasbri35/image/upload/v1625929593/assets/error_ay6j96.jpg',
+            ]);
+    }
 }

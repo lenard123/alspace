@@ -4,9 +4,15 @@ namespace App\Models\Concerns;
 
 use App\Contracts\Likeable;
 use App\Models\Like;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 trait CanLike
 {
+
+    public function likes() : HasMany
+    {
+        return $this->hasMany(Like::class);
+    }
 
     public function like(Likeable $likeable): Likeable
     {
