@@ -63,7 +63,7 @@ export default function ProfileLayout() {
 
             <div className='page-wrapper my-4'>
                 <div className='flex gap-4'>
-                    <Card className='w-2/5 self-start mt-3 shadow-lg'>
+                    <Card className='w-2/5 self-start mt-3 shadow-lg hidden md:block'>
                         <Typography.Title level={4}>Bio</Typography.Title>
                         {false
                             ? <Typography.Paragraph>
