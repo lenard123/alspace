@@ -1,6 +1,8 @@
 
 export default {
 
+    jobs: ['jobs'],
+
     posts: ['posts'],
 
     post: (id) => ['posts', Number(id)],

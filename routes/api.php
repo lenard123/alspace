@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\NotificationController;
@@ -45,6 +46,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/users/{user}/posts', 'posts');
         Route::get('/users/{user}/works', 'works');
     });
+
+    Route::get('/jobs', [JobController::class, 'index']);
 
     Route::post('/works', [WorkController::class, 'create']);
 

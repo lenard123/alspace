@@ -9,6 +9,12 @@ class JobPost extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'tags' => 'array'
+    ];
+
+    protected $with = ['user'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
