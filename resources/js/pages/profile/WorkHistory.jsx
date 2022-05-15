@@ -19,7 +19,7 @@ export default function WorkHistory() {
     return (
         <>
             <Card
-                className='max-w-xl'
+                className='max-w-xl mt-3'
                 title={(
                     <div className='flex justify-between'>
                         <Title level={4}>Work Experience</Title>

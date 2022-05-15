@@ -1,4 +1,4 @@
-import { Avatar, Button, Image, Tabs } from "antd";
+import { Avatar, Button, Card, Image, Tabs, Typography } from "antd";
 import { Outlet, useParams } from "react-router";
 import Helmet from 'react-helmet'
 import SkeletonLayout from "./SkeletonLayout";
@@ -7,8 +7,7 @@ import { useIsCurrentUser } from "@/js/query/queries/useCurrentUserQuery";
 import useTabs from "./useTabs";
 import { Link } from "react-router-dom";
 
-export default function ProfileLayout() 
-{
+export default function ProfileLayout() {
     const { id } = useParams()
     const isCurrentUser = useIsCurrentUser(id)
     const { isLoading, data: user } = useUserQuery(id)
@@ -16,7 +15,7 @@ export default function ProfileLayout()
 
     if (isLoading) return <SkeletonLayout />
 
-    const { fullname, avatarUrl, cover } = user
+    const { fullname, avatarUrl, cover, created_at } = user
 
     return (
         <>
@@ -44,7 +43,7 @@ export default function ProfileLayout()
                             <div className='sm:pb-2 flex flex-col sm:flex-row justify-between flex-grow gap-2'>
                                 <div className='text-2xl md:text-3xl text-center font-bold text-gray-800'>{fullname}</div>
                                 <div className='flex sm:self-end justify-center'>
-                                    { isCurrentUser 
+                                    {isCurrentUser
                                         ? <Button size='large' type='secondary' shape='round'>Edit Profile</Button>
                                         : <Link to={`/messages?user_id=${id}`}><Button size='large' type='secondary' shape='round'>Send Message</Button></Link>
                                     }
@@ -53,8 +52,8 @@ export default function ProfileLayout()
                         </div>
                     </div>
 
-                    <Tabs defaultActiveKey={active} size='large' tabBarStyle={{marginBottom: 0}}>
-                        {tabs.map( ({title, link}) => (
+                    <Tabs defaultActiveKey={active} size='large' tabBarStyle={{ marginBottom: 0 }}>
+                        {tabs.map(({ title, link }) => (
                             <Tabs.TabPane key={title} tabKey={title} tab={<Link to={link}>{title}</Link>} />
                         ))}
                     </Tabs>
@@ -63,9 +62,26 @@ export default function ProfileLayout()
             </div>
 
             <div className='page-wrapper my-4'>
-                <Outlet />
+                <div className='flex gap-4'>
+                    <Card className='w-2/5 self-start mt-3 shadow-lg'>
+                        <Typography.Title level={4}>Bio</Typography.Title>
+                        {false
+                            ? <Typography.Paragraph>
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum obcaecati similique, tempora harum architecto est iusto ut ea ipsam numquam. Sunt dignissimos, voluptatem reprehenderit et nam eaque corporis dicta rem!
+                            </Typography.Paragraph>
+                            : <Typography.Text type='secondary' italic>No bio set</Typography.Text>
+                        }
+
+
+                        <Typography.Title level={4}>Joined</Typography.Title>
+                        <Typography.Text>{(new Date(created_at)).toLocaleDateString()}</Typography.Text>
+                    </Card>
+                    <div className='w-full'>
+                        <Outlet />
+                    </div>
+                </div>
             </div>
-            
+
         </>
     )
 }
