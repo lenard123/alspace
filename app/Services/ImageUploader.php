@@ -30,7 +30,7 @@ class ImageUploader
         return $image;
     }
 
-    private static function getPath($file, $folder)
+    public static function getPath($file, $folder)
     {
         switch(config('filesystems.default')) {
             case 'cloudinary':

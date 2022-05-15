@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alumnus;
+use App\Models\Image;
 use App\Models\PendingAlumni;
 use App\Models\User;
+use App\Services\ImageUploader;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -32,6 +34,23 @@ class UserController extends Controller
     public function works(Alumnus $user)
     {
         return $user->works;
+    }
+
+    public function updateAvatar(Request $request)
+    {
+        // $image = ImageUploader::upload(auth()->user(), $request->file('avatar'), 'avatar');
+        $image = auth()->user()->avatar();
+        if ($image->exists()) {
+            $image = auth()->user()->avatar;
+            $image->upload($request->file('avatar'), 'avatar');
+            return $image->url;
+        }
+
+        $image = new Image();
+        $image->imageable()->associate(auth()->user());
+        $image->payload = 'avatar';
+        $image->upload($request->file('avatar'), 'avatar');
+        return $image->url;
     }
 
     public function search(Request $request)

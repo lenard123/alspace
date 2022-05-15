@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\ImageUploader;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -32,6 +33,13 @@ class Image extends Model
             default:
                 return $this->reference;
         }
+    }
+
+    public function upload($file, $folder = '')
+    {
+        $this->source = config('filesystems.default');
+        $this->reference = ImageUploader::getPath($file, $folder);
+        $this->saveQuietly();
     }
 
 }

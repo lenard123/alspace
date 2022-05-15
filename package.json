@@ -10,8 +10,10 @@
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "antd": "^4.20.0",
+    "antd-img-crop": "^4.2.3",
     "axios": "^0.26.1",
     "classnames": "^2.3.1",
+    "croppie": "^2.6.5",
     "js-cookie": "^3.0.1",
     "lodash": "^4.17.21",
     "moment": "^2.29.2",

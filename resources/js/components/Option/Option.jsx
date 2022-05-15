@@ -1,15 +1,15 @@
 import { Button, Dropdown, Menu } from 'antd'
 import { DotsHorizontalOutlined } from '../icons'
 
-export default function Options({ onMenuClick, menuOptions }) {
+export default function Option({ onMenuClick, menuOptions, children, placement="bottomRight" }) {
 
     return (
             <Dropdown 
                 trigger={['click']} 
                 overlay={<Menu items={menuOptions} onClick={onMenuClick} />} 
-                placement="bottomRight"
+                placement={placement}
                 >
-                <Button type='text' shape='circle' icon={<DotsHorizontalOutlined className='cursor-pointer'/>} />
+                {children || <Button type='text' shape='circle' icon={<DotsHorizontalOutlined className='cursor-pointer'/>} />}
             </Dropdown>
     )
 }

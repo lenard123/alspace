@@ -6,6 +6,7 @@ import useUserQuery from "@/js/query/queries/useUserQuery";
 import { useIsCurrentUser } from "@/js/query/queries/useCurrentUserQuery";
 import useTabs from "./useTabs";
 import { Link } from "react-router-dom";
+import ChangeProfileOptions from "./components/ChangeProfileOptions";
 
 export default function ProfileLayout() {
     const { id } = useParams()
@@ -34,11 +35,14 @@ export default function ProfileLayout() {
                 <div className='page-wrapper px-4'>
                     <div className='-mt-[60px]'>
                         <div className='flex flex-col items-center sm:flex-row sm:items-end gap-2'>
-                            <Avatar
-                                className='border-2 border-white'
-                                src={avatarUrl}
-                                size={120}
-                            />
+                            <div className='relative'>
+                                <Avatar
+                                    className='border-2 border-white'
+                                    src={avatarUrl}
+                                    size={120}
+                                />
+                                <ChangeProfileOptions />
+                            </div>
 
                             <div className='sm:pb-2 flex flex-col sm:flex-row justify-between flex-grow gap-2'>
                                 <div className='text-2xl md:text-3xl text-center font-bold text-gray-800'>{fullname}</div>

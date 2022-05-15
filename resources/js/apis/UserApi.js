@@ -44,3 +44,15 @@ export const fetchWorks = async (alumnus_id) => {
     await requestCookie()
     return await Http.get(`/users/${alumnus_id}/works`)
 }
+
+export const updateAvatar = async (avatar) => {
+    const data = new FormData()
+    data.append('avatar', avatar)
+ 
+    await requestCookie()
+    return await Http.post('/user/avatar', data,{
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    })
+}
