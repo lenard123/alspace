@@ -45,6 +45,38 @@ export default function AboutPage() {
                 </div>
 
             </div>
+
+            <Divider />
+
+            <Title level={3}>Contact</Title>
+            <div className='space-y-4 text-base text-gray-700 mt-8'>
+                <div className='grid grid-cols-3'>
+                    <Title level={5}>Email:</Title>
+                    <Typography.Link href='#'  className='col-span-2'>lenard.mangayayam@gmail.com</Typography.Link>
+                </div>
+
+                <Divider />
+
+                <div className='grid grid-cols-3'>
+                    <Title level={5}>Facebook:</Title>
+                    <Text className='col-span-2' type='secondary' italic>Not Set</Text>
+                </div>
+
+                <Divider />
+
+                <div className='grid grid-cols-3'>
+                    <Title level={5}>LinkedIn:</Title>
+                    <Text className='col-span-2' type='secondary' italic>Not Set</Text>
+                </div>
+
+                <Divider />
+
+                <div className='grid grid-cols-3'>
+                    <Title level={5}>Contact Number:</Title>
+                    <Text className='col-span-2' type='secondary' italic>Not Set</Text>
+                </div>
+
+            </div>
         </Card>
     )
 }
