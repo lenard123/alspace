@@ -11,4 +11,13 @@ class JobController extends Controller
     {
         return JobPost::all();
     }
+
+    public function create(Request $request)
+    {
+        $job = new JobPost($request->only('title', 'company', 'description', 'tags'));
+        $job->user()->associate(auth()->user());
+        $job->save();
+        $job->image->upload($request->file('image'), 'jobs');
+        return $job;
+    }
 }

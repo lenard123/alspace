@@ -49,6 +49,7 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::get('/jobs', [JobController::class, 'index']);
+    Route::post('/jobs', [JobController::class, 'create']);
 
     Route::post('/works', [WorkController::class, 'create']);
 

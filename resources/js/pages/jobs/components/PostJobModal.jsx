@@ -1,38 +1,60 @@
-import { BriefcaseOutlined } from "@/js/components/icons";
+import usePostJobAction from "@/js/query/actions/usePostJobAction";
 import { PlusOutlined } from "@ant-design/icons";
 import { Avatar, Form, Input, Modal, Upload } from "antd";
+import ImgCrop from "antd-img-crop";
 import FormItem from "antd/lib/form/FormItem";
-import useTilg from 'tilg'
 import { useState } from 'react'
 import TagsEditor from "./TagsEditor";
 
 export default function PostJobModal({ isOpen, setIsOpen }) {
 
-    const [tags, setTags] = useState(['test', 'a', 'b'])
+    const [form] = Form.useForm()
+    const [tags, setTags] = useState([])
+    const [image, setImage] = useState(null)
+    const { mutate } = usePostJobAction()
+
+    const handleSubmit = (data) => {
+        mutate({
+            ...data,
+            image,
+            tags
+        })
+    }
 
     return (
         <Modal
             visible={isOpen}
             style={{top: '20px'}}
             onCancel={() => setIsOpen(false)}
+            onOk={() => form.submit()}
             maskClosable={false}
             closable={false}
             title='Post Job Advertisement'
         >
-            <Form layout="vertical">
+            <Form form={form} layout="vertical" onFinish={handleSubmit}>
 
-                <Upload
-                    className='avatar-uploader'
-                    listType="picture-card"
-                    maxCount={1}
-                    showUploadList={false}
-                    beforeUpload={() => false}
-                >
-                    <div>
-                        <PlusOutlined />
-                        <div style={{ marginTop: 8 }}>Upload</div>
-                    </div>
-                </Upload>
+                <ImgCrop shape='round'>
+                    <Upload
+                        className='avatar-uploader'
+                        listType="picture-card"
+                        maxCount={1}
+                        showUploadList={false}
+                        beforeUpload={(file) => {
+                            setImage(file)
+                            return false
+                        }}
+                    >
+                        {image 
+                            ? <Avatar className='w-full h-full' src={URL.createObjectURL(image)}/>
+                            :(
+                                <div>
+                                    <PlusOutlined />
+                                    <div style={{ marginTop: 8 }}>Upload</div>
+                                </div>
+                            )
+                        }
+                    </Upload>
+                </ImgCrop>
 
                 <FormItem name='title' label='Job Title'>
                     <Input size='large' className='rounded' />

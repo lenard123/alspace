@@ -7,6 +7,11 @@ const useCurrentUserQuery = () => {
     return useQuery(queryKeyFactory.currentUser, fetchCurrentUser, {
         retry: 0,
         staleTime: 1000 * 60 * 60 * 2,
+        onSuccess(data){
+            if (data) {
+                queryClient.setQueryData(queryKeyFactory.user(data.id), data)
+            }
+        },
         onError: (error) => {
             if (error?.response.status === 401) {
                 queryClient.setQueryData(queryKeyFactory.currentUser, null)

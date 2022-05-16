@@ -27,6 +27,8 @@ class Image extends Model
     public function getUrlAttribute()
     {
         switch($this->source) {
+            case 'null':
+                return null;
             case 'storage':
             case 'public':
                 return Storage::url($this->reference);
@@ -37,9 +39,11 @@ class Image extends Model
 
     public function upload($file, $folder = '')
     {
-        $this->source = config('filesystems.default');
-        $this->reference = ImageUploader::getPath($file, $folder);
-        $this->saveQuietly();
+        if ($file) {
+            $this->source = config('filesystems.default');
+            $this->reference = ImageUploader::getPath($file, $folder);
+            $this->saveQuietly();
+        }
     }
 
 }
