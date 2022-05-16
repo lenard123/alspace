@@ -1,34 +1,32 @@
 import useJobsQuery from '@/js/query/queries/useJobsQuery'
-import { Divider, Typography } from 'antd'
-import JobCard from './components/JobCard'
-import JobCardSkeleton from './components/JobCardSkeleton'
+import { EditOutlined } from '@ant-design/icons'
+import { Button, PageHeader, Typography } from 'antd'
+import JobList from './components/JobList'
+import PostJobModal from './components/PostJobModal'
+import { useState } from 'react'
 
 const { Title } = Typography
 
 
 export default function JobsPage() {
-
+    const [isOpen, setIsOpen] = useState(false)
     const { data, isLoading } = useJobsQuery()
 
     return (
-        <div className='page-wrapper my-8'>
-            <Title level={2}>Available Jobs</Title>
-
-            <Divider />
+        <div className='page-wrapper'>
+            <PageHeader 
+                title={<Title className='mx-4 sm:mx-0' level={2}>Available Jobs</Title>}
+                extra={[
+                    <Button key='create' onClick={() => setIsOpen(true)} type='text' shape='circle' icon={<EditOutlined />} />
+                ]}
+            />
+            
 
             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
-
-                {isLoading && (
-                    <>
-                        <JobCardSkeleton />
-                        <JobCardSkeleton />
-                        <JobCardSkeleton />
-                        <JobCardSkeleton />
-                        <JobCardSkeleton />
-                    </>
-                )}
-                {data && data.map(job => <JobCard key={job.id} job={job} />)}
+                <JobList loading={isLoading} jobs={data}/>
             </div>
+
+            <PostJobModal isOpen={isOpen} setIsOpen={setIsOpen} />
 
         </div>
     )
