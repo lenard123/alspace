@@ -1,24 +1,37 @@
 import usePostJobAction from "@/js/query/actions/usePostJobAction";
 import { PlusOutlined } from "@ant-design/icons";
-import { Avatar, Form, Input, Modal, Upload } from "antd";
+import { Avatar, Form, Input, message, Modal, Upload } from "antd";
 import ImgCrop from "antd-img-crop";
 import FormItem from "antd/lib/form/FormItem";
 import { useState } from 'react'
 import TagsEditor from "./TagsEditor";
+
+const rules = {
+    title: [{required: true, message: 'This field is required'}],
+    company: [{required: true, message: 'This field is required'}],
+    description: [{required: true, message: 'This field is required'}],
+}
 
 export default function PostJobModal({ isOpen, setIsOpen }) {
 
     const [form] = Form.useForm()
     const [tags, setTags] = useState([])
     const [image, setImage] = useState(null)
-    const { mutate } = usePostJobAction()
+    const { mutate, isLoading } = usePostJobAction({
+        onSuccess() {
+            setIsOpen(false)
+            setImage(null)
+            setTags([])
+            form.resetFields()
+            message.success('Job Posted Successfully')
+        }
+    })
 
     const handleSubmit = (data) => {
-        mutate({
-            ...data,
-            image,
-            tags
-        })
+
+        if (isLoading) return;
+
+        mutate({...data,image,tags})
     }
 
     return (
@@ -27,6 +40,7 @@ export default function PostJobModal({ isOpen, setIsOpen }) {
             style={{top: '20px'}}
             onCancel={() => setIsOpen(false)}
             onOk={() => form.submit()}
+            okButtonProps={{loading: isLoading}}
             maskClosable={false}
             closable={false}
             title='Post Job Advertisement'
@@ -56,21 +70,21 @@ export default function PostJobModal({ isOpen, setIsOpen }) {
                     </Upload>
                 </ImgCrop>
 
-                <FormItem name='title' label='Job Title'>
+                <Form.Item className="mb-4" hasFeedback name='title' label='Job Title' rules={rules.title}>
                     <Input size='large' className='rounded' />
-                </FormItem>
+                </Form.Item>
 
-                <FormItem name='company' label='Company Name'>
+                <Form.Item className="mb-4" hasFeedback name='company' label='Company Name' rules={rules.company}>
                     <Input size='large' className='rounded' />
-                </FormItem>
+                </Form.Item>
 
-                <FormItem name='description' label='Description'>
+                <Form.Item className="mb-4" hasFeedback name='description' label='Description' rules={rules.description}>
                     <Input.TextArea showCount maxLength={100} className='rounded' />
-                </FormItem>
+                </Form.Item>
 
-                <FormItem name='tags' label='Tags'>
+                <Form.Item name='tags' label='Tags'>
                     <TagsEditor tags={tags} setTags={setTags} />
-                </FormItem>
+                </Form.Item>
 
             </Form>
         </Modal>

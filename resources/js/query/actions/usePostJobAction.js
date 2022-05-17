@@ -1,5 +1,7 @@
 import { JobApi } from "@/js/apis";
-import { useMutation } from "react-query";
+import { invoke } from "@/js/utils";
+import { useMutation, useQueryClient } from "react-query";
+import queryKeyFactory from "../queryKeyFactory";
 
 
 const postJobAction = async (data) => {
@@ -15,11 +17,15 @@ const postJobAction = async (data) => {
     return await JobApi.postJob(formData)
 }
 
-export default function usePostJobAction()
+export default function usePostJobAction(options = {})
 {
+    const queryClient = useQueryClient()
     return useMutation(postJobAction, {
-        onSettled(data, error){
-            console.log({data, error})
+        ...options,
+        onSuccess(data)
+        {
+            queryClient.invalidateQueries(queryKeyFactory.jobs)
+            invoke(options.onSuccess)
         }
     })
 }
