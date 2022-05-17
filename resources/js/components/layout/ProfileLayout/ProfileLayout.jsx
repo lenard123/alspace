@@ -29,7 +29,7 @@ export default function ProfileLayout() {
                     width='100%'
                     height='min(300px, 60vw)'
                     className='object-cover'
-                    src={cover.url}
+                    // src={cover.url}
                 />
 
                 <div className='page-wrapper px-4'>
