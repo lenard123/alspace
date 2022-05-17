@@ -1,5 +1,6 @@
 import { JobApi } from "@/js/apis";
 import { invoke } from "@/js/utils";
+import { message } from "antd";
 import { useMutation, useQueryClient } from "react-query";
 import queryKeyFactory from "../queryKeyFactory";
 
@@ -22,6 +23,12 @@ export default function usePostJobAction(options = {})
     const queryClient = useQueryClient()
     return useMutation(postJobAction, {
         ...options,
+        onError(error) {
+            if (error?.response?.status === 422) {
+                message.error(error.response.data.message)
+            }
+            invoke(options.error)
+        },
         onSuccess(data)
         {
             queryClient.invalidateQueries(queryKeyFactory.jobs)

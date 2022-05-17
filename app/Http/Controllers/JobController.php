@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostJobRequest;
 use App\Models\JobPost;
-use Illuminate\Http\Request;
 
 class JobController extends Controller
 {
@@ -12,9 +12,9 @@ class JobController extends Controller
         return JobPost::all();
     }
 
-    public function create(Request $request)
+    public function create(PostJobRequest $request)
     {
-        $job = new JobPost($request->only('title', 'company', 'description', 'tags'));
+        $job = new JobPost($request->validated());
         $job->user()->associate(auth()->user());
         $job->save();
         $job->image->upload($request->file('image'), 'jobs');
