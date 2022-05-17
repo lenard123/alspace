@@ -2,7 +2,10 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
@@ -61,14 +64,17 @@
         ],
         "deploy": [
             "git fetch origin",
-	    "git pull",
+            "git pull",
             "git checkout origin/build",
-	    "rm -R public/build-temp -f",
-	    "cp public/build public/build-temp -r",
-	    "git checkout main",
-	    "rm -R public/build -f",
-	    "mv public/build-temp public/build",
+            "rm -R public/build-temp -f",
+            "cp public/build public/build-temp -r",
+            "git checkout main",
+            "rm -R public/build -f",
+            "mv public/build-temp public/build",
             "composer warmup"
+        ],
+        "remote-deploy": [
+            "ssh lenard123@alspace.me -T \"composer deploy --working-dir=/home/lenard123/alspace\""
         ],
         "setup": [
             "sudo add-apt-repository ppa:ondrej/php -y",
