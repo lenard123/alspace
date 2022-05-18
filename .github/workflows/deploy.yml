@@ -1,0 +1,22 @@
+
+name: "Trigger Deploy Command on Azure VM"
+
+on:
+  push:
+    branches:
+      - "automate"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Deploy Via SSH"
+        uses: fifsky/ssh-action@master
+        with:
+          command: |
+            cd ~/alspace
+            composer deploy
+          host: ${{ secrets.VM_HOST }}
+          user: ${{ secrets.VM_USER }}
+          pass: ${{ secrets.VM_PASS }}
+          
