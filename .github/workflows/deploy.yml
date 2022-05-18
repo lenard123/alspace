@@ -4,7 +4,7 @@ name: "Trigger Deploy Command on Azure VM"
 on:
   push:
     branches:
-      - "automate"
+      - "build"
 
 jobs:
   deploy:
@@ -19,4 +19,3 @@ jobs:
           host: ${{ secrets.VM_HOST }}
           user: ${{ secrets.VM_USER }}
           pass: ${{ secrets.VM_PASS }}
-          
