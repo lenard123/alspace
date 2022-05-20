@@ -31,7 +31,7 @@ class UserController extends Controller
             ->paginate(10);
     }
 
-    public function works(Alumnus $user)
+    public function works(User $user)
     {
         return $user->works;
     }
@@ -65,7 +65,7 @@ class UserController extends Controller
 
     public function view(User $user)
     {
-        return $user->load('cover');
+        return $user->load('cover', 'alumnus', 'info');
     }
 
     public function posts(User $user)

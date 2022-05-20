@@ -1,8 +1,27 @@
-import { Card, Descriptions, Divider, Typography } from "antd";
+import { ProfileRoutesContext } from "@/js/components/layout/ProfileLayout/components/ProfileRoutes";
+import { Card, Divider, Typography } from "antd";
+import { useContext } from 'react'
 
 const { Title, Text, Paragraph } = Typography
 
+const Description = ({children, value, select, defaultText = 'Not Set'}) => {
+
+    if (!value)
+        return <Text className='col-span-2' type='secondary' italic>{defaultText}</Text>
+
+    if (children)
+        return children
+
+    return <Text className='col-span-2'>{select ? select(value) : value}</Text>
+}
+
 export default function AboutPage() {
+
+    const { user } = useContext(ProfileRoutesContext)
+
+    const { fullname, info, created_at, email } = user
+    const { gender, birthday, bio } = info
+
     return (
         <Card
             className='mt-3'
@@ -12,36 +31,40 @@ export default function AboutPage() {
             <div className='space-y-4 text-base text-gray-700 mt-8'>
                 <div className='grid grid-cols-3'>
                     <Title level={5}>Name:</Title>
-                    <Text className='col-span-2'>Lenard Mangay-ayam</Text>
+                    <Description value={fullname} />
                 </div>
 
                 <Divider />
 
                 <div className='grid grid-cols-3'>
                     <Title level={5}>Gender:</Title>
-                    <Text className='col-span-2' type='secondary' italic>Unspecified</Text>
+                    <Description value={gender} defaultText='Unspecified'/>
                 </div>
 
                 <Divider />
 
                 <div className='grid grid-cols-3'>
                     <Title level={5}>Birthday:</Title>
-                    <Text className='col-span-2' type='secondary' italic>Not Set</Text>
+                    <Description value={birthday}/>
                 </div>
 
                 <Divider />
 
                 <div className='grid grid-cols-3'>
                     <Title level={5}>Bio:</Title>
-                    {/* <Text className='col-span-2' type='secondary' italic>Not Set</Text> */}
-                    <Paragraph className='col-span-2'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam ducimus consectetur sint voluptatibus beatae similique quod iusto tempora a. Corporis aspernatur libero suscipit soluta reiciendis incidunt eum quia amet non.</Paragraph>
+                    <Description value={bio}>
+                        <Paragraph className='col-span-2'>{bio}</Paragraph>
+                    </Description>
                 </div>
 
                 <Divider />
 
                 <div className='grid grid-cols-3'>
                     <Title level={5}>Date Joined:</Title>
-                    <Text className='col-span-2'>5/15/2022</Text>
+                    <Description 
+                        value={created_at} 
+                        select={value => (new Date(value)).toLocaleDateString()}
+                    />
                 </div>
 
             </div>
@@ -52,7 +75,7 @@ export default function AboutPage() {
             <div className='space-y-4 text-base text-gray-700 mt-8'>
                 <div className='grid grid-cols-3'>
                     <Title level={5}>Email:</Title>
-                    <Typography.Link href='#'  className='col-span-2'>lenard.mangayayam@gmail.com</Typography.Link>
+                    <Typography.Link href={`mailto:${email}`}  className='col-span-2'>{email}</Typography.Link>
                 </div>
 
                 <Divider />

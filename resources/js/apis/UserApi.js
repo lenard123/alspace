@@ -40,9 +40,9 @@ export const approveUser = async (pendingUserId) => {
     return await Http.post(`/users/pending/${pendingUserId}`)
 }
 
-export const fetchWorks = async (alumnus_id) => {
+export const fetchWorks = async (user_id) => {
     await requestCookie()
-    return await Http.get(`/users/${alumnus_id}/works`)
+    return await Http.get(`/users/${user_id}/works`)
 }
 
 export const updateAvatar = async (avatar) => {

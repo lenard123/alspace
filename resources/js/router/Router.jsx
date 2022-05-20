@@ -52,10 +52,10 @@ export default () => {
                             <Route index element={<Events />} />
                             <Route path=':id' element={<EventDetails />} />
                         </Route>
-                        <Route path='profile/:id' element={<ProfileLayout />}>
-                            <Route index element={<ProfilePage />} />
+                        <Route path='profile/:id/*' element={<ProfileLayout />}>
+                            {/* <Route index element={<ProfilePage />} />
                             <Route path='about' element={<AboutPage />} />
-                            <Route path='work' element={<WorkHistory />} />
+                            <Route path='work' element={<WorkHistory />} /> */}
                         </Route>
                         <Route path='settings' element={<Settings />} />
                     </Route>

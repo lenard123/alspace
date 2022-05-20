@@ -1,15 +1,15 @@
 import useUserPostsQuery from "@/js/query/queries/useUserPostsQuery";
-import { useParams } from "react-router";
 import { List } from "antd"
 import Post from "@/js/components/Post";
 import WritePost from "@/js/components/WritePost";
-import { useIsCurrentUser } from "@/js/query/queries/useCurrentUserQuery";
+import { ProfileRoutesContext } from "@/js/components/layout/ProfileLayout/components/ProfileRoutes";
+import { useContext } from 'react'
+
 
 export default function ProfilePage() 
 {
-    const { id } = useParams()
+    const { id, isCurrentUser } = useContext(ProfileRoutesContext)
     const { data, isLoading, hasNextPage, isFetchingNextPage, fetchNextPage } = useUserPostsQuery(id)
-    const isCurrentUser = useIsCurrentUser(id)
 
     return (
         <>

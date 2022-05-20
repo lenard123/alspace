@@ -7,6 +7,8 @@ import { useIsCurrentUser } from "@/js/query/queries/useCurrentUserQuery";
 import useTabs from "./useTabs";
 import { Link } from "react-router-dom";
 import ChangeProfileOptions from "./components/ChangeProfileOptions";
+import ProfileCard from "./components/ProfileCard";
+import ProfileRoutes from "./components/ProfileRoutes";
 
 export default function ProfileLayout() {
     const { id } = useParams()
@@ -14,10 +16,10 @@ export default function ProfileLayout() {
     const { isLoading, data: user } = useUserQuery(id)
     const { tabs, active } = useTabs(id)
 
-    if (isLoading) return <SkeletonLayout />
+    if ( isLoading ) return <SkeletonLayout />
 
-    const { fullname, avatarUrl, cover, created_at } = user
-
+    const { fullname, avatarUrl, created_at, info, alumnus } = user
+    const { cover, bio } = info
     return (
         <>
             <Helmet>
@@ -29,7 +31,7 @@ export default function ProfileLayout() {
                     width='100%'
                     height='min(300px, 60vw)'
                     className='object-cover'
-                    // src={cover.url}
+                    src={cover.url}
                 />
 
                 <div className='page-wrapper px-4'>
@@ -41,7 +43,7 @@ export default function ProfileLayout() {
                                     src={avatarUrl}
                                     size={120}
                                 />
-                                <ChangeProfileOptions />
+                                {isCurrentUser && <ChangeProfileOptions />}
                             </div>
 
                             <div className='sm:pb-2 flex flex-col sm:flex-row justify-between flex-grow gap-2'>
@@ -58,7 +60,7 @@ export default function ProfileLayout() {
 
                     <Tabs defaultActiveKey={active} size='large' tabBarStyle={{ marginBottom: 0 }}>
                         {tabs.map(({ title, link }) => (
-                            <Tabs.TabPane key={title} tabKey={title} tab={<Link to={link}>{title}</Link>} />
+                            <Tabs.TabPane key={link} tabKey={title} tab={<Link to={link}>{title}</Link>} />
                         ))}
                     </Tabs>
 
@@ -67,21 +69,14 @@ export default function ProfileLayout() {
 
             <div className='page-wrapper my-4'>
                 <div className='flex gap-4'>
-                    <Card className='w-2/5 self-start mt-3 shadow-lg hidden md:block'>
-                        <Typography.Title level={4}>Bio</Typography.Title>
-                        {false
-                            ? <Typography.Paragraph>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum obcaecati similique, tempora harum architecto est iusto ut ea ipsam numquam. Sunt dignissimos, voluptatem reprehenderit et nam eaque corporis dicta rem!
-                            </Typography.Paragraph>
-                            : <Typography.Text type='secondary' italic>No bio set</Typography.Text>
-                        }
+                    <ProfileCard 
+                        bio={bio}
+                        joined={created_at}
+                        alumnus={alumnus}
+                    />
 
-
-                        <Typography.Title level={4}>Joined</Typography.Title>
-                        <Typography.Text>{(new Date(created_at)).toLocaleDateString()}</Typography.Text>
-                    </Card>
                     <div className='w-full'>
-                        <Outlet />
+                        <ProfileRoutes context={{ id, isCurrentUser, user }}/>
                     </div>
                 </div>
             </div>

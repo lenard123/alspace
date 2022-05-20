@@ -66,6 +66,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function info() : HasOne
+    {
+        return $this->hasOne(UserInfo::class)->withDefault([
+            'cover' => [
+                'url' => UserInfo::DEFAULT_COVER,
+            ]
+        ]);
+    }
+
     public function alumnus() : HasOne
     {
         return $this->hasOne(Alumnus::class);

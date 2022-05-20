@@ -13,7 +13,6 @@ use App\Http\Controllers\RegisterValidatorController;
 use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
 

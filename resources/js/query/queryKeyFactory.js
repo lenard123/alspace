@@ -1,21 +1,24 @@
 
+//The plus sign ensures that the id is integer
+//Since sometimes the source is the url params
+
 export default {
 
     jobs: ['jobs'],
 
     posts: ['posts'],
 
-    post: (id) => ['posts', Number(id)],
+    post: (id) => ['posts', +id],
 
-    postComments: (postId) => ['posts', Number(postId) ,'comments'],
+    postComments: (postId) => ['posts', +postId ,'comments'],
 
-    commentReplies: (commentId) => ['comments', Number(commentId), 'replies'],
+    commentReplies: (commentId) => ['comments', +commentId, 'replies'],
 
     currentUser: ['users', 'current'],
 
-    user: (userId) => ['users', Number(userId)],
+    user: (userId) => ['users', +userId],
 
-    userPosts: (userId) => ['users', Number(userId), 'posts'],
+    userPosts: (userId) => ['users', +userId, 'posts'],
 
     pendingUsers: (page) => ['users', 'pending', {page}],
 
@@ -27,19 +30,19 @@ export default {
 
     threads: ['threads'],
 
-    thread: (threadId) => ['thread', Number(threadId)],
+    thread: (threadId) => ['thread', +threadId],
 
-    threadMessages: (threadId) => ['thread', Number(threadId), 'messages'],
+    threadMessages: (threadId) => ['thread', +threadId, 'messages'],
 
-    threadWith: (userId) => ['users', Number(userId), 'thread'],
+    threadWith: (userId) => ['users', +userId, 'thread'],
 
     supportThreads: ['threads', 'support'],
 
     events: (filter) => ['events', filter],
 
-    event: (eventId) => ['events', Number(eventId)],
+    event: (eventId) => ['events', +eventId],
 
-    eventParticipants: (eventId, type) => ['events', Number(eventId), type],
+    eventParticipants: (eventId, type) => ['events', +eventId, type],
 
     notifications: (filter = null) => ['notifications', {filter}]
 }
