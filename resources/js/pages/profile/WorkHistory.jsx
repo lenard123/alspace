@@ -1,19 +1,17 @@
 import useAlumniWorksQuery from "@/js/query/queries/useAlumniWorksQuery";
-import { useIsCurrentUser } from "@/js/query/queries/useCurrentUserQuery";
 import { EditOutlined } from "@ant-design/icons";
 import { Card, Spin, Timeline, Typography, Empty, Button } from "antd";
-import { useParams } from "react-router-dom";
 import AddWorkModal from "./components/AddWorkModal";
 import WorkListItem from "./components/WorkListItem";
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { ProfileRoutesContext } from "@/js/components/layout/ProfileLayout/components/ProfileRoutes";
 
 const { Title } = Typography
 
 
 export default function WorkHistory() {
-    const { id } = useParams()
+    const { id, isCurrentUser } = useContext(ProfileRoutesContext)
     const { data, isLoading } = useAlumniWorksQuery(id)
-    const isCurrentUser = useIsCurrentUser(id)
     const [addWorkForm, setAddWorkForm] = useState(false)
 
     return (
