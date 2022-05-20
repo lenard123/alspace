@@ -20,6 +20,10 @@ export default function WritePost({ className }) {
             setFiles([])
             queryClient.invalidateQueries(queryKeyFactory.post, queryKeyFactory.userPosts(id))
             message.success('Posted successfully')
+        },
+
+        onError() {
+            message.error('Post not submitted. An error occured')
         }
     })
 

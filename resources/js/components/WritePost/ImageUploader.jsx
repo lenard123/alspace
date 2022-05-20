@@ -3,6 +3,8 @@ import { Upload } from 'antd'
 import { CameraFilled } from '@ant-design/icons'
 import classNames from 'classnames'
 
+const MAX_UPLOAD = 10;
+
 export default function ImageUploader ({ files, setFiles }) {
 
     const uploadElement = useRef(null)
@@ -25,10 +27,10 @@ export default function ImageUploader ({ files, setFiles }) {
                 className={classNames({ 'hidden': files.length === 0 })}
                 listType='picture-card'
                 beforeUpload={() => false}
-                maxCount={3}
+                maxCount={MAX_UPLOAD}
                 previewFile={file => Promise.resolve(URL.createObjectURL(file))}
             >
-                {files.length < 3 &&
+                {files.length < MAX_UPLOAD &&
                     <div ref={uploadElement} className='flex flex-col text-xs'>
                         <CameraFilled />
                         <span>Attach a photo</span>
