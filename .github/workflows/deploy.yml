@@ -18,4 +18,5 @@ jobs:
             composer deploy
           host: ${{ secrets.VM_HOST }}
           user: ${{ secrets.VM_USER }}
+          key:  ${{ secrets.VM_KEY }}
           pass: ${{ secrets.VM_PASS }}
