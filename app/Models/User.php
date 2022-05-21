@@ -68,11 +68,7 @@ class User extends Authenticatable
 
     public function info() : HasOne
     {
-        return $this->hasOne(UserInfo::class)->withDefault([
-            'cover' => [
-                'url' => UserInfo::DEFAULT_COVER,
-            ]
-        ]);
+        return $this->hasOne(UserInfo::class)->withDefault();
     }
 
     public function alumnus() : HasOne

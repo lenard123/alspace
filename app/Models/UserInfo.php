@@ -14,12 +14,33 @@ class UserInfo extends Model
 
     protected $with = ['cover'];
 
+    protected $appends = ['cover_url'];
+
+    protected $hidden = ['cover'];
+
     public function cover() : MorphOne
     {
         return $this->morphOne(Image::class, 'imageable')
+            ->where('payload', 'cover')
             ->withDefault([
                 'source' => 'url',
                 'reference' => static::DEFAULT_COVER,
+                'payload' => 'cover'
             ]);
+    }
+
+    public function getCoverUrlAttribute()
+    {
+        return $this->cover->url;
+    }
+
+    public function updateCover($cover)
+    {
+        if ( !$this->exists() ) 
+            $this->save();
+
+        $this->cover->upload($cover, 'cover');
+
+        return $this->cover;
     }
 }

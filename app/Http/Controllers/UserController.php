@@ -38,19 +38,16 @@ class UserController extends Controller
 
     public function updateAvatar(Request $request)
     {
-        // $image = ImageUploader::upload(auth()->user(), $request->file('avatar'), 'avatar');
-        $image = auth()->user()->avatar();
-        if ($image->exists()) {
-            $image = auth()->user()->avatar;
-            $image->upload($request->file('avatar'), 'avatar');
-            return $image->url;
-        }
-
-        $image = new Image();
-        $image->imageable()->associate(auth()->user());
-        $image->payload = 'avatar';
+        $image = Auth::user()->avatar;
         $image->upload($request->file('avatar'), 'avatar');
         return $image->url;
+    }
+
+    public function updateCover(Request $request)
+    {
+        $info = Auth::user()->info;
+        $cover = $info->updateCover($request->file('cover'));
+        return $cover->url;
     }
 
     public function search(Request $request)

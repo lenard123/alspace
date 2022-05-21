@@ -48,11 +48,14 @@ export const fetchWorks = async (user_id) => {
 export const updateAvatar = async (avatar) => {
     const data = new FormData()
     data.append('avatar', avatar)
+    data.append('_method', 'PATCH')
  
     await requestCookie()
-    return await Http.post('/user/avatar', data,{
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        }
-    })
+    return await Http.post('/user/avatar', data)
+}
+
+export const updateCover = async (data) => {
+    data.append('_method', 'PATCH')
+    await requestCookie()
+    return await Http.post('/user/info/cover', data)
 }

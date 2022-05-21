@@ -6,9 +6,11 @@ import useUserQuery from "@/js/query/queries/useUserQuery";
 import { useIsCurrentUser } from "@/js/query/queries/useCurrentUserQuery";
 import useTabs from "./useTabs";
 import { Link } from "react-router-dom";
-import ChangeProfileOptions from "./components/ChangeProfileOptions";
 import ProfileCard from "./components/ProfileCard";
 import ProfileRoutes from "./components/ProfileRoutes";
+import ProfileAvatar from "./components/ProfileAvatar";
+import { CameraOutlined, EditOutlined } from "@ant-design/icons";
+import ProfileCover from "./components/ProfileCover";
 
 export default function ProfileLayout() {
     const { id } = useParams()
@@ -16,10 +18,10 @@ export default function ProfileLayout() {
     const { isLoading, data: user } = useUserQuery(id)
     const { tabs, active } = useTabs(id)
 
-    if ( isLoading ) return <SkeletonLayout />
+    if (isLoading) return <SkeletonLayout />
 
     const { fullname, avatarUrl, created_at, info, alumnus } = user
-    const { cover, bio } = info
+    const { cover_url, bio } = info
     return (
         <>
             <Helmet>
@@ -27,30 +29,19 @@ export default function ProfileLayout() {
             </Helmet>
 
             <div className='bg-white border-b border-gray-300'>
-                <Image
-                    width='100%'
-                    height='min(300px, 60vw)'
-                    className='object-cover'
-                    src={cover.url}
-                />
+                <ProfileCover src={cover_url} showEditButton={isCurrentUser}/>
 
                 <div className='page-wrapper px-4'>
                     <div className='-mt-[60px]'>
                         <div className='flex flex-col items-center sm:flex-row sm:items-end gap-2'>
-                            <div className='relative'>
-                                <Avatar
-                                    className='border-2 border-white'
-                                    src={avatarUrl}
-                                    size={120}
-                                />
-                                {isCurrentUser && <ChangeProfileOptions />}
-                            </div>
+
+                            <ProfileAvatar src={avatarUrl} showEditButton={isCurrentUser} />
 
                             <div className='sm:pb-2 flex flex-col sm:flex-row justify-between flex-grow gap-2'>
                                 <div className='text-2xl md:text-3xl text-center font-bold text-gray-800'>{fullname}</div>
                                 <div className='flex sm:self-end justify-center'>
                                     {isCurrentUser
-                                        ? <Button size='large' type='secondary' shape='round'>Edit Profile</Button>
+                                        ? <Link to={`/profile/${id}/edit`}><Button size='large' type='secondary' shape='round'>Edit Profile</Button></Link>
                                         : <Link to={`/messages?user_id=${id}`}><Button size='large' type='secondary' shape='round'>Send Message</Button></Link>
                                     }
                                 </div>
@@ -69,14 +60,14 @@ export default function ProfileLayout() {
 
             <div className='page-wrapper my-4'>
                 <div className='flex gap-4'>
-                    <ProfileCard 
+                    <ProfileCard
                         bio={bio}
                         joined={created_at}
                         alumnus={alumnus}
                     />
 
                     <div className='w-full'>
-                        <ProfileRoutes context={{ id, isCurrentUser, user }}/>
+                        <ProfileRoutes context={{ id, isCurrentUser, user }} />
                     </div>
                 </div>
             </div>

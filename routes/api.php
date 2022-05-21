@@ -35,7 +35,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::controller(UserController::class)->group(function() {
         Route::get('/user', 'current');
         Route::get('/user/conversations', 'conversations');
-        Route::post('/user/avatar', 'updateAvatar');
+        Route::patch('/user/avatar', 'updateAvatar');
+        Route::patch('/user/info/cover', 'updateCover');
     
         Route::get('/users/search','search');
         Route::get('/users/alumni', 'alumni')->middleware('admin');

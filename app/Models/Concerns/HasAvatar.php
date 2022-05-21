@@ -10,7 +10,11 @@ trait HasAvatar
     public function avatar(): MorphOne
     {
         return $this->morphOne(Image::class, 'imageable')
-            ->where('payload', 'avatar');
+            ->where('payload', 'avatar')
+            ->withDefault([
+                'source' => null,
+                'payload' => 'avatar',
+            ]);
     }
 
     public function getAvatarUrlAttribute() : string
@@ -18,6 +22,6 @@ trait HasAvatar
         //Generate new
         $name = strtolower(urlencode($this->fullname));
 
-        return $this->avatar?->url ?? "https://avatars.dicebear.com/api/initials/$name.svg";
+        return $this->avatar->url ?? "https://avatars.dicebear.com/api/initials/$name.svg";
     }
 }
