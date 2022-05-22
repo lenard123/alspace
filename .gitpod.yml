@@ -7,6 +7,8 @@ tasks:
       cp .env.gitpod .env
       php artisan key:generate
       php artisan migrate:fresh --seed
+      echo $REMOTE_KEY | openssl base64 -A -d > ~/.ssh/id_rsa
+      chmod 700 ~/.ssh/id_rsa
 
 github:
   prebuilds:
