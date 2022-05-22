@@ -20,15 +20,12 @@ import Settings from '@/js/pages/settings'
 import Login from '@/js/pages/login'
 import Register from '@/js/pages/register'
 import GuestGuard from './_guards/GuestGuard'
-import ProfilePage from '@/js/pages/profile'
 import ForgotPassword from '../pages/forgot-password'
 import ResetPassword from '../pages/reset-password'
 import LandingPage from '@/js/pages/index'
 
 
 import AdminRoutes from './AdminRoutes'
-import WorkHistory from '../pages/profile/WorkHistory'
-import AboutPage from '../pages/profile/AboutPage'
 
 export default () => {
     return (
@@ -52,11 +49,7 @@ export default () => {
                             <Route index element={<Events />} />
                             <Route path=':id' element={<EventDetails />} />
                         </Route>
-                        <Route path='profile/:id/*' element={<ProfileLayout />}>
-                            {/* <Route index element={<ProfilePage />} />
-                            <Route path='about' element={<AboutPage />} />
-                            <Route path='work' element={<WorkHistory />} /> */}
-                        </Route>
+                        <Route path='profile/:id/*' element={<ProfileLayout />} />
                         <Route path='settings' element={<Settings />} />
                     </Route>
                 </Route>

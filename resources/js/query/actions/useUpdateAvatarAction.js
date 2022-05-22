@@ -21,8 +21,7 @@ export default function useUpdateAvatarAction()
             message.success('Avatar updated successfully');
         },
 
-        onSettled(_data, _error, _variables, context)
-        {
+        onSettled(_data, _error, _variables, context) {
             context.hide()
         }
     })
