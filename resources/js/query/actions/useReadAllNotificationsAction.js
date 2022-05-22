@@ -1,41 +1,32 @@
 import { NotificationApi } from "@/js/apis"
-import { updatePagination } from "@/js/utils/paginationReducer"
-import { useMutation, useQueryClient } from "react-query"
-import queryKeyFactory from "../queryKeyFactory"
-import useCurrentUserMutator from "../mutators/useCurrentUserMutator"
+import { useMutation } from "react-query"
+import useNotifications from "../hooks/useNotifications"
+import useNotificationMutator from "../mutators/useNotificationMutator"
 
-export default function useReadAllNotificationsAction(filter) {
-
-    const queryClient = useQueryClient()
-    const queryKey = queryKeyFactory.notifications(filter)
-    const { updateUnreadNotificationsCount } = useCurrentUserMutator()
+export default function useReadAllNotificationsAction(filter) 
+{
+    const { getNotifications, setNotifications, cancelNotificationsQuery, invalidateNotifications } = useNotifications(filter)
+    const { markAllNotificationsAsRead, setUnreadNotificationsCount } = useNotificationMutator(filter)
 
     return useMutation(NotificationApi.markAllAsRead, {
         async onMutate() {
-
-            await queryClient.cancelQueries(queryKey)
-
-            const previous = queryClient.getQueryData(queryKey)
-            const now = moment()
-
-            queryClient.setQueryData(queryKey, updatePagination(function(old) {
-                if (old.read_at == null) {
-                    return {...old, read_at: now}
-                }
-                return old
-            }))
-
+            await cancelNotificationsQuery()
+            const previous = getNotifications()
+            markAllNotificationsAsRead()
             return { previous }
         },
 
         onError(_error, _arg, context) {
             message.error('An error occured')
-            queryClient.setQueryData(queryKey, context.previous)
+            setNotifications(context.previous)
+        },
+
+        onSuccess(unreadCount) {
+            setUnreadNotificationsCount(unreadCount)
         },
 
         onSettled() {
-            updateUnreadNotificationsCount(0)
-            queryClient.invalidateQueries(queryKey, queryKeyFactory.currentUser)
+            invalidateNotifications()
         }
     })
 }

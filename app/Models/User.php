@@ -114,13 +114,8 @@ class User extends Authenticatable
         ];
     }
 
-    public function cover()
+    public function markAllNotificationsAsRead()
     {
-        return $this->morphOne(Image::class, 'imageable')
-            ->where('payload', 'cover')
-            ->withDefault([
-                'source' => 'url',
-                'reference' => 'https://res.cloudinary.com/djasbri35/image/upload/v1625929593/assets/error_ay6j96.jpg',
-            ]);
+        return $this->notifications()->unread()->update(['read_at' => now()]);
     }
 }

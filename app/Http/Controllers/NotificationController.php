@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Notification;
+use Illuminate\Support\Facades\Auth;
 
 class NotificationController extends Controller
 {
@@ -23,10 +24,9 @@ class NotificationController extends Controller
 
     public function markAllAsRead()
     {
-        return Notification::query()
-            ->owned()
-            ->unread()
-            ->update(['read_at' => now()]);
+        $user = Auth::user();
+        $user->markAllNotificationsAsRead();
+        return $user->notifications()->unread()->count();
     }
 
     public function clear()

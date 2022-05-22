@@ -7,7 +7,7 @@ import useCurrentUserMutator from "../mutators/useCurrentUserMutator";
 export default function useUpdateProfileCoverAction()
 {
 
-    const { updateInfo } = useCurrentUserMutator()
+    const { setCover } = useCurrentUserMutator()
 
     return useMutation(UserApi.updateCover,
         {
@@ -19,7 +19,7 @@ export default function useUpdateProfileCoverAction()
 
             onSuccess(cover_url) {
                 message.success('Cover image updated successfully')
-                updateInfo({cover_url})
+                setCover(cover_url)
             },
 
             onError() {

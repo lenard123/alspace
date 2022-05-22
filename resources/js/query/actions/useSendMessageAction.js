@@ -1,51 +1,34 @@
-import uuid from 'react-uuid'
 import { ThreadApi } from "@/js/apis"
-import { prependPagination, updatePagination } from "@/js/utils/paginationReducer"
-import { useMutation, useQueryClient } from "react-query"
-import queryKeyFactory from "../queryKeyFactory"
-import { useCurrentUser } from '../queries/useCurrentUserQuery'
+import { useMutation } from "react-query"
 import { message } from 'antd'
+import useThreadMessagesMutator from '../mutators/useThreadMessagesMutator'
+import useThreadMessages from "../hooks/useThreadMessages"
 
 
-export default function useSendMessageAction()
+export default function useSendMessageAction(thread_id)
 {
-    const queryClient = useQueryClient()
-    const { id: user_id } = useCurrentUser()
+    const { getThreadMessages, setThreadMessages, cancelThreadMessagesQuery } = useThreadMessages(thread_id)
+    const { pushSendingMessage, } = useThreadMessagesMutator(thread_id)
 
     return useMutation(
-        ({ id, content }) => ThreadApi.sendMessage(id, content), 
+        (content) => ThreadApi.sendMessage(thread_id, content), 
         {
-            async onMutate({ id, content }) {
-                await queryClient.cancelQueries(queryKeyFactory.threadMessages(id))
+            async onMutate(content) {
+                await cancelThreadMessagesQuery()
 
-                const previous = queryClient.getQueryData(queryKeyFactory.threadMessages(id))
-                const message_uuid = uuid()
+                const previous = getThreadMessages()
 
-                queryClient.setQueryData(
-                    queryKeyFactory.threadMessages(id),
-                    prependPagination({
-                        id: message_uuid,
-                        content,
-                        user_id,
-                        thread_id: id,
-                        is_sending: 1
-                    })
-                )
+                const { id: message_uuid } = pushSendingMessage(content)
                 
                 return { previous, message_uuid }
             },
-            onError(error, variables, context)
+            onError(_error, _variables, context)
             {
                 message.error('Message failed to send')
-                queryClient.setQueryData(queryKeyFactory.threadMessages(variables), context.previous)
+                setThreadMessages(context.previous)
             },
-            onSuccess(data, {id}, context) {
-                queryClient.setQueryData(queryKeyFactory.threadMessages(id), updatePagination(function (old) {
-                   if (old.id === context.message_uuid) {
-                       return data
-                   }
-                   return old
-                }))
+            onSuccess(data, _varaibles, { message_uuid }) {
+                setThreadMessages(old => old.id === message_uuid ? data : old)
             }
         }
     )

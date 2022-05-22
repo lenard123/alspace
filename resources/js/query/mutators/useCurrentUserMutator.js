@@ -6,30 +6,31 @@ export default function useCurrentUserMutator()
 {
     const queryClient = useQueryClient()
 
-    const updateCurrentUser = (newData) => {
+    const setCurrentUser = (newData) => {
         queryClient.setQueryData(queryKeyFactory.currentUser, newData)
     }
 
     const updateUnreadThreadCount = (unread_thread_count) => {
-        updateCurrentUser(user => _.merge(user, {unread_thread_count}))
+        setCurrentUser(user => _.merge(user, {unread_thread_count}))
     }
 
-    const updateUnreadNotificationsCount = (unread_notifications_count) => {
-        updateCurrentUser(user => _.merge(user, {unread_notifications_count}))
-    }
-
-    const updateAvatar = (avatarUrl) => {
-        updateCurrentUser(user => _.merge(user, {avatarUrl}))
+    const setAvatar = (avatarUrl) => {
+        setCurrentUser(user => _.merge(user, {avatarUrl}))
     }
 
     const updateInfo = (info) => {
-        updateCurrentUser(user => _.merge(user, {info}))
+        setCurrentUser(user => _.merge(user, {info}))
+    }
+
+    const setCover = (cover_url) => {
+        updateInfo({cover_url})
     }
 
     return {
+        setCurrentUser,
         updateUnreadThreadCount,
-        updateUnreadNotificationsCount,
-        updateAvatar,
+        setAvatar,
+        setCover,
         updateInfo,
     }
 }

@@ -1,4 +1,4 @@
-
+import _ from 'lodash'
 
 const mapper = (newData) => {
     if (typeof newData === 'function') return newData

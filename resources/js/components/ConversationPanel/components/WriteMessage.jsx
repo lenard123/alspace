@@ -13,11 +13,11 @@ export default function WriteMessage({ id, admin = false }) {
 
     const [content, setContent] = useState('')
 
-    const { isLoading, mutate } = useSendMessageAction()
+    const { isLoading, mutate } = useSendMessageAction(id)
 
     const handleSubmit = () => {
         if (isLoading || content.trim().length <= 0) return;
-        mutate({ id, content })
+        mutate(content)
         setContent('')
     }
 

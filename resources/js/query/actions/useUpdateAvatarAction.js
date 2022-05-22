@@ -1,17 +1,13 @@
 import { UserApi } from "@/js/apis";
 import { message } from "antd";
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation } from "react-query";
 import useCurrentUserMutator from "../mutators/useCurrentUserMutator";
-import { useCurrentUser } from "../queries/useCurrentUserQuery";
-import queryKeyFactory from "../queryKeyFactory";
 
 
 export default function useUpdateAvatarAction()
 {
 
-    const queryClient = useQueryClient()
-    const { id } = useCurrentUser()
-    const { updateAvatar } = useCurrentUserMutator()
+    const { setAvatar } = useCurrentUserMutator()
 
     return useMutation(UserApi.updateAvatar, {
         onMutate() {
@@ -21,7 +17,7 @@ export default function useUpdateAvatarAction()
         },
 
         onSuccess(avatarUrl, _var) {
-            updateAvatar(avatarUrl)
+            setAvatar(avatarUrl)
             message.success('Avatar updated successfully');
         },
 
