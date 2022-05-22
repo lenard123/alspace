@@ -13,27 +13,38 @@ jobs:
     steps:
       - name: "Clone Repository"
         uses: actions/checkout@v2
-      - name: "Setup git"
-        run: |
-          composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-          git config user.name lenard123
-          git config user.email lenard.mangayayam@gmail.com
-          git checkout -b build
+
+      - name: "Install NodeJS"
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+
       - name: "Install PHP"
         uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
         with:
           php-version: '8.1'
-      - name: "Setup NodeJS"
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16
-      - name: "Build Front end files"
+
+      - name: "Setup git"
         run: |
-          npm ci
-          npm run build
+          git config user.name lenard123
+          git config user.email lenard.mangayayam@gmail.com
+          git checkout -b build
+
+      - name: "Install PHP Dependencies"
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: "Install Node Dependencies"
+        run: "npm ci"
+
+      - name: "Build Front end files"
+        run: npm run build
+
+      - name: "Commit Build files"
+        run: |
           git add public/build -f
           git commit -m "generated"
           git push --set-upstream origin build --force
+
       - name: "Deploy to Cloud"
         uses: fifsky/ssh-action@master
         with: 
