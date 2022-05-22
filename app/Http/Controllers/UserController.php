@@ -62,7 +62,7 @@ class UserController extends Controller
 
     public function view(User $user)
     {
-        return $user->load('cover', 'alumnus', 'info');
+        return $user->load('alumnus', 'info');
     }
 
     public function posts(User $user)
