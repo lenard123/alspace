@@ -23,7 +23,7 @@ import GuestGuard from './_guards/GuestGuard'
 import ForgotPassword from '../pages/forgot-password'
 import ResetPassword from '../pages/reset-password'
 import LandingPage from '@/js/pages/index'
-
+import AlumniPage from '../pages/alumni/AlumniPage'
 
 import AdminRoutes from './AdminRoutes'
 
@@ -37,6 +37,7 @@ export default () => {
                 <Route path='/' element={<AuthGuard />}>
                     <Route path='' element={<MainLayout />} >
                         <Route path='home' element={<Home />} />
+                        <Route path='alumni' element={<AlumniPage />} />
                         <Route path='posts/:id' element={<Post />} />
                         <Route path='notifications' element={<Notifications />} />
                         <Route path='messages' element={<MessageLayout />} >
