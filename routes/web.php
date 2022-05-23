@@ -18,12 +18,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/mailable', function () {
-    return new App\Mail\EmailVerification('lenard.mangayayam@gmail.com');
-});
+Route::get('/logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index'])->middleware('auth:sanctum', 'admin');
+
 
 SSRRoute::api('/', 'posts');
 SSRRoute::api('/posts/{post}');
 // SSRRoute::controller('/messages', [UserController::class, 'conversations']);
 SSRRoute::none('/reset-password/{token}')->name('password.reset');
+SSRRoute::none('/login')->name('login');
 SSRRoute::none('{path}')->where('path', '(.*)');
