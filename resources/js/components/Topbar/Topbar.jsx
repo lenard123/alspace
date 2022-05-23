@@ -1,60 +1,39 @@
-import { Badge, Button, Input } from 'antd'
-import { MenuOutlined, SearchOutlined, MessageOutlined, BellOutlined, CalendarOutlined } from '@ant-design/icons'
-import { Link } from 'react-router-dom'
-import { BriefcaseOutlined } from '@/js/components/icons'
+import { MessageOutlined, BellOutlined } from '@ant-design/icons'
 import NavLink from '../layout/MainLayout/components/NavLink'
 import UserAvatar from '../layout/MainLayout/components/UserAvatar'
 import { useCurrentUser } from '@/js/query/queries/useCurrentUserQuery'
 import { useState } from 'react'
 import DrawerMenu from './components/DrawerMenu'
+import NavbarLinks from './components/NavbarLinks'
+import NavbarLogo from './components/NavbarLogo'
 
 export default function Topbar() {
 
     const { unread_thread_count, unread_notifications_count } = useCurrentUser()
     const [isDrawerVisible, setIsDrawerVisible] = useState(false)
+    const showDot = Boolean(unread_thread_count + unread_notifications_count)
 
     return (
         <>
-            <header className='sticky top-0 z-[1] w-full bg-white header-height shadow px-4'>
+            <header className='sticky top-0 z-[1] w-full bg-white header-height shadow px-4 sm:px-8'>
 
-                {/* Container */}
-                <div className='max-w-5xl mx-auto h-full flex justify-between items-center'>
-                    {/* Left */}
+                <div className='max-w-screen-lg mx-auto h-full flex justify-between items-center'>
+
                     <div className='flex w-full lg:w-auto'>
-                        {/* Logo */}
-                        <div className='flex w-full lg:w-auto justify-between items-center'>
-                            <Link to='/home' className='flex gap-2 items-center'>
-                                <img className='rounded' src='/images/logo.png' height='32' width='auto' />
-                                <span className='font-bold text-xl'>Alspace</span>
-                            </Link>
-                            <Badge dot={unread_thread_count} className='lg:hidden'>
-                                <Button onClick={() => setIsDrawerVisible(true)} icon={<MenuOutlined />} />
-                            </Badge>
-                        </div>{/* End Logo */}
-                        {/* Searchbox */}
-                        <div className='ml-8 hidden lg:block'>
-                            <Input
-                                prefix={<SearchOutlined className='text-gray-400' />}
-                                className='rounded-lg'
-                                size='large'
-                                placeholder='Search for users or post'
-                            />
-                        </div>{/* End Searchbox */}
-                    </div>{/* End Left */}
+                        <NavbarLogo showDot={showDot} showDrawer={() => setIsDrawerVisible(true)}/>
+                        <NavbarLinks />
+                    </div>
 
-                    {/* Right */}
-                    <div className='hidden lg:flex justify-end items-center gap-8'>
+                    <div className='hidden md:flex justify-end items-center gap-4'>
                         <nav className='flex gap-2'>
                             <NavLink to='/messages' badge={{ dot: unread_thread_count }} title='Message' icon={<MessageOutlined className='text-gray-500' />} />
                             <NavLink to='/notifications' badge={{ dot: unread_notifications_count }} title='Notifications' icon={<BellOutlined className='text-gray-500' />} />
-                            <NavLink to='/jobs' title='Jobs' icon={<BriefcaseOutlined className='text-gray-500' />} />
-                            <NavLink to='/events' title='Events' icon={<CalendarOutlined className='text-gray-500' />} />
                         </nav>
                         <UserAvatar />
-                    </div>{/* End Right */}
-                </div> {/* End Container */}
+                    </div>
+                </div>
             </header>
-            <DrawerMenu isDrawerVisible={isDrawerVisible} setIsDrawerVisible={setIsDrawerVisible}/>
+            <DrawerMenu isDrawerVisible={isDrawerVisible} setIsDrawerVisible={setIsDrawerVisible} />
         </>
     )
 }
