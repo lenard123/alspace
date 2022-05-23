@@ -1,33 +1,9 @@
-import Topbar from "@/js/components/layout/MainLayout/components/Topbar";
+import Topbar from "@/js/components/Topbar/Topbar";
 import { useCurrentUser } from "@/js/query/queries/useCurrentUserQuery";
-import { Alert, Button, Carousel } from "antd";
-import { Link } from "react-router-dom";
+import { Carousel } from "antd";
 import Helmet from 'react-helmet'
+import GuestTopbar from "./components/GuestTopbar";
 
-const GuestTopbar = function () {
-    return (
-        <header className='sticky top-0 z-[1] w-full bg-white header-height shadow px-4'>
-            {/* Container */}
-            <div className='max-w-5xl mx-auto h-full flex justify-between items-center'>
-                <Link to='/' className='flex gap-2 items-center'>
-                    <img className='rounded' src='/images/logo.png' height='32' width='auto' />
-                    <span className='font-bold text-xl'>Alspace</span>
-                </Link>
-
-                <div>
-                    <Link to='/login'>
-                        <Button type='link' className='text-large font-semibold text-gray-800'>Login</Button>
-                    </Link>
-                    <Link to='/register'>
-                        <Button shape='round' type='primary'>Sign Up</Button>
-                    </Link>
-                </div>
-
-            </div>
-
-        </header>
-    )
-}
 
 const contentStyle = {
     height: 'min(300px, 60vw)',
@@ -93,10 +69,7 @@ export default function LandingPage() {
                 <title>Alspace - A place for UCC CSD Alumni</title>
             </Helmet>
 
-            {isLoggedIn
-                ? <Topbar />
-                : <GuestTopbar />
-            }
+            {isLoggedIn ? <Topbar/> : <GuestTopbar />}
             <Carousel>
                 <div>
                     <h3 style={contentStyle}>1</h3>

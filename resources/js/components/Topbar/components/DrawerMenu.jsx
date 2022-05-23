@@ -3,12 +3,12 @@ import { ArrowLeftOutlined, BellOutlined, CalendarOutlined, LogoutOutlined, Mess
 import { BriefcaseOutlined } from "@/js/components/icons"
 import { Link } from "react-router-dom"
 import { useCurrentUser } from "@/js/query/queries/useCurrentUserQuery"
-import useDrawerVisibleState from "../useDrawerVisibleState"
+import useDrawerVisibleState from "../../layout/MainLayout/useDrawerVisibleState"
 import { useLogout } from "@/js/hooks"
 
-export default function DrawerMenu() {
+export default function DrawerMenu({isDrawerVisible, setIsDrawerVisible}) {
 
-    const [isDrawerVisible, setIsDrawerVisible] = useDrawerVisibleState()
+    //const [isDrawerVisible, setIsDrawerVisible] = useDrawerVisibleState()
     const { showLogoutModal } = useLogout()
     const {id, fullname, avatarUrl, unread_thread_count, unread_notifications_count,...currentUser} = useCurrentUser()
 
