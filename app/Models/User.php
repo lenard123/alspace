@@ -93,7 +93,7 @@ class User extends Authenticatable
 
     public function scopeAlumni($query)
     {
-        return $query->whereHas('alumnus')->with('alumnus');
+        return $query->whereHas('alumnus')->with('alumnus', 'info');
     }
 
     public function getScoutKey()

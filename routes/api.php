@@ -39,7 +39,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::patch('/user/info/cover', 'updateCover');
     
         Route::get('/users/search','search');
-        Route::get('/users/alumni', 'alumni')->middleware('admin');
+        Route::get('/users/alumni', 'alumni');
         Route::get('/users/pending', 'pending')->middleware('admin');
         Route::post('/users/pending/{alumni}', 'approve')->middleware('admin');
         Route::get('/users/{user}/thread', 'thread');
