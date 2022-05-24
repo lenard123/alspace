@@ -1,9 +1,10 @@
 import { FacebookFilled, LinkedinFilled, MessageFilled, TwitterCircleFilled, UserOutlined } from "@ant-design/icons";
 import { Avatar, Button, Card, Typography } from "antd";
+import { Link } from "react-router-dom";
 
 const { Title, Paragraph } = Typography
 
-export default function ProfileCard({avatarUrl, fullname, alumnus, ...props}) {
+export default function ProfileCard({id, avatarUrl, fullname, alumnus, ...props}) {
 
     const { year_graduated, course } = alumnus
     // const {} = info
@@ -28,7 +29,9 @@ export default function ProfileCard({avatarUrl, fullname, alumnus, ...props}) {
                 <MessageFilled />
             </div>
 
-            <Button className='mt-4' type='secondary' block shape='round' size='large'>View Profile</Button>
+            <Link to={`/profile/${id}`}>
+                <Button className='mt-4' type='secondary' block shape='round' size='large'>View Profile</Button>
+            </Link>
         </Card>
     )
 }

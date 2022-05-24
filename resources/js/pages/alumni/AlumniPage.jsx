@@ -1,13 +1,24 @@
 import useAlumniQuery from "@/js/query/queries/useAlumniQuery";
-import { Input } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+import { Input, Spin } from "antd";
 import ProfileCard from "./components/ProfileCard";
 
+const LoadingPage = () => {
+    return (
+        <div className='flex-grow grid place-items-center'>
+            <Spin 
+                tip='Fetching Information'
+                indicator={<LoadingOutlined style={{fontSize: '48px'}} spin/>}
+            />
+        </div>
+    )
+}
 
 export default function AlumniPage() {
 
     const { data, isLoading } = useAlumniQuery()
 
-    if (isLoading) return "Loading"
+    if (isLoading) return <LoadingPage />
 
     const { data: alumni, total } = data
 
