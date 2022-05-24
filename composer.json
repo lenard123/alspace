@@ -64,7 +64,9 @@
             "@php artisan view:cache"
         ],
         "deploy": [
-            "gut pull",
+            "git fetch origin",
+            "git checkout build",
+            "git reset --hard origin/build",
             "composer warmup"
         ],
         "remote-deploy": [
