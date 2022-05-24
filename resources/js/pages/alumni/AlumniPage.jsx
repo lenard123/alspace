@@ -28,8 +28,8 @@ export default function AlumniPage() {
                 <div className='px-0 max-w-screen-lg  mx-auto header-height flex items-center'>
 
                     <div className='flex items-center'>
-                        <span className='font-bold text-gray-700 text-lg flex-shrink-0'>CSD Alumni</span>
-                        <span className='ml-8 flex-shrink-0'>{total} Total</span>
+                        <span className='hidden sm:inline font-bold mr-8 text-gray-700 text-lg flex-shrink-0'>CSD Alumni</span>
+                        <span className='flex-shrink-0'>{total} Total</span>
                         <Input
                             className='ml-4 rounded bg-gray-100 hover:bg-gray-100 focus:bg-gray-100'
                             bordered={false}

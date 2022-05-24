@@ -1,5 +1,5 @@
 import { Avatar, Badge, Button, Drawer, Menu } from "antd"
-import { ArrowLeftOutlined, BellOutlined, CalendarOutlined, LogoutOutlined, MessageOutlined, QuestionCircleOutlined, SearchOutlined, SettingOutlined } from "@ant-design/icons"
+import { ArrowLeftOutlined, BellOutlined, CalendarOutlined, HomeOutlined, LogoutOutlined, MessageOutlined, QuestionCircleOutlined, SearchOutlined, SettingOutlined, UsergroupAddOutlined } from "@ant-design/icons"
 import { BriefcaseOutlined } from "@/js/components/icons"
 import { Link } from "react-router-dom"
 import { useCurrentUser } from "@/js/query/queries/useCurrentUserQuery"
@@ -37,6 +37,14 @@ export default function DrawerMenu({isDrawerVisible, setIsDrawerVisible}) {
             </Link>
             <Menu size='large' onClick={menuClicked}>
                 
+                <Menu.Item key='home' icon={<HomeOutlined />}>
+                    <Link to='/home'>Home</Link>
+                </Menu.Item>
+
+                <Menu.Item key='alumni' icon={<UsergroupAddOutlined />}>
+                    <Link to='/alumni'>Alumni</Link>
+                </Menu.Item>
+
                 <Menu.Item key='messages' icon={<MessageOutlined />}>
                     <Link to='/messages'>Message</Link>
                     <Badge dot={unread_thread_count} />
