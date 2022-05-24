@@ -69,8 +69,20 @@
             "git reset --hard origin/build",
             "composer warmup"
         ],
-        "remote-deploy": [
-            "ssh lenard123@alspace.me -T \"composer deploy --working-dir=/home/lenard123/alspace\""
+        "deploy-remote": [
+            "npm run build",
+            "git branch -D build &>/dev/null",
+            "git checkout -b build",
+            "git add public/build -f",
+            "git commit -m \"generated\"",
+            "git push origin build:build --force",
+            "ssh -i ~/.ssh/gitpod -t $REMOTE_USER@$REMOTE_HOST \"composer deploy --working-dir=./alspace\"",
+            "git checkout -",
+            "echo \"Deployed Successfullt\""
+        ],
+        "setup-sshkeys": [
+            "echo $REMOTE_KEY | base64 -d > ~/.ssh/gitpod",
+            "chmod 700 ~/.ssh/gitpod"
         ],
         "setup": [
             "sudo add-apt-repository ppa:ondrej/php -y",
