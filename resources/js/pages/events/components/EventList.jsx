@@ -19,7 +19,7 @@ export default function EventList({ filter }) {
     if (!events || isLoading) return skeletonList;
 
     //Display empty
-    if (events.length <= 0) return <Empty className='py-8' description="No events" />;
+    if (events.length <= 0) return <Empty className='py-16' description="No events" />;
 
     return (
         <>
