@@ -24,7 +24,7 @@ class EventRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => 'required|image',
+            'image' => 'nullable|image',
             'title' => 'required',
             'location' => 'nullable',
             'start_at' => 'required|date',
