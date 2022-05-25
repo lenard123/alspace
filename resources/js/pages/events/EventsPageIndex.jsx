@@ -18,8 +18,8 @@ export default function EventsPageIndex() {
             <Helmet>
                 <title>Events</title>
             </Helmet>
-            <div className='lg:p-4'>
-                <div className='bg-white border border-gray-200 lg:rounded-lg flex-grow w-full h-full max-w-5xl mx-auto p-6'>
+            <div className='lg:p-4 flex flex-col flex-grow'>
+                <div className='bg-white border  border-gray-200 lg:rounded-lg flex-grow w-full max-w-5xl mx-auto p-6'>
                     <div className='flex justify-between'>
                         <div className="font-bold text-xl sm:text-2xl text-gray-700">Events</div>
                         <Button onClick={() => setIsAddEventModalVisible(true)} type='text' shape='circle' icon={<EditOutlined />} />
