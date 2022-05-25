@@ -3,7 +3,7 @@ import { Button } from "antd"
 import { Helmet } from 'react-helmet'
 import AddEventModal from "./components/AddEventModal"
 import { useState } from 'react'
-import useCurrentFilter from "./useCurrentFilter"
+import useCurrentFilter from "./hooks/useCurrentFilter"
 import FilterLink from "./components/FilterLink"
 import { filters } from "@/js/query/queries/useEventsQuery"
 import EventList from "./components/EventList"

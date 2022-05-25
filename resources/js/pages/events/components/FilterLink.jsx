@@ -1,6 +1,6 @@
 import classNames from "classnames"
 import { Link } from "react-router-dom"
-import useCurrentFilter from "../useCurrentFilter"
+import useCurrentFilter from "../hooks/useCurrentFilter"
 
 
 const FilterLink = ({ filter, children }) => {
