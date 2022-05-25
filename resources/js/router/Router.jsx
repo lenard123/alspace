@@ -38,6 +38,7 @@ export default () => {
                     <Route path='' element={<MainLayout />} >
                         <Route path='home' element={<Home />} />
                         <Route path='alumni' element={<AlumniPage />} />
+                        <Route path='items' element={null} />
                         <Route path='posts/:id' element={<Post />} />
                         <Route path='notifications' element={<Notifications />} />
                         <Route path='messages' element={<MessageLayout />} >

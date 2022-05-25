@@ -6,7 +6,12 @@ import Topbar from "./components/Topbar";
 import { createContext, useState } from "react"
 import useSupportMessageReceivedListener from "@/js/listeners/useSupportMessageReceivedListener";
 
-export const AdminLayoutContext = createContext()
+export const AdminLayoutContext = createContext({
+    collapsed: false, 
+    setCollapsed: () => {}, 
+    broken:false, 
+    setBroken: () => {}
+})
 
 export default function AdminLayout() {
 

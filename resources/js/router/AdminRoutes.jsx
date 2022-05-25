@@ -9,6 +9,8 @@ import AdminGuestGuard from "./_guards/AdminGuestGuard";
 import MessageIndexPage from "../pages/admin/messages/MessageIndexPage";
 import AlumniPage from "../pages/admin/users/alumni/AlumniPage";
 import EventsPage from "../pages/admin/events/EventsPage";
+import ManageTshirtPage from "../pages/admin/items/tshirt/ManageTshirtPage";
+import AddTshirtPage from "../pages/admin/items/tshirt/AddTshirtPage";
 
 const AdminRoutes = (
     <Route path='admin' element={<Outlet />}>
@@ -25,6 +27,8 @@ const AdminRoutes = (
                 <Route path="users/alumni" element={<AlumniPage />} />
                 <Route path="messages/*" element={<MessageIndexPage />} />
                 <Route path="events" element={<EventsPage />} />
+                <Route path="items/tshirt" element={<ManageTshirtPage />} />
+                <Route path="items/tshirt/new" element={<AddTshirtPage />} />
                 <Route path='*' element={null} />
             </Route>
         </Route>

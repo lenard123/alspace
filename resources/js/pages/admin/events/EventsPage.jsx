@@ -1,12 +1,10 @@
-import { Avatar, Breadcrumb, Descriptions, List, PageHeader, Table, Tag } from "antd"
+import { Breadcrumb, PageHeader, Table, Tag } from "antd"
 import BreadcrumbItem from "antd/lib/breadcrumb/BreadcrumbItem"
 import { Link, useSearchParams } from "react-router-dom"
-import EventList from "../../events/components/EventList"
 import { useMemo } from 'react'
-import useEventsQuery, { filters } from "@/js/query/queries/useEventsQuery"
+import useEventsQuery from "@/js/query/queries/useEventsQuery"
 import { toAntdPagination } from "@/js/utils"
 import Column from "antd/lib/table/Column"
-import moment from "moment"
 import { EnvironmentOutlined, LaptopOutlined } from "@ant-design/icons"
 import DropOption from "@/js/components/DropOption"
 
@@ -52,7 +50,6 @@ export default function EventsPage() {
                     rowKey='id'
                     loading={isFetching}
                     scroll={{ x: true }}
-                    // onChange={handleTableChange}
                     bordered
                     simple
                     expandable={{

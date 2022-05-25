@@ -1,5 +1,5 @@
 import { BriefcaseOutlined } from "@/js/components/icons";
-import { CalendarOutlined, DesktopOutlined, FileOutlined, HomeOutlined, SettingOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
+import { CalendarOutlined, DesktopOutlined, FileOutlined, HomeOutlined, SettingOutlined, ShoppingCartOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
 import { Menu } from "antd";
 import { useContext } from 'react'
 import { useLocation, useNavigate } from "react-router-dom";
@@ -11,7 +11,8 @@ const items = [
     getItem('Dashboard', '/admin', <HomeOutlined />),
     getItem('Users', 'sub1', <UserOutlined />, [
         getItem('Pending Users', '/admin/users/pending'),
-        getItem('Alumni', '/admin/users/alumni')
+        getItem('Alumni', '/admin/users/alumni'),
+        getItem('Moderator', '/admin/users/moderator')
     ]),
     getItem('Events', 'sub2', <CalendarOutlined />, [
         getItem('Requires Approval', '/admin/events?filter=require-approval'),
@@ -19,9 +20,19 @@ const items = [
         getItem('Past Events', '/admin/events?filter=past'),
         getItem('Cancelled Events', '/admin/events?filter=cancelled'),
     ]),
-    getItem('Job Posting', '/admin/jobs', <BriefcaseOutlined />),
-    // getItem('Alumni Items', 'sub3'),
-    getItem('System Settings', '/admin/settings', <SettingOutlined />),
+    getItem('Job Ads', 'sub3', <BriefcaseOutlined />, [
+        getItem('Requires Approval', '/admin/jobs/pending'),
+        getItem('Posted Jobs', '/admin/jobs/')
+    ]),
+    getItem('Alumni Items', 'sub4', <ShoppingCartOutlined />, [
+        getItem('Alumni ID', '/admin/items/id'),
+        getItem('Alumni T-shirt', '/admin/items/tshirt'),
+        getItem('Requests', '/admin/items/requests'),
+    ]),
+    getItem('Reports', 'sub5', <FileOutlined />),
+    getItem('System Settings', '/admin/settings', <SettingOutlined />, [
+        getItem('Manage FAQs','/admin/settings/faqs'),
+    ]),
 ];
 
 export default function SidebarMenu() {

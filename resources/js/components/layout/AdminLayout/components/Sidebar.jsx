@@ -10,7 +10,7 @@ export default function () {
         <Sider
             breakpoint="md"
             collapsedWidth={broken ? 0 : 60}
-            className='overflow-auto h-screen sticky top-0'
+            className='overflow-auto h-screen sticky top-0 thin-scrollbar'
             collapsible
             collapsed={collapsed}
             onBreakpoint={broken => setBroken(broken)}
@@ -19,7 +19,7 @@ export default function () {
             theme='light'
             width={256}
         >
-            <div className='flex justify-center items-center p-4 mb-8 overflow-hidden shadow  header-height'>
+            <div className='flex justify-center items-center p-4 mb-8 overflow-hidden shadow  header-height sticky top-0 z-[1] bg-white'>
                 <img className='rounded mr-2' src='/images/logo.png' width={32} />
                 {!collapsed &&
                     <span
