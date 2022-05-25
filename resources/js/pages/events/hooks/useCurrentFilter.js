@@ -7,11 +7,11 @@ const useCurrentFilter = () => {
     const filter = searchParams.get('filter')
     const navigate = useNavigate()
 
-    useEffect(() => {
-        if ( !filters.some(({key}) => key === filter)) {
-            navigate('/events?filter=active', {replace: true})
-        }
-    }, [filter])
+    // useEffect(() => {
+    //     if ( !filters.some(({key}) => key === filter)) {
+    //         navigate('/events?filter=active', {replace: true})
+    //     }
+    // }, [filter])
 
     return filter
 }

@@ -30,6 +30,10 @@ export const requestCookie = async () => {
     return Cookies.get('XSRF-TOKEN') || await Http.get('/csrf-cookie')
 }
 
+export const handleError = (response) => {
+    console.log(response)
+}
+
 export const sleep = (duration) => new Promise(resolve => setTimeout(resolve, duration))
 
 export default Http

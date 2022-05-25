@@ -25,9 +25,12 @@ export default function EventsPageIndex() {
                         <Button onClick={() => setIsAddEventModalVisible(true)} type='text' shape='circle' icon={<EditOutlined />} />
                     </div>
                     <div className="mt-4 flex gap-2 overflow-x-auto">
-                        {filters.map(({ key, value }) => (
-                            <FilterLink key={key} filter={key}>{value}</FilterLink>
-                        ))}
+                        <FilterLink filter='active'>Upcoming</FilterLink>
+                        <FilterLink filter='interested'>Interested</FilterLink>
+                        <FilterLink filter='going'>Going</FilterLink>
+                        <FilterLink filter='past'>Past Events</FilterLink>
+                        <FilterLink filter='hosting'>Hosting Events</FilterLink>
+                        <FilterLink filter='pending'>Awaiting Approval</FilterLink>
                     </div>
 
                     <EventList filter={filter}/>

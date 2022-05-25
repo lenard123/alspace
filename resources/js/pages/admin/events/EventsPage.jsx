@@ -8,12 +8,13 @@ import { toAntdPagination } from "@/js/utils"
 import Column from "antd/lib/table/Column"
 import moment from "moment"
 import { EnvironmentOutlined, LaptopOutlined } from "@ant-design/icons"
+import DropOption from "@/js/components/DropOption"
 
 const title = {
     'active': 'Upcoming Events',
     'cancelled': 'Cancelled Events',
     'past': 'Past Events',
-    'pending': 'Pending Events',
+    'require-approval': 'Requires Approval',
 }
 
 export const useFilter = () => {
@@ -45,11 +46,11 @@ export default function EventsPage() {
             />
 
             <div className='bg-white p-6 sm:mx-6'>
-            <Table 
-                    dataSource={data?.data} 
-                    pagination={toAntdPagination(data)} 
-                    rowKey='id' 
-                    loading={isFetching} 
+                <Table
+                    dataSource={data?.data}
+                    pagination={toAntdPagination(data)}
+                    rowKey='id'
+                    loading={isFetching}
                     scroll={{ x: true }}
                     // onChange={handleTableChange}
                     bordered
@@ -57,26 +58,41 @@ export default function EventsPage() {
                     expandable={{
                         expandedRowRender: (record) => record.description
                     }}
-                    >
-                    <Column 
-                        title='Title' 
-                        dataIndex='title' 
+                >
+                    <Column
+                        title='Title'
+                        dataIndex='title'
                         render={(title, record) => (
                             <Link className='link' to={`/events/${record.id}`} target='_blank'>{title}</Link>
                         )}
                     />
                     <Column title='Posted By' dataIndex={['user', 'fullname']} />
                     <Column title='Date' dataIndex='start_at' render={start_at => start_at.format('MMMM DD, yyyy')} />
-                    <Column 
-                        title='Type' 
+                    <Column
+                        title='Type'
                         dataIndex='is_online'
                         render={isOnline => (
                             isOnline
-                                ?<Tag icon={<LaptopOutlined />} color='processing'>Online</Tag>
-                                :<Tag icon={<EnvironmentOutlined />} color='warning'>On Site</Tag>
+                                ? <Tag icon={<LaptopOutlined />} color='processing'>Online</Tag>
+                                : <Tag icon={<EnvironmentOutlined />} color='warning'>On Site</Tag>
                         )}
                     />
-                </Table>               
+
+                    {filter === 'require-approval' &&
+                        <Column
+                            title='Action'
+                            key='action'
+                            fixed='right'
+                            render={record => (
+                                <DropOption menuOptions={[
+                                    { key: 'approve', label: 'Approve' },
+                                    { key: 'reject', label: 'Reject', danger: true }
+                                ]} />
+                            )}
+                        />
+                    }
+
+                </Table>
             </div>
         </>
     )

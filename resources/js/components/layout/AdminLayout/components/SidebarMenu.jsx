@@ -14,7 +14,7 @@ const items = [
         getItem('Alumni', '/admin/users/alumni')
     ]),
     getItem('Events', 'sub2', <CalendarOutlined />, [
-        getItem('Requires Approval', '/admin/events?filter=pending'),
+        getItem('Requires Approval', '/admin/events?filter=require-approval'),
         getItem('Upcoming Events', '/admin/events?filter=active'), 
         getItem('Past Events', '/admin/events?filter=past'),
         getItem('Cancelled Events', '/admin/events?filter=cancelled'),

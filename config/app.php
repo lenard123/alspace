@@ -195,6 +195,7 @@ return [
         'Notification' => \App\Models\Notification::class,
         'Thread' => \App\Models\Thread::class,
         'JobPost' => \App\Models\JobPost::class,
+        'Event' => \App\Models\Event::class,
     ])->toArray(),
 
 ];

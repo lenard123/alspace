@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -65,5 +66,50 @@ class Event extends Model
         return $this->belongsToMany(User::class, 'events_participants', 'event_id', 'user_id');
     }
 
+    public function scopePending($query)
+    {
+        return $query->upcoming()->where('status', 'pending');
+    }
 
+    public function scopeActive($query)
+    {
+        return $query->upcoming()->where('status', 'approved');
+    }
+
+    public function scopeUpcoming($query)
+    {
+        return $query->where('start_at', '>=', Carbon::today());
+    }
+
+    public function scopePast($query)
+    {
+        return $query->where('status', 'approved')->where('start_at', '<', Carbon::today());
+    }
+
+    public function scopeOwned($query)
+    {
+        return $query->where('user_id', Auth::id());
+    }
+
+    public function scopeInterested($query)
+    {
+        return $query->active()->whereHas('interested', function($query) {
+            $query->where('user_id', Auth::id());
+        });
+    }
+
+    public function scopeGoing($query)
+    {
+        return $query->active()->whereHas('going', function ($query) {
+            $query->where('user_id', Auth::id());
+        });
+    }
+
+    public function scopeCancelled($query)
+    {
+        return $query->where(function($query) {
+            $query->where('status', 'pending');
+            $query->where('start_at', '<', Carbon::today());
+        })->orWhere('status', 'rejected');
+    }
 }
