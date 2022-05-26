@@ -50,7 +50,6 @@ export default function PostJobModal({ isOpen, setIsOpen }) {
                 <ImgCrop shape='round'>
                     <Upload
                         className='avatar-uploader'
-                        listType="picture-card"
                         maxCount={1}
                         showUploadList={false}
                         beforeUpload={(file) => {

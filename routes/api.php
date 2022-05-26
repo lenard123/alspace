@@ -11,6 +11,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterValidatorController;
 use App\Http\Controllers\ThreadController;
+use App\Http\Controllers\TShirtController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkController;
 use Illuminate\Support\Facades\Broadcast;
@@ -47,6 +48,9 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/users/{user}/posts', 'posts');
         Route::get('/users/{user}/works', 'works');
     });
+
+    Route::get('/items/tshirts', [TShirtController::class, 'index']);
+    Route::post('/items/tshirts', [TShirtController::class, 'create']);
 
     Route::get('/jobs', [JobController::class, 'index']);
     Route::post('/jobs', [JobController::class, 'create']);

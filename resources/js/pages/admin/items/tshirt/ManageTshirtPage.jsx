@@ -1,9 +1,22 @@
-import { Breadcrumb, Button, PageHeader, Table } from "antd";
+import { Breadcrumb, Button, Image, PageHeader, Table, Tag } from "antd";
+import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
+import Http, { handleError, requestCookie } from '@/js/utils/Http'
+import DropOption from "@/js/components/DropOption";
+
 
 const { Column } = Table
 
 export default function ManageTshirtPage() {
+
+    const { data, isLoading } = useQuery({
+        queryKey: ['tshirts'],
+        queryFn: async() => {
+            await requestCookie()
+            return await Http.get('/items/tshirts')
+        }
+    })
+
     return (
         <>
             <PageHeader
@@ -23,15 +36,42 @@ export default function ManageTshirtPage() {
 
             <div className='bg-white p-6 sm:mx-6'>
                 <Table
-                    dataSource={[]}
+                    dataSource={isLoading ? [] : data}
                     bordered
                     simple
+                    scroll={{ x: true }}
+                    loading={isLoading}
+                    pagination={{hideOnSinglePage: true}}
                     >
-                    <Column title='Image'/>
-                    <Column title='Name' />
-                    <Column title='Price' />
-                    <Column title='Availability' />
-                    <Column title='Action' />
+                    <Column 
+                        title='Image' 
+                        dataIndex='thumbnail_url'
+                        width={90}
+                        key='image'
+                        render={value => <Image width={90} height={120} src={value} />}
+                    />
+                    <Column title='Name' dataIndex='title' key='name'/>
+                    <Column title='Price' dataIndex='price' key='price'/>
+                    <Column 
+                        title='Availability'
+                        dataIndex='availability'
+                        key='availability'
+                        render={value => {
+                            if (value === 'AVAILABLE') return <Tag color='green'>Available</Tag>
+                            return <Tag>Not Available</Tag>
+                        }}
+                    />
+                    <Column 
+                        title='Action' 
+                        key='action'
+                        fixed='right'
+                        render={record => (
+                            <DropOption menuOptions={[
+                                {key: 'edit', label: 'Edit'},
+                                {key: 'toggle', label: 'Toggle Availability'},
+                            ]}/>
+                        )}
+                    />
                 </Table>
             </div>
         </>

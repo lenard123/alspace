@@ -1,12 +1,10 @@
 import usePendingUsersQuery from "@/js/query/queries/usePendingUsersQuery";
 import { toAntdPagination } from "@/js/utils";
-import { Breadcrumb, Button, Dropdown, Menu, Modal, PageHeader, Popconfirm, Space, Table } from "antd";
+import { Breadcrumb, PageHeader,  Table } from "antd";
 import BreadcrumbItem from "antd/lib/breadcrumb/BreadcrumbItem";
 import Column from "antd/lib/table/Column";
 import { Link } from "react-router-dom";
-import ApproveButton from "./components/ApproveButton";
 import { useState } from 'react'
-import { BarsOutlined, CheckOutlined, DownOutlined } from "@ant-design/icons";
 import DropOption from "@/js/components/DropOption";
 import usePendingUserAction from "./usePendingUserAction";
 

@@ -1,3 +1,4 @@
+import { message } from 'antd'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import config from '../config'
@@ -30,8 +31,12 @@ export const requestCookie = async () => {
     return Cookies.get('XSRF-TOKEN') || await Http.get('/csrf-cookie')
 }
 
-export const handleError = (response) => {
-    console.log(response)
+export const handleError = (error) => {
+    if (error?.response.status === 422) {
+        message.error(error.response.data?.message)
+        return;
+    }
+    message.error('An unknown error occured')
 }
 
 export const sleep = (duration) => new Promise(resolve => setTimeout(resolve, duration))
