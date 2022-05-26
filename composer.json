@@ -69,14 +69,21 @@
             "git reset --hard origin/build",
             "composer warmup"
         ],
-        "deploy-remote": [
-            "npm run build",
+        "build-fontend": [
+            "npm run build"
+        ],
+        "trigger-remote-deploy": [
+            "ssh -i ~/.ssh/gitpod -t $REMOTE_USER@$REMOTE_HOST \"composer deploy --working-dir=./alspace\""
+        ],
+        "push": [
+            "composer setup-sshkeys",
+            "composer build-fontend",
             "git branch -D build &>/dev/null",
             "git checkout -b build",
             "git add public/build -f",
             "git commit -m \"generated\"",
             "git push origin build:build --force",
-            "ssh -i ~/.ssh/gitpod -t $REMOTE_USER@$REMOTE_HOST \"composer deploy --working-dir=./alspace\"",
+            "composer trigger-remote-deploy",
             "git checkout -",
             "echo \"Deployed Successfullt\""
         ],
