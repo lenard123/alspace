@@ -65,7 +65,7 @@ class PostComment extends Notification implements ShouldQueue
     private function getContent()
     {
         $notifier = $this->commenter->fullname;
-        $action = "commented on your post:";
+        $action = "commented on your post";
         $content = $this->post->content;
 
         return buildNotificationContent($notifier, $action, $content);
