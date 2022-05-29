@@ -6,10 +6,13 @@ import LikeButton from './components/LikeButton'
 import Options from './components/Options'
 import usePostLogic from './usePostLogic'
 import PostImage from './components/PostImage'
+import { compact } from 'lodash'
+import { useMemo } from 'react'
 
 export default function Post({ post, children, onDelete }) {
     const { author, likers_count, comments_count, user_id } = post
     const { isBelongsToUser, showDeleteModal } = usePostLogic(post, onDelete)
+    const content = useMemo(() => compact(post.content.split('\n')), [post.content])
 
     return (
         <div className='flex flex-col w-full sm:rounded-lg bg-white border border-solid p-4 pb-1 border-gray-300'>
@@ -26,7 +29,7 @@ export default function Post({ post, children, onDelete }) {
             </div>
 
             <div className='my-4 text-base'>
-                {post.content}
+                {content.map((p) => <div>{p}</div>)}
             </div>
 
             <PostImage images={post.images}/>
