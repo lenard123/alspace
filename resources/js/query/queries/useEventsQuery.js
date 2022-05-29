@@ -6,7 +6,7 @@ import { EventApi } from "../../apis"
 import { paginationDataReducer } from "../ReactQueryProvider"
 import moment from "moment"
 
-const validFilters = ['active', 'interested', 'hosting', 'going', 'past', 'cancelled', 'pending', 'require-approval']
+export const validFilters = ['active', 'interested', 'hosting', 'going', 'past', 'cancelled', 'pending', 'require-approval']
 
 export const filters = ObjectToArray({
     'active': 'Upcoming Events',
