@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Alumnus;
-use App\Models\Image;
 use App\Models\PendingAlumni;
 use App\Models\User;
-use App\Services\ImageUploader;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +25,7 @@ class UserController extends Controller
     public function alumni()
     {
         return User::alumni()
-            ->paginate(10);
+            ->paginate(50);
     }
 
     public function works(User $user)

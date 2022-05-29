@@ -1,5 +1,6 @@
 import Sider from "antd/lib/layout/Sider";
 import { useContext } from 'react'
+import { Link } from "react-router-dom";
 import { AdminLayoutContext } from "../AdminLayout";
 import SidebarMenu from "./SidebarMenu";
 
@@ -19,7 +20,7 @@ export default function () {
             theme='light'
             width={256}
         >
-            <div className='flex justify-center items-center p-4 mb-8 overflow-hidden shadow  header-height sticky top-0 z-[1] bg-white'>
+            <Link to='/' className='flex justify-center items-center p-4 mb-8 overflow-hidden shadow  header-height sticky top-0 z-[1] bg-white'>
                 <img className='rounded mr-2' src='/images/logo.png' width={32} />
                 {!collapsed &&
                     <span
@@ -30,7 +31,7 @@ export default function () {
                         }}
                     >Alspace Admin</span>
                 }
-            </div>
+            </Link>
 
             <SidebarMenu />
 
