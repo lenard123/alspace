@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PendingAlumni;
 use App\Models\User;
+use App\Notifications\RegistrationApproved;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -80,8 +81,11 @@ class UserController extends Controller
             $user->alumnus()->create($alumni->only('year_graduated', 'course', 'student_id'));
 
             $alumni->delete();
+
+            $user->notify(new RegistrationApproved());
+
         });
         
-        return response()->json(null, Response::HTTP_NO_CONTENT);
+        return response()->noContent();
     }
 }
