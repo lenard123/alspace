@@ -1,22 +1,14 @@
 import useAlumniQuery from "@/js/query/queries/useAlumniQuery";
-import { LoadingOutlined } from "@ant-design/icons";
-import { Input, Spin } from "antd";
+import { Empty, Input } from "antd";
+import LoadingPage from "./components/LoadingPage";
 import ProfileCard from "./components/ProfileCard";
-
-const LoadingPage = () => {
-    return (
-        <div className='flex-grow grid place-items-center'>
-            <Spin 
-                tip='Fetching Information'
-                indicator={<LoadingOutlined style={{fontSize: '48px'}} spin/>}
-            />
-        </div>
-    )
-}
+import { useState } from 'react'
+import { LoadingOutlined, SearchOutlined } from "@ant-design/icons";
 
 export default function AlumniPage() {
 
-    const { data, isLoading } = useAlumniQuery()
+    const [query, setQuery] = useState('')
+    const { data, isLoading, isFetching } = useAlumniQuery({ query })
 
     if (isLoading) return <LoadingPage />
 
@@ -34,10 +26,18 @@ export default function AlumniPage() {
                             className='ml-4 rounded bg-gray-100 hover:bg-gray-100 focus:bg-gray-100'
                             bordered={false}
                             placeholder='Search...'
+                            suffix={ isFetching ? <LoadingOutlined /> : <SearchOutlined />}
+                            onPressEnter={e => setQuery(e.target.value.trim())}
                         />
                     </div>
                 </div>
             </div>
+
+            {alumni.length === 0 &&
+                <div className='mt-4 page-wrapper'>
+                    <Empty />
+                </div>
+            }
 
             <div className='mt-4 page-wrapper grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
                 {alumni.map(alumnus => (

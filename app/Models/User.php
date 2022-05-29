@@ -96,6 +96,12 @@ class User extends Authenticatable
         return $query->whereHas('alumnus')->with('alumnus', 'info');
     }
 
+    public function scopeSearch($query, $search)
+    {
+        return $query->where("firstname", "like", "%$search%")
+            ->orWhere("lastname", "like", "%$search%");
+    }
+
     public function getScoutKey()
     {
         return $this->email;

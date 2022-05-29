@@ -22,7 +22,7 @@ export default {
 
     pendingUsers: (page) => ['users', 'pending', {page}],
 
-    alumniUsers: (page) => ['users', 'alumni', {page}],
+    alumniUsers: (filter) => ['users', 'alumni', filter],
 
     alumniWorks: (alumnusId) => ['users', 'alumni', +alumnusId, 'works'],
 

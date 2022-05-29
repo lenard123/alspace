@@ -3,11 +3,11 @@ import { useQuery } from "react-query";
 import queryKeyFactory from "../queryKeyFactory";
 
 
-export default function useAlumniQuery(page = 1)
+export default function useAlumniQuery(filter)
 {
     return useQuery({
-        queryKey: queryKeyFactory.alumniUsers(page),
-        queryFn: () => UserApi.fetchAlumni(page),
+        queryKey: queryKeyFactory.alumniUsers(filter),
+        queryFn: () => UserApi.fetchAlumni(filter),
         keepPreviousData: true,
     })
 }

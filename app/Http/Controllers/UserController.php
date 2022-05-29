@@ -23,9 +23,10 @@ class UserController extends Controller
             ->loadCount('unreadThread', 'unreadNotifications');
     }
 
-    public function alumni()
+    public function alumni(Request $request)
     {
         return User::alumni()
+            ->when($request->has('query'), fn($q) => $q->search(request('query')))
             ->paginate(50);
     }
 

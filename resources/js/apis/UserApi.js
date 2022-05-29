@@ -30,9 +30,14 @@ export const fetchPendingUsers = async (page = 1) => {
     return await Http.get(`/users/pending?page=${page}`)
 }
 
-export const fetchAlumni = async(page = 1) => {
+export const fetchAlumni = async({ query, page }) => {
     await requestCookie()
-    return await Http.get(`/users/alumni?page=${page}`)
+    return await Http.get(`/users/alumni`, {
+        params: {
+            query: query || undefined,
+            page: page || 1
+        }
+    })
 }
 
 export const approveUser = async (pendingUserId) => {
