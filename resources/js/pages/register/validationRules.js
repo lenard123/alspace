@@ -33,7 +33,9 @@ export default {
     password: [
         { required: true, message: 'Password is required.' },
         { min: 8, message: 'Password must be atleast 8 characters.'},
-        { pattern: /^(?=.*?[a-zA-Z])(?=.*?[0-9]).{0,}$/, message: 'Password must contain letter and a number.' } //Must have letter and number
+        { pattern: /^(?=.*?[0-9]).{0,}$/, message: 'Password must contain a number.' },
+        { pattern: /^(?=.*?[a-z]).{0,}$/, message: 'Password must contain a lowercase letter.' },
+        { pattern: /^(?=.*?[A-Z]).{0,}$/, message: 'Password must contain an uppercase letter.' } //Must have letter and number
     ],
 
     password_confirmation: [

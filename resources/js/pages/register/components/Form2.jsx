@@ -33,7 +33,8 @@ const Form2 = ({ onFinish, className, back }) => {
                 tooltip={
                     <span>
                         - Must be atleast 8 characters<br />
-                        - Must Contain Letters and Numbers
+                        - Must Contain Letters and Numbers<br/>
+                        - Must contain Uppercase and Lowecase letter
                     </span>
                 }
                 hasFeedback
