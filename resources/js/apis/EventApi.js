@@ -45,3 +45,10 @@ export const cancelParticipation = async(eventId) => {
     await requestCookie();
     return await Http.delete(`/events/${eventId}/participants`)
 }
+
+export const approveEvents = async (eventId) => {
+    const formData = new FormData()
+    formData.append('_method', 'PATCH')
+    await requestCookie()
+    return await Http.post(`/events/${eventId}/approve`, formData)
+}

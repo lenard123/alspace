@@ -1,4 +1,4 @@
-import { Breadcrumb, PageHeader, Table, Tag } from "antd"
+import { Breadcrumb, message, Modal, PageHeader, Table, Tag } from "antd"
 import BreadcrumbItem from "antd/lib/breadcrumb/BreadcrumbItem"
 import { Link, useSearchParams } from "react-router-dom"
 import { useMemo } from 'react'
@@ -7,6 +7,8 @@ import { toAntdPagination } from "@/js/utils"
 import Column from "antd/lib/table/Column"
 import { EnvironmentOutlined, LaptopOutlined } from "@ant-design/icons"
 import DropOption from "@/js/components/DropOption"
+import { useMutation } from "react-query"
+import { EventApi } from "@/js/apis"
 
 const title = {
     'active': 'Upcoming Events',
@@ -29,7 +31,27 @@ export const useFilter = () => {
 
 export default function EventsPage() {
     const { filter, title } = useFilter()
-    const { data, isFetching } = useEventsQuery(filter)
+    const { data, isFetching, refetch } = useEventsQuery(filter)
+
+    const { mutateAsync } = useMutation(EventApi.approveEvents, {
+        onSuccess() {
+            message.success('Event successfully approved')
+            refetch()
+        }
+    })
+
+    const handleMenuClick = ({ key }, record) => {
+        switch (key) {
+            case 'approve':
+                Modal.confirm({
+                    title: 'Are you sure to approve this event?',
+                    async onOk() {
+                        await mutateAsync(record.id)
+                    }
+                })
+                break;
+        }
+    }
 
     return (
         <>
@@ -81,7 +103,7 @@ export default function EventsPage() {
                             key='action'
                             fixed='right'
                             render={record => (
-                                <DropOption menuOptions={[
+                                <DropOption onMenuClick={e => handleMenuClick(e, record)} menuOptions={[
                                     { key: 'approve', label: 'Approve' },
                                     { key: 'reject', label: 'Reject', danger: true }
                                 ]} />

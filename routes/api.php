@@ -85,6 +85,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/events/{event}/participants', [EventController::class, 'interested']);
     Route::put('/events/{event}/participants', [EventController::class, 'going']);
     Route::delete('/events/{event}/participants', [EventController::class, 'notInterested']);
+    Route::patch('/events/{event}/approve', [EventController::class, 'approve'])->middleware('admin');
 
     Route::get('/notifications', [NotificationController::class, 'index']);
     Route::delete('/notifications', [NotificationController::class, 'clear']);

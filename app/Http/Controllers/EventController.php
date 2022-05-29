@@ -118,4 +118,10 @@ class EventController extends Controller
             default: return $event->participants;
         }
     }
+
+    public function approve(Event $event)
+    {
+        $event->status = 'approved';
+        $event->save();
+    }
 }
