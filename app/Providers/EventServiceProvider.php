@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Comment;
 use App\Models\User;
+use App\Observers\CommentObserver;
 use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -33,6 +35,9 @@ class EventServiceProvider extends ServiceProvider
             \App\Listeners\SendWelcomeMessage::class
         ],
 
+        \App\Events\CommentReceived::class => [
+            \App\Listeners\SendCommentReceivedNotification::class,
+        ],
     ];
 
     /**
@@ -43,6 +48,7 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         User::observe(UserObserver::class);
+        Comment::observe(CommentObserver::class);
     }
 
     /**

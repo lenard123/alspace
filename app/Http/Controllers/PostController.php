@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CommentRequest;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
+use App\Notifications\PostComment;
 use App\Notifications\PostLiked;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
