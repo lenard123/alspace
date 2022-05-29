@@ -36,7 +36,7 @@ const Form1 = ({ onFinish, className }) => {
                 <Form.Item
                     rules={rules.firstname}
                     className='mb-4 flex-grow'
-                    label='Firstame'
+                    label='Firstname'
                     name='firstname'
                     hasFeedback
                     {...(validationErrors.firstname)}
