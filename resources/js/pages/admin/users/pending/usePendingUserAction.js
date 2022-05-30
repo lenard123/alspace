@@ -15,6 +15,13 @@ export default function usePendingUserAction()
         }
     })
 
+    const { mutateAsync:rejectRegistration } = useMutation(UserApi.rejectUser, {
+        onSuccess() {
+            message.success('User Application has been successfully rejected')
+            queryClient.invalidateQueries(queryKeyFactory.pendingUsersAll)
+        }        
+    })
+
     const approveAlumni = (id) => {
         Modal.confirm({
             title: 'Are you sure to approve this registration?',
@@ -24,5 +31,14 @@ export default function usePendingUserAction()
         })
     }
 
-    return { approveAlumni }
+    const rejectAlumni = (id) => {
+        Modal.confirm({
+            title: 'Are you sure to reject this application?',
+            async onOk() {
+                await rejectRegistration(id)
+            }
+        })
+    }
+
+    return { approveAlumni, rejectAlumni}
 }

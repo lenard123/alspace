@@ -43,6 +43,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/users/alumni', 'alumni');
         Route::get('/users/pending', 'pending')->middleware('admin');
         Route::post('/users/pending/{alumni}', 'approve')->middleware('admin');
+        Route::delete('/users/pending/{alumni}', 'reject')->middleware('admin');
         Route::get('/users/{user}/thread', 'thread');
         Route::get('/users/{user}', 'view');
         Route::get('/users/{user}/posts', 'posts');

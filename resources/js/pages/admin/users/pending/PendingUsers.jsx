@@ -12,7 +12,7 @@ export default function PendingUsers() {
 
     const [page, setPage] = useState(1)
     const { data, isFetching } = usePendingUsersQuery(page)
-    const { approveAlumni } = usePendingUserAction()
+    const { approveAlumni, rejectAlumni } = usePendingUserAction()
 
     const handleTableChange = (data) => {
         setPage(data.current)
@@ -22,6 +22,9 @@ export default function PendingUsers() {
         switch (key) {
             case 'approve':
                 approveAlumni(record.id)
+                break;
+            case 'reject': 
+                rejectAlumni(record.id)
                 break;
         }
     }

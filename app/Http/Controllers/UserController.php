@@ -74,6 +74,11 @@ class UserController extends Controller
         return PendingAlumni::paginate(10);
     }
 
+    public function reject(PendingAlumni $alumni)
+    {
+        return $alumni->delete();
+    }
+
     public function approve(PendingAlumni $alumni)
     {
         DB::transaction(function() use ($alumni) {
