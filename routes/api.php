@@ -50,7 +50,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/users/{user}/works', 'works');
     });
 
-    Route::get('/items/tshirts', [TShirtController::class, 'index']);
+    Route::get('/items/tshirts', [TShirtController::class, 'index'])->middleware('admin');
+    Route::get('/items/tshirts/available', [TShirtController::class, 'available']);
     Route::post('/items/tshirts', [TShirtController::class, 'create']);
 
     Route::get('/jobs', [JobController::class, 'index']);

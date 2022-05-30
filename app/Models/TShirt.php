@@ -47,4 +47,9 @@ class TShirt extends Model
             set: fn($value) => $value * 100
         );
     }
+
+    public function scopeAvailable($query)
+    {
+        return $query->where('availability', 'Available');
+    }
 }

@@ -13,6 +13,11 @@ class TShirtController extends Controller
         return TShirt::all();
     }
 
+    public function available()
+    {
+        return TShirt::query()->available()->get();
+    }
+
     public function create(Request $request)
     {
         $request->validate([

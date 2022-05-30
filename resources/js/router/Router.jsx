@@ -26,6 +26,7 @@ import LandingPage from '@/js/pages/index'
 import AlumniPage from '../pages/alumni/AlumniPage'
 
 import AdminRoutes from './AdminRoutes'
+import TShirtPage from '../pages/tshirt/TShirtPage'
 
 export default () => {
     return (
@@ -38,7 +39,7 @@ export default () => {
                     <Route path='' element={<MainLayout />} >
                         <Route path='home' element={<Home />} />
                         <Route path='alumni' element={<AlumniPage />} />
-                        <Route path='items' element={null} />
+                        <Route path='items' element={<TShirtPage />} />
                         <Route path='posts/:id' element={<Post />} />
                         <Route path='notifications' element={<Notifications />} />
                         <Route path='messages' element={<MessageLayout />} >
