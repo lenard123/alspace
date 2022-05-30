@@ -36,7 +36,7 @@ class UserInfo extends Model
 
     public function updateCover($cover)
     {
-        if ( !$this->exists() ) 
+        if ( $this->id === null ) 
             $this->save();
 
         $this->cover->upload($cover, 'cover');
