@@ -29,7 +29,7 @@ export default function Post({ post, children, onDelete }) {
             </div>
 
             <div className='my-4 text-base'>
-                {content.map((p) => <div>{p}</div>)}
+                {content.map((p,i) => <div key={i}>{p}</div>)}
             </div>
 
             <PostImage images={post.images}/>
