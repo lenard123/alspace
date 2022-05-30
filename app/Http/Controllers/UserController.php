@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PendingAlumni;
 use App\Models\User;
 use App\Notifications\RegistrationApproved;
+use App\Notifications\RejectedApplicationNotification;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -76,6 +77,7 @@ class UserController extends Controller
 
     public function reject(PendingAlumni $alumni)
     {
+        $alumni->notify(new RejectedApplicationNotification());
         return $alumni->delete();
     }
 
