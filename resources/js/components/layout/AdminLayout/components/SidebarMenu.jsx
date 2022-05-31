@@ -26,7 +26,6 @@ const items = (role) => [
         getItem('Posted Jobs', '/admin/jobs/')
     ]),
     getItem('Alumni Items', 'sub4', <ShoppingCartOutlined />, [
-        getItem('Alumni ID', '/admin/items/id'),
         getItem('Alumni T-shirt', '/admin/items/tshirt'),
         getItem('Requests', '/admin/items/requests'),
     ]),
