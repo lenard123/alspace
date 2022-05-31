@@ -34,13 +34,14 @@ export const requestCookie = async () => {
 export const handleError = (error) => {
     if (error?.response.status === 422) {
         message.error(error.response.data?.message)
-        return;
     } else if (error?.response.status === 401) {
         message.error(error.response.data?.message || 'You are not authorized to perform this action');
-        return
+    } else if (error?.response.status === 404) {
+        message.error('Page not found')
+    } else {
+        message.error('An unknown error occured')
     }
 
-    message.error('An unknown error occured')
 }
 
 export const sleep = (duration) => new Promise(resolve => setTimeout(resolve, duration))

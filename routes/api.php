@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\FAQController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MessageController;
@@ -98,6 +99,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/notifications', [NotificationController::class, 'clear']);
     Route::patch('/notifications', [NotificationController::class, 'markAllAsRead']);
     Route::patch('/notifications/{notification}', [NotificationController::class, 'markAsRead']);
+
+    Route::post('/faqs', [FAQController::class, 'create']);
+    Route::get('/faqs', [FAQController::class, 'index']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
     
