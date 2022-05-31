@@ -10,6 +10,8 @@ class TShirtRequest extends Model
 {
     use HasFactory;
 
+    protected $appends = ['total'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -25,6 +27,13 @@ class TShirtRequest extends Model
         return Attribute::make(
             get: fn($value) => $value / 100,
             set: fn($value) => $value * 100
+        );
+    }
+
+    protected function total() : Attribute
+    {
+        return Attribute::make(
+            get: fn() => ($this->quantity * $this->price)
         );
     }
 }

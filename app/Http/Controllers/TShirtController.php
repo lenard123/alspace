@@ -53,11 +53,12 @@ class TShirtController extends Controller
         $tshirt_request->quantity = $request->quantity;
         $tshirt_request->status = 'PENDING';
         $tshirt_request->save();
-        // TShirtRequest::where([
-        //     'tshirt_id' => $tshirt->id,
-        //     'user_id' => Auth::id(),
-        //     'status' => 'PENDING'
-        // ])->exists();
+
         return $tshirt_request;
+    }
+
+    public function requests()
+    {
+        return Auth::user()->tshirtRequests;
     }
 }

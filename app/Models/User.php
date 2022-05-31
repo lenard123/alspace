@@ -133,4 +133,9 @@ class User extends Authenticatable
             'status' => 'PENDING'
         ])->exists();
     }
+
+    public function tshirtRequests()
+    {
+        return $this->hasMany(TShirtRequest::class)->with('tshirt');
+    }
 }

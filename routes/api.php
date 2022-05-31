@@ -14,6 +14,7 @@ use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\TShirtController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkController;
+use App\Models\TShirtRequest;
 use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
 
@@ -54,6 +55,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/items/tshirts/{tshirt}/request', [TShirtController::class, 'createRequest']);
     Route::get('/items/tshirts/available', [TShirtController::class, 'available']);
     Route::post('/items/tshirts', [TShirtController::class, 'create']);
+    Route::get('/items/requests', [TShirtController::class, 'requests']);
 
     Route::get('/jobs', [JobController::class, 'index']);
     Route::post('/jobs', [JobController::class, 'create']);

@@ -1,6 +1,7 @@
 import { Card, Tabs } from "antd";
 import { Link } from "react-router-dom";
 import AvailableTShirt from "./components/AvailableTShirt";
+import RequestsStatus from "./components/RequestsStatus";
 
 const { TabPane } = Tabs
 
@@ -14,7 +15,9 @@ export default function TShirtPage() {
                             <AvailableTShirt />
                         </TabPane>
                         <TabPane tab='Alumni ID' key={2}></TabPane>
-                        <TabPane tab='Pending Request' key={3}></TabPane>
+                        <TabPane tab='Requests Status' key={3}>
+                            <RequestsStatus />
+                        </TabPane>
                     </Tabs>
                 </Card>
             </div>
