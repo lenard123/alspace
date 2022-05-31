@@ -1,21 +1,46 @@
 import LoadingPage from "@/js/components/LoadingPage";
-import { Breadcrumb, Button, Collapse, PageHeader } from "antd";
+import { Breadcrumb, Button, Collapse, message, Modal, PageHeader, Space } from "antd";
 import { Link } from "react-router-dom";
 import Http, { handleError, requestCookie } from '@/js/utils/Http'
-import { useQuery } from "react-query";
-import { EditOutlined } from "@ant-design/icons";
+import { useMutation, useQuery } from "react-query";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 const apiCall = async () => {
     await requestCookie()
     return await Http.get('/faqs')
 }
 
+const deleteApiCall = async (id) => {
+    await requestCookie()
+    return await Http.delete(`/faqs/${id}`)
+}
+
 export default function ManageFAQ() {
 
-    const { data, isLoading } = useQuery({
+    const { data, isLoading, refetch } = useQuery({
         queryKey: ['faqs'],
         queryFn: apiCall
     })
+
+    const { mutateAsync } = useMutation(deleteApiCall, {
+        onSuccess() {
+            message.success('Entry deleted successfully')
+            refetch()
+        },
+        onError(error) {
+            handleError(error)
+        }
+    })
+
+    const showDeleteModal = (e, id) => {
+        e.stopPropagation()
+        Modal.confirm({
+            title: 'Are you sure to delete this entry?',
+            async onOk() {
+                await mutateAsync(id)
+            }
+        })
+    }
 
     return (
         <>
@@ -38,7 +63,15 @@ export default function ManageFAQ() {
                 {isLoading ? <LoadingPage /> : 
                     <Collapse>
                         {data.map(faq => (
-                            <Collapse.Panel header={faq.question} key={faq.id} extra={<EditOutlined />}>
+                            <Collapse.Panel 
+                                header={faq.question} 
+                                key={faq.id} 
+                                extra={
+                                    <Space>
+                                        <EditOutlined />
+                                        <DeleteOutlined onClick={e => showDeleteModal(e, faq.id)}/>
+                                    </Space>
+                                }>
                                 {faq.answer}
                             </Collapse.Panel>
                         ))}

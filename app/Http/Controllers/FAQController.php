@@ -21,4 +21,9 @@ class FAQController extends Controller
     {
         return Question::all();
     }
+
+    public function destroy(Question $question)
+    {
+        return $question->delete();
+    }
 }

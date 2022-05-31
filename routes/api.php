@@ -100,8 +100,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::patch('/notifications', [NotificationController::class, 'markAllAsRead']);
     Route::patch('/notifications/{notification}', [NotificationController::class, 'markAsRead']);
 
-    Route::post('/faqs', [FAQController::class, 'create']);
+    Route::post('/faqs', [FAQController::class, 'create'])->middleware('admin');
     Route::get('/faqs', [FAQController::class, 'index']);
+    Route::delete('/faqs/{question}', [FAQController::class, 'destroy'])->middleware('admin:super');
 
     Route::post('/logout', [AuthController::class, 'logout']);
     
