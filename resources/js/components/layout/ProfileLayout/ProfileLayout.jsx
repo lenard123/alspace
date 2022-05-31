@@ -1,4 +1,4 @@
-import { Avatar, Button, Card, Image, Tabs, Typography } from "antd";
+import { Button, Tabs } from "antd";
 import { Outlet, useParams } from "react-router";
 import Helmet from 'react-helmet'
 import SkeletonLayout from "./SkeletonLayout";
@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 import ProfileCard from "./components/ProfileCard";
 import ProfileRoutes from "./components/ProfileRoutes";
 import ProfileAvatar from "./components/ProfileAvatar";
-import { CameraOutlined, EditOutlined } from "@ant-design/icons";
 import ProfileCover from "./components/ProfileCover";
 
 export default function ProfileLayout() {
