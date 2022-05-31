@@ -14,8 +14,7 @@ export default function TShirtPage() {
                         <TabPane tab='Available Tshirts' key={1}>
                             <AvailableTShirt />
                         </TabPane>
-                        <TabPane tab='Alumni ID' key={2}></TabPane>
-                        <TabPane tab='Requests Status' key={3}>
+                        <TabPane tab='Requests Status' key={2}>
                             <RequestsStatus />
                         </TabPane>
                     </Tabs>
