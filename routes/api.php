@@ -51,6 +51,7 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::get('/items/tshirts', [TShirtController::class, 'index'])->middleware('admin');
+    Route::post('/items/tshirts/requests', [TShirtController::class, 'createRequest']);
     Route::get('/items/tshirts/available', [TShirtController::class, 'available']);
     Route::post('/items/tshirts', [TShirtController::class, 'create']);
 

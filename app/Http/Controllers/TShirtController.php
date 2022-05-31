@@ -32,4 +32,10 @@ class TShirtController extends Controller
 
         return $tshirt;
     }
+
+    public function createRequest(Request $request)
+    {
+        logger()->debug('create request', ['request' => $request]);
+        return 'Success';
+    }
 }

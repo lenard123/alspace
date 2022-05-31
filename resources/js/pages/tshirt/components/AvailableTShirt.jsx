@@ -5,6 +5,7 @@ import LoadingPage from '../../alumni/components/LoadingPage'
 import { Image, Table } from 'antd'
 import Column from 'antd/lib/table/Column'
 import DropOption from '@/js/components/DropOption'
+import useRequestFormModal from './useRequestFormModal'
 
 const apiCall = async () => {
     await requestCookie()
@@ -16,6 +17,8 @@ export default function AvailableTShirt() {
         queryKey: ['tshirts', 'available'],
         queryFn: apiCall
     })
+
+    const { RequestForm, openModal } = useRequestFormModal()
 
 
 
@@ -29,6 +32,7 @@ export default function AvailableTShirt() {
                 simple
                 scroll={{ x: true }}
                 pagination={{ hideOnSinglePage: true }}
+                rowKey='id'
             >
                 <Column
                     title='Image'
@@ -43,9 +47,10 @@ export default function AvailableTShirt() {
                     title='Action'
                     key='action'
                     fixed='right'
-                    render={record => <a className='link' href='#'>Submit Request</a>}
+                    render={record => <a onClick={() => openModal(record)} className='link' href='#'>Submit Request</a>}
                 />
             </Table>
+            <RequestForm />
         </>
     )
 }
