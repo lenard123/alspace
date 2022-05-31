@@ -1,4 +1,5 @@
 import { BriefcaseOutlined } from "@/js/components/icons";
+import { useCurrentUser } from "@/js/query/queries/useCurrentUserQuery";
 import { CalendarOutlined, DesktopOutlined, FileOutlined, HomeOutlined, SettingOutlined, ShoppingCartOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
 import { Menu } from "antd";
 import { useContext } from 'react'
@@ -7,12 +8,12 @@ import { AdminLayoutContext } from "../AdminLayout";
 
 const getItem = (label, key, icon, children) => ({label, key, icon, children})
 
-const items = [
+const items = (role) => [
     getItem('Dashboard', '/admin', <HomeOutlined />),
     getItem('Users', 'sub1', <UserOutlined />, [
         getItem('Pending Users', '/admin/users/pending'),
         getItem('Alumni', '/admin/users/alumni'),
-        getItem('Moderator', '/admin/users/moderator')
+        role === 'super' && getItem('Moderator', '/admin/users/moderator')
     ]),
     getItem('Events', 'sub2', <CalendarOutlined />, [
         getItem('Requires Approval', '/admin/events?filter=require-approval'),
@@ -37,6 +38,7 @@ const items = [
 
 export default function SidebarMenu() {
 
+    const { role } = useCurrentUser()
     const { collapsed } = useContext(AdminLayoutContext)
     const { pathname, search } = useLocation()
     const navigate = useNavigate()
@@ -51,7 +53,7 @@ export default function SidebarMenu() {
             mode='inline'
             inlineCollapsed={collapsed}
             selectedKeys={[`${pathname}${search}`, pathname]}
-            items={items}
+            items={items(role)}
             onClick={handleClick}
         />
     )

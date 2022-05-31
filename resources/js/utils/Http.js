@@ -35,7 +35,11 @@ export const handleError = (error) => {
     if (error?.response.status === 422) {
         message.error(error.response.data?.message)
         return;
+    } else if (error?.response.status === 401) {
+        message.error(error.response.data?.message || 'You are not authorized to perform this action');
+        return
     }
+
     message.error('An unknown error occured')
 }
 

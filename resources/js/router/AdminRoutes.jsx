@@ -11,6 +11,8 @@ import AlumniPage from "../pages/admin/users/alumni/AlumniPage";
 import EventsPage from "../pages/admin/events/EventsPage";
 import ManageTshirtPage from "../pages/admin/items/tshirt/ManageTshirtPage";
 import AddTshirtPage from "../pages/admin/items/tshirt/AddTshirtPage";
+import ManageModerator from "../pages/admin/users/moderator/ManageModerator";
+import AddModerator from "../pages/admin/users/moderator/AddModerator";
 
 const AdminRoutes = (
     <Route path='admin' element={<Outlet />}>
@@ -25,6 +27,8 @@ const AdminRoutes = (
                 <Route index element={<Dashboard />} />
                 <Route path="users/pending" element={<PendingUsers />} />
                 <Route path="users/alumni" element={<AlumniPage />} />
+                <Route path="users/moderator" element={<ManageModerator />}/>
+                <Route path="users/moderator/new" element={<AddModerator />} />
                 <Route path="messages/*" element={<MessageIndexPage />} />
                 <Route path="events" element={<EventsPage />} />
                 <Route path="items/tshirt" element={<ManageTshirtPage />} />

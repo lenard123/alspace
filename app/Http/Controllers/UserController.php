@@ -96,4 +96,26 @@ class UserController extends Controller
         
         return response()->noContent();
     }
+
+    public function moderators()
+    {
+        return User::query()->moderators()->get();
+    }
+
+    public function addModerator(Request $request)
+    {
+        $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'email' => 'required|email|unique:users|unique:pending_alumnis',
+            'password' => 'required|confirmed|min:8'
+        ]);
+
+        $user = User::create($request->only('firstname', 'lastname', 'email', 'password'));
+        $user->is_admin = true;
+        $user->role = 'moderator';
+        $user->save();
+
+        return $user;
+    }
 }

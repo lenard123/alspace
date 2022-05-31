@@ -15,12 +15,16 @@ class AdminMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, $role = null)
     {
-        if (Auth::check() && Auth::user()->is_admin) {
-            return $next($request);   
+        if (!Auth::user()?->is_admin) {
+            abort(401);
         }
 
-        abort(401);
+        if ($role === 'super' && Auth::user()->role !== $role) {
+            abort(401);
+        }
+
+        return $next($request);   
     }
 }

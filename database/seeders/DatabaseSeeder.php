@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             'firstname' => env('USER_FNAME', 'John'),
             'lastname' => env('USER_LNAME', 'Doe'),
             'password' => env('USER_PASSWORD', 'user1234'),
-            'is_admin' => true
+            'is_admin' => true,
+            'role' => 'super'
         ]);
     }
 }

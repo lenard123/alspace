@@ -138,4 +138,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(TShirtRequest::class)->with('tshirt');
     }
+
+    public function scopeModerators($query)
+    {
+        return $query->admin()->where('role', 'moderator');
+    }
 }
