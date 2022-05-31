@@ -98,8 +98,11 @@ class User extends Authenticatable
 
     public function scopeSearch($query, $search)
     {
-        return $query->where("firstname", "like", "%$search%")
-            ->orWhere("lastname", "like", "%$search%");
+        return $query->join('alumni', 'users.id', '=', 'alumni.user_id')
+            ->where("firstname", "like", "%$search%")
+            ->orWhere("lastname", "like", "%$search%")
+            ->orWhere('alumni.course', $search)
+            ->orWhere("alumni.year_graduated", $search);
     }
 
     public function getScoutKey()
