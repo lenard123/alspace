@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Http, { handleError, requestCookie } from '@/js/utils/Http'
 import { useMutation, useQuery } from "react-query";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import QuestionsList from "@/js/components/QuestionsList/QuestionsList";
 
 const apiCall = async () => {
     await requestCookie()
@@ -60,23 +61,7 @@ export default function ManageFAQ() {
                 }
             />
             <div className='bg-white p-6 sm:mx-6 mb-8'>
-                {isLoading ? <LoadingPage /> : 
-                    <Collapse>
-                        {data.map(faq => (
-                            <Collapse.Panel 
-                                header={faq.question} 
-                                key={faq.id} 
-                                extra={
-                                    <Space>
-                                        <EditOutlined />
-                                        <DeleteOutlined onClick={e => showDeleteModal(e, faq.id)}/>
-                                    </Space>
-                                }>
-                                {faq.answer}
-                            </Collapse.Panel>
-                        ))}
-                    </Collapse>
-                }
+                <QuestionsList showExtra />
             </div>
         </>
     )
