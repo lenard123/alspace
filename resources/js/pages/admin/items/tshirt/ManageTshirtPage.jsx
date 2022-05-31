@@ -42,6 +42,7 @@ export default function ManageTshirtPage() {
                     scroll={{ x: true }}
                     loading={isLoading}
                     pagination={{hideOnSinglePage: true}}
+                    rowKey='id'
                     >
                     <Column 
                         title='Image' 
