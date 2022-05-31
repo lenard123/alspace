@@ -65,14 +65,7 @@ export default function AddModerator() {
 
     const handleSubmit = (data) => {
         if (isLoading) return;
-        const formData = new FormData();
-        formData.append('firstname', data.firstname)
-        formData.append('lastname', data.lastname)
-        formData.append('email', data.email)
-        formData.append('password', data.password)
-        formData.append('password_confirmation', data.password_confirmation)
-
-        mutate(formData)
+        mutate(data)
     }
 
     return (
