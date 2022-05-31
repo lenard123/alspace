@@ -124,4 +124,13 @@ class User extends Authenticatable
     {
         return $this->notifications()->unread()->update(['read_at' => now()]);
     }
+
+    public function hasPendingRequest(TShirt $tshirt)
+    {
+        return TShirtRequest::where([
+            'tshirt_id' => $tshirt->id,
+            'user_id' => $this->id,
+            'status' => 'PENDING'
+        ])->exists();
+    }
 }

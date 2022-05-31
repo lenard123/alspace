@@ -3,9 +3,9 @@ import { useState } from 'react'
 import { useMutation } from 'react-query'
 import Http, { handleError, requestCookie } from '@/js/utils/Http'
 
-const apiCall = async (quantity) => {
+const apiCall = async ({tshirt_id, quantity}) => {
     await requestCookie()
-    return await Http.post('/items/tshirts/requests', {quantity})
+    return await Http.post(`/items/tshirts/${tshirt_id}/request`, {quantity})
 }
 
 const RequestForm = function ({ tshirt, isOpen, setIsOpen }) {
@@ -25,7 +25,7 @@ const RequestForm = function ({ tshirt, isOpen, setIsOpen }) {
 
     const handleSubmit = () => {
         if (isLoading) return;
-        mutate(quantity)
+        mutate({tshirt_id:tshirt.id, quantity})
     }
 
     if (tshirt === null) {
