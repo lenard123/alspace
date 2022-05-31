@@ -8,7 +8,7 @@ export default function TShirtPage() {
     return (
         <>
             <div className='page-wrapper sm:my-4 flex flex-col flex-grow '>
-                <Card className='flex-grow'>
+                <Card className='flex-grow '>
                     <Tabs>
                         <TabPane tab='Available Tshirts' key={1}>
                             <AvailableTShirt />

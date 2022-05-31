@@ -50,6 +50,6 @@ class TShirt extends Model
 
     public function scopeAvailable($query)
     {
-        return $query->where('availability', 'Available');
+        return $query->where('availability', 'AVAILABLE');
     }
 }

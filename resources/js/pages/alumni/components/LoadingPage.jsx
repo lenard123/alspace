@@ -4,7 +4,7 @@ import { Spin } from "antd"
 
 const LoadingPage = () => {
     return (
-        <div className='flex-grow grid place-items-center'>
+        <div className='flex-grow grid place-items-center my-8'>
             <Spin 
                 tip='Fetching Information'
                 indicator={<LoadingOutlined style={{fontSize: '48px'}} spin/>}
