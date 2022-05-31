@@ -15,7 +15,7 @@ export default function Topbar() {
 
     return (
         <>
-            <header className='sticky top-0 z-[1] w-full bg-white header-height border-b border-gray-200 px-4 sm:px-8'>
+            <header className='sticky top-0 z-10 w-full bg-white header-height border-b border-gray-200 px-4 sm:px-8'>
 
                 <div className='max-w-screen-lg mx-auto h-full flex justify-between items-center'>
 
