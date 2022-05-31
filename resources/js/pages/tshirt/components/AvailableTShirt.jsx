@@ -1,11 +1,9 @@
-import { useEffect } from 'react'
 import { useQuery } from 'react-query'
-import Http, { handleError, requestCookie } from '@/js/utils/Http'
-import LoadingPage from '../../alumni/components/LoadingPage'
+import Http, { requestCookie } from '@/js/utils/Http'
 import { Image, Table } from 'antd'
 import Column from 'antd/lib/table/Column'
-import DropOption from '@/js/components/DropOption'
 import useRequestFormModal from './useRequestFormModal'
+import LoadingPage from '@/js/components/LoadingPage'
 
 const apiCall = async () => {
     await requestCookie()

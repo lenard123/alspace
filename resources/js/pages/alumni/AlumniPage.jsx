@@ -1,9 +1,9 @@
 import useAlumniQuery from "@/js/query/queries/useAlumniQuery";
 import { Empty, Input } from "antd";
-import LoadingPage from "./components/LoadingPage";
 import ProfileCard from "./components/ProfileCard";
 import { useState } from 'react'
 import { LoadingOutlined, SearchOutlined } from "@ant-design/icons";
+import LoadingPage from "@/js/components/LoadingPage";
 
 export default function AlumniPage() {
 
