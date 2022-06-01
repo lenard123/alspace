@@ -45,7 +45,7 @@ export default function AboutPage() {
 
                 <div className='grid grid-cols-3'>
                     <Title level={5}>Birthday:</Title>
-                    <Description value={birthday}/>
+                    <Description value={moment(birthday).format('MMMM DD, YYYY')}/>
                 </div>
 
                 <Divider />
