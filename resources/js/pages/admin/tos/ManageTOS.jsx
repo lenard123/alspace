@@ -1,28 +1,18 @@
 import { PageHeader, Tabs } from "antd";
-import Http, { requestCookie } from '@/js/utils/Http'
-import { useQuery } from "react-query";
 import LoadingPage from "@/js/components/LoadingPage";
 import PreviewTOS from "./PreviewTos";
 import UpdateTOS from "./UpdateTOS";
 import { useState } from 'react'
+import useTOSQuery from "@/js/query/queries/useTOSQuery";
 
 const { TabPane } = Tabs
 
-const apiCall = async () => {
-    await requestCookie()
-    return await Http.get('/tos')
-}
 
 export default function ManageTOS() {
 
     const [tos, setTos] = useState()
-    const { data, isLoading } = useQuery({
-        queryKey: ['tos'],
-        queryFn: apiCall,
-        onSuccess(data) {
-            setTos(data.value)
-        }
-    })
+    const { data, isLoading } = useTOSQuery({ onSuccess: data => setTos(data.value) })
+
 
     return (
         <>

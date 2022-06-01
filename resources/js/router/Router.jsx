@@ -27,6 +27,7 @@ import AlumniPage from '../pages/alumni/AlumniPage'
 
 import AdminRoutes from './AdminRoutes'
 import TShirtPage from '../pages/tshirt/TShirtPage'
+import TOS from '../pages/tos/TOS'
 
 export default () => {
     return (
@@ -63,6 +64,8 @@ export default () => {
                     <Route path='/forgot-password' element={<ForgotPassword />} />
                     <Route path='/reset-password/:token' element={<ResetPassword />} />
                 </Route>
+
+                <Route path='/tos' element={<TOS />} />
 
                 {AdminRoutes}
 
