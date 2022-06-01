@@ -21,10 +21,6 @@ const items = (role) => [
         getItem('Past Events', '/admin/events?filter=past'),
         getItem('Cancelled Events', '/admin/events?filter=cancelled'),
     ]),
-    getItem('Job Ads', 'sub3', <BriefcaseOutlined />, [
-        getItem('Requires Approval', '/admin/jobs/pending'),
-        getItem('Posted Jobs', '/admin/jobs/')
-    ]),
     getItem('Alumni Items', 'sub4', <ShoppingCartOutlined />, [
         getItem('Alumni T-shirt', '/admin/items/tshirt'),
         getItem('Requests', '/admin/items/requests'),

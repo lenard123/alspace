@@ -89,3 +89,23 @@ a:hover {
   margin-right: 8px;
   vertical-align: top;
 }
+
+.bg-grad-1 {
+    background-color: #875fc0;
+    background-image: linear-gradient(315deg, #875fc0 0%, #5346ba 74%);
+  }
+  
+  .bg-grad-2 {
+    background-color: #47c5f4;
+    background-image: linear-gradient(315deg, #47c5f4 0%, #6791d9 74%);
+  }
+  
+  .bg-grad-3 {
+    background-color: #eb4786;
+    background-image: linear-gradient(315deg, #eb4786 0%, #b854a6 74%);
+  }
+  
+  .bg-grad-4 {
+    background-color: #ffb72c;
+    background-image: linear-gradient(315deg, #ffb72c 0%, #f57f59 74%);
+  }
