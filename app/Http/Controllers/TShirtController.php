@@ -61,4 +61,20 @@ class TShirtController extends Controller
     {
         return Auth::user()->tshirtRequests;
     }
+
+    public function requestsAll()
+    {
+        return TShirtRequest::query()
+            ->with('user', 'tshirt')
+            ->where('status', request()->get('filter', 'PENDING'))
+            ->get();
+    }
+
+    public function updateStatus(Request $request, TShirtRequest $tshirt_request)
+    {
+        $tshirt_request->status = $request->status;
+        $tshirt_request->save();
+        
+        return $tshirt_request;
+    }
 }

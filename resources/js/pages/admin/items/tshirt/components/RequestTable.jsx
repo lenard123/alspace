@@ -1,0 +1,123 @@
+import LoadingPage from '@/js/components/LoadingPage'
+import Http, { handleError, requestCookie } from '@/js/utils/Http'
+import { Button, Image, message, Modal, Popconfirm, Space, Table } from 'antd'
+import Column from 'antd/lib/table/Column'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
+
+
+
+const apiCall = async (filter) => {
+    await requestCookie()
+    return await Http.get('/items/requests/all?filter=' + filter)
+}
+
+const apiUpdateStatus = async (id, status) => {
+    await requestCookie()
+    return await Http.post(`/items/requests/${id}`, {
+        status,
+        _method: 'PATCH'
+    })
+}
+
+const useHandler = (status, record) => {
+    const queryClient = useQueryClient()
+
+    const { mutateAsync } = useMutation((status) => apiUpdateStatus(record.id, status), {
+        onSuccess() {
+            message.success('Status updated successfully')
+            queryClient.invalidateQueries(['items', 'requests', 'all', record.status])
+        },
+        onError: handleError
+    })
+
+    return async () => {
+        await mutateAsync(status)
+    }
+}
+
+const ProcessButton = ({ record }) => {
+
+    const handler = useHandler('READY', record)
+
+    if (record.status !== 'PENDING') return null
+
+    return (
+        <Popconfirm title='Are you sure to process this request?' onConfirm={handler}>
+            <Button type='link' className='link'>Process Request</Button>
+        </Popconfirm>
+    )
+}
+
+const CancelButton = ({ record }) => {
+    const handler = useHandler('CANCELLED', record)
+
+    if (record.status === 'COMPLETED' || record.status === 'CANCELLED') return null
+
+    return (
+        <Popconfirm title='Are you sure to cancel this request?' onConfirm={handler}>
+            <Button type='link' className='link'>Cancel Request</Button>
+        </Popconfirm>
+    )
+}
+
+const CompleteButton = ({ record }) => {
+    const handler = useHandler('COMPLETED', record)
+
+    if (record.status !== 'READY') return null
+
+    return (
+        <Popconfirm title='Are you sure to comple this this request?' onConfirm={handler}>
+            <Button type='link' className='link'>Complete Request</Button>
+        </Popconfirm>
+    )
+}
+
+export default function RequestTable({ filter }) {
+    const { data, isLoading } = useQuery({
+        queryKey: ['items', 'requests', 'all', filter],
+        queryFn: () => apiCall(filter),
+        onSuccess(data) {
+            console.log({ filter, data })
+        }
+    })
+
+    if (isLoading)
+        return <LoadingPage />
+
+    return (
+        <Table
+            dataSource={data}
+            bordered
+            simple
+            scroll={{ x: true }}
+            pagination={{ hideOnSinglePage: true }}
+            rowKey='id'
+        >
+            <Column
+                title='Image'
+                dataIndex={['tshirt', 'thumbnail_url']}
+                width={90}
+                key='image'
+                render={value => <Image width={90} height={120} src={value} />}
+            />
+            <Column title='Name' dataIndex={['tshirt', 'title']} key='name' />
+            <Column title='Price' dataIndex='price' key='price' />
+            <Column title='Status' dataIndex='status' key='status' />
+            <Column title='Total' dataIndex='total' key='total' />
+
+
+            <Column
+                title='Action'
+                key='action'
+                fixed='right'
+                render={record => (
+                    <Space>
+                        <ProcessButton record={record} />
+                        <CompleteButton record={record} />
+                        <CancelButton record={record} />
+                    </Space>
+                )}
+            />
+        </Table>
+    )
+}

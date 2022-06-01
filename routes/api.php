@@ -64,6 +64,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/items/tshirts/available', [TShirtController::class, 'available']);
     Route::post('/items/tshirts', [TShirtController::class, 'create']);
     Route::get('/items/requests', [TShirtController::class, 'requests']);
+    Route::get('/items/requests/all', [TShirtController::class, 'requestsAll']);
+    Route::patch('/items/requests/{tshirt_request}', [TShirtController::class, 'updateStatus']);
 
     Route::get('/jobs', [JobController::class, 'index']);
     Route::post('/jobs', [JobController::class, 'create']);

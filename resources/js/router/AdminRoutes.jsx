@@ -16,6 +16,7 @@ import AddModerator from "../pages/admin/users/moderator/AddModerator";
 import ManageFAQ from "../pages/admin/faq/ManageFAQ";
 import AddFAQ from "../pages/admin/faq/AddFAQ";
 import ManageTOS from "../pages/admin/tos/ManageTOS";
+import ManageRequests from "../pages/admin/items/tshirt/ManageRequests";
 
 const AdminRoutes = (
     <Route path='admin' element={<Outlet />}>
@@ -36,6 +37,7 @@ const AdminRoutes = (
                 <Route path="events" element={<EventsPage />} />
                 <Route path="items/tshirt" element={<ManageTshirtPage />} />
                 <Route path="items/tshirt/new" element={<AddTshirtPage />} />
+                <Route path="items/tshirt/requests" element={<ManageRequests />} />
                 <Route path="settings/faqs" element={<ManageFAQ />} />
                 <Route path="settings/faqs/new" element={<AddFAQ />} />
                 <Route path="settings/tos" element={<ManageTOS />} />

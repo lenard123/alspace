@@ -23,7 +23,7 @@ const items = (role) => [
     ]),
     getItem('Alumni Items', 'sub4', <ShoppingCartOutlined />, [
         getItem('Alumni T-shirt', '/admin/items/tshirt'),
-        getItem('Requests', '/admin/items/requests'),
+        getItem('Requests', '/admin/items/tshirt/requests'),
     ]),
     getItem('Reports', 'sub5', <FileOutlined />),
     getItem('System Settings', '/admin/settings', <SettingOutlined />, [
