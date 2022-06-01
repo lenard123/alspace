@@ -54,7 +54,9 @@ export default function QuestionsList({ showExtra = false }) {
                             <DeleteOutlined onClick={e => showDeleteModal(e, faq.id)} />
                         </Space>
                     }>
-                    {faq.answer}
+                    {faq.answer.split('\n').map((line,i) => {
+                        return <div key={i}>{line}</div>
+                    })}
                 </Collapse.Panel>
             ))}
         </Collapse>

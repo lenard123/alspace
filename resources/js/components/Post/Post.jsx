@@ -12,7 +12,7 @@ import { useMemo } from 'react'
 export default function Post({ post, children, onDelete }) {
     const { author, likers_count, comments_count, user_id } = post
     const { isBelongsToUser, showDeleteModal } = usePostLogic(post, onDelete)
-    const content = useMemo(() => compact(post.content.split('\n')), [post.content])
+    const content = useMemo(() => (post.content.split('\n')), [post.content])
 
     return (
         <div className='flex flex-col w-full sm:rounded-lg bg-white border border-solid p-4 pb-1 border-gray-300'>
