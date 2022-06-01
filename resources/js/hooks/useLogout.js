@@ -8,6 +8,7 @@ const useLogout = () => {
     const { mutateAsync } = useMutation(AuthApi.logout, {
         onSuccess: () => {
             queryClient.setQueryData(['users', 'current'], null)
+            queryClient.removeQueries([])
             message.success('Logout succesfully')
         }
     })

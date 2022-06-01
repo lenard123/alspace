@@ -79,7 +79,7 @@ export default function LandingPage() {
 
             <div className="text-center py-16">
                 <h1 className="font-black text-4xl">Alumni Management System</h1>
-                <p>A place where for CSD Alumni</p>
+                <p>A place for CSD Alumni</p>
                 {!isLoggedIn && <Link to='/register'><Button type='primary' shape='round' size='large'>Sign up now</Button></Link> }
 
                 <div className='page-wrapper mt-8'>
