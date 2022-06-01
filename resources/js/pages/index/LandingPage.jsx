@@ -78,7 +78,7 @@ export default function LandingPage() {
             {isLoggedIn ? <Topbar /> : <GuestTopbar />}
 
             <div className="text-center py-16">
-                <h1 className="font-black text-4xl">Alumni Manage System</h1>
+                <h1 className="font-black text-4xl">Alumni Management System</h1>
                 <p>A place where for CSD Alumni</p>
                 {!isLoggedIn && <Link to='/register'><Button type='primary' shape='round' size='large'>Sign up now</Button></Link> }
 
