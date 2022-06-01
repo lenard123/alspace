@@ -4,6 +4,7 @@ import { useMutation, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { useCurrentUser } from "@/js/query/queries/useCurrentUserQuery";
 import queryKeyFactory from "@/js/query/queryKeyFactory";
+import moment from "moment";
 
 const apiCall = async (data) => {
     await requestCookie()
@@ -25,9 +26,9 @@ export default function UpdateInfo({ initialValues}) {
         onError: handleError
     })
 
-    const handleSubmit = (data) => {
+    const handleSubmit = ({birthday, ...data}) => {
         if (isLoading) return;
-        mutate(data)
+        mutate({...data, birthday: birthday && birthday.format('Y-M-D')})
     }
 
     return (
