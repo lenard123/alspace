@@ -3,6 +3,7 @@ import Http, { handleError, requestCookie } from '@/js/utils/Http'
 import { Button, Image, message, Modal, Popconfirm, Space, Table } from 'antd'
 import Column from 'antd/lib/table/Column'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
+import { Link } from 'react-router-dom'
 
 
 
@@ -100,7 +101,15 @@ export default function RequestTable({ filter }) {
                 key='image'
                 render={value => <Image width={90} height={120} src={value} />}
             />
-            <Column title='Name' dataIndex={['tshirt', 'title']} key='name' />
+            <Column 
+                title='Requested by' 
+                key='name' 
+                render={(record) => (
+                    <Link target='_blank' className='link' to={`/profile/${record.user_id}`}>
+                        {record.user.fullname}
+                    </Link>
+                )}
+            />
             <Column title='Price' dataIndex='price' key='price' />
             <Column title='Status' dataIndex='status' key='status' />
             <Column title='Total' dataIndex='total' key='total' />

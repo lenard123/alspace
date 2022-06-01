@@ -1,5 +1,5 @@
 import useUserPostsQuery from "@/js/query/queries/useUserPostsQuery";
-import { List } from "antd"
+import { Button, List } from "antd"
 import Post from "@/js/components/Post";
 import WritePost from "@/js/components/WritePost";
 import { ProfileRoutesContext } from "@/js/components/layout/ProfileLayout/components/ProfileRoutes";
