@@ -2,6 +2,7 @@ import { Input, Button, Form, Select, DatePicker } from 'antd'
 import rules from '../validationRules'
 import _ from 'lodash'
 import useFormValidator from './useFormValidator'
+import { Link } from 'react-router-dom'
 
 const { Option } = Select
 
@@ -103,9 +104,10 @@ const Form1 = ({ onFinish, className }) => {
                 />
             </Form.Item>
 
-            <Form.Item>
+            <div className='flex justify-between mb-4'>
+                <Link className='link' to='/login'>Back to Login</Link>
                 <Button loading={isLoading} type='primary' htmlType='submit' size='large'>Next</Button>
-            </Form.Item>
+            </div>
 
         </Form>
     )

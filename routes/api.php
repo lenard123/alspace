@@ -11,6 +11,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterValidatorController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\TShirtController;
 use App\Http\Controllers\UserController;
@@ -101,12 +102,15 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::patch('/notifications/{notification}', [NotificationController::class, 'markAsRead']);
 
     Route::post('/faqs', [FAQController::class, 'create'])->middleware('admin');
-    Route::get('/faqs', [FAQController::class, 'index']);
     Route::delete('/faqs/{question}', [FAQController::class, 'destroy'])->middleware('admin:super');
 
     Route::post('/logout', [AuthController::class, 'logout']);
     
 });
+
+Route::get('/faqs', [FAQController::class, 'index']);
+Route::get('/tos', [SettingsController::class, 'tos']);
+Route::put('/tos', [SettingsController::class, 'updateTos'])->middleware('auth:sanctum', 'admin');
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/register-validator', [RegisterValidatorController::class, 'registerValidator']);

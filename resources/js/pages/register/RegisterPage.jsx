@@ -25,15 +25,15 @@ export default function Register() {
 
     if (success) {
         return (
-                <Result
-                    className='min-h-screen flex flex-col justify-center'
-                    status='success'
-                    title='Registration Successfull'
-                    subTitle='We will send you a mail once the admin verify your account'
-                    extra={[
-                        <Link to='/login' key='login'><Button type='primary'>Go to Login</Button></Link>
-                    ]}
-                />
+            <Result
+                className='min-h-screen flex flex-col justify-center'
+                status='success'
+                title='Registration Successfull'
+                subTitle='We will send you a mail once the admin verify your account'
+                extra={[
+                    <Link to='/login' key='login'><Button type='primary'>Go to Login</Button></Link>
+                ]}
+            />
         )
     }
 
@@ -42,7 +42,7 @@ export default function Register() {
             <Helmet>
                 <title>Create an Account</title>
             </Helmet>
-            <div className='w-full max-w-lg min-h-[500px] mx-auto rounded flex'>
+            <div className='w-full max-w-lg min-h-[500px] mx-auto rounded flex flex-col'>
                 <div className='bg-white flex-grow p-4 flex flex-col'>
 
                     <Link to='/' className='mb-8'>
@@ -65,6 +65,12 @@ export default function Register() {
                     </div>
 
                 </div>
+
+
+                <p className='mt-2 text-center'>
+                    <span>By signing up you agree to our </span>
+                    <Link className='link' to='/tos'>terms of services.</Link>.
+                </p>
             </div>
         </div>
     )

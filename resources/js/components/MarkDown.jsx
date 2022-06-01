@@ -1,7 +1,7 @@
 import ReactMarkdown from "react-markdown";
 
 
-export default function MarkDown()
+export default function MarkDown({ children })
 {
     return <ReactMarkdown>{children}</ReactMarkdown>
 }

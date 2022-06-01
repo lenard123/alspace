@@ -32,6 +32,7 @@ const items = (role) => [
     getItem('Reports', 'sub5', <FileOutlined />),
     getItem('System Settings', '/admin/settings', <SettingOutlined />, [
         getItem('Manage FAQs','/admin/settings/faqs'),
+        getItem('Update TOS', '/admin/settings/tos'),
     ]),
 ];
 
