@@ -7,10 +7,10 @@ import { createContext, useState } from "react"
 import useSupportMessageReceivedListener from "@/js/listeners/useSupportMessageReceivedListener";
 
 export const AdminLayoutContext = createContext({
-    collapsed: false, 
-    setCollapsed: () => {}, 
-    broken:false, 
-    setBroken: () => {}
+    collapsed: false,
+    setCollapsed: () => { },
+    broken: false,
+    setBroken: () => { }
 })
 
 export default function AdminLayout() {
@@ -20,7 +20,7 @@ export default function AdminLayout() {
     const [collapsed, setCollapsed] = useState(false)
     const [broken, setBroken] = useState(false)
 
-    const value = {collapsed, setCollapsed, broken, setBroken}
+    const value = { collapsed, setCollapsed, broken, setBroken }
 
     return (
         <AdminLayoutContext.Provider value={value}>
@@ -33,6 +33,10 @@ export default function AdminLayout() {
                     <Content>
                         <Outlet />
                     </Content>
+                    <div className="text-center mt-8 p-6 bg-gray-50">
+                        <span>© 2022 Copyright: </span>
+                        <a className="text-gray-600 font-semibold" href="/">Alspace</a>
+                    </div>
                 </Layout>
 
             </Layout>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\FAQController;
 use App\Http\Controllers\JobController;
@@ -55,6 +56,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/users/{user}/posts', 'posts');
         Route::get('/users/{user}/works', 'works');
     });
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('admin');
 
     Route::get('/items/tshirts', [TShirtController::class, 'index'])->middleware('admin');
     Route::post('/items/tshirts/{tshirt}/request', [TShirtController::class, 'createRequest']);
