@@ -76,6 +76,11 @@ class User extends Authenticatable
         return $this->hasOne(Alumnus::class);
     }
 
+    public function works() 
+    {
+        return $this->hasMany(Work::class);
+    }
+
     public function setPasswordAttribute($password) : void
     {
         $this->attributes['password'] = Hash::needsRehash($password) ? Hash::make($password) : $password;
