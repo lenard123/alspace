@@ -18,6 +18,10 @@ class UserInfo extends Model
 
     protected $hidden = ['cover'];
 
+    protected $casts = [
+        'birthday' => 'date:Y-m-d'
+    ];
+
     public function cover() : MorphOne
     {
         return $this->morphOne(Image::class, 'imageable')

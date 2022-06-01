@@ -50,6 +50,16 @@ class UserController extends Controller
         return $cover->url;
     }
 
+    public function updateInfo(Request $request)
+    {
+        $userinfo = Auth::user()->info;
+        $userinfo->bio = $request->bio;
+        $userinfo->birthday = $request->birthday;
+        $userinfo->gender = $request->gender;
+        $userinfo->save();
+        return $userinfo;
+    }
+
     public function search(Request $request)
     {
         return User::search($request->query('query'))->get()->where('id', '<>',  Auth::id())->values();

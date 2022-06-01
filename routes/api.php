@@ -41,6 +41,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/user/conversations', 'conversations');
         Route::patch('/user/avatar', 'updateAvatar');
         Route::patch('/user/info/cover', 'updateCover');
+        Route::patch('/user/info', 'updateInfo');
     
         Route::get('/users/search','search');
         Route::get('/users/alumni', 'alumni');
