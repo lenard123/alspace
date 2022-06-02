@@ -1,14 +1,1 @@
-<svg 
-    style='color:white; background: #0077B7; border-radius: 60px;'
-    width="534" 
-    height="428" 
-    viewBox="0 0 534 428" 
-    fill="transparent" 
-    xmlns="http://www.w3.org/2000/svg"
-    >
-    <rect width="54.9878" height="339.081" rx="20" transform="matrix(0.961457 0.274954 -0.276446 0.96103 148.738 44)" fill="currentColor"/>
-    <rect width="54.9878" height="339.081" rx="20" transform="matrix(-0.961457 0.274954 0.276446 0.96103 247.868 44)" fill="currentColor"/>
-    <rect x="142" y="45.9941" width="111" height="49.8538" rx="24.9269" fill="currentColor"/>
-    <rect x="128" y="218.488" width="147" height="49.8538" rx="24.9269" fill="currentColor"/>
-    <rect x="281" y="330.161" width="198" height="49.8538" rx="24.9269" fill="currentColor"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" style="color:#fff;background:#0077b7;border-radius:60px" width="534" height="428" fill="transparent" viewBox="0 0 534 428"><rect width="54.988" height="339.081" fill="currentColor" rx="20" transform="matrix(0.961457 0.274954 -0.276446 0.96103 148.738 44)"/><rect width="54.988" height="339.081" fill="currentColor" rx="20" transform="matrix(-0.961457 0.274954 0.276446 0.96103 247.868 44)"/><rect width="111" height="49.854" x="142" y="45.994" fill="currentColor" rx="24.927"/><rect width="147" height="49.854" x="128" y="218.488" fill="currentColor" rx="24.927"/><rect width="198" height="49.854" x="281" y="330.161" fill="currentColor" rx="24.927"/></svg>
