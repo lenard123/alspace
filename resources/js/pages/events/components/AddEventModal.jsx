@@ -69,7 +69,7 @@ export default function AddEventModal(props) {
                 </Form.Item>
 
                 <Form.Item name='title' label='Event name' rules={rules.title}>
-                    <Input size='large' className='rounded' />
+                    <Input size='large' className='rounded' maxLength={150}/>
                 </Form.Item>
 
                 <Form.Item name='start_at' label='Start Date' rules={rules.start_date}>
@@ -88,11 +88,11 @@ export default function AddEventModal(props) {
                 </div>
 
                 <Form.Item name='location' label='Location'>
-                    <Input size='large' className='rounded' placeholder='Event location or link to the meeting.' />
+                    <Input size='large' maxLength={180} className='rounded' placeholder='Event location or link to the meeting.' />
                 </Form.Item>
 
                 <Form.Item name='description' label='Description' rules={rules.description}>
-                    <Input.TextArea className='rounded' size='large' />
+                    <Input.TextArea className='rounded' size='large'  maxLength={190}/>
                 </Form.Item>
 
                 <Form.Item>
