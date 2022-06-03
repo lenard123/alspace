@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rules\Password;
+use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
@@ -58,6 +60,24 @@ class UserController extends Controller
         $userinfo->gender = $request->gender;
         $userinfo->save();
         return $userinfo;
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'new_password' => ['required', 'confirmed', Password::min(8)->mixedCase()],
+            'password' => 'required',
+        ]);
+
+        if (! password_verify($request->password, Auth::user()->password) ) {
+            throw ValidationException::withMessages(['password' => 'You\'ve entered a Wrong Password']);
+        }
+
+        $user = Auth::user();
+        $user->password = $request->new_password;
+        $user->save();
+
+        return response()->noContent();
     }
 
     public function search(Request $request)

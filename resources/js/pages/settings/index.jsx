@@ -15,9 +15,9 @@ export default function () {
                     <TabPane tab='Change Password' key={1}>
                         <ChangePassword />
                     </TabPane>
-                    <TabPane tab='Requests Status' key={2}>
+                    {/* <TabPane tab='Requests Status' key={2}>
 
-                    </TabPane>
+                    </TabPane> */}
                 </Tabs>
             </Card>
         </div>

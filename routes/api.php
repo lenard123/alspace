@@ -43,6 +43,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::patch('/user/avatar', 'updateAvatar');
         Route::patch('/user/info/cover', 'updateCover');
         Route::patch('/user/info', 'updateInfo');
+        Route::patch('/user/password', 'updatePassword');
     
         Route::get('/users/search','search');
         Route::get('/users/alumni', 'alumni');

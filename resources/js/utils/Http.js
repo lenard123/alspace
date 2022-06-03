@@ -1,4 +1,4 @@
-import { message } from 'antd'
+import { message, notification } from 'antd'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import config from '../config'
@@ -31,7 +31,30 @@ export const requestCookie = async () => {
     return Cookies.get('XSRF-TOKEN') || await Http.get('/csrf-cookie')
 }
 
+export const getErrorMessage = (error) => {
+    if (error.response !== null) {
+        const { status }  = error.response
+
+        if (status === 422) {
+            return error.response.data?.message
+        } 
+
+        if (status === 401) {
+            return (error.response.data?.message || 'You are not authorized to perform this action');
+        } 
+        
+        if (status === 404) {
+            return ('Page not found')
+        } 
+    }
+    return ('An unknown error occured')    
+}
+
 export const handleError = (error) => {
+    return notification.error({
+        message: 'Failed',
+        description: getErrorMessage(error)
+    })
     if (error.response !== null) {
         const { status }  = error.response
 
