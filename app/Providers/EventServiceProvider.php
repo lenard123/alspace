@@ -38,6 +38,10 @@ class EventServiceProvider extends ServiceProvider
         \App\Events\CommentReceived::class => [
             \App\Listeners\SendCommentReceivedNotification::class,
         ],
+
+        \App\Events\SupportMessageReceived::class => [
+            \App\Listeners\ChatbotListener::class,
+        ]
     ];
 
     /**

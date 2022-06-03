@@ -2,6 +2,7 @@
 
 namespace App\Models\Concerns;
 
+use App\Events\MessageSent;
 use App\Models\Message;
 use App\Models\Thread;
 use App\Models\User;
@@ -15,6 +16,7 @@ trait CanSendMessage
         $message->user()->associate($this);
         $message->thread()->associate($thread);
         $message->save();
+        MessageSent::dispatch($message);
         return $message;
     }
 
