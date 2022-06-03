@@ -47,6 +47,7 @@ const Form1 = ({ onFinish, className }) => {
                         placeholder='Enter your firstname here'
                         size='large'
                         className='rounded'
+                        maxLength={100}
                     />
                 </Form.Item>
 
@@ -64,6 +65,7 @@ const Form1 = ({ onFinish, className }) => {
                         placeholder='Enter your lastname here'
                         size='large'
                         className='rounded'
+                        maxLength={100}
                     />
                 </Form.Item>
 

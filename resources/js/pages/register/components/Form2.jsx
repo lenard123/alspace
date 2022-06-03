@@ -21,6 +21,7 @@ const Form2 = ({ onFinish, className, back }) => {
                     placeholder='Enter your email here'
                     size='large'
                     className='rounded'
+                    maxLength={150}
                 />
             </Form.Item>
 
@@ -43,6 +44,7 @@ const Form2 = ({ onFinish, className, back }) => {
                 <Input.Password
                     placeholder='Enter your password here'
                     size='large'
+                    maxLength={150}
                     className='rounded'
                 />
             </Form.Item>
