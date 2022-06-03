@@ -14,8 +14,9 @@ class Chatbot
         $this->thread = $message->thread;
         $this->user = $message->user;
 
-        if ($message->content === 'hello') {
-            $this->reply('hi');
+        // if (in_array(strtoupper($message->conte)))
+        if ($this->isGreetings($message)) {
+            $this->reply('hello '. $this->user->firstname);
             return;
         }
 
@@ -30,6 +31,12 @@ class Chatbot
                 $this->reply(Question::query()->pluck('answer')->get($i - 1));
             }
         }
+    }
+
+    private function isGreetings($message)
+    {
+        $content = strtoupper($message->content);
+        return in_array($content, ["HI", "HELLO"]);
     }
 
     private function replyHelp()
