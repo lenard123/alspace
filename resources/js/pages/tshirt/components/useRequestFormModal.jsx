@@ -1,6 +1,6 @@
 import { Descriptions, Form, Image, Input, InputNumber, message, Modal } from 'antd'
 import { useState } from 'react'
-import { useMutation } from 'react-query'
+import { useMutation, useQueryClient } from 'react-query'
 import Http, { handleError, requestCookie } from '@/js/utils/Http'
 import { successMessage } from '@/js/utils'
 
@@ -14,10 +14,13 @@ const RequestForm = function ({ tshirt, isOpen, setIsOpen }) {
     const [quantity, setQuantity] = useState(1)
     const [form] = Form.useForm()
 
+    const queryClient = useQueryClient()
+
     const { mutate, isLoading } = useMutation(apiCall, {
         onSuccess(data) {
             successMessage('Request Submitted Successfully')
             setIsOpen(false)
+            queryClient.invalidateQueries(['items', 'requests'])
         },
         onError(error) {
             handleError(error)

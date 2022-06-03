@@ -55,25 +55,6 @@ export const handleError = (error) => {
         message: 'Failed',
         description: getErrorMessage(error)
     })
-    if (error.response !== null) {
-        const { status }  = error.response
-
-        if (status === 422) {
-            message.error(error.response.data?.message)
-            return
-        } 
-
-        if (status === 401) {
-            message.error(error.response.data?.message || 'You are not authorized to perform this action');
-            return
-        } 
-        
-        if (status === 404) {
-            message.error('Page not found')
-            return
-        } 
-    }
-    message.error('An unknown error occured')
 }
 
 export const sleep = (duration) => new Promise(resolve => setTimeout(resolve, duration))

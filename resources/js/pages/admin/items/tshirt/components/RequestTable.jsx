@@ -1,4 +1,5 @@
 import LoadingPage from '@/js/components/LoadingPage'
+import useUpdateRequestStatusAction from '@/js/query/actions/useUpdateRequestStatusAction'
 import { successMessage } from '@/js/utils'
 import Http, { handleError, requestCookie } from '@/js/utils/Http'
 import { Button, Image, message, Modal, Popconfirm, Space, Table } from 'antd'
@@ -13,24 +14,9 @@ const apiCall = async (filter) => {
     return await Http.get('/items/requests/all?filter=' + filter)
 }
 
-const apiUpdateStatus = async (id, status) => {
-    await requestCookie()
-    return await Http.post(`/items/requests/${id}`, {
-        status,
-        _method: 'PATCH'
-    })
-}
-
 const useHandler = (status, record) => {
-    const queryClient = useQueryClient()
 
-    const { mutateAsync } = useMutation((status) => apiUpdateStatus(record.id, status), {
-        onSuccess() {
-            successMessage('Status updated successfully')
-            queryClient.invalidateQueries(['items', 'requests', 'all', record.status])
-        },
-        onError: handleError
-    })
+    const { mutateAsync } = useUpdateRequestStatusAction(record)
 
     return async () => {
         await mutateAsync(status)
@@ -111,8 +97,9 @@ export default function RequestTable({ filter }) {
                     </Link>
                 )}
             />
-            <Column title='Price' dataIndex='price' key='price' />
             <Column title='Status' dataIndex='status' key='status' />
+            <Column title='Price' dataIndex='price' key='price' />
+            <Column title='Quantity' dataIndex='quantity' key='quantity' />
             <Column title='Total' dataIndex='total' key='total' />
 
 
