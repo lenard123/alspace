@@ -33,6 +33,7 @@ export default function WriteMessage({ id, admin = false }) {
                     size='large'
                     className='rounded-full'
                     placeholder='Write a message'
+                    maxLength={300}
                     suffix={
                         content.trim().length > 0
                             ? <Button loading={isLoading} type='text' onClick={handleSubmit} size='small' icon={<SendOutlined className='text-blue-500' />} />
