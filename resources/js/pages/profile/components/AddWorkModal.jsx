@@ -1,5 +1,6 @@
 import useAddWorkAction from "@/js/query/actions/useAddWorkAction";
 import queryKeyFactory from "@/js/query/queryKeyFactory";
+import { successMessage } from "@/js/utils";
 import { DatePicker, Form, Input, message, Modal, Typography } from "antd";
 import moment from "moment";
 import { useQueryClient } from "react-query";
@@ -16,7 +17,7 @@ export default function AddWorkModal({ isOpen, setIsOpen, alumni_id }) {
         onSuccess() {
             setIsOpen(false)
             queryClient.invalidateQueries(queryKeyFactory.alumniWorks(alumni_id))
-            message.success('Work added successfully')
+            successMessage('Work added successfully')
         },
         onError() {
             message.error('An error occured')

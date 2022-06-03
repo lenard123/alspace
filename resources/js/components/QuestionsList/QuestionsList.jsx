@@ -3,6 +3,7 @@ import { Collapse, message, Modal, Space } from "antd";
 import { useMutation, useQuery } from "react-query";
 import Http, { handleError, requestCookie } from '@/js/utils/Http'
 import LoadingPage from "../LoadingPage";
+import { successMessage } from "@/js/utils";
 
 const apiCall = async () => {
     await requestCookie()
@@ -22,7 +23,7 @@ export default function QuestionsList({ showExtra = false }) {
 
     const { mutateAsync } = useMutation(deleteApiCall, {
         onSuccess() {
-            message.success('Entry deleted successfully')
+            successMessage('Entry deleted successfully')
             refetch()
         },
         onError(error) {

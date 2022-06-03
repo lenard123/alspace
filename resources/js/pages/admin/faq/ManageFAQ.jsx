@@ -6,6 +6,7 @@ import { useMutation, useQuery } from "react-query";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import QuestionsList from "@/js/components/QuestionsList/QuestionsList";
 import Helmet from 'react-helmet'
+import { successMessage } from "@/js/utils";
 
 const apiCall = async () => {
     await requestCookie()
@@ -26,7 +27,7 @@ export default function ManageFAQ() {
 
     const { mutateAsync } = useMutation(deleteApiCall, {
         onSuccess() {
-            message.success('Entry deleted successfully')
+            successMessage('Entry deleted successfully')
             refetch()
         },
         onError(error) {

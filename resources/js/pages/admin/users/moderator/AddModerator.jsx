@@ -2,6 +2,7 @@ import { Breadcrumb, Button, Form, Input, message, PageHeader } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import Http, { handleError, requestCookie } from '@/js/utils/Http'
 import {  useMutation } from "react-query";
+import { successMessage } from "@/js/utils";
 
 
 const rules = {
@@ -55,7 +56,7 @@ export default function AddModerator() {
     const { mutate, isLoading } = useMutation(apiCall, {
         onSuccess() {
             navigate('/admin/users/moderator')
-            message.success('Moderator added successfully')
+            successMessage('Moderator added successfully')
         },
 
         onError(err){

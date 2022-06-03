@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "react-query"
 import { useState } from 'react'
 import { message } from "antd"
 import { AuthApi } from "@/js/apis"
+import { successMessage } from "@/js/utils"
 
 const useRegister = () => {
     const [validationErrors, setValidationErrors] = useState({})
@@ -15,7 +16,7 @@ const useRegister = () => {
             setValidationErrors(error.validationErrors)
         },
         onSuccess: (data) => {
-            message.success('Successfully Registered')
+            successMessage('Successfully Registered')
             queryClient.setQueryData(['users', 'current'], data)
         }
     })

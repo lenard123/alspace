@@ -2,6 +2,7 @@ import { Descriptions, Form, Image, Input, InputNumber, message, Modal } from 'a
 import { useState } from 'react'
 import { useMutation } from 'react-query'
 import Http, { handleError, requestCookie } from '@/js/utils/Http'
+import { successMessage } from '@/js/utils'
 
 const apiCall = async ({tshirt_id, quantity}) => {
     await requestCookie()
@@ -15,7 +16,7 @@ const RequestForm = function ({ tshirt, isOpen, setIsOpen }) {
 
     const { mutate, isLoading } = useMutation(apiCall, {
         onSuccess(data) {
-            message.success('Request Submitted Successfully')
+            successMessage('Request Submitted Successfully')
             setIsOpen(false)
         },
         onError(error) {

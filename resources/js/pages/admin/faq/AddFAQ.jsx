@@ -3,6 +3,7 @@ import { useMutation } from "react-query";
 import { Link, useNavigate } from "react-router-dom";
 import Http, { handleError, requestCookie } from '@/js/utils/Http'
 import Helmet from 'react-helmet'
+import { successMessage } from "@/js/utils";
 
 const rules = {
     question: [{required: true, message: 'This field is required.'}],
@@ -21,7 +22,7 @@ export default function AddFAQ() {
     const { mutate, isLoading } = useMutation(apiCall, {
         onSuccess() {
             navigate('/admin/settings/faqs')
-            message.success('New entry added successfully')
+            successMessage('New entry added successfully')
         },
         onError: handleError
     })

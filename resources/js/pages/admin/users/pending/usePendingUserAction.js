@@ -1,5 +1,6 @@
 import { UserApi } from "@/js/apis"
 import queryKeyFactory from "@/js/query/queryKeyFactory"
+import { successMessage } from "@/js/utils"
 import { message, Modal } from "antd"
 import { useMutation, useQueryClient } from "react-query"
 
@@ -10,14 +11,14 @@ export default function usePendingUserAction()
 
     const { mutateAsync } = useMutation(UserApi.approveUser, {
         onSuccess() {
-            message.success('User Successfully Approved')
+            successMessage('User Successfully Approved')
             queryClient.invalidateQueries(queryKeyFactory.pendingUsersAll)
         }
     })
 
     const { mutateAsync:rejectRegistration } = useMutation(UserApi.rejectUser, {
         onSuccess() {
-            message.success('User Application has been successfully rejected')
+            successMessage('User Application has been successfully rejected')
             queryClient.invalidateQueries(queryKeyFactory.pendingUsersAll)
         }        
     })

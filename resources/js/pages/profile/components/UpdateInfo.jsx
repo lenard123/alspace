@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useCurrentUser } from "@/js/query/queries/useCurrentUserQuery";
 import queryKeyFactory from "@/js/query/queryKeyFactory";
 import moment from "moment";
+import { successMessage } from "@/js/utils";
 
 const apiCall = async (data) => {
     await requestCookie()
@@ -19,7 +20,7 @@ export default function UpdateInfo({ initialValues}) {
 
     const { mutate, isLoading } = useMutation(apiCall, {
         onSuccess: (data) => {
-            message.success('Info updated successfully')
+            successMessage('Info updated successfully')
             queryClient.invalidateQueries(queryKeyFactory.user(id))
             navigate(`/profile/${id}/about`)
         },

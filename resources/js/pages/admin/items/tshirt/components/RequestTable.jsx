@@ -1,4 +1,5 @@
 import LoadingPage from '@/js/components/LoadingPage'
+import { successMessage } from '@/js/utils'
 import Http, { handleError, requestCookie } from '@/js/utils/Http'
 import { Button, Image, message, Modal, Popconfirm, Space, Table } from 'antd'
 import Column from 'antd/lib/table/Column'
@@ -25,7 +26,7 @@ const useHandler = (status, record) => {
 
     const { mutateAsync } = useMutation((status) => apiUpdateStatus(record.id, status), {
         onSuccess() {
-            message.success('Status updated successfully')
+            successMessage('Status updated successfully')
             queryClient.invalidateQueries(['items', 'requests', 'all', record.status])
         },
         onError: handleError

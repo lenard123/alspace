@@ -3,6 +3,7 @@ import queryKeyFactory from "@/js/query/queryKeyFactory";
 import { Button, message, Popconfirm } from "antd";
 import { useMutation, useQueryClient } from "react-query";
 import { useState } from 'react'
+import { successMessage } from "@/js/utils";
 
 export default function ApproveButton({ id }) {
 
@@ -11,7 +12,7 @@ export default function ApproveButton({ id }) {
 
     const { mutate, isLoading } = useMutation(() => UserApi.approveUser(id), {
         onSuccess() {
-            message.success('User Successfully Approved')
+            successMessage('User Successfully Approved')
             setVisible(false)
             queryClient.invalidateQueries(queryKeyFactory.pendingUsersAll)
         }

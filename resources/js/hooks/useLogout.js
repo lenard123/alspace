@@ -3,6 +3,7 @@ import { message, Modal } from "antd"
 import { useMutation, useQueryClient } from "react-query"
 import { useNavigate } from "react-router-dom"
 import queryKeyFactory from "../query/queryKeyFactory"
+import { successMessage } from "../utils"
 
 
 const useLogout = () => {
@@ -12,7 +13,7 @@ const useLogout = () => {
         onSuccess: () => {
             queryClient.removeQueries([])
             queryClient.setQueryData(queryKeyFactory.currentUser, null)
-            message.success('Logout succesfully')
+            successMessage('Logout succesfully')
             navigate('/login')
         }
     })

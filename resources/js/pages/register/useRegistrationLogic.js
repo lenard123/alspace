@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import useApi from "@/js/hooks/useApi";
 import { AuthApi } from "@/js/apis";
+import { successMessage } from '@/js/utils';
 
 export default function()
 {
@@ -16,7 +17,7 @@ export default function()
 
     useEffect(() => {
         if (isSuccess) {
-            message.success('Account created successfully')
+            successMessage('Account created successfully')
             navigate('/login')
         }
     }, [status])

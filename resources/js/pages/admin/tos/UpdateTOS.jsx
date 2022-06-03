@@ -2,6 +2,7 @@ import { Button, Form, Input, message, Modal, Space } from "antd";
 import { useMutation } from "react-query";
 import Http, { handleError, requestCookie } from '@/js/utils/Http'
 import { queryClient } from "@/js/query/ReactQueryProvider";
+import { successMessage } from "@/js/utils";
 
 const apiCall = async(tos) => {
     await requestCookie()
@@ -14,7 +15,7 @@ export default function UpdateTOS({ tos, setTos, initialValues })
 
     const { isLoading, mutate } = useMutation(apiCall, {
         onSuccess(data) {
-            message.success('Terms of Services updated successfully')
+            successMessage('Terms of Services updated successfully')
             queryClient.setQueryData(['tos'], data)
         },
         onError(error) {

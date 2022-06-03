@@ -3,7 +3,7 @@ import BreadcrumbItem from "antd/lib/breadcrumb/BreadcrumbItem"
 import { Link, useSearchParams } from "react-router-dom"
 import { useMemo } from 'react'
 import useEventsQuery from "@/js/query/queries/useEventsQuery"
-import { toAntdPagination } from "@/js/utils"
+import { successMessage, toAntdPagination } from "@/js/utils"
 import Column from "antd/lib/table/Column"
 import { EnvironmentOutlined, LaptopOutlined } from "@ant-design/icons"
 import DropOption from "@/js/components/DropOption"
@@ -36,7 +36,7 @@ export default function EventsPage() {
 
     const { mutateAsync } = useMutation(EventApi.approveEvents, {
         onSuccess() {
-            message.success('Event successfully approved')
+            successMessage('Event successfully approved')
             refetch()
         }
     })

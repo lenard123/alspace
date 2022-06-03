@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { useMutation } from "react-query";
 import Http, { handleError, requestCookie } from '@/js/utils/Http'
 import Helmet from 'react-helmet'
+import { successMessage } from "@/js/utils";
 
 
 const rules = {
@@ -24,7 +25,7 @@ export default function AddTshirtPage() {
 
     const { mutate, isLoading } = useMutation(apiCall, {
         onSuccess() {
-            message.success('Alumni TShirt Added Successfully')
+            successMessage('Alumni TShirt Added Successfully')
             navigate('/admin/items/tshirt')
         },
 

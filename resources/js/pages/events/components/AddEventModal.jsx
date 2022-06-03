@@ -1,5 +1,6 @@
 import { EventApi } from "@/js/apis"
 import { TODAY } from "@/js/hooks/useDates"
+import { successMessage } from "@/js/utils"
 import { PlusOutlined } from "@ant-design/icons"
 import { Button, DatePicker, Form, Image, Input, message, Switch, Upload } from "antd"
 import Modal from "antd/lib/modal/Modal"
@@ -19,7 +20,7 @@ export default function AddEventModal(props) {
 
     const { isLoading, mutate } = useMutation(EventApi.createEvent, {
         onSuccess: (data) => {
-            message.success('Event added successfully')
+            successMessage('Event added successfully')
             props.onCancel()
         }
     })

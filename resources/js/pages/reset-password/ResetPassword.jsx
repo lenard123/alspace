@@ -6,6 +6,7 @@ import Helmet from 'react-helmet'
 import { useMutation } from "react-query";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useState } from 'react'
+import { successMessage } from "@/js/utils";
 
 const rules = {
     password: [
@@ -37,7 +38,7 @@ export default function ResetPassword() {
     const { mutate, isLoading } = useMutation(AuthApi.resetPassword, {
         onMutate() { setValidationErrors({}) },
         onSuccess(data) {
-            message.success(data)
+            successMessage(data)
             navigate('/login')
         },
         onError(error) {

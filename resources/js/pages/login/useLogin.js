@@ -2,6 +2,7 @@ import { login } from "@/js/apis/AuthApi"
 import { useMutation, useQueryClient } from "react-query"
 import { useState } from 'react'
 import { message } from "antd"
+import { successMessage } from "@/js/utils"
 
 const useLogin = () => {
 
@@ -18,7 +19,7 @@ const useLogin = () => {
             setValidationErrors(error.validationErrors)
         },
         onSuccess: (data) => {
-            message.success('Successfully Login')
+            successMessage('Successfully Login')
             queryClient.setQueryData(['users', 'current'], data)
         }
     })

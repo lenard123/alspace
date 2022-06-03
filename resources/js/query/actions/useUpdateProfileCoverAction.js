@@ -3,6 +3,7 @@ import { message } from "antd";
 import { UserApi } from "@/js/apis";
 import _ from 'lodash'
 import useCurrentUserMutator from "../mutators/useCurrentUserMutator";
+import { successMessage } from "@/js/utils";
 
 export default function useUpdateProfileCoverAction()
 {
@@ -18,7 +19,7 @@ export default function useUpdateProfileCoverAction()
             },
 
             onSuccess(cover_url) {
-                message.success('Cover image updated successfully')
+                successMessage('Cover image updated successfully')
                 setCover(cover_url)
             },
 

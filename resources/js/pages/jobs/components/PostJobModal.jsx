@@ -1,4 +1,5 @@
 import usePostJobAction from "@/js/query/actions/usePostJobAction";
+import { successMessage } from "@/js/utils";
 import { PlusOutlined } from "@ant-design/icons";
 import { Avatar, Form, Input, message, Modal, Upload } from "antd";
 import ImgCrop from "antd-img-crop";
@@ -23,7 +24,7 @@ export default function PostJobModal({ isOpen, setIsOpen }) {
             setImage(null)
             setTags([])
             form.resetFields()
-            message.success('Job Posted Successfully')
+            successMessage('Job Posted Successfully')
         }
     })
 

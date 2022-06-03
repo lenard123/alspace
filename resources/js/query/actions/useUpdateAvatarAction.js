@@ -1,4 +1,5 @@
 import { UserApi } from "@/js/apis";
+import { successMessage } from "@/js/utils";
 import { message } from "antd";
 import { useMutation } from "react-query";
 import useCurrentUserMutator from "../mutators/useCurrentUserMutator";
@@ -18,7 +19,7 @@ export default function useUpdateAvatarAction()
 
         onSuccess(avatarUrl, _var) {
             setAvatar(avatarUrl)
-            message.success('Avatar updated successfully');
+            successMessage('Avatar updated successfully');
         },
 
         onSettled(_data, _error, _variables, context) {

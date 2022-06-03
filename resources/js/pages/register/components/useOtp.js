@@ -3,13 +3,14 @@ import { useMutation } from 'react-query'
 import { useEffect, useState } from 'react'
 import { AuthApi } from '@/js/apis'
 import _ from 'lodash'
+import { successMessage } from '@/js/utils'
 
 const useOtp = (email) => {
 
     const [throttle, setThrottle] = useState(0)
     const { mutate, isLoading:sending } = useMutation(() => AuthApi.sendOTP(email), {
         onSuccess(data) {
-            message.success('OTP Send successfull')
+            successMessage('OTP Send successfull')
             setThrottle(60)
         },
         onError(error) {

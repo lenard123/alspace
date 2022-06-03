@@ -6,6 +6,7 @@ import { useMutation, useQueryClient } from 'react-query'
 import queryKeyFactory from '@/js/query/queryKeyFactory'
 import classNames from 'classnames'
 import ImageUploader from './ImageUploader'
+import { successMessage } from '@/js/utils'
 
 
 export default function WritePost({ className }) {
@@ -19,7 +20,7 @@ export default function WritePost({ className }) {
             setContent('')
             setFiles([])
             queryClient.invalidateQueries(queryKeyFactory.post, queryKeyFactory.userPosts(id))
-            message.success('Posted successfully')
+            successMessage('Posted successfully')
         },
 
         onError() {
