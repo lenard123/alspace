@@ -7,7 +7,7 @@ export default function ProfileCard({ bio, joined, alumnus }) {
         <Card className='w-2/5 self-start mt-3 shadow-lg hidden md:block'>
             <Title level={5}>Bio</Title>
             {bio
-                ? <Paragraph editable>{bio}</Paragraph>
+                ? <Paragraph>{bio}</Paragraph>
                 : <Text type='secondary' italic>No bio set</Text>
             }
 
