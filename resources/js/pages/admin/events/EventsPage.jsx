@@ -41,6 +41,13 @@ export default function EventsPage() {
         }
     })
 
+    const { mutateAsync:rejectEvent } = useMutation(EventApi.rejectEvent, {
+        onSuccess() {
+            successMessage('Event successfully rejected')
+            refetch()
+        }
+    })
+
     const handleMenuClick = ({ key }, record) => {
         switch (key) {
             case 'approve':
@@ -51,6 +58,13 @@ export default function EventsPage() {
                     }
                 })
                 break;
+            case 'reject':
+                Modal.confirm({
+                    title: 'Are you sure to reject this event?',
+                    async onOk() {
+                        await rejectEvent(record.id)
+                    }
+                })
         }
     }
 

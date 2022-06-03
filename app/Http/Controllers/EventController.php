@@ -102,5 +102,13 @@ class EventController extends Controller
     {
         $event->status = 'approved';
         $event->save();
+        return response()->noContent();
+    }
+
+    public function reject(Event $event)
+    {
+        $event->status = 'rejected';
+        $event->save();
+        return response()->noContent();
     }
 }

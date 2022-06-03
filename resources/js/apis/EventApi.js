@@ -52,3 +52,8 @@ export const approveEvents = async (eventId) => {
     await requestCookie()
     return await Http.post(`/events/${eventId}/approve`, formData)
 }
+
+export const rejectEvent = async (eventId) => {
+    await requestCookie()
+    return await Http.post(`/events/${eventId}/reject`, { _method: 'PATCH' })
+}
