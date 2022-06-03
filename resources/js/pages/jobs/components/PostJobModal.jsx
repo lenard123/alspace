@@ -71,11 +71,11 @@ export default function PostJobModal({ isOpen, setIsOpen }) {
                 </ImgCrop>
 
                 <Form.Item className="mb-4" hasFeedback name='title' label='Job Title' rules={rules.title}>
-                    <Input size='large' className='rounded' />
+                    <Input size='large' className='rounded'  maxLength={150}/>
                 </Form.Item>
 
                 <Form.Item className="mb-4" hasFeedback name='company' label='Company Name' rules={rules.company}>
-                    <Input size='large' className='rounded' />
+                    <Input size='large' className='rounded'  maxLength={150}/>
                 </Form.Item>
 
                 <Form.Item className="mb-4" hasFeedback name='description' label='Description' rules={rules.description}>
