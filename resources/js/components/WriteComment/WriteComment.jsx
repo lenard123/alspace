@@ -31,6 +31,7 @@ export default function WriteComment({ type, id, fullname }) {
                                 ? <Button onClick={submitComment} loading={isLoading} type='text' size='small' icon={<SendOutlined className='cursor-pointer text-blue-500' />} />
                                 : <span />
                         }
+                        maxLength={150}
                     />
             }
         />
