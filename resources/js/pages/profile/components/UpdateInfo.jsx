@@ -54,7 +54,7 @@ export default function UpdateInfo({ initialValues}) {
                 </Form.Item>
 
                 <Form.Item label='Bio' name='bio'>
-                    <Input.TextArea />
+                    <Input.TextArea  showCount maxLength={100}/>
                 </Form.Item>
 
                 <div className='mt-4 flex justify-end'>
