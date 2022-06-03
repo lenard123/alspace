@@ -1,8 +1,9 @@
-import { Breadcrumb, Calendar, Card, PageHeader, Skeleton, Typography } from "antd";
+import { Badge, Breadcrumb, Calendar, Card, PageHeader, Skeleton, Typography } from "antd";
 import BreadcrumbItem from "antd/lib/breadcrumb/BreadcrumbItem";
 import Http, { handleError, requestCookie } from '@/js/utils/Http'
 import { useQuery } from "react-query";
 import Helmet from 'react-helmet'
+import moment from "moment";
 
 
 const { Title } = Typography
@@ -12,12 +13,52 @@ const apiCall = async () => {
     return await Http.get('/dashboard')
 }
 
+const apiFetchAllEvents = async () => {
+    await requestCookie()
+    return await Http.get('/events/all')
+}
+
+const getStatus = (status) => {
+    switch (status) {
+        case 'pending': return 'warning'
+        case 'approved': return 'success'
+    }
+    return 'error'
+}
+
 export default function Dashboard() {
 
-    const { data, isLoading } = useQuery({
-        queryKey: ['dashboard'],
-        queryFn: apiCall
+    const { data, isLoading } = useQuery({ queryKey: ['dashboard'], queryFn: apiCall })
+    const { data: events, isLoading: eventsIsLoading } = useQuery({ 
+        queryKey: ['events', 'all'], 
+        queryFn: apiFetchAllEvents ,
+        onSuccess(data){
+            console.log(data)
+        },
     })
+
+
+    const getListData = (value) => {
+        if (eventsIsLoading) return []
+        let _value = value.format('Y-M-D')
+        return events.filter(event => {
+            return moment(event.start_at).format('Y-M-D') == _value
+        });
+    };
+
+    const dateCellRender = (value) => {
+        const listData = getListData(value);
+        return (
+            <ul className="events">
+                {listData.map((item) => (
+                    <li key={item.id}>
+                        <Badge status={getStatus(item.status)} text={item.title} />
+                        {/* <Badge  text={item.title} /> */}
+                    </li>
+                ))}
+            </ul>
+        );
+    }
 
     return (
         <>
@@ -41,7 +82,7 @@ export default function Dashboard() {
                                 <span className="block">Pending</span>Registration
                             </p>
                             <div className="font-bold text-3xl mb-0">
-                                {isLoading ? <Skeleton.Input /> : data.pending_users }
+                                {isLoading ? <Skeleton.Input /> : data.pending_users}
                             </div>
                         </div>
                         <svg className="mb-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -55,7 +96,7 @@ export default function Dashboard() {
                                 <span className="block">Total</span>Registered Alumni
                             </p>
                             <div className="font-bold text-3xl mb-0">
-                                {isLoading ? <Skeleton.Input /> : data.registered_users }
+                                {isLoading ? <Skeleton.Input /> : data.registered_users}
                             </div>
                         </div>
                         <svg className="mb-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -69,7 +110,7 @@ export default function Dashboard() {
                                 <span className="block">Total</span>Sales
                             </p>
                             <div className="font-bold text-3xl mb-0">
-                                {isLoading ? <Skeleton.Input /> : data.total_sales }
+                                {isLoading ? <Skeleton.Input /> : data.total_sales}
                             </div>
                         </div>
                         <svg className="mb-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -83,7 +124,7 @@ export default function Dashboard() {
                                 <span className="block">Pending</span>Item Requests
                             </p>
                             <div className="font-bold text-3xl mb-0">
-                                {isLoading ? <Skeleton.Input /> : data.pending_requests }
+                                {isLoading ? <Skeleton.Input /> : data.pending_requests}
                             </div>
                         </div>
                         <svg className="mb-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -96,9 +137,9 @@ export default function Dashboard() {
                 </div>
 
                 <Title className='mt-8' level={3}>Upcoming Events</Title>
-                
+
                 <Card className="mb-4">
-                    <Calendar />
+                    <Calendar dateCellRender={dateCellRender}/>
                 </Card>
             </div>
         </>

@@ -95,6 +95,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/comments/{comment}/replies', [CommentController::class, 'reply']);
 
     Route::get('/events', [EventController::class, 'index']);
+    Route::get('/events/all', [EventController::class, 'all']);
     Route::post('/events', [EventController::class, 'create']);
     Route::get('/events/{event}', [EventController::class, 'view']);
     Route::get('/events/{event}/participants', [EventController::class, 'participants']);

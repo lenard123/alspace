@@ -55,39 +55,18 @@ class EventController extends Controller
     public function index(Request $request)
     {
         $filter = $request->input('filter');
-        $today = Carbon::today();
 
         $event = Event::query()
             ->where($this->getScope($filter))
             ->orderBy('start_at', 'ASC')
             ->paginate(10);
-            // ->when($filter === 'active', fn($q) => $q->active())
-            // ->when($filter === 'interested', fn($q) => $q->interested())
-            // ->when($filter === 'past', fn($q) => $q->past())
-            // ->when($filter === 'host', fn($q) => $q->owned())
-            // ->when($filter === 'interested', fn($q) => $q->interested())
-            // ->when($filter === 'going', fn($q) => $q->going())
-            // ->orderBy('start_at', 'ASC')
-            // ->paginate(10);
-        // $filtered = match($filter) {
-        //     'active' => $event->active(),
-        //     'interested' => $event->
-        // };
-
-        // $event = Event::query()
-        //     ->when($filter === 'pending', fn ($q) => $q->pending())
-        //     ->when($filter === 'active', fn($q) => $q->active())
-        //     ->when($filter === 'past', fn($q) => $q->past())
-        //     ->when($filter === 'hosting', fn($q) => $q->owned())
-        //     ->when(in_array($filter, ['interested', 'going']), function($q) use ($today, $filter) {
-        //         $q->whereHas($filter, function($q) {
-        //             $q->where('user_id', Auth::id());
-        //         })->where('start_at', '>=', $today);
-        //     })
-        //     ->orderBy('start_at', 'ASC')
-        //     ->paginate(10);
 
         return $event;
+    }
+
+    public function all()
+    {
+        return Event::all();
     }
 
     function getScope($filter)
@@ -100,7 +79,7 @@ class EventController extends Controller
             'going' => fn($q) => $q->going(),
             'pending' => fn($q) => $q->owned()->pending(),
             'require-approval' => fn($q) => $q->pending(),
-            'cancelled' => fn($q) => $q->cancelled()
+            'cancelled' => fn($q) => $q->cancelled(),
         };
     }
 
