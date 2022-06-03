@@ -38,7 +38,7 @@ export default function WritePost({ className }) {
         <div className={`flex gap-2 sm:rounded-lg bg-white border border-solid p-4 border-gray-300 ${className}`}>
             <Avatar className='flex-shrink-0' size='large' src={avatarUrl} />
             <form onSubmit={handleSubmit} className='flex-grow flex flex-col gap-2'>
-                <Input.TextArea value={content} onChange={e => setContent(e.target.value)} className='rounded-lg' rows={2} placeholder='Write something...' />
+                <Input.TextArea maxLength={600} value={content} onChange={e => setContent(e.target.value)} className='rounded-lg' rows={2} placeholder='Write something...' />
                 <div className={classNames('flex justify-between', { 'flex-col': files.length > 0 })}>
                     <ImageUploader files={files} setFiles={setFiles} />
                     <Button loading={isLoading} htmlType='submit' className='btn-green self-end'>Share</Button>
