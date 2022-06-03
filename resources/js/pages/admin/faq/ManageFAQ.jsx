@@ -5,6 +5,7 @@ import Http, { handleError, requestCookie } from '@/js/utils/Http'
 import { useMutation, useQuery } from "react-query";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import QuestionsList from "@/js/components/QuestionsList/QuestionsList";
+import Helmet from 'react-helmet'
 
 const apiCall = async () => {
     await requestCookie()
@@ -45,6 +46,9 @@ export default function ManageFAQ() {
 
     return (
         <>
+            <Helmet>
+                <title>Manage Frequently Ask Questions</title>
+            </Helmet>
             <PageHeader
                 title='Manage Frequently Ask Questions'
                 extra={[

@@ -4,6 +4,7 @@ import { Avatar, List } from "antd";
 import classNames from "classnames";
 import { Link, Route, Routes } from "react-router-dom";
 import ChatPage from "@/js/components/ConversationPanel/components/ChatPage";
+import Helmet from 'react-helmet'
 
 export default function MessageIndexPage()
 {
@@ -26,6 +27,9 @@ export default function MessageIndexPage()
                 </List.Item>
             )}
             >
+            <Helmet>
+                <title>Messages</title>
+            </Helmet>
             <Routes>
                 <Route index element={
                     <span>index</span>

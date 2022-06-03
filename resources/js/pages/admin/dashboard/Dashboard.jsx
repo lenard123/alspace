@@ -2,6 +2,7 @@ import { Breadcrumb, Calendar, Card, PageHeader, Skeleton, Typography } from "an
 import BreadcrumbItem from "antd/lib/breadcrumb/BreadcrumbItem";
 import Http, { handleError, requestCookie } from '@/js/utils/Http'
 import { useQuery } from "react-query";
+import Helmet from 'react-helmet'
 
 
 const { Title } = Typography
@@ -20,6 +21,9 @@ export default function Dashboard() {
 
     return (
         <>
+            <Helmet>
+                <title>Dashboard</title>
+            </Helmet>
             <PageHeader
                 breadcrumb={
                     <Breadcrumb>

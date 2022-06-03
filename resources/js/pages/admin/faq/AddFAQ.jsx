@@ -2,6 +2,7 @@ import { Breadcrumb, Button, Form, Input, message, PageHeader } from "antd";
 import { useMutation } from "react-query";
 import { Link, useNavigate } from "react-router-dom";
 import Http, { handleError, requestCookie } from '@/js/utils/Http'
+import Helmet from 'react-helmet'
 
 const rules = {
     question: [{required: true, message: 'This field is required.'}],
@@ -32,6 +33,9 @@ export default function AddFAQ() {
 
     return (
         <>
+            <Helmet>
+                <title>Add Frequently Ask Question</title>
+            </Helmet>
             <PageHeader
                 title='Add Frequently Ask Questions'
                 breadcrumb={

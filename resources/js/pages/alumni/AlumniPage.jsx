@@ -4,6 +4,8 @@ import ProfileCard from "./components/ProfileCard";
 import { useState } from 'react'
 import { LoadingOutlined, SearchOutlined } from "@ant-design/icons";
 import LoadingPage from "@/js/components/LoadingPage";
+import Helmet from 'react-helmet'
+
 
 export default function AlumniPage() {
 
@@ -16,6 +18,9 @@ export default function AlumniPage() {
 
     return (
         <>
+            <Helmet>
+                <title>Alumni</title>
+            </Helmet>
             <div className='bg-white px-4 sm:px-8'>
                 <div className='px-0 max-w-screen-lg  mx-auto header-height flex items-center'>
 

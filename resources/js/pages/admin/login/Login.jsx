@@ -5,6 +5,7 @@ import { useMutation, useQueryClient } from "react-query"
 import rules from "./rules"
 import { useState } from 'react'
 import { Link } from "react-router-dom"
+import Helmet from 'react-helmet'
 
 export default function Login()
 {
@@ -27,7 +28,9 @@ export default function Login()
 
     return (
         <div className='bg-gray-100 min-h-screen flex flex-col justify-center'>
-
+            <Helmet>
+                <title>Admin Login</title>
+            </Helmet>
             <div className='bg-white min-h-[320px] w-[320px] mx-auto shadow-lg p-8'>
                 <Link to='/' className='flex justify-center items-center mb-8'>
                     <img className='rounded mr-2' src='/images/logo.png' width={40}/>
@@ -49,7 +52,7 @@ export default function Login()
                         <Input.Password prefix={<LockOutlined className='mr-2' />} placeholder='Password'/>
                     </Form.Item>
                     <Button loading={isLoading} htmlType='submit' type='primary' block>Sign in</Button>
-                    <p className='text-center text-gray-500'>Forgot Password</p>
+                    <Link to='/forgot-password' className='text-center text-gray-500 block mt-4'>Forgot Password</Link>
                 </Form>
 
             </div>

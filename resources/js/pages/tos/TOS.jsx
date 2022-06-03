@@ -3,6 +3,7 @@ import MarkDown from "@/js/components/MarkDown";
 import useTOSQuery from "@/js/query/queries/useTOSQuery";
 import { Typography } from "antd";
 import GuestTopbar from "../index/components/GuestTopbar";
+import Helmet from 'react-helmet'
 
 const { Title } = Typography
 
@@ -10,6 +11,9 @@ export default function TOS() {
     const { data, isLoading } = useTOSQuery()
     return (
         <div className="min-h-screen flex flex-col">
+            <Helmet>
+                <title>Terms of Service</title>
+            </Helmet>
             {isLoading
                 ? <LoadingPage />
                 : (

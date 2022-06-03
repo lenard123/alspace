@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import Http, { handleError, requestCookie } from '@/js/utils/Http'
 import DropOption from "@/js/components/DropOption";
+import Helmet from 'react-helmet'
 
 
 const { Column } = Table
@@ -19,6 +20,9 @@ export default function ManageTshirtPage() {
 
     return (
         <>
+            <Helmet>
+                <title>Manage Items</title>
+            </Helmet>
             <PageHeader
                 breadcrumb={
                     <Breadcrumb>

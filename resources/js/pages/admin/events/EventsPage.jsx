@@ -9,6 +9,7 @@ import { EnvironmentOutlined, LaptopOutlined } from "@ant-design/icons"
 import DropOption from "@/js/components/DropOption"
 import { useMutation } from "react-query"
 import { EventApi } from "@/js/apis"
+import Helmet from 'react-helmet'
 
 const title = {
     'active': 'Upcoming Events',
@@ -55,6 +56,9 @@ export default function EventsPage() {
 
     return (
         <>
+            <Helmet>
+                <title>Manage Events</title>
+            </Helmet>
             <PageHeader
                 breadcrumb={
                     <Breadcrumb>

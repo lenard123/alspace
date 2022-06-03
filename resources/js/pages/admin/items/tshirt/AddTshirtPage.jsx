@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react'
 import { useMutation } from "react-query";
 import Http, { handleError, requestCookie } from '@/js/utils/Http'
+import Helmet from 'react-helmet'
 
 
 const rules = {
@@ -51,6 +52,9 @@ export default function AddTshirtPage() {
 
     return (
         <>
+            <Helmet>
+                <title>Add Alumni T-Shirt</title>
+            </Helmet>
             <PageHeader
                 breadcrumb={
                     <Breadcrumb>

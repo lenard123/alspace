@@ -3,6 +3,8 @@ import Http, { requestCookie } from '@/js/utils/Http'
 import { Image, Table } from "antd";
 import Column from "antd/lib/table/Column";
 import { useQuery } from "react-query";
+import Helmet from 'react-helmet'
+
 
 const apiCall = async () => {
     await requestCookie()
@@ -22,6 +24,9 @@ export default function RequestsStatus()
 
     return (
         <>
+            <Helmet>
+                <title>Request Status</title>
+            </Helmet>
             <Table
                 dataSource={data}
                 bordered

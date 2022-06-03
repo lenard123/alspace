@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useState } from 'react'
 import DropOption from "@/js/components/DropOption";
 import usePendingUserAction from "./usePendingUserAction";
+import Helmet from 'react-helmet'
 
 export default function PendingUsers() {
 
@@ -31,6 +32,9 @@ export default function PendingUsers() {
 
     return (
         <>
+            <Helmet>
+                <title>Pending Registration</title>
+            </Helmet>
             <PageHeader
                 breadcrumb={
                     <Breadcrumb>

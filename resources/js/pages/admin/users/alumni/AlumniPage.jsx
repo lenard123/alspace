@@ -4,6 +4,7 @@ import { Avatar, Breadcrumb, PageHeader, Table } from "antd";
 import Column from "antd/lib/table/Column";
 import { useState } from 'react'
 import { Link } from "react-router-dom";
+import Helmet from 'react-helmet'
 
 
 export default function AlumniPage() {
@@ -17,6 +18,9 @@ export default function AlumniPage() {
 
     return (
         <>
+            <Helmet>
+                <title>Manage Users</title>
+            </Helmet>
             <PageHeader
                 breadcrumb={
                     <Breadcrumb>

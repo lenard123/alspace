@@ -1,5 +1,6 @@
 import QuestionsList from '@/js/components/QuestionsList/QuestionsList';
 import { Collapse } from 'antd'
+import Helmet from 'react-helmet'
 
 const { Panel } = Collapse
 
@@ -17,6 +18,9 @@ export default function()
 {
     return (
         <div className='max-w-lg mx-auto my-8'>
+            <Helmet>
+                <title>Frequently Ask Questions</title>
+            </Helmet>
             <div className='mx-4 text-center text-gray-900 space-y-2 sm:space-y-4'>
                 <div className='font-bold'>FAQs</div>
                 <div className='text-xl sm:text-3xl font-serif'>Frequently Asks Questions</div>

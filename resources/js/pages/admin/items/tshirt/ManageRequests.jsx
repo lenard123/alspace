@@ -1,11 +1,15 @@
 import { PageHeader, Tabs } from "antd";
 import RequestTable from "./components/RequestTable";
+import Helmet from 'react-helmet'
 
 
 export default function ManageRequests()
 {
     return (
         <>
+            <Helmet>
+                <title>Manage Requests</title>
+            </Helmet>
             <PageHeader title='Manage Requests'/>
 
             <div className='bg-white p-6 sm:mx-6'>

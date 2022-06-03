@@ -6,6 +6,7 @@ import useEventQuery from "@/js/query/queries/useEventQuery";
 import { useParams } from "react-router";
 import { fallbackImage } from "@/js/utils";
 import useDates from "@/js/hooks/useDates";
+import Helmet from 'react-helmet'
 
 export default function EventDetailsPage() {
 
@@ -31,6 +32,9 @@ export default function EventDetailsPage() {
 
     return (
         <>
+            <Helmet>
+                <title>{ event.title }</title>
+            </Helmet>
             <div>
                 <Image
                     width='100%'

@@ -4,6 +4,7 @@ import PreviewTOS from "./PreviewTos";
 import UpdateTOS from "./UpdateTOS";
 import { useState } from 'react'
 import useTOSQuery from "@/js/query/queries/useTOSQuery";
+import Helmet from 'react-helmet'
 
 const { TabPane } = Tabs
 
@@ -16,6 +17,9 @@ export default function ManageTOS() {
 
     return (
         <>
+            <Helmet>
+                <title>Terms of Service</title>
+            </Helmet>
             <PageHeader title='Update Terms of Services' />
             <div className='bg-white p-6 sm:mx-6 mb-4 sm:mb-0'>
                 {isLoading
