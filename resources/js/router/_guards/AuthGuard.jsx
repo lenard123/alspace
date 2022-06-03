@@ -5,13 +5,12 @@ import { Navigate, Outlet } from "react-router-dom";
 
 export default function AuthGuard() {
     const {  data:currentUser, isLoading } = useCurrentUserQuery()
-    const isLoggedIn = currentUser !== null
 
     if (isLoading) {
         return <PageLoading />        
     }
 
-    if (!isLoggedIn) {
+    if (!currentUser) {
         return <Navigate to='/login' />
     }
 

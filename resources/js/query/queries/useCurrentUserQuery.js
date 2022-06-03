@@ -11,11 +11,11 @@ const useCurrentUserQuery = () => {
         retry: 0,
         staleTime: 1000 * 60 * 60 * 2,
         onSuccess(user){
-            if (user === null) return;
-
-            const userInfo = queryClient.getQueryData(queryKeyFactory.user(user.id))
-            if (userInfo) {
-                updateUser(user.id, _.merge(userInfo, user))
+            if (user) {
+                const userInfo = queryClient.getQueryData(queryKeyFactory.user(user.id))
+                if (userInfo) {
+                    updateUser(user.id, _.merge(userInfo, user))
+                }
             }
         },
         onError: (error) => {
