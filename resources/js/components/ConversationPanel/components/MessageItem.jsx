@@ -24,7 +24,9 @@ export default function MessageItem({ message, own })
                     color: own ? '#fff' : '#000',
                     overflowWrap: 'break-word'
                 }}>
-                {message.content}
+                {message.content.split('\n').map((line, i) => (
+                    <div key={i}>{line}</div>
+                ))}
             </div>
             {message.created_at && 
                 <span className='text-xs'>{moment(message.created_at).fromNow()}</span>
