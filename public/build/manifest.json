@@ -1,0 +1,16 @@
+{
+  "resources/js/main.jsx": {
+    "file": "assets/main.ccfa7fa6.js",
+    "src": "resources/js/main.jsx",
+    "isEntry": true,
+    "imports": [
+      "_vendor.ff1c5ba8.js"
+    ],
+    "css": [
+      "assets/main.a66cc44a.css"
+    ]
+  },
+  "_vendor.ff1c5ba8.js": {
+    "file": "assets/vendor.ff1c5ba8.js"
+  }
+}
