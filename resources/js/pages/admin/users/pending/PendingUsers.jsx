@@ -1,6 +1,6 @@
 import usePendingUsersQuery from "@/js/query/queries/usePendingUsersQuery";
 import { toAntdPagination } from "@/js/utils";
-import { Breadcrumb, PageHeader,  Table } from "antd";
+import { Breadcrumb, message, notification, PageHeader,  Table } from "antd";
 import BreadcrumbItem from "antd/lib/breadcrumb/BreadcrumbItem";
 import Column from "antd/lib/table/Column";
 import { Link } from "react-router-dom";
@@ -19,6 +19,16 @@ export default function PendingUsers() {
         setPage(data.current)
     }
 
+    const crossCheck = async() => {
+        await message.loading('Connecting to Enrollment Sysyem', 3)
+        await message.loading('Failed to Connect retrying', 3)
+        await message.loading('Trying to connect to Scholastic System')
+        notification.error({
+            message: 'Failed',
+            description: 'Sorry we can\'t connect to the enrollment System.'
+        })
+    }
+
     const handleMenuClick = ({ key }, record) => {
         switch (key) {
             case 'approve':
@@ -26,6 +36,9 @@ export default function PendingUsers() {
                 break;
             case 'reject': 
                 rejectAlumni(record.id)
+                break;
+            case 'check':
+                crossCheck();
                 break;
         }
     }
@@ -68,6 +81,7 @@ export default function PendingUsers() {
                         fixed='right'
                         render={record => (
                             <DropOption onMenuClick={e => handleMenuClick(e, record)} menuOptions={[
+                                {key: 'check', label: 'Cross Check'},
                                 {key: 'approve', label: 'Approve'},
                                 {key: 'reject', label: 'Reject', danger: true}
                             ]}/>
