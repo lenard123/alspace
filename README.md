@@ -23,7 +23,8 @@ A Simple Alumni Management System
 - Post Image, Text, Questions.
 - Event Management
 - Jobs Posting
-- Realtime Chat 
+- Realtime Chat System
+- Account Registration
 
 ## Prerequisites
 Be sure to have Nodejs (v16.x) and PHP (v8.1) installed.
