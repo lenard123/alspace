@@ -45,13 +45,13 @@ jobs:
           git commit -m "generated"
           git push --set-upstream origin build --force
 
-      - name: "Deploy to Cloud"
-        uses: fifsky/ssh-action@master
-        with: 
-          command: |
-            cd ~/alspace
-            git checkout main
-            composer deploy
-          host: ${{ secrets.VM_HOST }}
-          user: ${{ secrets.VM_USER }}
-          key:  ${{ secrets.VM_KEY }}
+#       - name: "Deploy to Cloud"
+#         uses: fifsky/ssh-action@master
+#         with: 
+#           command: |
+#             cd ~/alspace
+#             git checkout main
+#             composer deploy
+#           host: ${{ secrets.VM_HOST }}
+#           user: ${{ secrets.VM_USER }}
+#           key:  ${{ secrets.VM_KEY }}
