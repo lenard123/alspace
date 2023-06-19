@@ -1,0 +1,10 @@
+{
+  "resources/js/main.jsx": {
+    "file": "assets/main.17b1bb0f.js",
+    "src": "resources/js/main.jsx",
+    "isEntry": true,
+    "css": [
+      "assets/main.eee9ab9f.css"
+    ]
+  }
+}
