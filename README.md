@@ -29,6 +29,21 @@ A Simple Alumni Management System
 ## Prerequisites
 Be sure to have Nodejs (v16.x) and PHP (v8.1) installed.
 
+## Demo
+link: https://alspace.lenard123.me/
+
+Demo Accounts:
+```
+kuxe@mailinator.com
+Pa$$w0rd!
+
+lysivyw@mailinator.com
+Pa$$w0rd!
+
+tivyqyzalo@mailinator.com
+Pa$$w0rd!
+```
+
 ## Contributors
 
 <a href="https://github.com/lenard123/alspace/graphs/contributors">
